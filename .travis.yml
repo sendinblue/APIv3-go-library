@@ -1,8 +1,6 @@
 language: go
+go: 1.9
 
-install:
-  - go get -d -v .
+install: make install-dependencies
 
-script:
-  - go build -v ./
-
+script: make test
