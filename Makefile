@@ -12,12 +12,12 @@ sibapiv3: build/generated
 
 build/generated:\
  build/swagger-codegen-cli.jar\
- build/swagger-definition.yml\
+ build/swagger_definition.yml\
  swagger-codegen-config.json
 	rm -rf $@
 	java -jar build/swagger-codegen-cli.jar\
 	 generate\
-	 -i build/swagger-definition.yml\
+	 -i build/swagger_definition.yml\
 	 -l go -c swagger-codegen-config.json\
 	 -o $@
 
@@ -25,7 +25,7 @@ build/swagger-codegen-cli.jar: Makefile
 	mkdir -p build
 	curl -o $@ $(SWAGGER_CODEGEN_JAR_URL)
 
-build/swagger-definition.yml: Makefile
+build/swagger_definition.yml: Makefile
 	mkdir -p build
 	curl -o $@ $(SWAGGER_DEFINITION_URL)
 
