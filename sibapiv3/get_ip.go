@@ -13,7 +13,7 @@ package sibapiv3
 type GetIp struct {
 
 	// ID of the dedicated IP
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 
 	// Dedicated IP
 	Ip string `json:"ip"`

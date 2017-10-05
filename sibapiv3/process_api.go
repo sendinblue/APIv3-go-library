@@ -43,7 +43,7 @@ func NewProcessApiWithBasePath(basePath string) *ProcessApi {
  * @param processId Id of the process
  * @return *GetProcess
  */
-func (a ProcessApi) GetProcess(processId string) (*GetProcess, *APIResponse, error) {
+func (a ProcessApi) GetProcess(processId int64) (*GetProcess, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
@@ -107,7 +107,7 @@ func (a ProcessApi) GetProcess(processId string) (*GetProcess, *APIResponse, err
  * @param offset Beginning point in the list to retrieve from.
  * @return *GetProcesses
  */
-func (a ProcessApi) GetProcesses(limit int32, offset int32) (*GetProcesses, *APIResponse, error) {
+func (a ProcessApi) GetProcesses(limit int64, offset int64) (*GetProcesses, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables

@@ -14,5 +14,5 @@ type GetContacts struct {
 	Contacts []interface{} `json:"contacts"`
 
 	// Number of contacts
-	Count int32 `json:"count"`
+	Count int64 `json:"count"`
 }

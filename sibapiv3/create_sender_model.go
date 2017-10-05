@@ -13,7 +13,7 @@ package sibapiv3
 type CreateSenderModel struct {
 
 	// ID of the Sender created
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 
 	// Status of SPF configuration for the sender (true = SPF not well configured, false = SPF well configured)
 	SpfError bool `json:"spfError,omitempty"`

@@ -14,5 +14,5 @@ type GetFolderLists struct {
 	Lists []interface{} `json:"lists"`
 
 	// Number of lists in the folder
-	Count int32 `json:"count"`
+	Count int64 `json:"count"`
 }

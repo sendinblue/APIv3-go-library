@@ -50,7 +50,7 @@ func NewTransactionalSMSApiWithBasePath(basePath string) *TransactionalSMSApi {
  * @param tags Filter the report for specific tags passed as a serialized urlencoded array
  * @return *GetSmsEventReport
  */
-func (a TransactionalSMSApi) GetSmsEvents(limit int32, startDate time.Time, endDate time.Time, offset int32, days int32, phoneNumber string, event string, tags string) (*GetSmsEventReport, *APIResponse, error) {
+func (a TransactionalSMSApi) GetSmsEvents(limit int64, startDate time.Time, endDate time.Time, offset int64, days int32, phoneNumber string, event string, tags string) (*GetSmsEventReport, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables

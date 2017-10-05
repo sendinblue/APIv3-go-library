@@ -13,8 +13,8 @@ package sibapiv3
 type CreateSmsCampaignRecipients struct {
 
 	// Lists Ids to send the campaign to. REQUIRED if scheduledAt is not empty
-	ListIds []int32 `json:"listIds"`
+	ListIds []int64 `json:"listIds"`
 
 	// List ids which have to be excluded from a campaign
-	ExclusionListIds []int32 `json:"exclusionListIds"`
+	ExclusionListIds []int64 `json:"exclusionListIds"`
 }

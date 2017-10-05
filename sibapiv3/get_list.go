@@ -13,14 +13,14 @@ package sibapiv3
 type GetList struct {
 
 	// ID of the list
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 
 	// Name of the list
 	Name string `json:"name"`
 
 	// Number of blacklisted contacts in the list
-	TotalBlacklisted int32 `json:"totalBlacklisted"`
+	TotalBlacklisted int64 `json:"totalBlacklisted"`
 
 	// Number of contacts in the list
-	TotalSubscribers int32 `json:"totalSubscribers"`
+	TotalSubscribers int64 `json:"totalSubscribers"`
 }

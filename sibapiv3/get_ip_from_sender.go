@@ -13,7 +13,7 @@ package sibapiv3
 type GetIpFromSender struct {
 
 	// ID of the dedicated IP
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 
 	// Dedicated IP
 	Ip string `json:"ip"`
@@ -22,5 +22,5 @@ type GetIpFromSender struct {
 	Domain string `json:"domain"`
 
 	// Weight of the IP
-	Weight int32 `json:"weight"`
+	Weight int64 `json:"weight"`
 }

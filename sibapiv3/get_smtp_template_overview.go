@@ -10,10 +10,14 @@
 
 package sibapiv3
 
+import (
+	"time"
+)
+
 type GetSmtpTemplateOverview struct {
 
 	// ID of the template
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 
 	// Name of the template
 	Name string `json:"name"`
@@ -41,9 +45,9 @@ type GetSmtpTemplateOverview struct {
 	// HTML content of the template
 	HtmlContent string `json:"htmlContent"`
 
-	// Creation date of the template (YYYY-MM-DD HH:mm:ss)
-	CreatedAt string `json:"createdAt"`
+	// Creation date of the template (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	CreatedAt time.Time `json:"createdAt"`
 
-	// Last modification date of the template (YYYY-MM-DD HH:mm:ss)
-	ModifiedAt string `json:"modifiedAt"`
+	// Last modification date of the template (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	ModifiedAt time.Time `json:"modifiedAt"`
 }

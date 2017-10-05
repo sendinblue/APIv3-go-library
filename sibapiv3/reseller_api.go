@@ -44,7 +44,7 @@ func NewResellerApiWithBasePath(basePath string) *ResellerApi {
  * @param addCredits Values to post to add credit to a specific child account
  * @return *RemainingCreditModel
  */
-func (a ResellerApi) AddCredits(childId int32, addCredits AddCredits) (*RemainingCreditModel, *APIResponse, error) {
+func (a ResellerApi) AddCredits(childId int64, addCredits AddCredits) (*RemainingCreditModel, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Post")
 	// create path and map variables
@@ -110,7 +110,7 @@ func (a ResellerApi) AddCredits(childId int32, addCredits AddCredits) (*Remainin
  * @param ipId IP&#39;s id
  * @return void
  */
-func (a ResellerApi) AssociateIpToChild(childId int32, ipId ManageIp) (*APIResponse, error) {
+func (a ResellerApi) AssociateIpToChild(childId int64, ipId ManageIp) (*APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Post")
 	// create path and map variables
@@ -237,7 +237,7 @@ func (a ResellerApi) CreateResellerChild(resellerChild CreateChild) (*CreateMode
  * @param childId id of reseller&#39;s child
  * @return void
  */
-func (a ResellerApi) DeleteResellerChild(childId int32) (*APIResponse, error) {
+func (a ResellerApi) DeleteResellerChild(childId int64) (*APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Delete")
 	// create path and map variables
@@ -299,7 +299,7 @@ func (a ResellerApi) DeleteResellerChild(childId int32) (*APIResponse, error) {
  * @param ipId IP&#39;s id
  * @return void
  */
-func (a ResellerApi) DissociateIpFromChild(childId int32, ipId ManageIp) (*APIResponse, error) {
+func (a ResellerApi) DissociateIpFromChild(childId int64, ipId ManageIp) (*APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Post")
 	// create path and map variables
@@ -362,7 +362,7 @@ func (a ResellerApi) DissociateIpFromChild(childId int32, ipId ManageIp) (*APIRe
  * @param childId id of reseller&#39;s child
  * @return *GetChildInfo
  */
-func (a ResellerApi) GetChildInfo(childId int32) (*GetChildInfo, *APIResponse, error) {
+func (a ResellerApi) GetChildInfo(childId int64) (*GetChildInfo, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
@@ -487,7 +487,7 @@ func (a ResellerApi) GetResellerChilds() (*GetChildrenList, *APIResponse, error)
  * @param removeCredits Values to post to remove email or SMS credits from a specific child account
  * @return *RemainingCreditModel
  */
-func (a ResellerApi) RemoveCredits(childId int32, removeCredits RemoveCredits) (*RemainingCreditModel, *APIResponse, error) {
+func (a ResellerApi) RemoveCredits(childId int64, removeCredits RemoveCredits) (*RemainingCreditModel, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Post")
 	// create path and map variables
@@ -553,7 +553,7 @@ func (a ResellerApi) RemoveCredits(childId int32, removeCredits RemoveCredits) (
  * @param resellerChild values to update in child profile
  * @return void
  */
-func (a ResellerApi) UpdateResellerChild(childId int32, resellerChild UpdateChild) (*APIResponse, error) {
+func (a ResellerApi) UpdateResellerChild(childId int64, resellerChild UpdateChild) (*APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Put")
 	// create path and map variables

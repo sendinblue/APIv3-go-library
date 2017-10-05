@@ -20,8 +20,8 @@ type UpdateContact struct {
 	SmsBlacklisted bool `json:"smsBlacklisted,omitempty"`
 
 	// Ids of the lists to add the contact to
-	ListIds []int32 `json:"listIds,omitempty"`
+	ListIds []int64 `json:"listIds,omitempty"`
 
 	// Ids of the lists to remove the contact from
-	UnlinkListIds []int32 `json:"unlinkListIds,omitempty"`
+	UnlinkListIds []int64 `json:"unlinkListIds,omitempty"`
 }

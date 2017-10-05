@@ -107,7 +107,7 @@ func (a EmailCampaignsApi) CreateEmailCampaign(emailCampaigns CreateEmailCampaig
  * @param campaignId id of the campaign
  * @return void
  */
-func (a EmailCampaignsApi) DeleteEmailCampaigns(campaignId string) (*APIResponse, error) {
+func (a EmailCampaignsApi) DeleteEmailCampaigns(campaignId int64) (*APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Delete")
 	// create path and map variables
@@ -169,7 +169,7 @@ func (a EmailCampaignsApi) DeleteEmailCampaigns(campaignId string) (*APIResponse
  * @param recipientExport Values to send for a recipient export request
  * @return *CreatedProcessId
  */
-func (a EmailCampaignsApi) EmailExportRecipients(campaignId string, recipientExport EmailExportRecipients) (*CreatedProcessId, *APIResponse, error) {
+func (a EmailCampaignsApi) EmailExportRecipients(campaignId int64, recipientExport EmailExportRecipients) (*CreatedProcessId, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Post")
 	// create path and map variables
@@ -234,7 +234,7 @@ func (a EmailCampaignsApi) EmailExportRecipients(campaignId string, recipientExp
  * @param campaignId Id of the campaign
  * @return *GetEmailCampaign
  */
-func (a EmailCampaignsApi) GetEmailCampaign(campaignId string) (*GetEmailCampaign, *APIResponse, error) {
+func (a EmailCampaignsApi) GetEmailCampaign(campaignId int64) (*GetEmailCampaign, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
@@ -300,7 +300,7 @@ func (a EmailCampaignsApi) GetEmailCampaign(campaignId string) (*GetEmailCampaig
  * @param offset Index of the first document in the page
  * @return *GetEmailCampaigns
  */
-func (a EmailCampaignsApi) GetEmailCampaigns(type_ string, status string, limit int32, offset int32) (*GetEmailCampaigns, *APIResponse, error) {
+func (a EmailCampaignsApi) GetEmailCampaigns(type_ string, status string, limit int64, offset int64) (*GetEmailCampaigns, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
@@ -366,7 +366,7 @@ func (a EmailCampaignsApi) GetEmailCampaigns(type_ string, status string, limit 
  * @param campaignId Id of the campaign
  * @return void
  */
-func (a EmailCampaignsApi) SendEmailCampaignNow(campaignId string) (*APIResponse, error) {
+func (a EmailCampaignsApi) SendEmailCampaignNow(campaignId int64) (*APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Post")
 	// create path and map variables
@@ -429,7 +429,7 @@ func (a EmailCampaignsApi) SendEmailCampaignNow(campaignId string) (*APIResponse
  * @param sendReport Values for send a report
  * @return void
  */
-func (a EmailCampaignsApi) SendReport(campaignId string, sendReport SendReport) (*APIResponse, error) {
+func (a EmailCampaignsApi) SendReport(campaignId int64, sendReport SendReport) (*APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Post")
 	// create path and map variables
@@ -493,7 +493,7 @@ func (a EmailCampaignsApi) SendReport(campaignId string, sendReport SendReport) 
  * @param emailTo
  * @return void
  */
-func (a EmailCampaignsApi) SendTestEmail(campaignId string, emailTo SendTestEmail) (*APIResponse, error) {
+func (a EmailCampaignsApi) SendTestEmail(campaignId int64, emailTo SendTestEmail) (*APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Post")
 	// create path and map variables
@@ -557,7 +557,7 @@ func (a EmailCampaignsApi) SendTestEmail(campaignId string, emailTo SendTestEmai
  * @param status Status of the campaign
  * @return void
  */
-func (a EmailCampaignsApi) UpdateCampaignStatus(campaignId string, status UpdateCampaignStatus) (*APIResponse, error) {
+func (a EmailCampaignsApi) UpdateCampaignStatus(campaignId int64, status UpdateCampaignStatus) (*APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Put")
 	// create path and map variables
@@ -621,7 +621,7 @@ func (a EmailCampaignsApi) UpdateCampaignStatus(campaignId string, status Update
  * @param emailCampaign Values to update a campaign
  * @return void
  */
-func (a EmailCampaignsApi) UpdateEmailCampaigns(campaignId string, emailCampaign UpdateEmailCampaign) (*APIResponse, error) {
+func (a EmailCampaignsApi) UpdateEmailCampaigns(campaignId int64, emailCampaign UpdateEmailCampaign) (*APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Put")
 	// create path and map variables

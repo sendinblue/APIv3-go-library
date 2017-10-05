@@ -14,5 +14,5 @@ type GetFolders struct {
 	Folders []interface{} `json:"folders,omitempty"`
 
 	// Number of folders available in your account
-	Count int32 `json:"count,omitempty"`
+	Count int64 `json:"count,omitempty"`
 }

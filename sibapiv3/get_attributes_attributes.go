@@ -13,7 +13,7 @@ package sibapiv3
 type GetAttributesAttributes struct {
 
 	// ID of the attribute
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 
 	// Name of the attribute
 	Name string `json:"name"`

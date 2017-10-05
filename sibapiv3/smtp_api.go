@@ -249,7 +249,7 @@ func (a SMTPApi) GetAggregatedSmtpReport(startDate time.Time, endDate time.Time,
  * @param templateId Filter on a specific template id
  * @return *GetEmailEventReport
  */
-func (a SMTPApi) GetEmailEventReport(limit int32, offset int32, startDate time.Time, endDate time.Time, days int32, email string, event string, tags string, messageId string, templateId string) (*GetEmailEventReport, *APIResponse, error) {
+func (a SMTPApi) GetEmailEventReport(limit int64, offset int64, startDate time.Time, endDate time.Time, days int32, email string, event string, tags string, messageId string, templateId int64) (*GetEmailEventReport, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
@@ -326,7 +326,7 @@ func (a SMTPApi) GetEmailEventReport(limit int32, offset int32, startDate time.T
  * @param tag Tag of the emails
  * @return *GetReports
  */
-func (a SMTPApi) GetSmtpReport(limit int32, offset int32, startDate time.Time, endDate time.Time, days int32, tag string) (*GetReports, *APIResponse, error) {
+func (a SMTPApi) GetSmtpReport(limit int64, offset int64, startDate time.Time, endDate time.Time, days int32, tag string) (*GetReports, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
@@ -394,7 +394,7 @@ func (a SMTPApi) GetSmtpReport(limit int32, offset int32, startDate time.Time, e
  * @param templateId id of the template
  * @return *GetSmtpTemplateOverview
  */
-func (a SMTPApi) GetSmtpTemplate(templateId string) (*GetSmtpTemplateOverview, *APIResponse, error) {
+func (a SMTPApi) GetSmtpTemplate(templateId int64) (*GetSmtpTemplateOverview, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
@@ -459,7 +459,7 @@ func (a SMTPApi) GetSmtpTemplate(templateId string) (*GetSmtpTemplateOverview, *
  * @param offset Index of the first document in the page
  * @return *GetSmtpTemplates
  */
-func (a SMTPApi) GetSmtpTemplates(templateStatus bool, limit int32, offset int32) (*GetSmtpTemplates, *APIResponse, error) {
+func (a SMTPApi) GetSmtpTemplates(templateStatus bool, limit int64, offset int64) (*GetSmtpTemplates, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
@@ -525,7 +525,7 @@ func (a SMTPApi) GetSmtpTemplates(templateStatus bool, limit int32, offset int32
  * @param sendEmail
  * @return *SendTemplateEmail
  */
-func (a SMTPApi) SendTemplate(templateId string, sendEmail SendEmail) (*SendTemplateEmail, *APIResponse, error) {
+func (a SMTPApi) SendTemplate(templateId int64, sendEmail SendEmail) (*SendTemplateEmail, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Post")
 	// create path and map variables
@@ -591,7 +591,7 @@ func (a SMTPApi) SendTemplate(templateId string, sendEmail SendEmail) (*SendTemp
  * @param sendTestEmail
  * @return void
  */
-func (a SMTPApi) SendTestTemplate(templateId string, sendTestEmail SendTestEmail) (*APIResponse, error) {
+func (a SMTPApi) SendTestTemplate(templateId int64, sendTestEmail SendTestEmail) (*APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Post")
 	// create path and map variables
@@ -719,7 +719,7 @@ func (a SMTPApi) SendTransacEmail(sendSmtpEmail SendSmtpEmail) (*CreateSmtpEmail
  * @param smtpTemplate values to update in smtp template
  * @return void
  */
-func (a SMTPApi) UpdateSmtpTemplate(templateId string, smtpTemplate UpdateSmtpTemplate) (*APIResponse, error) {
+func (a SMTPApi) UpdateSmtpTemplate(templateId int64, smtpTemplate UpdateSmtpTemplate) (*APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Put")
 	// create path and map variables

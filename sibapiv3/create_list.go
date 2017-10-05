@@ -16,5 +16,5 @@ type CreateList struct {
 	Name string `json:"name"`
 
 	// Id of the folder in which to create the list
-	FolderId int32 `json:"folderId"`
+	FolderId int64 `json:"folderId"`
 }

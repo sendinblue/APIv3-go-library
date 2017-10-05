@@ -13,7 +13,7 @@ package sibapiv3
 type PostSendFailed struct {
 
 	// Response code
-	Code int32 `json:"code"`
+	Code int64 `json:"code"`
 
 	// Response message
 	Message string `json:"message"`

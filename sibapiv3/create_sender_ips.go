@@ -19,5 +19,5 @@ type CreateSenderIps struct {
 	Domain string `json:"domain"`
 
 	// Weight to apply to the IP. Sum of all IP weights must be 100. Should be passed for either ALL or NONE of the IPs. If it's not passed, the sending will be equally balanced on all IPs.
-	Weight int32 `json:"weight,omitempty"`
+	Weight int64 `json:"weight,omitempty"`
 }

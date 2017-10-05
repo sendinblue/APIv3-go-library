@@ -13,5 +13,5 @@ package sibapiv3
 type CreateModel struct {
 
 	// ID of the object created
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 }

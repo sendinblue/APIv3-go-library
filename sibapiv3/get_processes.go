@@ -16,5 +16,5 @@ type GetProcesses struct {
 	Processes []GetProcess `json:"processes,omitempty"`
 
 	// Number of processes available on your account
-	Count int32 `json:"count"`
+	Count int64 `json:"count"`
 }

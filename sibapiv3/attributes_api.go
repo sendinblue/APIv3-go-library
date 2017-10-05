@@ -107,7 +107,7 @@ func (a AttributesApi) CreateAttribute(createAttribute CreateAttribute) (*Create
  * @param attributeId id of the attribute
  * @return void
  */
-func (a AttributesApi) DeleteAttribute(attributeId string) (*APIResponse, error) {
+func (a AttributesApi) DeleteAttribute(attributeId int64) (*APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Delete")
 	// create path and map variables

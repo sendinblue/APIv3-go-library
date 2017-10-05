@@ -13,7 +13,7 @@ package sibapiv3
 type GetSmtpTemplates struct {
 
 	// Count of smtp templates
-	Count int32 `json:"count,omitempty"`
+	Count int64 `json:"count,omitempty"`
 
 	Templates []GetSmtpTemplateOverview `json:"templates,omitempty"`
 }

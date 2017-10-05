@@ -21,6 +21,9 @@ type SendTransacSms struct {
 	// Content of the message. If more than 160 characters long, multiple text messages will be sent
 	Content string `json:"content"`
 
+	// Type of the SMS
+	Type_ string `json:"type,omitempty"`
+
 	// Tag of the message
 	Tag string `json:"tag,omitempty"`
 

@@ -14,10 +14,10 @@ type GetExtendedCampaignStats struct {
 	CampaignStats []interface{} `json:"campaignStats"`
 
 	// Number of clicks on mirror link
-	MirrorClick int32 `json:"mirrorClick"`
+	MirrorClick int64 `json:"mirrorClick"`
 
 	// Number of remaning emails to send
-	Remaining int32 `json:"remaining"`
+	Remaining int64 `json:"remaining"`
 
 	LinksStats map[string]GetExtendedCampaignStatsLinksStats `json:"linksStats"`
 

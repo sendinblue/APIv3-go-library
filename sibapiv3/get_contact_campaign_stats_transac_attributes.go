@@ -23,5 +23,5 @@ type GetContactCampaignStatsTransacAttributes struct {
 	OrderPrice float32 `json:"orderPrice"`
 
 	// ID of the order
-	OrderId int32 `json:"orderId"`
+	OrderId int64 `json:"orderId"`
 }

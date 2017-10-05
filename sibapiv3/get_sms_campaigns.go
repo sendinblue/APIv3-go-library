@@ -14,5 +14,5 @@ type GetSmsCampaigns struct {
 	Campaigns []interface{} `json:"campaigns,omitempty"`
 
 	// Number of SMS campaigns retrieved
-	Count int32 `json:"count"`
+	Count int64 `json:"count"`
 }

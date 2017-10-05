@@ -13,8 +13,8 @@ package sibapiv3
 type RemoveCredits struct {
 
 	// SMS credits to be removed from the child account
-	Sms int32 `json:"sms,omitempty"`
+	Sms int64 `json:"sms,omitempty"`
 
 	// Email credits to be removed from the child account
-	Email int32 `json:"email,omitempty"`
+	Email int64 `json:"email,omitempty"`
 }

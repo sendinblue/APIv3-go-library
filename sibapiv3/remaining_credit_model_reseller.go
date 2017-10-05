@@ -13,8 +13,8 @@ package sibapiv3
 type RemainingCreditModelReseller struct {
 
 	// SMS Credits remaining for reseller account
-	Sms int32 `json:"sms"`
+	Sms int64 `json:"sms"`
 
 	// Email Credits remaining for reseller account
-	Email int32 `json:"email"`
+	Email int64 `json:"email"`
 }

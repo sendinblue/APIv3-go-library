@@ -13,5 +13,5 @@ package sibapiv3
 type ManageIp struct {
 
 	// ID of the IP
-	IpId int32 `json:"ipId,omitempty"`
+	IpId int64 `json:"ipId,omitempty"`
 }

@@ -10,6 +10,10 @@
 
 package sibapiv3
 
+import (
+	"time"
+)
+
 type CreateEmailCampaign struct {
 
 	// Tag of the campaign
@@ -26,8 +30,8 @@ type CreateEmailCampaign struct {
 	// Mandatory if htmlContent is empty. Url to the message (HTML)
 	HtmlUrl string `json:"htmlUrl,omitempty"`
 
-	// Sending date and time (YYYY-MM-DD HH:mm:ss)
-	ScheduledAt string `json:"scheduledAt,omitempty"`
+	// Sending date and time (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	ScheduledAt time.Time `json:"scheduledAt,omitempty"`
 
 	// Subject of the campaign
 	Subject string `json:"subject"`

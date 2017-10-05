@@ -10,10 +10,14 @@
 
 package sibapiv3
 
+import (
+	"time"
+)
+
 type GetCampaignOverview struct {
 
 	// ID of the campaign
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 
 	// Name of the campaign
 	Name string `json:"name"`
@@ -27,6 +31,6 @@ type GetCampaignOverview struct {
 	// Status of the campaign
 	Status string `json:"status"`
 
-	// Date on which campaign is scheduled (YYYY-MM-DD HH:mm:ss)
-	ScheduledAt string `json:"scheduledAt,omitempty"`
+	// Date on which campaign is scheduled (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	ScheduledAt time.Time `json:"scheduledAt,omitempty"`
 }

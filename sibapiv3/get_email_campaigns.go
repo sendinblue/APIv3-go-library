@@ -14,5 +14,5 @@ type GetEmailCampaigns struct {
 	Campaigns []interface{} `json:"campaigns,omitempty"`
 
 	// Number of Email campaigns retrieved
-	Count int32 `json:"count"`
+	Count int64 `json:"count"`
 }

@@ -23,35 +23,35 @@ type GetReportsReports struct {
 	Tag string `json:"tag"`
 
 	// Number of requests for the date
-	Requests int32 `json:"requests"`
+	Requests int64 `json:"requests"`
 
 	// Number of delivered emails for the date
-	Delivered int32 `json:"delivered"`
+	Delivered int64 `json:"delivered"`
 
 	// Number of hardbounces for the date
-	HardBounces int32 `json:"hardBounces"`
+	HardBounces int64 `json:"hardBounces"`
 
 	// Number of softbounces for the date
-	SoftBounces int32 `json:"softBounces"`
+	SoftBounces int64 `json:"softBounces"`
 
 	// Number of clicks for the date
-	Clicks int32 `json:"clicks"`
+	Clicks int64 `json:"clicks"`
 
 	// Number of unique clicks for the date
-	UniqueClicks int32 `json:"uniqueClicks"`
+	UniqueClicks int64 `json:"uniqueClicks"`
 
 	// Number of openings for the date
-	Opens int32 `json:"opens"`
+	Opens int64 `json:"opens"`
 
 	// Number of unique openings for the date
-	UniqueOpens int32 `json:"uniqueOpens"`
+	UniqueOpens int64 `json:"uniqueOpens"`
 
 	// Number of complaints (spam reports) for the date
-	SpamReports int32 `json:"spamReports"`
+	SpamReports int64 `json:"spamReports"`
 
 	// Number of blocked emails for the date
-	Blocked int32 `json:"blocked"`
+	Blocked int64 `json:"blocked"`
 
 	// Number of invalid emails for the date
-	Invalid int32 `json:"invalid"`
+	Invalid int64 `json:"invalid"`
 }

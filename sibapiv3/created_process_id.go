@@ -13,5 +13,5 @@ package sibapiv3
 type CreatedProcessId struct {
 
 	// Id of the process created
-	ProcessId int32 `json:"processId"`
+	ProcessId int64 `json:"processId"`
 }

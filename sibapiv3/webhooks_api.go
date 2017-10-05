@@ -107,7 +107,7 @@ func (a WebhooksApi) CreateWebhook(createWebhook CreateWebhook) (*CreateModel, *
  * @param webhookId Id of the webhook
  * @return void
  */
-func (a WebhooksApi) DeleteWebhook(webhookId string) (*APIResponse, error) {
+func (a WebhooksApi) DeleteWebhook(webhookId int64) (*APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Delete")
 	// create path and map variables
@@ -168,7 +168,7 @@ func (a WebhooksApi) DeleteWebhook(webhookId string) (*APIResponse, error) {
  * @param webhookId Id of the webhook
  * @return *GetWebhook
  */
-func (a WebhooksApi) GetWebhook(webhookId string) (*GetWebhook, *APIResponse, error) {
+func (a WebhooksApi) GetWebhook(webhookId int64) (*GetWebhook, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
@@ -295,7 +295,7 @@ func (a WebhooksApi) GetWebhooks(type_ string) (*GetWebhooks, *APIResponse, erro
  * @param updateWebhook Values to update a webhook
  * @return void
  */
-func (a WebhooksApi) UpdateWebhook(webhookId string, updateWebhook UpdateWebhook) (*APIResponse, error) {
+func (a WebhooksApi) UpdateWebhook(webhookId int64, updateWebhook UpdateWebhook) (*APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Put")
 	// create path and map variables
