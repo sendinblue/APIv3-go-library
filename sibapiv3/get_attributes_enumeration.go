@@ -13,7 +13,7 @@ package sibapiv3
 type GetAttributesEnumeration struct {
 
 	// ID of Value of the \"category\" type attribute
-	Value int32 `json:"value"`
+	Value int64 `json:"value"`
 
 	// Label of the \"category\" type attribute
 	Label string `json:"label"`

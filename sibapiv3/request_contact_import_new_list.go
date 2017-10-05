@@ -16,5 +16,5 @@ type RequestContactImportNewList struct {
 	ListName string `json:"listName,omitempty"`
 
 	// Folder id will be used with listName to make newly created list’s desired parent (Mandatory if listName is not empty).
-	FolderId int32 `json:"folderId,omitempty"`
+	FolderId int64 `json:"folderId,omitempty"`
 }

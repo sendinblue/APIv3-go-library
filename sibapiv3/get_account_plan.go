@@ -10,6 +10,10 @@
 
 package sibapiv3
 
+import (
+	"time"
+)
+
 type GetAccountPlan struct {
 
 	// Displays the plan type of the user
@@ -20,4 +24,10 @@ type GetAccountPlan struct {
 
 	// Remaining credits of the user. This can either be \"User Limit\" or \"Send Limit\" depending on the plan.
 	Credits float32 `json:"credits"`
+
+	// Date of the period from which the plan will start (only available for \"subscription\", \"unlimited\" and \"reseller\" plan type)
+	StartDate time.Time `json:"startDate,omitempty"`
+
+	// Date of the period from which the plan will end (only available for \"subscription\", \"unlimited\" and \"reseller\" plan type)
+	EndDate time.Time `json:"endDate,omitempty"`
 }

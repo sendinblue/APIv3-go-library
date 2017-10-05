@@ -107,7 +107,7 @@ func (a SendersApi) CreateSender(sender CreateSender) (*CreateSenderModel, *APIR
  * @param senderId Id of the sender
  * @return void
  */
-func (a SendersApi) DeleteSender(senderId string) (*APIResponse, error) {
+func (a SendersApi) DeleteSender(senderId int64) (*APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Delete")
 	// create path and map variables
@@ -229,7 +229,7 @@ func (a SendersApi) GetIps() (*GetIps, *APIResponse, error) {
  * @param senderId Id of the sender
  * @return *GetIpsFromSender
  */
-func (a SendersApi) GetIpsFromSender(senderId string) (*GetIpsFromSender, *APIResponse, error) {
+func (a SendersApi) GetIpsFromSender(senderId int64) (*GetIpsFromSender, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
@@ -358,7 +358,7 @@ func (a SendersApi) GetSenders(ip string, domain string) (*GetSendersList, *APIR
  * @param sender sender&#39;s name
  * @return void
  */
-func (a SendersApi) UpdateSender(senderId string, sender UpdateSender) (*APIResponse, error) {
+func (a SendersApi) UpdateSender(senderId int64, sender UpdateSender) (*APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Put")
 	// create path and map variables

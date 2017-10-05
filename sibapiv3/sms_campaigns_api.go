@@ -107,7 +107,7 @@ func (a SMSCampaignsApi) CreateSMSCampaign(createSmsCampaign CreateSmsCampaign) 
  * @param campaignId id of the SMS campaign
  * @return void
  */
-func (a SMSCampaignsApi) DeleteSMSCampaigns(campaignId string) (*APIResponse, error) {
+func (a SMSCampaignsApi) DeleteSMSCampaigns(campaignId int64) (*APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Delete")
 	// create path and map variables
@@ -170,7 +170,7 @@ func (a SMSCampaignsApi) DeleteSMSCampaigns(campaignId string) (*APIResponse, er
  * @param offset Beginning point in the list to retrieve from.
  * @return *GetSmsCampaigns
  */
-func (a SMSCampaignsApi) GetSMSCampaigns(status string, limit int32, offset int32) (*GetSmsCampaigns, *APIResponse, error) {
+func (a SMSCampaignsApi) GetSMSCampaigns(status string, limit int64, offset int64) (*GetSmsCampaigns, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
@@ -236,7 +236,7 @@ func (a SMSCampaignsApi) GetSMSCampaigns(status string, limit int32, offset int3
  * @param getSmsCampaign Values to update an SMS Campaign
  * @return *GetSmsCampaign
  */
-func (a SMSCampaignsApi) GetSmsCampaign(campaignId string, getSmsCampaign GetSmsCampaign) (*GetSmsCampaign, *APIResponse, error) {
+func (a SMSCampaignsApi) GetSmsCampaign(campaignId int64, getSmsCampaign GetSmsCampaign) (*GetSmsCampaign, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
@@ -303,7 +303,7 @@ func (a SMSCampaignsApi) GetSmsCampaign(campaignId string, getSmsCampaign GetSms
  * @param recipientExport Values to send for a recipient export request
  * @return *CreatedProcessId
  */
-func (a SMSCampaignsApi) RequestSMSRecipientExport(campaignId string, recipientExport RequestSmsRecipientExport) (*CreatedProcessId, *APIResponse, error) {
+func (a SMSCampaignsApi) RequestSMSRecipientExport(campaignId int64, recipientExport RequestSmsRecipientExport) (*CreatedProcessId, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Post")
 	// create path and map variables
@@ -368,7 +368,7 @@ func (a SMSCampaignsApi) RequestSMSRecipientExport(campaignId string, recipientE
  * @param campaignId id of the campaign
  * @return void
  */
-func (a SMSCampaignsApi) SendSMSCampaignNow(campaignId string) (*APIResponse, error) {
+func (a SMSCampaignsApi) SendSMSCampaignNow(campaignId int64) (*APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Post")
 	// create path and map variables
@@ -431,7 +431,7 @@ func (a SMSCampaignsApi) SendSMSCampaignNow(campaignId string) (*APIResponse, er
  * @param sendReport Values for send a report
  * @return void
  */
-func (a SMSCampaignsApi) SendSMSReport(campaignId string, sendReport SendReport) (*APIResponse, error) {
+func (a SMSCampaignsApi) SendSMSReport(campaignId int64, sendReport SendReport) (*APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Post")
 	// create path and map variables
@@ -495,7 +495,7 @@ func (a SMSCampaignsApi) SendSMSReport(campaignId string, sendReport SendReport)
  * @param sendTestSms Mobile number to which send the test
  * @return void
  */
-func (a SMSCampaignsApi) SendTestSms(campaignId string, sendTestSms SendTestSms) (*APIResponse, error) {
+func (a SMSCampaignsApi) SendTestSms(campaignId int64, sendTestSms SendTestSms) (*APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Post")
 	// create path and map variables
@@ -559,7 +559,7 @@ func (a SMSCampaignsApi) SendTestSms(campaignId string, sendTestSms SendTestSms)
  * @param status Status of the campaign.
  * @return void
  */
-func (a SMSCampaignsApi) UpdateSMSCampaignStatus(campaignId string, status UpdateCampaignStatus) (*APIResponse, error) {
+func (a SMSCampaignsApi) UpdateSMSCampaignStatus(campaignId int64, status UpdateCampaignStatus) (*APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Put")
 	// create path and map variables
@@ -623,7 +623,7 @@ func (a SMSCampaignsApi) UpdateSMSCampaignStatus(campaignId string, status Updat
  * @param updateSmsCampaign Values to update an SMS Campaign
  * @return void
  */
-func (a SMSCampaignsApi) UpdateSmsCampaign(campaignId string, updateSmsCampaign UpdateSmsCampaign) (*APIResponse, error) {
+func (a SMSCampaignsApi) UpdateSmsCampaign(campaignId int64, updateSmsCampaign UpdateSmsCampaign) (*APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Put")
 	// create path and map variables

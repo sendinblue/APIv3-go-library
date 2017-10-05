@@ -10,11 +10,15 @@
 
 package sibapiv3
 
+import (
+	"time"
+)
+
 type GetExtendedContactDetailsStatisticsMessagesSent struct {
 
 	// ID of the campaign which generated the event
-	CampaignId int32 `json:"campaignId"`
+	CampaignId int64 `json:"campaignId"`
 
 	// Date of the event
-	EventTime string `json:"eventTime"`
+	EventTime time.Time `json:"eventTime"`
 }

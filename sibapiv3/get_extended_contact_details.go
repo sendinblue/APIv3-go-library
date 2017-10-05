@@ -10,13 +10,17 @@
 
 package sibapiv3
 
+import (
+	"time"
+)
+
 type GetExtendedContactDetails struct {
 
 	// Email address of the contact for which you requested the details
 	Email string `json:"email"`
 
 	// ID of the contact for which you requested the details
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 
 	// Blacklist status for email campaigns (true=blacklisted, false=not blacklisted)
 	EmailBlacklisted bool `json:"emailBlacklisted"`
@@ -24,12 +28,12 @@ type GetExtendedContactDetails struct {
 	// Blacklist status for SMS campaigns (true=blacklisted, false=not blacklisted)
 	SmsBlacklisted bool `json:"smsBlacklisted"`
 
-	// Last modification date of the contact (YYYY-MM-DD HH:mm:ss)
-	ModifiedAt string `json:"modifiedAt"`
+	// Last modification date of the contact (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	ModifiedAt time.Time `json:"modifiedAt"`
 
-	ListIds []int32 `json:"listIds"`
+	ListIds []int64 `json:"listIds"`
 
-	ListUnsubscribed []int32 `json:"listUnsubscribed,omitempty"`
+	ListUnsubscribed []int64 `json:"listUnsubscribed,omitempty"`
 
 	Attributes map[string]string `json:"attributes"`
 

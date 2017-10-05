@@ -16,5 +16,5 @@ type UpdateList struct {
 	Name string `json:"name,omitempty"`
 
 	// Id of the folder in which to move the list. Only one parameter can updated at once
-	FolderId int32 `json:"folderId,omitempty"`
+	FolderId int64 `json:"folderId,omitempty"`
 }

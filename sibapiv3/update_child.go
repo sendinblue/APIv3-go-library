@@ -27,5 +27,5 @@ type UpdateChild struct {
 	// New password for the child account to login
 	Password string `json:"password,omitempty"`
 
-	Ips []int32 `json:"ips,omitempty"`
+	Ips []int64 `json:"ips,omitempty"`
 }

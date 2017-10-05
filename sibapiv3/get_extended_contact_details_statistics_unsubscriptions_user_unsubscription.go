@@ -10,13 +10,17 @@
 
 package sibapiv3
 
+import (
+	"time"
+)
+
 type GetExtendedContactDetailsStatisticsUnsubscriptionsUserUnsubscription struct {
 
 	// ID of the campaign which generated the event
-	CampaignId int32 `json:"campaignId"`
+	CampaignId int64 `json:"campaignId"`
 
 	// Date of the event
-	EventTime string `json:"eventTime"`
+	EventTime time.Time `json:"eventTime"`
 
 	// IP from which the user has unsubscribed
 	Ip string `json:"ip"`

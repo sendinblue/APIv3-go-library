@@ -14,8 +14,8 @@ package sibapiv3
 type GetChildInfoCredits struct {
 
 	// Email credits available for your child
-	EmailCredits int32 `json:"emailCredits,omitempty"`
+	EmailCredits int64 `json:"emailCredits,omitempty"`
 
 	// SMS credits available for your child
-	SmsCredits int32 `json:"smsCredits,omitempty"`
+	SmsCredits int64 `json:"smsCredits,omitempty"`
 }

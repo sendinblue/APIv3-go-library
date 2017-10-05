@@ -10,13 +10,17 @@
 
 package sibapiv3
 
+import (
+	"time"
+)
+
 type GetWebhook struct {
 
 	// URL of the webhook
 	Url string `json:"url"`
 
 	// ID of the webhook
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 
 	// Description of the webhook
 	Description string `json:"description"`
@@ -26,9 +30,9 @@ type GetWebhook struct {
 	// Type of webhook (marketing or transac)
 	Type_ string `json:"type"`
 
-	// Creation date of the webhook (YYYY-MM-DD HH:mm:ss)
-	CreatedAt string `json:"createdAt"`
+	// Creation date of the webhook (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	CreatedAt time.Time `json:"createdAt"`
 
-	// Last modification date of the webhook (YYYY-MM-DD HH:mm:ss)
-	ModifiedAt string `json:"modifiedAt"`
+	// Last modification date of the webhook (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	ModifiedAt time.Time `json:"modifiedAt"`
 }

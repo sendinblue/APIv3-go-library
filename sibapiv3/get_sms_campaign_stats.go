@@ -13,23 +13,23 @@ package sibapiv3
 type GetSmsCampaignStats struct {
 
 	// Number of delivered SMS
-	Delivered int32 `json:"delivered"`
+	Delivered int64 `json:"delivered"`
 
 	// Number of sent SMS
-	Sent int32 `json:"sent"`
+	Sent int64 `json:"sent"`
 
 	// Number of processing SMS
-	Processing int32 `json:"processing"`
+	Processing int64 `json:"processing"`
 
 	// Number of softbounced SMS
-	SoftBounces int32 `json:"softBounces"`
+	SoftBounces int64 `json:"softBounces"`
 
 	// Number of hardbounced SMS
-	HardBounces int32 `json:"hardBounces"`
+	HardBounces int64 `json:"hardBounces"`
 
 	// Number of unsubscription SMS
-	Unsubscriptions int32 `json:"unsubscriptions"`
+	Unsubscriptions int64 `json:"unsubscriptions"`
 
 	// Number of replies to the SMS
-	Answered int32 `json:"answered"`
+	Answered int64 `json:"answered"`
 }

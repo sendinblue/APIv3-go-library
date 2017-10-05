@@ -13,7 +13,7 @@ package sibapiv3
 type GetSendersListSenders struct {
 
 	// Id of the sender
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 
 	// From Name associated to the sender
 	Name string `json:"name"`

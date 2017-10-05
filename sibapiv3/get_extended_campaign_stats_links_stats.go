@@ -14,5 +14,5 @@ package sibapiv3
 type GetExtendedCampaignStatsLinksStats struct {
 
 	// Number of clicks for the link
-	NbClick int32 `json:"nbClick"`
+	NbClick int64 `json:"nbClick"`
 }

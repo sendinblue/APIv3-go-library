@@ -28,18 +28,18 @@ type GetEmailEventReportEvents struct {
 	// Message ID which generated the event
 	MessageId string `json:"messageId"`
 
-	// Event which occured
+	// Event which occurred
 	Event string `json:"event"`
 
-	// Reason of bounce (only availble if the event is hardbounce or softbounce)
+	// Reason of bounce (only available if the event is hardbounce or softbounce)
 	Reason string `json:"reason"`
 
 	// Tag of the email which generated the event
 	Tag string `json:"tag"`
 
-	// IP from which the user has opened the email or clicked on the link (only availble if the event is opened or clicks)
+	// IP from which the user has opened the email or clicked on the link (only available if the event is opened or clicks)
 	Ip string `json:"ip,omitempty"`
 
-	// The link which is sent to the user (only availble if the event is requests or opened or clicks)
+	// The link which is sent to the user (only available if the event is requests or opened or clicks)
 	Link string `json:"link,omitempty"`
 }

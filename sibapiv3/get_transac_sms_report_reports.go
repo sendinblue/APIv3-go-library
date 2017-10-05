@@ -23,29 +23,29 @@ type GetTransacSmsReportReports struct {
 	Tag string `json:"tag"`
 
 	// Number of requests for the date
-	Requests int32 `json:"requests"`
+	Requests int64 `json:"requests"`
 
 	// Number of delivered SMS for the date
-	Delivered int32 `json:"delivered"`
+	Delivered int64 `json:"delivered"`
 
 	// Number of hardbounces for the date
-	HardBounces int32 `json:"hardBounces"`
+	HardBounces int64 `json:"hardBounces"`
 
 	// Number of softbounces for the date
-	SoftBounces int32 `json:"softBounces"`
+	SoftBounces int64 `json:"softBounces"`
 
 	// Number of blocked contact for the date
-	Blocked int32 `json:"blocked"`
+	Blocked int64 `json:"blocked"`
 
 	// Number of unsubscription for the date
-	Unsubscribed int32 `json:"unsubscribed"`
+	Unsubscribed int64 `json:"unsubscribed"`
 
 	// Number of answered SMS for the date
-	Replied int32 `json:"replied"`
+	Replied int64 `json:"replied"`
 
 	// Number of accepted for the date
-	Accepted int32 `json:"accepted"`
+	Accepted int64 `json:"accepted"`
 
 	// Number of rejected for the date
-	Rejected int32 `json:"rejected"`
+	Rejected int64 `json:"rejected"`
 }

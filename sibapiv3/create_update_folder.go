@@ -10,7 +10,7 @@
 
 package sibapiv3
 
-type CreaUpdateFolder struct {
+type CreateUpdateFolder struct {
 
 	// Name of the folder
 	Name string `json:"name,omitempty"`

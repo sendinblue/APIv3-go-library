@@ -13,7 +13,7 @@ package sibapiv3
 type GetChildInfoIps struct {
 
 	// ID of the IP
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 
 	// IP associated to the child account user
 	Ip string `json:"ip"`

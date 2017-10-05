@@ -14,11 +14,11 @@ package sibapiv3
 type GetChildInfoStatistics struct {
 
 	// Overall emails sent for the previous month
-	PreviousMonthTotalSent int32 `json:"previousMonthTotalSent,omitempty"`
+	PreviousMonthTotalSent int64 `json:"previousMonthTotalSent,omitempty"`
 
 	// Overall emails sent for current month
-	CurrentMonthTotalSent int32 `json:"currentMonthTotalSent,omitempty"`
+	CurrentMonthTotalSent int64 `json:"currentMonthTotalSent,omitempty"`
 
 	// Overall emails sent for since the account exists
-	TotalSent int32 `json:"totalSent,omitempty"`
+	TotalSent int64 `json:"totalSent,omitempty"`
 }

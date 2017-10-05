@@ -13,7 +13,7 @@ package sibapiv3
 type GetCampaignRecipientsExclusionLists struct {
 
 	// ID of the list excluded of the campaign
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 
 	// Name of the list excluded of the campaign
 	Name string `json:"name"`

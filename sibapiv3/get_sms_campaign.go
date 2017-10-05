@@ -10,10 +10,14 @@
 
 package sibapiv3
 
+import (
+	"time"
+)
+
 type GetSmsCampaign struct {
 
 	// ID of the SMS Campaign
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 
 	// Name of the SMS Campaign
 	Name string `json:"name"`
@@ -24,8 +28,8 @@ type GetSmsCampaign struct {
 	// Content of the SMS Campaign
 	Content string `json:"content"`
 
-	// Date on which SMS campaign is scheduled. Should be in YYYY-MM-DD HH:mm:ss format
-	ScheduledAt string `json:"scheduledAt"`
+	// Date on which SMS campaign is scheduled. Should be in YYYY-MM-DDTHH:mm:ss.SSSZ format
+	ScheduledAt time.Time `json:"scheduledAt"`
 
 	// Retrieved the status of test SMS sending. (true=Test SMS has been sent  false=Test SMS has not been sent)
 	TestSent bool `json:"testSent"`
@@ -33,9 +37,9 @@ type GetSmsCampaign struct {
 	// Sender of the SMS Campaign
 	Sender string `json:"sender"`
 
-	// Creation date of the SMS campaign (YYYY-MM-DD HH:mm:ss)
-	CreatedAt string `json:"createdAt"`
+	// Creation date of the SMS campaign (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	CreatedAt time.Time `json:"createdAt"`
 
-	// Date of last modification of the SMS campaign (YYYY-MM-DD HH:mm:ss)
-	ModifiedAt string `json:"modifiedAt"`
+	// Date of last modification of the SMS campaign (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	ModifiedAt time.Time `json:"modifiedAt"`
 }

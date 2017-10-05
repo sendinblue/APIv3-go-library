@@ -10,25 +10,29 @@
 
 package sibapiv3
 
+import (
+	"time"
+)
+
 type GetExtendedList struct {
 
 	// ID of the list
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 
 	// Name of the list
 	Name string `json:"name"`
 
 	// Number of blacklisted contacts in the list
-	TotalBlacklisted int32 `json:"totalBlacklisted"`
+	TotalBlacklisted int64 `json:"totalBlacklisted"`
 
 	// Number of contacts in the list
-	TotalSubscribers int32 `json:"totalSubscribers"`
+	TotalSubscribers int64 `json:"totalSubscribers"`
 
 	// ID of the folder
-	FolderId int32 `json:"folderId"`
+	FolderId int64 `json:"folderId"`
 
-	// Creation Date of the list (YYYY-MM-DD HH:mm:ss)
-	CreatedAt string `json:"createdAt"`
+	// Creation Date of the list (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	CreatedAt time.Time `json:"createdAt"`
 
 	CampaignStats []GetExtendedListCampaignStats `json:"campaignStats,omitempty"`
 

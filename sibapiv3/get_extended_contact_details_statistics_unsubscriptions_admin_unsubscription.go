@@ -10,10 +10,14 @@
 
 package sibapiv3
 
+import (
+	"time"
+)
+
 type GetExtendedContactDetailsStatisticsUnsubscriptionsAdminUnsubscription struct {
 
 	// Date of the event
-	EventTime string `json:"eventTime"`
+	EventTime time.Time `json:"eventTime"`
 
 	// IP from which the user has been unsubscribed
 	Ip string `json:"ip"`

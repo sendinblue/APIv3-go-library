@@ -13,7 +13,7 @@ package sibapiv3
 type GetCampaignRecipientsLists struct {
 
 	// ID of the list included in the campaign
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 
 	// Name of the list included in the campaign
 	Name string `json:"name"`

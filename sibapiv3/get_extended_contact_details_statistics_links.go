@@ -10,13 +10,17 @@
 
 package sibapiv3
 
+import (
+	"time"
+)
+
 type GetExtendedContactDetailsStatisticsLinks struct {
 
 	// Number of clicks on this link for the campaign
-	Count int32 `json:"count"`
+	Count int64 `json:"count"`
 
 	// Date of the event
-	EventTime string `json:"eventTime"`
+	EventTime time.Time `json:"eventTime"`
 
 	// IP from which the user has clicked on the link
 	Ip string `json:"ip"`

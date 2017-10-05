@@ -19,7 +19,7 @@ type RequestContactImport struct {
 	FileBody string `json:"fileBody,omitempty"`
 
 	// Manadatory if newList is not defined. Ids of the lists in which to add the contacts
-	ListIds []int32 `json:"listIds,omitempty"`
+	ListIds []int64 `json:"listIds,omitempty"`
 
 	// URL that will be called once the export process is finished
 	NotifyUrl string `json:"notifyUrl,omitempty"`

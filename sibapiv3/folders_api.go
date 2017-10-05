@@ -40,10 +40,10 @@ func NewFoldersApiWithBasePath(basePath string) *FoldersApi {
 /**
  * Create a folder
  *
- * @param name Name of the folder
+ * @param createFolder Name of the folder
  * @return *CreateModel
  */
-func (a FoldersApi) CreateFolder(name CreaUpdateFolder) (*CreateModel, *APIResponse, error) {
+func (a FoldersApi) CreateFolder(createFolder CreateUpdateFolder) (*CreateModel, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Post")
 	// create path and map variables
@@ -82,7 +82,7 @@ func (a FoldersApi) CreateFolder(name CreaUpdateFolder) (*CreateModel, *APIRespo
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	localVarPostBody = &name
+	localVarPostBody = &createFolder
 	var successPayload = new(CreateModel)
 	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 
@@ -107,7 +107,7 @@ func (a FoldersApi) CreateFolder(name CreaUpdateFolder) (*CreateModel, *APIRespo
  * @param folderId Id of the folder
  * @return void
  */
-func (a FoldersApi) DeleteFolder(folderId string) (*APIResponse, error) {
+func (a FoldersApi) DeleteFolder(folderId int64) (*APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Delete")
 	// create path and map variables
@@ -168,7 +168,7 @@ func (a FoldersApi) DeleteFolder(folderId string) (*APIResponse, error) {
  * @param folderId id of the folder
  * @return *GetFolder
  */
-func (a FoldersApi) GetFolder(folderId string) (*GetFolder, *APIResponse, error) {
+func (a FoldersApi) GetFolder(folderId int64) (*GetFolder, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
@@ -233,7 +233,7 @@ func (a FoldersApi) GetFolder(folderId string) (*GetFolder, *APIResponse, error)
  * @param offset Index of the first document of the page
  * @return *GetFolderLists
  */
-func (a FoldersApi) GetFolderLists(folderId string, limit int32, offset int32) (*GetFolderLists, *APIResponse, error) {
+func (a FoldersApi) GetFolderLists(folderId int64, limit int64, offset int64) (*GetFolderLists, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
@@ -299,7 +299,7 @@ func (a FoldersApi) GetFolderLists(folderId string, limit int32, offset int32) (
  * @param offset Index of the first document of the page
  * @return *GetFolders
  */
-func (a FoldersApi) GetFolders(limit int32, offset int32) (*GetFolders, *APIResponse, error) {
+func (a FoldersApi) GetFolders(limit int64, offset int64) (*GetFolders, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
@@ -361,10 +361,10 @@ func (a FoldersApi) GetFolders(limit int32, offset int32) (*GetFolders, *APIResp
  * Update a contact folder
  *
  * @param folderId Id of the folder
- * @param name Name of the folder
+ * @param updateFolder Name of the folder
  * @return void
  */
-func (a FoldersApi) UpdateFolder(folderId string, name CreaUpdateFolder) (*APIResponse, error) {
+func (a FoldersApi) UpdateFolder(folderId int64, updateFolder CreateUpdateFolder) (*APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Put")
 	// create path and map variables
@@ -404,7 +404,7 @@ func (a FoldersApi) UpdateFolder(folderId string, name CreaUpdateFolder) (*APIRe
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	localVarPostBody = &name
+	localVarPostBody = &updateFolder
 	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 
 	var localVarURL, _ = url.Parse(localVarPath)

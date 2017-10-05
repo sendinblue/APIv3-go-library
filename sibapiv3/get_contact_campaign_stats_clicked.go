@@ -13,7 +13,7 @@ package sibapiv3
 type GetContactCampaignStatsClicked struct {
 
 	// ID of the campaign which generated the event
-	CampaignId int32 `json:"campaignId"`
+	CampaignId int64 `json:"campaignId"`
 
 	Links []GetExtendedContactDetailsStatisticsLinks `json:"links"`
 }

@@ -13,8 +13,8 @@ package sibapiv3
 type CreateEmailCampaignRecipients struct {
 
 	// List ids to exclude from the campaign
-	ExclusionListIds []int32 `json:"exclusionListIds,omitempty"`
+	ExclusionListIds []int64 `json:"exclusionListIds,omitempty"`
 
 	// Mandatory if scheduledAt is not empty. List Ids to send the campaign to
-	ListIds []int32 `json:"listIds,omitempty"`
+	ListIds []int64 `json:"listIds,omitempty"`
 }

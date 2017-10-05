@@ -10,6 +10,10 @@
 
 package sibapiv3
 
+import (
+	"time"
+)
+
 type UpdateSmsCampaign struct {
 
 	// Name of the campaign
@@ -23,6 +27,6 @@ type UpdateSmsCampaign struct {
 
 	Recipients CreateSmsCampaignRecipients `json:"recipients,omitempty"`
 
-	// Date and time on which the campaign has to run (YYYY-MM-DD HH:mm:ss)
-	ScheduledAt string `json:"scheduledAt,omitempty"`
+	// Date and time on which the campaign has to run (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	ScheduledAt time.Time `json:"scheduledAt,omitempty"`
 }

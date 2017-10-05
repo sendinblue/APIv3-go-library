@@ -10,10 +10,14 @@
 
 package sibapiv3
 
+import (
+	"time"
+)
+
 type GetExtendedCampaignOverview struct {
 
 	// ID of the campaign
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 
 	// Name of the campaign
 	Name string `json:"name"`
@@ -27,8 +31,8 @@ type GetExtendedCampaignOverview struct {
 	// Status of the campaign
 	Status string `json:"status"`
 
-	// Date on which campaign is scheduled (YYYY-MM-DD HH:mm:ss)
-	ScheduledAt string `json:"scheduledAt,omitempty"`
+	// Date on which campaign is scheduled (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	ScheduledAt time.Time `json:"scheduledAt,omitempty"`
 
 	// Retrieved the status of test email sending. (true=Test email has been sent  false=Test email has not been sent)
 	TestSent bool `json:"testSent"`
@@ -56,11 +60,11 @@ type GetExtendedCampaignOverview struct {
 	// Tag of the campaign
 	Tag string `json:"tag"`
 
-	// Creation date of the campaign (YYYY-MM-DD HH:mm:ss)
-	CreatedAt string `json:"createdAt"`
+	// Creation date of the campaign (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	CreatedAt time.Time `json:"createdAt"`
 
-	// Date of last modification of the campaign (YYYY-MM-DD HH:mm:ss)
-	ModifiedAt string `json:"modifiedAt"`
+	// Date of last modification of the campaign (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	ModifiedAt time.Time `json:"modifiedAt"`
 
 	// Status of inline image. inlineImageActivation = false means image can’t be embedded, & inlineImageActivation = true means image can be embedded, in the email.
 	InlineImageActivation bool `json:"inlineImageActivation,omitempty"`

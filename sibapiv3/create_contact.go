@@ -25,5 +25,5 @@ type CreateContact struct {
 	SmsBlacklisted bool `json:"smsBlacklisted,omitempty"`
 
 	// Ids of the lists to add the contact to
-	ListIds []int32 `json:"listIds,omitempty"`
+	ListIds []int64 `json:"listIds,omitempty"`
 }

@@ -15,6 +15,7 @@ import (
 	"fmt"
 	"net/url"
 	"strings"
+	"time"
 )
 
 type ContactsApi struct {
@@ -44,7 +45,7 @@ func NewContactsApiWithBasePath(basePath string) *ContactsApi {
  * @param contactEmails Emails addresses of the contacts
  * @return *PostContactInfo
  */
-func (a ContactsApi) AddContactToList(listId string, contactEmails AddRemoveContactToList) (*PostContactInfo, *APIResponse, error) {
+func (a ContactsApi) AddContactToList(listId int64, contactEmails AddRemoveContactToList) (*PostContactInfo, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Post")
 	// create path and map variables
@@ -234,10 +235,10 @@ func (a ContactsApi) CreateContact(createContact CreateContact) (*CreateModel, *
 /**
  * Create a folder
  *
- * @param name Name of the folder
+ * @param createFolder Name of the folder
  * @return *CreateModel
  */
-func (a ContactsApi) CreateFolder(name CreaUpdateFolder) (*CreateModel, *APIResponse, error) {
+func (a ContactsApi) CreateFolder(createFolder CreateUpdateFolder) (*CreateModel, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Post")
 	// create path and map variables
@@ -276,7 +277,7 @@ func (a ContactsApi) CreateFolder(name CreaUpdateFolder) (*CreateModel, *APIResp
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	localVarPostBody = &name
+	localVarPostBody = &createFolder
 	var successPayload = new(CreateModel)
 	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 
@@ -365,7 +366,7 @@ func (a ContactsApi) CreateList(createList CreateList) (*CreateModel, *APIRespon
  * @param attributeId id of the attribute
  * @return void
  */
-func (a ContactsApi) DeleteAttribute(attributeId string) (*APIResponse, error) {
+func (a ContactsApi) DeleteAttribute(attributeId int64) (*APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Delete")
 	// create path and map variables
@@ -426,7 +427,7 @@ func (a ContactsApi) DeleteAttribute(attributeId string) (*APIResponse, error) {
  * @param folderId Id of the folder
  * @return void
  */
-func (a ContactsApi) DeleteFolder(folderId string) (*APIResponse, error) {
+func (a ContactsApi) DeleteFolder(folderId int64) (*APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Delete")
 	// create path and map variables
@@ -487,7 +488,7 @@ func (a ContactsApi) DeleteFolder(folderId string) (*APIResponse, error) {
  * @param listId Id of the list
  * @return void
  */
-func (a ContactsApi) DeleteList(listId string) (*APIResponse, error) {
+func (a ContactsApi) DeleteList(listId int64) (*APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Delete")
 	// create path and map variables
@@ -736,7 +737,7 @@ func (a ContactsApi) GetContactStats(email string) (*GetContactCampaignStats, *A
  * @param offset Index of the first document of the page
  * @return *GetContacts
  */
-func (a ContactsApi) GetContacts(limit int32, offset int32) (*GetContacts, *APIResponse, error) {
+func (a ContactsApi) GetContacts(limit int64, offset int64) (*GetContacts, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
@@ -798,12 +799,12 @@ func (a ContactsApi) GetContacts(limit int32, offset int32) (*GetContacts, *APIR
  * Get the contacts in a list
  *
  * @param listId Id of the list
- * @param modifiedSince Filter the contacts modified after a given date (YYYY-MM-DD HH:mm:ss)
+ * @param modifiedSince Filter (urlencoded) the contacts modified after a given date-time (YYYY-MM-DDTHH:mm:ss.SSSZ)
  * @param limit Number of documents per page
  * @param offset Index of the first document of the page
  * @return *GetContacts
  */
-func (a ContactsApi) GetContactsFromList(listId string, modifiedSince string, limit int32, offset int32) (*GetContacts, *APIResponse, error) {
+func (a ContactsApi) GetContactsFromList(listId int64, modifiedSince time.Time, limit int64, offset int64) (*GetContacts, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
@@ -869,7 +870,7 @@ func (a ContactsApi) GetContactsFromList(listId string, modifiedSince string, li
  * @param folderId id of the folder
  * @return *GetFolder
  */
-func (a ContactsApi) GetFolder(folderId string) (*GetFolder, *APIResponse, error) {
+func (a ContactsApi) GetFolder(folderId int64) (*GetFolder, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
@@ -934,7 +935,7 @@ func (a ContactsApi) GetFolder(folderId string) (*GetFolder, *APIResponse, error
  * @param offset Index of the first document of the page
  * @return *GetFolderLists
  */
-func (a ContactsApi) GetFolderLists(folderId string, limit int32, offset int32) (*GetFolderLists, *APIResponse, error) {
+func (a ContactsApi) GetFolderLists(folderId int64, limit int64, offset int64) (*GetFolderLists, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
@@ -1000,7 +1001,7 @@ func (a ContactsApi) GetFolderLists(folderId string, limit int32, offset int32) 
  * @param offset Index of the first document of the page
  * @return *GetFolders
  */
-func (a ContactsApi) GetFolders(limit int32, offset int32) (*GetFolders, *APIResponse, error) {
+func (a ContactsApi) GetFolders(limit int64, offset int64) (*GetFolders, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
@@ -1064,7 +1065,7 @@ func (a ContactsApi) GetFolders(limit int32, offset int32) (*GetFolders, *APIRes
  * @param listId Id of the list
  * @return *GetExtendedList
  */
-func (a ContactsApi) GetList(listId string) (*GetExtendedList, *APIResponse, error) {
+func (a ContactsApi) GetList(listId int64) (*GetExtendedList, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
@@ -1128,7 +1129,7 @@ func (a ContactsApi) GetList(listId string) (*GetExtendedList, *APIResponse, err
  * @param offset Index of the first document of the page
  * @return *GetLists
  */
-func (a ContactsApi) GetLists(limit int32, offset int32) (*GetLists, *APIResponse, error) {
+func (a ContactsApi) GetLists(limit int64, offset int64) (*GetLists, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
@@ -1258,7 +1259,7 @@ func (a ContactsApi) ImportContacts(requestContactImport RequestContactImport) (
  * @param contactEmails Emails adresses of the contact
  * @return *PostContactInfo
  */
-func (a ContactsApi) RemoveContactToList(listId string, contactEmails AddRemoveContactToList) (*PostContactInfo, *APIResponse, error) {
+func (a ContactsApi) RemoveContactToList(listId int64, contactEmails AddRemoveContactToList) (*PostContactInfo, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Post")
 	// create path and map variables
@@ -1450,10 +1451,10 @@ func (a ContactsApi) UpdateContact(email string, updateContact UpdateContact) (*
  * Update a contact folder
  *
  * @param folderId Id of the folder
- * @param name Name of the folder
+ * @param updateFolder Name of the folder
  * @return void
  */
-func (a ContactsApi) UpdateFolder(folderId string, name CreaUpdateFolder) (*APIResponse, error) {
+func (a ContactsApi) UpdateFolder(folderId int64, updateFolder CreateUpdateFolder) (*APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Put")
 	// create path and map variables
@@ -1493,7 +1494,7 @@ func (a ContactsApi) UpdateFolder(folderId string, name CreaUpdateFolder) (*APIR
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	localVarPostBody = &name
+	localVarPostBody = &updateFolder
 	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 
 	var localVarURL, _ = url.Parse(localVarPath)
@@ -1517,7 +1518,7 @@ func (a ContactsApi) UpdateFolder(folderId string, name CreaUpdateFolder) (*APIR
  * @param updateList Values to update a list
  * @return void
  */
-func (a ContactsApi) UpdateList(listId string, updateList UpdateList) (*APIResponse, error) {
+func (a ContactsApi) UpdateList(listId int64, updateList UpdateList) (*APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Put")
 	// create path and map variables

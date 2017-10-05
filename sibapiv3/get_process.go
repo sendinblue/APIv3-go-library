@@ -13,7 +13,7 @@ package sibapiv3
 type GetProcess struct {
 
 	// Id of the process
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 
 	// Status of the process
 	Status string `json:"status"`

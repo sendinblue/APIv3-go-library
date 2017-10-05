@@ -13,7 +13,7 @@ package sibapiv3
 type GetExtendedListCampaignStats struct {
 
 	// ID of the campaign
-	CampaignId int32 `json:"campaignId"`
+	CampaignId int64 `json:"campaignId"`
 
 	Stats GetCampaignStats `json:"stats"`
 }

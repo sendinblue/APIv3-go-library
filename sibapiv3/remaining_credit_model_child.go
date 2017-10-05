@@ -14,8 +14,8 @@ package sibapiv3
 type RemainingCreditModelChild struct {
 
 	// SMS Credits remaining for child account
-	Sms int32 `json:"sms"`
+	Sms int64 `json:"sms"`
 
 	// Email Credits remaining for child account
-	Email int32 `json:"email"`
+	Email int64 `json:"email"`
 }

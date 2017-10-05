@@ -13,17 +13,17 @@ package sibapiv3
 type GetFolder struct {
 
 	// ID of the folder
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 
 	// Name of the folder
 	Name string `json:"name"`
 
 	// Number of blacklisted contacts in the folder
-	TotalBlacklisted int32 `json:"totalBlacklisted"`
+	TotalBlacklisted int64 `json:"totalBlacklisted"`
 
 	// Number of contacts in the folder
-	TotalSubscribers int32 `json:"totalSubscribers"`
+	TotalSubscribers int64 `json:"totalSubscribers"`
 
 	// Number of unique contacts in the folder
-	UniqueSubscribers int32 `json:"uniqueSubscribers"`
+	UniqueSubscribers int64 `json:"uniqueSubscribers"`
 }

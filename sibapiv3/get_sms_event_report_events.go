@@ -25,10 +25,10 @@ type GetSmsEventReportEvents struct {
 	// Message ID which generated the event
 	MessageId string `json:"messageId"`
 
-	// Event which occured
+	// Event which occurred
 	Event string `json:"event"`
 
-	// Reason of bounce (only availble if the event is hardbounce or softbounce)
+	// Reason of bounce (only available if the event is hardbounce or softbounce)
 	Reason string `json:"reason"`
 
 	Reply string `json:"reply,omitempty"`

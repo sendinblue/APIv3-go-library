@@ -19,5 +19,5 @@ type GetSendersListIps struct {
 	Domain string `json:"domain"`
 
 	// Weight of the IP for this sender
-	Weight int32 `json:"weight"`
+	Weight int64 `json:"weight"`
 }

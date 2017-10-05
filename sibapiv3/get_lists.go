@@ -16,5 +16,5 @@ type GetLists struct {
 	Lists []interface{} `json:"lists"`
 
 	// Number of lists in your account
-	Count int32 `json:"count"`
+	Count int64 `json:"count"`
 }

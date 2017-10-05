@@ -13,38 +13,38 @@ package sibapiv3
 type GetCampaignStats struct {
 
 	// List Id of email campaign (only in case of get email campaign(s))
-	ListId int32 `json:"listId,omitempty"`
+	ListId int64 `json:"listId,omitempty"`
 
 	// Number of unique clicks for the campaign
-	UniqueClicks int32 `json:"uniqueClicks"`
+	UniqueClicks int64 `json:"uniqueClicks"`
 
 	// Number of clicks for the campaign
-	Clickers int32 `json:"clickers"`
+	Clickers int64 `json:"clickers"`
 
 	// Number of complaints (Spam reports) for the campaign
-	Complaints int32 `json:"complaints"`
+	Complaints int64 `json:"complaints"`
 
 	// Number of delivered emails for the campaign
-	Delivered int32 `json:"delivered"`
+	Delivered int64 `json:"delivered"`
 
 	// Number of sent emails for the campaign
-	Sent int32 `json:"sent"`
+	Sent int64 `json:"sent"`
 
 	// Number of softbounce for the campaign
-	SoftBounces int32 `json:"softBounces"`
+	SoftBounces int64 `json:"softBounces"`
 
 	// Number of harbounce for the campaign
-	HardBounces int32 `json:"hardBounces"`
+	HardBounces int64 `json:"hardBounces"`
 
 	// Number of unique openings for the campaign
-	UniqueViews int32 `json:"uniqueViews"`
+	UniqueViews int64 `json:"uniqueViews"`
 
 	// Number of unsubscription for the campaign
-	Unsubscriptions int32 `json:"unsubscriptions"`
+	Unsubscriptions int64 `json:"unsubscriptions"`
 
 	// Number of openings for the campaign
-	Viewed int32 `json:"viewed"`
+	Viewed int64 `json:"viewed"`
 
 	// Number of deferred emails for the campaign
-	Deferred int32 `json:"deferred"`
+	Deferred int64 `json:"deferred"`
 }
