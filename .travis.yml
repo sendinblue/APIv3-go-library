@@ -1,0 +1,6 @@
+language: go
+go: 1.9
+
+install: make install-dependencies
+
+script: make test
