@@ -30,7 +30,7 @@ func TestSendTransacEmail(t *testing.T) {
 	}
 	res, err := sib.SMTP.SendTransacEmail(params, nil)
 	if err != nil {
-		t.Fatal(*err.(*smtp.SendTransacEmailBadRequest).Payload.Message)
+		t.Fatal(err)
 	}
 	t.Log(spewConfig.Sdump(res.Payload))
 }
