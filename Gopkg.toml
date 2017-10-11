@@ -1,3 +1,2 @@
-[[constraint]]
-  name = "gopkg.in/go-resty/resty.v0"
-  version = "^0.13.0"
+# TODO
+# Currently our dependencies don't specify semver.

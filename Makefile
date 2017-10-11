@@ -1,33 +1,18 @@
-SWAGGER_CODEGEN_VERSION=2.2.3
-SWAGGER_CODEGEN_JAR_URL=http://central.maven.org/maven2/io/swagger/swagger-codegen-cli/$(SWAGGER_CODEGEN_VERSION)/swagger-codegen-cli-$(SWAGGER_CODEGEN_VERSION).jar
 SWAGGER_DEFINITION_URL=https://api.sendinblue.com/v3/swagger_definition.yml
+GO_SWAGGER_PACKAGE=github.com/go-swagger/go-swagger/cmd/swagger
 
-generate: sibapiv3
-
-sibapiv3: build/generated
-	rm -rf $@
-	mkdir -p $@
-	cp build/generated/*.go $@
-	gofmt -w $@
-
-build/generated:\
- build/swagger-codegen-cli.jar\
- build/swagger_definition.yml\
- swagger-codegen-config.json
-	rm -rf $@
-	java -jar build/swagger-codegen-cli.jar\
-	 generate\
-	 -i build/swagger_definition.yml\
-	 -l go -c swagger-codegen-config.json\
-	 -o $@
-
-build/swagger-codegen-cli.jar: Makefile
-	mkdir -p build
-	curl -o $@ $(SWAGGER_CODEGEN_JAR_URL)
+generate: \
+	build/swagger_definition.yml \
+	install-go-swagger
+	rm -rf client models
+	swagger generate client -f build/swagger_definition.yml
 
 build/swagger_definition.yml: Makefile
 	mkdir -p build
 	curl -o $@ $(SWAGGER_DEFINITION_URL)
+
+install-go-swagger:
+	go get -v -u $(GO_SWAGGER_PACKAGE)
 
 install-dependencies:
 	go get -v -u github.com/golang/dep/cmd/dep
@@ -35,9 +20,11 @@ install-dependencies:
 	dep prune -v
 
 test:
-	go build -v ./sibapiv3 # TODO We should write real tests (use the code)
+	go build -v -i ./client
+	go test -v ./test
 
 clean:
 	rm -rf build vendor
+	go clean -i ./... ./vendor/...
 
-.PHONY: generate install-dependencies test clean
+.PHONY: generate install-go-swagger install-dependencies test clean
