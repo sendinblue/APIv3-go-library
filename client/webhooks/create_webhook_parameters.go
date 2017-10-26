@@ -127,12 +127,10 @@ func (o *CreateWebhookParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	}
 	var res []error
 
-	if o.CreateWebhook == nil {
-		o.CreateWebhook = new(models.CreateWebhook)
-	}
-
-	if err := r.SetBodyParam(o.CreateWebhook); err != nil {
-		return err
+	if o.CreateWebhook != nil {
+		if err := r.SetBodyParam(o.CreateWebhook); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

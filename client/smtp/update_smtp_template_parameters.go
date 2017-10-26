@@ -144,12 +144,10 @@ func (o *UpdateSMTPTemplateParams) WriteToRequest(r runtime.ClientRequest, reg s
 	}
 	var res []error
 
-	if o.SMTPTemplate == nil {
-		o.SMTPTemplate = new(models.UpdateSMTPTemplate)
-	}
-
-	if err := r.SetBodyParam(o.SMTPTemplate); err != nil {
-		return err
+	if o.SMTPTemplate != nil {
+		if err := r.SetBodyParam(o.SMTPTemplate); err != nil {
+			return err
+		}
 	}
 
 	// path param templateId

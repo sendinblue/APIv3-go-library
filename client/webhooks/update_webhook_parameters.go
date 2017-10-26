@@ -144,12 +144,10 @@ func (o *UpdateWebhookParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	}
 	var res []error
 
-	if o.UpdateWebhook == nil {
-		o.UpdateWebhook = new(models.UpdateWebhook)
-	}
-
-	if err := r.SetBodyParam(o.UpdateWebhook); err != nil {
-		return err
+	if o.UpdateWebhook != nil {
+		if err := r.SetBodyParam(o.UpdateWebhook); err != nil {
+			return err
+		}
 	}
 
 	// path param webhookId

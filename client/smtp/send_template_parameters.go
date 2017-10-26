@@ -141,12 +141,10 @@ func (o *SendTemplateParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	}
 	var res []error
 
-	if o.SendEmail == nil {
-		o.SendEmail = new(models.SendEmail)
-	}
-
-	if err := r.SetBodyParam(o.SendEmail); err != nil {
-		return err
+	if o.SendEmail != nil {
+		if err := r.SetBodyParam(o.SendEmail); err != nil {
+			return err
+		}
 	}
 
 	// path param templateId

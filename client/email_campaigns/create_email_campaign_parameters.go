@@ -127,12 +127,10 @@ func (o *CreateEmailCampaignParams) WriteToRequest(r runtime.ClientRequest, reg 
 	}
 	var res []error
 
-	if o.EmailCampaigns == nil {
-		o.EmailCampaigns = new(models.CreateEmailCampaign)
-	}
-
-	if err := r.SetBodyParam(o.EmailCampaigns); err != nil {
-		return err
+	if o.EmailCampaigns != nil {
+		if err := r.SetBodyParam(o.EmailCampaigns); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

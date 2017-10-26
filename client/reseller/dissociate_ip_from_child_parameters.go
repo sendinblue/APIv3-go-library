@@ -149,12 +149,10 @@ func (o *DissociateIPFromChildParams) WriteToRequest(r runtime.ClientRequest, re
 		return err
 	}
 
-	if o.IPID == nil {
-		o.IPID = new(models.ManageIP)
-	}
-
-	if err := r.SetBodyParam(o.IPID); err != nil {
-		return err
+	if o.IPID != nil {
+		if err := r.SetBodyParam(o.IPID); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

@@ -149,12 +149,10 @@ func (o *SendTestSmsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		return err
 	}
 
-	if o.SendTestSms == nil {
-		o.SendTestSms = new(models.SendTestSms)
-	}
-
-	if err := r.SetBodyParam(o.SendTestSms); err != nil {
-		return err
+	if o.SendTestSms != nil {
+		if err := r.SetBodyParam(o.SendTestSms); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

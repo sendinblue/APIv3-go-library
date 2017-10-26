@@ -149,12 +149,10 @@ func (o *UpdateListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 		return err
 	}
 
-	if o.UpdateList == nil {
-		o.UpdateList = new(models.UpdateList)
-	}
-
-	if err := r.SetBodyParam(o.UpdateList); err != nil {
-		return err
+	if o.UpdateList != nil {
+		if err := r.SetBodyParam(o.UpdateList); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

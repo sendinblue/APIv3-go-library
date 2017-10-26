@@ -149,12 +149,10 @@ func (o *UpdateFolderParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		return err
 	}
 
-	if o.UpdateFolder == nil {
-		o.UpdateFolder = new(models.CreateUpdateFolder)
-	}
-
-	if err := r.SetBodyParam(o.UpdateFolder); err != nil {
-		return err
+	if o.UpdateFolder != nil {
+		if err := r.SetBodyParam(o.UpdateFolder); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

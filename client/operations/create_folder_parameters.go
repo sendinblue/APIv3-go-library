@@ -127,12 +127,10 @@ func (o *CreateFolderParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	}
 	var res []error
 
-	if o.CreateFolder == nil {
-		o.CreateFolder = new(models.CreateUpdateFolder)
-	}
-
-	if err := r.SetBodyParam(o.CreateFolder); err != nil {
-		return err
+	if o.CreateFolder != nil {
+		if err := r.SetBodyParam(o.CreateFolder); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

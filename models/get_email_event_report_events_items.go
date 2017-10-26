@@ -22,7 +22,7 @@ type GetEmailEventReportEventsItems struct {
 
 	// Date on which the event has been generated
 	// Required: true
-	Date *strfmt.Date `json:"date"`
+	Date *strfmt.DateTime `json:"date"`
 
 	// Email address which generates the event
 	// Required: true
@@ -31,6 +31,10 @@ type GetEmailEventReportEventsItems struct {
 	// Event which occurred
 	// Required: true
 	Event *string `json:"event"`
+
+	// Sender email from which the emails are sent
+	// Required: true
+	From *strfmt.Email `json:"from"`
 
 	// IP from which the user has opened the email or clicked on the link (only available if the event is opened or clicks)
 	IP string `json:"ip,omitempty"`
@@ -43,8 +47,7 @@ type GetEmailEventReportEventsItems struct {
 	MessageID *string `json:"messageId"`
 
 	// Reason of bounce (only available if the event is hardbounce or softbounce)
-	// Required: true
-	Reason *string `json:"reason"`
+	Reason string `json:"reason,omitempty"`
 
 	// Subject of the event
 	Subject string `json:"subject,omitempty"`
@@ -59,6 +62,8 @@ type GetEmailEventReportEventsItems struct {
 /* polymorph getEmailEventReportEventsItems email false */
 
 /* polymorph getEmailEventReportEventsItems event false */
+
+/* polymorph getEmailEventReportEventsItems from false */
 
 /* polymorph getEmailEventReportEventsItems ip false */
 
@@ -91,12 +96,12 @@ func (m *GetEmailEventReportEventsItems) Validate(formats strfmt.Registry) error
 		res = append(res, err)
 	}
 
-	if err := m.validateMessageID(formats); err != nil {
+	if err := m.validateFrom(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
 
-	if err := m.validateReason(formats); err != nil {
+	if err := m.validateMessageID(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -118,7 +123,7 @@ func (m *GetEmailEventReportEventsItems) validateDate(formats strfmt.Registry) e
 		return err
 	}
 
-	if err := validate.FormatOf("date", "body", "date", m.Date.String(), formats); err != nil {
+	if err := validate.FormatOf("date", "body", "date-time", m.Date.String(), formats); err != nil {
 		return err
 	}
 
@@ -197,18 +202,22 @@ func (m *GetEmailEventReportEventsItems) validateEvent(formats strfmt.Registry) 
 	return nil
 }
 
-func (m *GetEmailEventReportEventsItems) validateMessageID(formats strfmt.Registry) error {
+func (m *GetEmailEventReportEventsItems) validateFrom(formats strfmt.Registry) error {
 
-	if err := validate.Required("messageId", "body", m.MessageID); err != nil {
+	if err := validate.Required("from", "body", m.From); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("from", "body", "email", m.From.String(), formats); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *GetEmailEventReportEventsItems) validateReason(formats strfmt.Registry) error {
+func (m *GetEmailEventReportEventsItems) validateMessageID(formats strfmt.Registry) error {
 
-	if err := validate.Required("reason", "body", m.Reason); err != nil {
+	if err := validate.Required("messageId", "body", m.MessageID); err != nil {
 		return err
 	}
 

@@ -144,12 +144,10 @@ func (o *AddCreditsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 	}
 	var res []error
 
-	if o.AddCredits == nil {
-		o.AddCredits = new(models.AddCredits)
-	}
-
-	if err := r.SetBodyParam(o.AddCredits); err != nil {
-		return err
+	if o.AddCredits != nil {
+		if err := r.SetBodyParam(o.AddCredits); err != nil {
+			return err
+		}
 	}
 
 	// path param childId

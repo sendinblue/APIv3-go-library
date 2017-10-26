@@ -148,12 +148,10 @@ func (o *UpdateContactParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		return err
 	}
 
-	if o.UpdateContact == nil {
-		o.UpdateContact = new(models.UpdateContact)
-	}
-
-	if err := r.SetBodyParam(o.UpdateContact); err != nil {
-		return err
+	if o.UpdateContact != nil {
+		if err := r.SetBodyParam(o.UpdateContact); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

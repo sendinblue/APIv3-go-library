@@ -149,12 +149,10 @@ func (o *UpdateSMSCampaignStatusParams) WriteToRequest(r runtime.ClientRequest, 
 		return err
 	}
 
-	if o.Status == nil {
-		o.Status = new(models.UpdateCampaignStatus)
-	}
-
-	if err := r.SetBodyParam(o.Status); err != nil {
-		return err
+	if o.Status != nil {
+		if err := r.SetBodyParam(o.Status); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {
