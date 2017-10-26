@@ -146,12 +146,10 @@ func (o *SendTestEmailParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		return err
 	}
 
-	if o.EmailTo == nil {
-		o.EmailTo = new(models.SendTestEmail)
-	}
-
-	if err := r.SetBodyParam(o.EmailTo); err != nil {
-		return err
+	if o.EmailTo != nil {
+		if err := r.SetBodyParam(o.EmailTo); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

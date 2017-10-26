@@ -144,12 +144,10 @@ func (o *AddContactToListParams) WriteToRequest(r runtime.ClientRequest, reg str
 	}
 	var res []error
 
-	if o.ContactEmails == nil {
-		o.ContactEmails = new(models.AddRemoveContactToList)
-	}
-
-	if err := r.SetBodyParam(o.ContactEmails); err != nil {
-		return err
+	if o.ContactEmails != nil {
+		if err := r.SetBodyParam(o.ContactEmails); err != nil {
+			return err
+		}
 	}
 
 	// path param listId

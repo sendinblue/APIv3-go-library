@@ -149,12 +149,10 @@ func (o *EmailExportRecipientsParams) WriteToRequest(r runtime.ClientRequest, re
 		return err
 	}
 
-	if o.RecipientExport == nil {
-		o.RecipientExport = new(models.EmailExportRecipients)
-	}
-
-	if err := r.SetBodyParam(o.RecipientExport); err != nil {
-		return err
+	if o.RecipientExport != nil {
+		if err := r.SetBodyParam(o.RecipientExport); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

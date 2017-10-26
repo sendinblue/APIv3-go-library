@@ -144,12 +144,10 @@ func (o *UpdateSenderParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	}
 	var res []error
 
-	if o.Sender == nil {
-		o.Sender = new(models.UpdateSender)
-	}
-
-	if err := r.SetBodyParam(o.Sender); err != nil {
-		return err
+	if o.Sender != nil {
+		if err := r.SetBodyParam(o.Sender); err != nil {
+			return err
+		}
 	}
 
 	// path param senderId

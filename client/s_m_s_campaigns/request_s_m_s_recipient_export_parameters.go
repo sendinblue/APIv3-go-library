@@ -149,12 +149,10 @@ func (o *RequestSMSRecipientExportParams) WriteToRequest(r runtime.ClientRequest
 		return err
 	}
 
-	if o.RecipientExport == nil {
-		o.RecipientExport = new(models.RequestSMSRecipientExport)
-	}
-
-	if err := r.SetBodyParam(o.RecipientExport); err != nil {
-		return err
+	if o.RecipientExport != nil {
+		if err := r.SetBodyParam(o.RecipientExport); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

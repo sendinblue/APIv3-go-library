@@ -127,12 +127,10 @@ func (o *SendTransacSmsParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 	}
 	var res []error
 
-	if o.SendTransacSms == nil {
-		o.SendTransacSms = new(models.SendTransacSms)
-	}
-
-	if err := r.SetBodyParam(o.SendTransacSms); err != nil {
-		return err
+	if o.SendTransacSms != nil {
+		if err := r.SetBodyParam(o.SendTransacSms); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

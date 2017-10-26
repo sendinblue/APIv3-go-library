@@ -127,12 +127,10 @@ func (o *CreateSMTPTemplateParams) WriteToRequest(r runtime.ClientRequest, reg s
 	}
 	var res []error
 
-	if o.SMTPTemplate == nil {
-		o.SMTPTemplate = new(models.CreateSMTPTemplate)
-	}
-
-	if err := r.SetBodyParam(o.SMTPTemplate); err != nil {
-		return err
+	if o.SMTPTemplate != nil {
+		if err := r.SetBodyParam(o.SMTPTemplate); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

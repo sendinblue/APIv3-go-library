@@ -127,12 +127,10 @@ func (o *RequestContactExportParams) WriteToRequest(r runtime.ClientRequest, reg
 	}
 	var res []error
 
-	if o.RequestContactExport == nil {
-		o.RequestContactExport = new(models.RequestContactExport)
-	}
-
-	if err := r.SetBodyParam(o.RequestContactExport); err != nil {
-		return err
+	if o.RequestContactExport != nil {
+		if err := r.SetBodyParam(o.RequestContactExport); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

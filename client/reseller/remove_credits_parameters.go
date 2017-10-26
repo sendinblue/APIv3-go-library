@@ -149,12 +149,10 @@ func (o *RemoveCreditsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		return err
 	}
 
-	if o.RemoveCredits == nil {
-		o.RemoveCredits = new(models.RemoveCredits)
-	}
-
-	if err := r.SetBodyParam(o.RemoveCredits); err != nil {
-		return err
+	if o.RemoveCredits != nil {
+		if err := r.SetBodyParam(o.RemoveCredits); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

@@ -127,12 +127,10 @@ func (o *CreateContactParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	}
 	var res []error
 
-	if o.CreateContact == nil {
-		o.CreateContact = new(models.CreateContact)
-	}
-
-	if err := r.SetBodyParam(o.CreateContact); err != nil {
-		return err
+	if o.CreateContact != nil {
+		if err := r.SetBodyParam(o.CreateContact); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

@@ -127,12 +127,10 @@ func (o *CreateAttributeParams) WriteToRequest(r runtime.ClientRequest, reg strf
 	}
 	var res []error
 
-	if o.CreateAttribute == nil {
-		o.CreateAttribute = new(models.CreateAttribute)
-	}
-
-	if err := r.SetBodyParam(o.CreateAttribute); err != nil {
-		return err
+	if o.CreateAttribute != nil {
+		if err := r.SetBodyParam(o.CreateAttribute); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

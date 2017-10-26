@@ -127,12 +127,10 @@ func (o *CreateListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 	}
 	var res []error
 
-	if o.CreateList == nil {
-		o.CreateList = new(models.CreateList)
-	}
-
-	if err := r.SetBodyParam(o.CreateList); err != nil {
-		return err
+	if o.CreateList != nil {
+		if err := r.SetBodyParam(o.CreateList); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

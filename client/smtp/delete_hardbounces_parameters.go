@@ -127,12 +127,10 @@ func (o *DeleteHardbouncesParams) WriteToRequest(r runtime.ClientRequest, reg st
 	}
 	var res []error
 
-	if o.DeleteHardbounces == nil {
-		o.DeleteHardbounces = new(models.DeleteHardbounces)
-	}
-
-	if err := r.SetBodyParam(o.DeleteHardbounces); err != nil {
-		return err
+	if o.DeleteHardbounces != nil {
+		if err := r.SetBodyParam(o.DeleteHardbounces); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

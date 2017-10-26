@@ -127,12 +127,10 @@ func (o *CreateSenderParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	}
 	var res []error
 
-	if o.Sender == nil {
-		o.Sender = new(models.CreateSender)
-	}
-
-	if err := r.SetBodyParam(o.Sender); err != nil {
-		return err
+	if o.Sender != nil {
+		if err := r.SetBodyParam(o.Sender); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

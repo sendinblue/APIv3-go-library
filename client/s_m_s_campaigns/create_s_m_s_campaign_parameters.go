@@ -127,12 +127,10 @@ func (o *CreateSMSCampaignParams) WriteToRequest(r runtime.ClientRequest, reg st
 	}
 	var res []error
 
-	if o.CreateSmsCampaign == nil {
-		o.CreateSmsCampaign = new(models.CreateSmsCampaign)
-	}
-
-	if err := r.SetBodyParam(o.CreateSmsCampaign); err != nil {
-		return err
+	if o.CreateSmsCampaign != nil {
+		if err := r.SetBodyParam(o.CreateSmsCampaign); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

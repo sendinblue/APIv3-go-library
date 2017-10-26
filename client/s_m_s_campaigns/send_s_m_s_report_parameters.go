@@ -149,12 +149,10 @@ func (o *SendSMSReportParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		return err
 	}
 
-	if o.SendReport == nil {
-		o.SendReport = new(models.SendReport)
-	}
-
-	if err := r.SetBodyParam(o.SendReport); err != nil {
-		return err
+	if o.SendReport != nil {
+		if err := r.SetBodyParam(o.SendReport); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

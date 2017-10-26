@@ -127,12 +127,10 @@ func (o *CreateResellerChildParams) WriteToRequest(r runtime.ClientRequest, reg 
 	}
 	var res []error
 
-	if o.ResellerChild == nil {
-		o.ResellerChild = new(models.CreateChild)
-	}
-
-	if err := r.SetBodyParam(o.ResellerChild); err != nil {
-		return err
+	if o.ResellerChild != nil {
+		if err := r.SetBodyParam(o.ResellerChild); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {
