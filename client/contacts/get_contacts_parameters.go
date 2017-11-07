@@ -88,6 +88,11 @@ type GetContactsParams struct {
 
 	*/
 	Limit *int64
+	/*ModifiedSince
+	  Filter (urlencoded) the contacts modified after a given date-time (YYYY-MM-DDTHH:mm:ss.SSSZ)
+
+	*/
+	ModifiedSince *strfmt.DateTime
 	/*Offset
 	  Index of the first document of the page
 
@@ -143,6 +148,17 @@ func (o *GetContactsParams) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
+// WithModifiedSince adds the modifiedSince to the get contacts params
+func (o *GetContactsParams) WithModifiedSince(modifiedSince *strfmt.DateTime) *GetContactsParams {
+	o.SetModifiedSince(modifiedSince)
+	return o
+}
+
+// SetModifiedSince adds the modifiedSince to the get contacts params
+func (o *GetContactsParams) SetModifiedSince(modifiedSince *strfmt.DateTime) {
+	o.ModifiedSince = modifiedSince
+}
+
 // WithOffset adds the offset to the get contacts params
 func (o *GetContactsParams) WithOffset(offset *int64) *GetContactsParams {
 	o.SetOffset(offset)
@@ -172,6 +188,22 @@ func (o *GetContactsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.ModifiedSince != nil {
+
+		// query param modifiedSince
+		var qrModifiedSince strfmt.DateTime
+		if o.ModifiedSince != nil {
+			qrModifiedSince = *o.ModifiedSince
+		}
+		qModifiedSince := qrModifiedSince.String()
+		if qModifiedSince != "" {
+			if err := r.SetQueryParam("modifiedSince", qModifiedSince); err != nil {
 				return err
 			}
 		}

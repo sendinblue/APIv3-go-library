@@ -24,7 +24,7 @@ test:
 	go test -v ./test
 
 clean:
-	rm -rf build vendor
 	go clean -i ./... ./vendor/...
+	rm -rf build vendor
 
 .PHONY: generate install-go-swagger install-dependencies test clean

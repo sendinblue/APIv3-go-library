@@ -85,6 +85,35 @@ func (a *Client) DeleteHardbounces(params *DeleteHardbouncesParams, authInfo run
 }
 
 /*
+DeleteSMTPTemplate deletes an inactive smtp template
+*/
+func (a *Client) DeleteSMTPTemplate(params *DeleteSMTPTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSMTPTemplateNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteSMTPTemplateParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteSmtpTemplate",
+		Method:             "DELETE",
+		PathPattern:        "/smtp/templates/{templateId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteSMTPTemplateReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*DeleteSMTPTemplateNoContent), nil
+
+}
+
+/*
 GetAggregatedSMTPReport gets your SMTP activity aggregated over a period of time
 */
 func (a *Client) GetAggregatedSMTPReport(params *GetAggregatedSMTPReportParams, authInfo runtime.ClientAuthInfoWriter) (*GetAggregatedSMTPReportOK, error) {

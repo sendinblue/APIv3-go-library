@@ -31,6 +31,9 @@ type CreateContact struct {
 
 	// Blacklist the contact for SMS (smsBlacklisted = true)
 	SmsBlacklisted bool `json:"smsBlacklisted,omitempty"`
+
+	// Facilitate to update existing contact in same request (updateEnabled = true)
+	UpdateEnabled *bool `json:"updateEnabled,omitempty"`
 }
 
 /* polymorph createContact attributes false */
@@ -42,6 +45,8 @@ type CreateContact struct {
 /* polymorph createContact listIds false */
 
 /* polymorph createContact smsBlacklisted false */
+
+/* polymorph createContact updateEnabled false */
 
 // Validate validates this create contact
 func (m *CreateContact) Validate(formats strfmt.Registry) error {

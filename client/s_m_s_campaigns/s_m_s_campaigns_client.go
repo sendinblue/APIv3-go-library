@@ -25,7 +25,7 @@ type Client struct {
 }
 
 /*
-CreateSMSCampaign creates a s m s campaign
+CreateSMSCampaign creates an s m s campaign
 */
 func (a *Client) CreateSMSCampaign(params *CreateSMSCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSMSCampaignCreated, error) {
 	// TODO: Validate the params before sending
@@ -112,7 +112,7 @@ func (a *Client) GetSMSCampaigns(params *GetSMSCampaignsParams, authInfo runtime
 }
 
 /*
-GetSmsCampaign gets a s m s campaign
+GetSmsCampaign gets an s m s campaign
 */
 func (a *Client) GetSmsCampaign(params *GetSmsCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*GetSmsCampaignOK, error) {
 	// TODO: Validate the params before sending
@@ -290,7 +290,7 @@ func (a *Client) UpdateSMSCampaignStatus(params *UpdateSMSCampaignStatusParams, 
 }
 
 /*
-UpdateSmsCampaign updates a s m s campaign
+UpdateSmsCampaign updates an s m s campaign
 */
 func (a *Client) UpdateSmsCampaign(params *UpdateSmsCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSmsCampaignNoContent, error) {
 	// TODO: Validate the params before sending
