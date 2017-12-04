@@ -15,7 +15,6 @@ import (
 
 // GetIP get Ip
 // swagger:model getIp
-
 type GetIP struct {
 
 	// Status of the IP (true=active, false=inactive)
@@ -34,14 +33,6 @@ type GetIP struct {
 	// Required: true
 	IP *string `json:"ip"`
 }
-
-/* polymorph getIp active false */
-
-/* polymorph getIp domain false */
-
-/* polymorph getIp id false */
-
-/* polymorph getIp ip false */
 
 // Validate validates this get Ip
 func (m *GetIP) Validate(formats strfmt.Registry) error {

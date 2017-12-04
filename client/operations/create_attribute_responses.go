@@ -54,21 +54,13 @@ func NewCreateAttributeCreated() *CreateAttributeCreated {
 Attribute created
 */
 type CreateAttributeCreated struct {
-	Payload *models.CreateModel
 }
 
 func (o *CreateAttributeCreated) Error() string {
-	return fmt.Sprintf("[POST /contacts/attributes][%d] createAttributeCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /contacts/attributes/{attributeCategory}/{attributeName}][%d] createAttributeCreated ", 201)
 }
 
 func (o *CreateAttributeCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(models.CreateModel)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
 
 	return nil
 }
@@ -87,7 +79,7 @@ type CreateAttributeBadRequest struct {
 }
 
 func (o *CreateAttributeBadRequest) Error() string {
-	return fmt.Sprintf("[POST /contacts/attributes][%d] createAttributeBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /contacts/attributes/{attributeCategory}/{attributeName}][%d] createAttributeBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateAttributeBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

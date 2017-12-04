@@ -17,7 +17,6 @@ import (
 
 // GetEmailEventReportEventsItems get email event report events items
 // swagger:model getEmailEventReportEventsItems
-
 type GetEmailEventReportEventsItems struct {
 
 	// Date on which the event has been generated
@@ -56,26 +55,6 @@ type GetEmailEventReportEventsItems struct {
 	// Required: true
 	Tag *string `json:"tag"`
 }
-
-/* polymorph getEmailEventReportEventsItems date false */
-
-/* polymorph getEmailEventReportEventsItems email false */
-
-/* polymorph getEmailEventReportEventsItems event false */
-
-/* polymorph getEmailEventReportEventsItems from false */
-
-/* polymorph getEmailEventReportEventsItems ip false */
-
-/* polymorph getEmailEventReportEventsItems link false */
-
-/* polymorph getEmailEventReportEventsItems messageId false */
-
-/* polymorph getEmailEventReportEventsItems reason false */
-
-/* polymorph getEmailEventReportEventsItems subject false */
-
-/* polymorph getEmailEventReportEventsItems tag false */
 
 // Validate validates this get email event report events items
 func (m *GetEmailEventReportEventsItems) Validate(formats strfmt.Registry) error {

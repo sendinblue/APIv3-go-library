@@ -15,7 +15,6 @@ import (
 
 // GetSMTPTemplateOverview get Smtp template overview
 // swagger:model getSmtpTemplateOverview
-
 type GetSMTPTemplateOverview struct {
 
 	// Creation date of the template (YYYY-MM-DDTHH:mm:ss.SSSZ)
@@ -66,30 +65,6 @@ type GetSMTPTemplateOverview struct {
 	// Required: true
 	ToField *string `json:"toField"`
 }
-
-/* polymorph getSmtpTemplateOverview createdAt false */
-
-/* polymorph getSmtpTemplateOverview htmlContent false */
-
-/* polymorph getSmtpTemplateOverview id false */
-
-/* polymorph getSmtpTemplateOverview isActive false */
-
-/* polymorph getSmtpTemplateOverview modifiedAt false */
-
-/* polymorph getSmtpTemplateOverview name false */
-
-/* polymorph getSmtpTemplateOverview replyTo false */
-
-/* polymorph getSmtpTemplateOverview sender false */
-
-/* polymorph getSmtpTemplateOverview subject false */
-
-/* polymorph getSmtpTemplateOverview tag false */
-
-/* polymorph getSmtpTemplateOverview testSent false */
-
-/* polymorph getSmtpTemplateOverview toField false */
 
 // Validate validates this get Smtp template overview
 func (m *GetSMTPTemplateOverview) Validate(formats strfmt.Registry) error {

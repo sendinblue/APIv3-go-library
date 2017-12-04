@@ -16,7 +16,6 @@ import (
 
 // GetFoldersFolders get folders folders
 // swagger:model getFoldersFolders
-
 type GetFoldersFolders []*GetFoldersFoldersItems
 
 // Validate validates this get folders folders

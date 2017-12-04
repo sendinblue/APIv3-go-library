@@ -15,7 +15,6 @@ import (
 
 // GetContactCampaignStatsComplaintsItems get contact campaign stats complaints items
 // swagger:model getContactCampaignStatsComplaintsItems
-
 type GetContactCampaignStatsComplaintsItems struct {
 
 	// ID of the campaign which generated the event
@@ -26,10 +25,6 @@ type GetContactCampaignStatsComplaintsItems struct {
 	// Required: true
 	EventTime *strfmt.DateTime `json:"eventTime"`
 }
-
-/* polymorph getContactCampaignStatsComplaintsItems campaignId false */
-
-/* polymorph getContactCampaignStatsComplaintsItems eventTime false */
 
 // Validate validates this get contact campaign stats complaints items
 func (m *GetContactCampaignStatsComplaintsItems) Validate(formats strfmt.Registry) error {

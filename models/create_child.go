@@ -15,7 +15,6 @@ import (
 
 // CreateChild create child
 // swagger:model createChild
-
 type CreateChild struct {
 
 	// Company name to use to create the child account
@@ -38,16 +37,6 @@ type CreateChild struct {
 	// Required: true
 	Password *strfmt.Password `json:"password"`
 }
-
-/* polymorph createChild companyName false */
-
-/* polymorph createChild email false */
-
-/* polymorph createChild firstName false */
-
-/* polymorph createChild lastName false */
-
-/* polymorph createChild password false */
 
 // Validate validates this create child
 func (m *CreateChild) Validate(formats strfmt.Registry) error {

@@ -16,7 +16,6 @@ import (
 
 // GetContactCampaignStatsUnsubscriptionsAdminUnsubscription Contact has been unsubscribed from the administrator
 // swagger:model getContactCampaignStatsUnsubscriptionsAdminUnsubscription
-
 type GetContactCampaignStatsUnsubscriptionsAdminUnsubscription []*GetContactCampaignStatsUnsubscriptionsAdminUnsubscriptionItems
 
 // Validate validates this get contact campaign stats unsubscriptions admin unsubscription

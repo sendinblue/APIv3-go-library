@@ -15,7 +15,6 @@ import (
 
 // GetCampaignRecipients get campaign recipients
 // swagger:model getCampaignRecipients
-
 type GetCampaignRecipients struct {
 
 	// exclusion lists
@@ -26,10 +25,6 @@ type GetCampaignRecipients struct {
 	// Required: true
 	Lists GetCampaignRecipientsLists `json:"lists"`
 }
-
-/* polymorph getCampaignRecipients exclusionLists false */
-
-/* polymorph getCampaignRecipients lists false */
 
 // Validate validates this get campaign recipients
 func (m *GetCampaignRecipients) Validate(formats strfmt.Registry) error {
@@ -57,12 +52,26 @@ func (m *GetCampaignRecipients) validateExclusionLists(formats strfmt.Registry) 
 		return err
 	}
 
+	if err := m.ExclusionLists.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("exclusionLists")
+		}
+		return err
+	}
+
 	return nil
 }
 
 func (m *GetCampaignRecipients) validateLists(formats strfmt.Registry) error {
 
 	if err := validate.Required("lists", "body", m.Lists); err != nil {
+		return err
+	}
+
+	if err := m.Lists.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("lists")
+		}
 		return err
 	}
 

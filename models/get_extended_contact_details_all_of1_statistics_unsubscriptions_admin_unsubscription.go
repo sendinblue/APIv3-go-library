@@ -16,7 +16,6 @@ import (
 
 // GetExtendedContactDetailsAllOf1StatisticsUnsubscriptionsAdminUnsubscription Contact has been unsubscribed from the administrator
 // swagger:model getExtendedContactDetailsAllOf1StatisticsUnsubscriptionsAdminUnsubscription
-
 type GetExtendedContactDetailsAllOf1StatisticsUnsubscriptionsAdminUnsubscription []*GetExtendedContactDetailsAllOf1StatisticsUnsubscriptionsAdminUnsubscriptionItems
 
 // Validate validates this get extended contact details all of1 statistics unsubscriptions admin unsubscription

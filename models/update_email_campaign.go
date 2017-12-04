@@ -14,7 +14,6 @@ import (
 
 // UpdateEmailCampaign update email campaign
 // swagger:model updateEmailCampaign
-
 type UpdateEmailCampaign struct {
 
 	// Absolute url of the attachment. Url not allowed from local machine. File must be hosted somewhere.Possilbe extension values are xlsx, xls, ods, docx, docm, doc, csv, pdf, txt, gif, jpg, jpeg, png, tif, tiff and rtf
@@ -68,40 +67,6 @@ type UpdateEmailCampaign struct {
 	// Customize the utm_campaign value. If this field is empty, the campaign name will be used. Only alphanumeric characters and spaces are allowed
 	UtmCampaign string `json:"utmCampaign,omitempty"`
 }
-
-/* polymorph updateEmailCampaign attachmentUrl false */
-
-/* polymorph updateEmailCampaign footer false */
-
-/* polymorph updateEmailCampaign header false */
-
-/* polymorph updateEmailCampaign htmlContent false */
-
-/* polymorph updateEmailCampaign htmlUrl false */
-
-/* polymorph updateEmailCampaign inlineImageActivation false */
-
-/* polymorph updateEmailCampaign mirrorActive false */
-
-/* polymorph updateEmailCampaign name false */
-
-/* polymorph updateEmailCampaign recipients false */
-
-/* polymorph updateEmailCampaign recurring false */
-
-/* polymorph updateEmailCampaign replyTo false */
-
-/* polymorph updateEmailCampaign scheduledAt false */
-
-/* polymorph updateEmailCampaign sender false */
-
-/* polymorph updateEmailCampaign subject false */
-
-/* polymorph updateEmailCampaign tag false */
-
-/* polymorph updateEmailCampaign toField false */
-
-/* polymorph updateEmailCampaign utmCampaign false */
 
 // Validate validates this update email campaign
 func (m *UpdateEmailCampaign) Validate(formats strfmt.Registry) error {

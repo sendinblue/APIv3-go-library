@@ -14,7 +14,6 @@ import (
 
 // UpdateEmailCampaignSender update email campaign sender
 // swagger:model updateEmailCampaignSender
-
 type UpdateEmailCampaignSender struct {
 
 	// Sender email from which the campaign emails are sent
@@ -23,10 +22,6 @@ type UpdateEmailCampaignSender struct {
 	// Sender Name from which the campaign emails are sent
 	Name string `json:"name,omitempty"`
 }
-
-/* polymorph updateEmailCampaignSender email false */
-
-/* polymorph updateEmailCampaignSender name false */
 
 // Validate validates this update email campaign sender
 func (m *UpdateEmailCampaignSender) Validate(formats strfmt.Registry) error {

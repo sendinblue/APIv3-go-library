@@ -16,7 +16,6 @@ import (
 
 // GetExtendedListAllOf1CampaignStats get extended list all of1 campaign stats
 // swagger:model getExtendedListAllOf1CampaignStats
-
 type GetExtendedListAllOf1CampaignStats []*GetExtendedListAllOf1CampaignStatsItems
 
 // Validate validates this get extended list all of1 campaign stats

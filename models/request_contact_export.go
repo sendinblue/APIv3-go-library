@@ -14,7 +14,6 @@ import (
 
 // RequestContactExport request contact export
 // swagger:model requestContactExport
-
 type RequestContactExport struct {
 
 	// Filter to apply to the export
@@ -27,12 +26,6 @@ type RequestContactExport struct {
 	// Webhook that will be called once the export process is finished
 	NotifyURL string `json:"notifyUrl,omitempty"`
 }
-
-/* polymorph requestContactExport contactFilter false */
-
-/* polymorph requestContactExport exportAttributes false */
-
-/* polymorph requestContactExport notifyUrl false */
 
 // Validate validates this request contact export
 func (m *RequestContactExport) Validate(formats strfmt.Registry) error {

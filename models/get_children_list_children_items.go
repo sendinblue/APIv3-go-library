@@ -14,7 +14,6 @@ import (
 
 // GetChildrenListChildrenItems get children list children items
 // swagger:model getChildrenListChildrenItems
-
 type GetChildrenListChildrenItems struct {
 	GetChildInfo
 

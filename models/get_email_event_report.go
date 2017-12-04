@@ -14,14 +14,11 @@ import (
 
 // GetEmailEventReport get email event report
 // swagger:model getEmailEventReport
-
 type GetEmailEventReport struct {
 
 	// events
 	Events GetEmailEventReportEvents `json:"events"`
 }
-
-/* polymorph getEmailEventReport events false */
 
 // Validate validates this get email event report
 func (m *GetEmailEventReport) Validate(formats strfmt.Registry) error {

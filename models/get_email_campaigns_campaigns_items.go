@@ -14,7 +14,6 @@ import (
 
 // GetEmailCampaignsCampaignsItems get email campaigns campaigns items
 // swagger:model getEmailCampaignsCampaignsItems
-
 type GetEmailCampaignsCampaignsItems struct {
 	GetExtendedCampaignOverview
 

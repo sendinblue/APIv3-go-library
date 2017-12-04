@@ -15,7 +15,6 @@ import (
 
 // GetIPFromSender get Ip from sender
 // swagger:model getIpFromSender
-
 type GetIPFromSender struct {
 
 	// Domain associated to the IP
@@ -34,14 +33,6 @@ type GetIPFromSender struct {
 	// Required: true
 	Weight *int64 `json:"weight"`
 }
-
-/* polymorph getIpFromSender domain false */
-
-/* polymorph getIpFromSender id false */
-
-/* polymorph getIpFromSender ip false */
-
-/* polymorph getIpFromSender weight false */
 
 // Validate validates this get Ip from sender
 func (m *GetIPFromSender) Validate(formats strfmt.Registry) error {

@@ -15,7 +15,6 @@ import (
 
 // GetContactDetails get contact details
 // swagger:model getContactDetails
-
 type GetContactDetails struct {
 
 	// attributes
@@ -49,22 +48,6 @@ type GetContactDetails struct {
 	// Required: true
 	SmsBlacklisted *bool `json:"smsBlacklisted"`
 }
-
-/* polymorph getContactDetails attributes false */
-
-/* polymorph getContactDetails email false */
-
-/* polymorph getContactDetails emailBlacklisted false */
-
-/* polymorph getContactDetails id false */
-
-/* polymorph getContactDetails listIds false */
-
-/* polymorph getContactDetails listUnsubscribed false */
-
-/* polymorph getContactDetails modifiedAt false */
-
-/* polymorph getContactDetails smsBlacklisted false */
 
 // Validate validates this get contact details
 func (m *GetContactDetails) Validate(formats strfmt.Registry) error {

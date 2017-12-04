@@ -16,7 +16,6 @@ import (
 
 // GetSendersListSenders List of the senders available in your account
 // swagger:model getSendersListSenders
-
 type GetSendersListSenders []*GetSendersListSendersItems
 
 // Validate validates this get senders list senders

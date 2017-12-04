@@ -14,14 +14,11 @@ import (
 
 // SendTestEmail send test email
 // swagger:model sendTestEmail
-
 type SendTestEmail struct {
 
 	// If empty the test email will be sent to your entire test list. Use this field to send it to specific addresses in your list.
 	EmailTo []strfmt.Email `json:"emailTo"`
 }
-
-/* polymorph sendTestEmail emailTo false */
 
 // Validate validates this send test email
 func (m *SendTestEmail) Validate(formats strfmt.Registry) error {

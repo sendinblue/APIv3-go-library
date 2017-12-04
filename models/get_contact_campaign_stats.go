@@ -14,7 +14,6 @@ import (
 
 // GetContactCampaignStats Campaign Statistics for the contact
 // swagger:model getContactCampaignStats
-
 type GetContactCampaignStats struct {
 
 	// clicked
@@ -41,22 +40,6 @@ type GetContactCampaignStats struct {
 	// unsubscriptions
 	Unsubscriptions *GetContactCampaignStatsUnsubscriptions `json:"unsubscriptions,omitempty"`
 }
-
-/* polymorph getContactCampaignStats clicked false */
-
-/* polymorph getContactCampaignStats complaints false */
-
-/* polymorph getContactCampaignStats hardBounces false */
-
-/* polymorph getContactCampaignStats messagesSent false */
-
-/* polymorph getContactCampaignStats opened false */
-
-/* polymorph getContactCampaignStats softBounces false */
-
-/* polymorph getContactCampaignStats transacAttributes false */
-
-/* polymorph getContactCampaignStats unsubscriptions false */
 
 // Validate validates this get contact campaign stats
 func (m *GetContactCampaignStats) Validate(formats strfmt.Registry) error {

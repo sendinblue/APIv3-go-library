@@ -15,7 +15,6 @@ import (
 
 // GetExtendedContactDetailsAllOf1StatisticsUnsubscriptions Listing of the unsubscription for the contact
 // swagger:model getExtendedContactDetailsAllOf1StatisticsUnsubscriptions
-
 type GetExtendedContactDetailsAllOf1StatisticsUnsubscriptions struct {
 
 	// admin unsubscription
@@ -26,10 +25,6 @@ type GetExtendedContactDetailsAllOf1StatisticsUnsubscriptions struct {
 	// Required: true
 	UserUnsubscription GetExtendedContactDetailsAllOf1StatisticsUnsubscriptionsUserUnsubscription `json:"userUnsubscription"`
 }
-
-/* polymorph getExtendedContactDetailsAllOf1StatisticsUnsubscriptions adminUnsubscription false */
-
-/* polymorph getExtendedContactDetailsAllOf1StatisticsUnsubscriptions userUnsubscription false */
 
 // Validate validates this get extended contact details all of1 statistics unsubscriptions
 func (m *GetExtendedContactDetailsAllOf1StatisticsUnsubscriptions) Validate(formats strfmt.Registry) error {
@@ -57,12 +52,26 @@ func (m *GetExtendedContactDetailsAllOf1StatisticsUnsubscriptions) validateAdmin
 		return err
 	}
 
+	if err := m.AdminUnsubscription.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("adminUnsubscription")
+		}
+		return err
+	}
+
 	return nil
 }
 
 func (m *GetExtendedContactDetailsAllOf1StatisticsUnsubscriptions) validateUserUnsubscription(formats strfmt.Registry) error {
 
 	if err := validate.Required("userUnsubscription", "body", m.UserUnsubscription); err != nil {
+		return err
+	}
+
+	if err := m.UserUnsubscription.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("userUnsubscription")
+		}
 		return err
 	}
 

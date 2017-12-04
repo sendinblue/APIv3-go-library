@@ -16,7 +16,6 @@ import (
 
 // SendSMTPEmailCc Email addresses and names of the recipients in cc
 // swagger:model sendSmtpEmailCc
-
 type SendSMTPEmailCc []*SendSMTPEmailCcItems
 
 // Validate validates this send Smtp email cc

@@ -16,7 +16,6 @@ import (
 
 // SendSMTPEmailBcc Email addresses and names of the recipients in bcc
 // swagger:model sendSmtpEmailBcc
-
 type SendSMTPEmailBcc []*SendSMTPEmailBccItems
 
 // Validate validates this send Smtp email bcc

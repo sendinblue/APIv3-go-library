@@ -18,7 +18,6 @@ import (
 
 // CreateWebhook create webhook
 // swagger:model createWebhook
-
 type CreateWebhook struct {
 
 	// Description of the webhook
@@ -34,14 +33,6 @@ type CreateWebhook struct {
 	// Required: true
 	URL *string `json:"url"`
 }
-
-/* polymorph createWebhook description false */
-
-/* polymorph createWebhook events false */
-
-/* polymorph createWebhook type false */
-
-/* polymorph createWebhook url false */
 
 // Validate validates this create webhook
 func (m *CreateWebhook) Validate(formats strfmt.Registry) error {

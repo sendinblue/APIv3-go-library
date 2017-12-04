@@ -16,7 +16,6 @@ import (
 
 // GetContactCampaignStatsUnsubscriptionsUserUnsubscription Contact has unsubscribed via the unsubscription link in the email
 // swagger:model getContactCampaignStatsUnsubscriptionsUserUnsubscription
-
 type GetContactCampaignStatsUnsubscriptionsUserUnsubscription []*GetContactCampaignStatsUnsubscriptionsUserUnsubscriptionItems
 
 // Validate validates this get contact campaign stats unsubscriptions user unsubscription

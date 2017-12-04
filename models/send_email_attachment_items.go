@@ -14,7 +14,6 @@ import (
 
 // SendEmailAttachmentItems send email attachment items
 // swagger:model sendEmailAttachmentItems
-
 type SendEmailAttachmentItems struct {
 
 	// Base64 encoded chunk data of the attachment generated on the fly
@@ -23,10 +22,6 @@ type SendEmailAttachmentItems struct {
 	// Required for content. Name of the attachment
 	Name string `json:"name,omitempty"`
 }
-
-/* polymorph sendEmailAttachmentItems content false */
-
-/* polymorph sendEmailAttachmentItems name false */
 
 // Validate validates this send email attachment items
 func (m *SendEmailAttachmentItems) Validate(formats strfmt.Registry) error {

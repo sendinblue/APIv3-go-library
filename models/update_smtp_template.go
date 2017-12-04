@@ -14,7 +14,6 @@ import (
 
 // UpdateSMTPTemplate update Smtp template
 // swagger:model updateSmtpTemplate
-
 type UpdateSMTPTemplate struct {
 
 	// Absolute url of the attachment (no local file). Extension allowed: xlsx, xls, ods, docx, docm, doc, csv, pdf, txt, gif, jpg, jpeg, png, tif, tiff and rtf
@@ -47,26 +46,6 @@ type UpdateSMTPTemplate struct {
 	// To personalize the «To» Field, e.g. if you want to include the first name and last name of your recipient, add [FNAME] [LNAME]. These attributes must already exist in contacts database
 	ToField string `json:"toField,omitempty"`
 }
-
-/* polymorph updateSmtpTemplate attachmentUrl false */
-
-/* polymorph updateSmtpTemplate htmlContent false */
-
-/* polymorph updateSmtpTemplate htmlUrl false */
-
-/* polymorph updateSmtpTemplate isActive false */
-
-/* polymorph updateSmtpTemplate replyTo false */
-
-/* polymorph updateSmtpTemplate sender false */
-
-/* polymorph updateSmtpTemplate subject false */
-
-/* polymorph updateSmtpTemplate tag false */
-
-/* polymorph updateSmtpTemplate templateName false */
-
-/* polymorph updateSmtpTemplate toField false */
 
 // Validate validates this update Smtp template
 func (m *UpdateSMTPTemplate) Validate(formats strfmt.Registry) error {

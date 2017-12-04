@@ -14,7 +14,6 @@ import (
 
 // UpdateChild update child
 // swagger:model updateChild
-
 type UpdateChild struct {
 
 	// New Company name to use to update the child account
@@ -35,18 +34,6 @@ type UpdateChild struct {
 	// New password for the child account to login
 	Password strfmt.Password `json:"password,omitempty"`
 }
-
-/* polymorph updateChild companyName false */
-
-/* polymorph updateChild email false */
-
-/* polymorph updateChild firstName false */
-
-/* polymorph updateChild ips false */
-
-/* polymorph updateChild lastName false */
-
-/* polymorph updateChild password false */
 
 // Validate validates this update child
 func (m *UpdateChild) Validate(formats strfmt.Registry) error {

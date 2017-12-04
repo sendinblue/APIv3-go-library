@@ -15,7 +15,6 @@ import (
 
 // GetContactCampaignStatsUnsubscriptionsUserUnsubscriptionItems get contact campaign stats unsubscriptions user unsubscription items
 // swagger:model getContactCampaignStatsUnsubscriptionsUserUnsubscriptionItems
-
 type GetContactCampaignStatsUnsubscriptionsUserUnsubscriptionItems struct {
 
 	// ID of the campaign which generated the event
@@ -30,12 +29,6 @@ type GetContactCampaignStatsUnsubscriptionsUserUnsubscriptionItems struct {
 	// Required: true
 	IP *string `json:"ip"`
 }
-
-/* polymorph getContactCampaignStatsUnsubscriptionsUserUnsubscriptionItems campaignId false */
-
-/* polymorph getContactCampaignStatsUnsubscriptionsUserUnsubscriptionItems eventTime false */
-
-/* polymorph getContactCampaignStatsUnsubscriptionsUserUnsubscriptionItems ip false */
 
 // Validate validates this get contact campaign stats unsubscriptions user unsubscription items
 func (m *GetContactCampaignStatsUnsubscriptionsUserUnsubscriptionItems) Validate(formats strfmt.Registry) error {

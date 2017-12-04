@@ -15,7 +15,6 @@ import (
 
 // SendSMTPEmailReplyTo Email on which transactional mail recipients will be able to reply to
 // swagger:model sendSmtpEmailReplyTo
-
 type SendSMTPEmailReplyTo struct {
 
 	// Email address in reply to
@@ -25,10 +24,6 @@ type SendSMTPEmailReplyTo struct {
 	// Name in reply to
 	Name string `json:"name,omitempty"`
 }
-
-/* polymorph sendSmtpEmailReplyTo email false */
-
-/* polymorph sendSmtpEmailReplyTo name false */
 
 // Validate validates this send Smtp email reply to
 func (m *SendSMTPEmailReplyTo) Validate(formats strfmt.Registry) error {

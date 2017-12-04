@@ -16,7 +16,6 @@ import (
 
 // GetExtendedContactDetailsAllOf1StatisticsClickedItemsLinks Listing of the clicked links for the campaign
 // swagger:model getExtendedContactDetailsAllOf1StatisticsClickedItemsLinks
-
 type GetExtendedContactDetailsAllOf1StatisticsClickedItemsLinks []*GetExtendedContactDetailsAllOf1StatisticsClickedItemsLinksItems
 
 // Validate validates this get extended contact details all of1 statistics clicked items links

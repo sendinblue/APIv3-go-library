@@ -15,7 +15,6 @@ import (
 
 // GetContactCampaignStatsHardBouncesItems get contact campaign stats hard bounces items
 // swagger:model getContactCampaignStatsHardBouncesItems
-
 type GetContactCampaignStatsHardBouncesItems struct {
 
 	// ID of the campaign which generated the event
@@ -26,10 +25,6 @@ type GetContactCampaignStatsHardBouncesItems struct {
 	// Required: true
 	EventTime *strfmt.DateTime `json:"eventTime"`
 }
-
-/* polymorph getContactCampaignStatsHardBouncesItems campaignId false */
-
-/* polymorph getContactCampaignStatsHardBouncesItems eventTime false */
 
 // Validate validates this get contact campaign stats hard bounces items
 func (m *GetContactCampaignStatsHardBouncesItems) Validate(formats strfmt.Registry) error {

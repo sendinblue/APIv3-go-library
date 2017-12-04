@@ -15,15 +15,12 @@ import (
 
 // CreateModel create model
 // swagger:model createModel
-
 type CreateModel struct {
 
 	// ID of the object created
 	// Required: true
 	ID *int64 `json:"id"`
 }
-
-/* polymorph createModel id false */
 
 // Validate validates this create model
 func (m *CreateModel) Validate(formats strfmt.Registry) error {

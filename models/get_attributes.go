@@ -15,15 +15,12 @@ import (
 
 // GetAttributes get attributes
 // swagger:model getAttributes
-
 type GetAttributes struct {
 
 	// attributes
 	// Required: true
 	Attributes GetAttributesAttributes `json:"attributes"`
 }
-
-/* polymorph getAttributes attributes false */
 
 // Validate validates this get attributes
 func (m *GetAttributes) Validate(formats strfmt.Registry) error {
@@ -43,6 +40,13 @@ func (m *GetAttributes) Validate(formats strfmt.Registry) error {
 func (m *GetAttributes) validateAttributes(formats strfmt.Registry) error {
 
 	if err := validate.Required("attributes", "body", m.Attributes); err != nil {
+		return err
+	}
+
+	if err := m.Attributes.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("attributes")
+		}
 		return err
 	}
 

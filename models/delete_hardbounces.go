@@ -14,7 +14,6 @@ import (
 
 // DeleteHardbounces delete hardbounces
 // swagger:model deleteHardbounces
-
 type DeleteHardbounces struct {
 
 	// Target a specific email address
@@ -26,12 +25,6 @@ type DeleteHardbounces struct {
 	// Starting date (YYYY-MM-DD) of the period from which the hardbounces will be deleted. Must be lower than equal to endDate
 	StartDate strfmt.Date `json:"startDate,omitempty"`
 }
-
-/* polymorph deleteHardbounces contactEmail false */
-
-/* polymorph deleteHardbounces endDate false */
-
-/* polymorph deleteHardbounces startDate false */
 
 // Validate validates this delete hardbounces
 func (m *DeleteHardbounces) Validate(formats strfmt.Registry) error {

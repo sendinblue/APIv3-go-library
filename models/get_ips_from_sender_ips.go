@@ -16,7 +16,6 @@ import (
 
 // GetIpsFromSenderIps Dedicated IP(s) linked to a sender
 // swagger:model getIpsFromSenderIps
-
 type GetIpsFromSenderIps []*GetIPFromSender
 
 // Validate validates this get ips from sender ips

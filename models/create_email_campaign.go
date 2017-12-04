@@ -17,7 +17,6 @@ import (
 
 // CreateEmailCampaign create email campaign
 // swagger:model createEmailCampaign
-
 type CreateEmailCampaign struct {
 
 	// Absolute url of the attachment (no local file). Extensions allowed xlsx, xls, ods, docx, docm, doc, csv, pdf, txt, gif, jpg, jpeg, png, tif, tiff and rtf
@@ -78,42 +77,6 @@ type CreateEmailCampaign struct {
 	// Customize the utm_campaign value. If this field is empty, the campaign name will be used. Only alphanumeric characters and spaces are allowed
 	UtmCampaign string `json:"utmCampaign,omitempty"`
 }
-
-/* polymorph createEmailCampaign attachmentUrl false */
-
-/* polymorph createEmailCampaign footer false */
-
-/* polymorph createEmailCampaign header false */
-
-/* polymorph createEmailCampaign htmlContent false */
-
-/* polymorph createEmailCampaign htmlUrl false */
-
-/* polymorph createEmailCampaign inlineImageActivation false */
-
-/* polymorph createEmailCampaign mirrorActive false */
-
-/* polymorph createEmailCampaign name false */
-
-/* polymorph createEmailCampaign recipients false */
-
-/* polymorph createEmailCampaign recurring false */
-
-/* polymorph createEmailCampaign replyTo false */
-
-/* polymorph createEmailCampaign scheduledAt false */
-
-/* polymorph createEmailCampaign sender false */
-
-/* polymorph createEmailCampaign subject false */
-
-/* polymorph createEmailCampaign tag false */
-
-/* polymorph createEmailCampaign toField false */
-
-/* polymorph createEmailCampaign type false */
-
-/* polymorph createEmailCampaign utmCampaign false */
 
 // Validate validates this create email campaign
 func (m *CreateEmailCampaign) Validate(formats strfmt.Registry) error {

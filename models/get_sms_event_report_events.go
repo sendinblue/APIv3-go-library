@@ -16,7 +16,6 @@ import (
 
 // GetSmsEventReportEvents get sms event report events
 // swagger:model getSmsEventReportEvents
-
 type GetSmsEventReportEvents []*GetSmsEventReportEventsItems
 
 // Validate validates this get sms event report events

@@ -14,7 +14,6 @@ import (
 
 // CreateEmailCampaignRecipients create email campaign recipients
 // swagger:model createEmailCampaignRecipients
-
 type CreateEmailCampaignRecipients struct {
 
 	// List ids to exclude from the campaign
@@ -23,10 +22,6 @@ type CreateEmailCampaignRecipients struct {
 	// Mandatory if scheduledAt is not empty. List Ids to send the campaign to
 	ListIds []int64 `json:"listIds"`
 }
-
-/* polymorph createEmailCampaignRecipients exclusionListIds false */
-
-/* polymorph createEmailCampaignRecipients listIds false */
 
 // Validate validates this create email campaign recipients
 func (m *CreateEmailCampaignRecipients) Validate(formats strfmt.Registry) error {

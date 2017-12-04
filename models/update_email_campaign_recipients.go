@@ -14,7 +14,6 @@ import (
 
 // UpdateEmailCampaignRecipients update email campaign recipients
 // swagger:model updateEmailCampaignRecipients
-
 type UpdateEmailCampaignRecipients struct {
 
 	// List ids which have to be excluded from a campaign
@@ -23,10 +22,6 @@ type UpdateEmailCampaignRecipients struct {
 	// Lists Ids to send the campaign to. REQUIRED if already not present in campaign and scheduledAt is not empty
 	ListIds []int64 `json:"listIds"`
 }
-
-/* polymorph updateEmailCampaignRecipients exclusionListIds false */
-
-/* polymorph updateEmailCampaignRecipients listIds false */
 
 // Validate validates this update email campaign recipients
 func (m *UpdateEmailCampaignRecipients) Validate(formats strfmt.Registry) error {

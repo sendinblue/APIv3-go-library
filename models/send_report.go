@@ -17,7 +17,6 @@ import (
 
 // SendReport send report
 // swagger:model sendReport
-
 type SendReport struct {
 
 	// email
@@ -27,10 +26,6 @@ type SendReport struct {
 	// Language of email content for campaign report sending.
 	Language *string `json:"language,omitempty"`
 }
-
-/* polymorph sendReport email false */
-
-/* polymorph sendReport language false */
 
 // Validate validates this send report
 func (m *SendReport) Validate(formats strfmt.Registry) error {

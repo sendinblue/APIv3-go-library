@@ -15,7 +15,6 @@ import (
 
 // GetEmailCampaign get email campaign
 // swagger:model getEmailCampaign
-
 type GetEmailCampaign struct {
 	GetExtendedCampaignOverview
 
@@ -27,10 +26,6 @@ type GetEmailCampaign struct {
 	// Required: true
 	Statistics *GetEmailCampaignStatistics `json:"statistics"`
 }
-
-/* polymorph getEmailCampaign recipients false */
-
-/* polymorph getEmailCampaign statistics false */
 
 // UnmarshalJSON unmarshals this object from a JSON structure
 func (m *GetEmailCampaign) UnmarshalJSON(raw []byte) error {

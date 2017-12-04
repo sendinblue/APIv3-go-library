@@ -14,7 +14,6 @@ import (
 
 // GetChildInfoAllOf1Credits Credits available for your child
 // swagger:model getChildInfoAllOf1Credits
-
 type GetChildInfoAllOf1Credits struct {
 
 	// Email credits available for your child
@@ -23,10 +22,6 @@ type GetChildInfoAllOf1Credits struct {
 	// SMS credits available for your child
 	SmsCredits int64 `json:"smsCredits,omitempty"`
 }
-
-/* polymorph getChildInfoAllOf1Credits emailCredits false */
-
-/* polymorph getChildInfoAllOf1Credits smsCredits false */
 
 // Validate validates this get child info all of1 credits
 func (m *GetChildInfoAllOf1Credits) Validate(formats strfmt.Registry) error {

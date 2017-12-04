@@ -17,7 +17,6 @@ import (
 
 // GetCampaignOverview get campaign overview
 // swagger:model getCampaignOverview
-
 type GetCampaignOverview struct {
 
 	// ID of the campaign
@@ -43,18 +42,6 @@ type GetCampaignOverview struct {
 	// Required: true
 	Type *string `json:"type"`
 }
-
-/* polymorph getCampaignOverview id false */
-
-/* polymorph getCampaignOverview name false */
-
-/* polymorph getCampaignOverview scheduledAt false */
-
-/* polymorph getCampaignOverview status false */
-
-/* polymorph getCampaignOverview subject false */
-
-/* polymorph getCampaignOverview type false */
 
 // Validate validates this get campaign overview
 func (m *GetCampaignOverview) Validate(formats strfmt.Registry) error {

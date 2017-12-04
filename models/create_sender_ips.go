@@ -16,7 +16,6 @@ import (
 
 // CreateSenderIps Mandatory in case of dedicated IP, IPs to associate to the sender
 // swagger:model createSenderIps
-
 type CreateSenderIps []*CreateSenderIpsItems
 
 // Validate validates this create sender ips

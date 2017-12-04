@@ -14,7 +14,6 @@ import (
 
 // AddCredits add credits
 // swagger:model addCredits
-
 type AddCredits struct {
 
 	// Email credits to be added to the child account
@@ -23,10 +22,6 @@ type AddCredits struct {
 	// SMS credits to be added to the child account
 	Sms int64 `json:"sms,omitempty"`
 }
-
-/* polymorph addCredits email false */
-
-/* polymorph addCredits sms false */
 
 // Validate validates this add credits
 func (m *AddCredits) Validate(formats strfmt.Registry) error {

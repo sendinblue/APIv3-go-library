@@ -17,7 +17,6 @@ import (
 
 // SendReportEmail send report email
 // swagger:model sendReportEmail
-
 type SendReportEmail struct {
 
 	// Email addresses of the recipients in bcc
@@ -38,18 +37,6 @@ type SendReportEmail struct {
 	// Email addresses of the recipients
 	To []strfmt.Email `json:"to"`
 }
-
-/* polymorph sendReportEmail bcc false */
-
-/* polymorph sendReportEmail body false */
-
-/* polymorph sendReportEmail cc false */
-
-/* polymorph sendReportEmail contentType false */
-
-/* polymorph sendReportEmail subject false */
-
-/* polymorph sendReportEmail to false */
 
 // Validate validates this send report email
 func (m *SendReportEmail) Validate(formats strfmt.Registry) error {

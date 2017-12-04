@@ -15,7 +15,6 @@ import (
 
 // SendSMTPEmailToItems send Smtp email to items
 // swagger:model sendSmtpEmailToItems
-
 type SendSMTPEmailToItems struct {
 
 	// Email address of the recipient
@@ -25,10 +24,6 @@ type SendSMTPEmailToItems struct {
 	// Name of the recipient
 	Name string `json:"name,omitempty"`
 }
-
-/* polymorph sendSmtpEmailToItems email false */
-
-/* polymorph sendSmtpEmailToItems name false */
 
 // Validate validates this send Smtp email to items
 func (m *SendSMTPEmailToItems) Validate(formats strfmt.Registry) error {

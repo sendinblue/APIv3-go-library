@@ -15,7 +15,6 @@ import (
 
 // GetSmsCampaignAllOf1 get sms campaign all of1
 // swagger:model getSmsCampaignAllOf1
-
 type GetSmsCampaignAllOf1 struct {
 
 	// recipients
@@ -26,10 +25,6 @@ type GetSmsCampaignAllOf1 struct {
 	// Required: true
 	Statistics *GetSmsCampaignAllOf1Statistics `json:"statistics"`
 }
-
-/* polymorph getSmsCampaignAllOf1 recipients false */
-
-/* polymorph getSmsCampaignAllOf1 statistics false */
 
 // Validate validates this get sms campaign all of1
 func (m *GetSmsCampaignAllOf1) Validate(formats strfmt.Registry) error {

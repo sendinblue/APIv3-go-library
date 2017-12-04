@@ -15,15 +15,12 @@ import (
 
 // PostContactInfo post contact info
 // swagger:model postContactInfo
-
 type PostContactInfo struct {
 
 	// contacts
 	// Required: true
 	Contacts *PostContactInfoContacts `json:"contacts"`
 }
-
-/* polymorph postContactInfo contacts false */
 
 // Validate validates this post contact info
 func (m *PostContactInfo) Validate(formats strfmt.Registry) error {

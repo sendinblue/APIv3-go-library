@@ -18,7 +18,6 @@ import (
 
 // UpdateWebhook update webhook
 // swagger:model updateWebhook
-
 type UpdateWebhook struct {
 
 	// Description of the webhook
@@ -30,12 +29,6 @@ type UpdateWebhook struct {
 	// URL of the webhook
 	URL string `json:"url,omitempty"`
 }
-
-/* polymorph updateWebhook description false */
-
-/* polymorph updateWebhook events false */
-
-/* polymorph updateWebhook url false */
 
 // Validate validates this update webhook
 func (m *UpdateWebhook) Validate(formats strfmt.Registry) error {

@@ -15,7 +15,6 @@ import (
 
 // GetAggregatedReport get aggregated report
 // swagger:model getAggregatedReport
-
 type GetAggregatedReport struct {
 
 	// Number of blocked contact emails for the timeframe
@@ -66,30 +65,6 @@ type GetAggregatedReport struct {
 	// Required: true
 	UniqueOpens *int64 `json:"uniqueOpens"`
 }
-
-/* polymorph getAggregatedReport blocked false */
-
-/* polymorph getAggregatedReport clicks false */
-
-/* polymorph getAggregatedReport delivered false */
-
-/* polymorph getAggregatedReport hardBounces false */
-
-/* polymorph getAggregatedReport invalid false */
-
-/* polymorph getAggregatedReport opens false */
-
-/* polymorph getAggregatedReport range false */
-
-/* polymorph getAggregatedReport requests false */
-
-/* polymorph getAggregatedReport softBounces false */
-
-/* polymorph getAggregatedReport spamReports false */
-
-/* polymorph getAggregatedReport uniqueClicks false */
-
-/* polymorph getAggregatedReport uniqueOpens false */
 
 // Validate validates this get aggregated report
 func (m *GetAggregatedReport) Validate(formats strfmt.Registry) error {

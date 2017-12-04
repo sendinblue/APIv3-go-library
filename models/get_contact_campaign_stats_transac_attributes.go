@@ -16,7 +16,6 @@ import (
 
 // GetContactCampaignStatsTransacAttributes get contact campaign stats transac attributes
 // swagger:model getContactCampaignStatsTransacAttributes
-
 type GetContactCampaignStatsTransacAttributes []*GetContactCampaignStatsTransacAttributesItems
 
 // Validate validates this get contact campaign stats transac attributes

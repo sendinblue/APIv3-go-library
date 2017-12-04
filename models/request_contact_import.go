@@ -14,7 +14,6 @@ import (
 
 // RequestContactImport request contact import
 // swagger:model requestContactImport
-
 type RequestContactImport struct {
 
 	// Mandatory if fileUrl is not defined. CSV content to be imported. Use semicolon to separate multiple attributes
@@ -32,16 +31,6 @@ type RequestContactImport struct {
 	// URL that will be called once the export process is finished
 	NotifyURL string `json:"notifyUrl,omitempty"`
 }
-
-/* polymorph requestContactImport fileBody false */
-
-/* polymorph requestContactImport fileUrl false */
-
-/* polymorph requestContactImport listIds false */
-
-/* polymorph requestContactImport newList false */
-
-/* polymorph requestContactImport notifyUrl false */
 
 // Validate validates this request contact import
 func (m *RequestContactImport) Validate(formats strfmt.Registry) error {

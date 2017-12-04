@@ -14,7 +14,6 @@ import (
 
 // UpdateList update list
 // swagger:model updateList
-
 type UpdateList struct {
 
 	// Id of the folder in which to move the list. Only one parameter can updated at once
@@ -23,10 +22,6 @@ type UpdateList struct {
 	// Name of the list. Only one parameter can be update at once
 	Name string `json:"name,omitempty"`
 }
-
-/* polymorph updateList folderId false */
-
-/* polymorph updateList name false */
 
 // Validate validates this update list
 func (m *UpdateList) Validate(formats strfmt.Registry) error {

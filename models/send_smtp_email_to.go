@@ -16,7 +16,6 @@ import (
 
 // SendSMTPEmailTo Email addresses and names of the recipients
 // swagger:model sendSmtpEmailTo
-
 type SendSMTPEmailTo []*SendSMTPEmailToItems
 
 // Validate validates this send Smtp email to

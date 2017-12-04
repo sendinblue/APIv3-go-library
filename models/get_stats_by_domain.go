@@ -14,7 +14,6 @@ import (
 
 // GetStatsByDomain get stats by domain
 // swagger:model getStatsByDomain
-
 type GetStatsByDomain map[string]GetCampaignStats
 
 // Validate validates this get stats by domain

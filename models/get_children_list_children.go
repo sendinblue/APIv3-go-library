@@ -16,7 +16,6 @@ import (
 
 // GetChildrenListChildren Your children's account information
 // swagger:model getChildrenListChildren
-
 type GetChildrenListChildren []*GetChildrenListChildrenItems
 
 // Validate validates this get children list children

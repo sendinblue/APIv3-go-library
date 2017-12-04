@@ -17,7 +17,6 @@ import (
 
 // SendTransacSms send transac sms
 // swagger:model sendTransacSms
-
 type SendTransacSms struct {
 
 	// Content of the message. If more than 160 characters long, multiple text messages will be sent
@@ -43,18 +42,6 @@ type SendTransacSms struct {
 	// Webhook to call for each event triggered by the message (delivered etc.)
 	WebURL string `json:"webUrl,omitempty"`
 }
-
-/* polymorph sendTransacSms content false */
-
-/* polymorph sendTransacSms recipient false */
-
-/* polymorph sendTransacSms sender false */
-
-/* polymorph sendTransacSms tag false */
-
-/* polymorph sendTransacSms type false */
-
-/* polymorph sendTransacSms webUrl false */
 
 // Validate validates this send transac sms
 func (m *SendTransacSms) Validate(formats strfmt.Registry) error {

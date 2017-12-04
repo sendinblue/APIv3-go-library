@@ -15,7 +15,6 @@ import (
 
 // CreateSenderIpsItems create sender ips items
 // swagger:model createSenderIpsItems
-
 type CreateSenderIpsItems struct {
 
 	// Domain of the IP
@@ -31,12 +30,6 @@ type CreateSenderIpsItems struct {
 	// Minimum: 1
 	Weight int64 `json:"weight,omitempty"`
 }
-
-/* polymorph createSenderIpsItems domain false */
-
-/* polymorph createSenderIpsItems ip false */
-
-/* polymorph createSenderIpsItems weight false */
 
 // Validate validates this create sender ips items
 func (m *CreateSenderIpsItems) Validate(formats strfmt.Registry) error {

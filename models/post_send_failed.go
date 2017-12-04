@@ -15,7 +15,6 @@ import (
 
 // PostSendFailed post send failed
 // swagger:model postSendFailed
-
 type PostSendFailed struct {
 
 	// black listed emails
@@ -35,16 +34,6 @@ type PostSendFailed struct {
 	// without list emails
 	WithoutListEmails []strfmt.Email `json:"withoutListEmails"`
 }
-
-/* polymorph postSendFailed blackListedEmails false */
-
-/* polymorph postSendFailed code false */
-
-/* polymorph postSendFailed message false */
-
-/* polymorph postSendFailed unexistingEmails false */
-
-/* polymorph postSendFailed withoutListEmails false */
 
 // Validate validates this post send failed
 func (m *PostSendFailed) Validate(formats strfmt.Registry) error {

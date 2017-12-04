@@ -15,7 +15,6 @@ import (
 
 // UpdateSmsCampaignRecipients update sms campaign recipients
 // swagger:model updateSmsCampaignRecipients
-
 type UpdateSmsCampaignRecipients struct {
 
 	// List ids which have to be excluded from a campaign
@@ -26,10 +25,6 @@ type UpdateSmsCampaignRecipients struct {
 	// Required: true
 	ListIds []int64 `json:"listIds"`
 }
-
-/* polymorph updateSmsCampaignRecipients exclusionListIds false */
-
-/* polymorph updateSmsCampaignRecipients listIds false */
 
 // Validate validates this update sms campaign recipients
 func (m *UpdateSmsCampaignRecipients) Validate(formats strfmt.Registry) error {

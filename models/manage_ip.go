@@ -14,14 +14,11 @@ import (
 
 // ManageIP manage Ip
 // swagger:model manageIp
-
 type ManageIP struct {
 
 	// ID of the IP
 	IPID int64 `json:"ipId,omitempty"`
 }
-
-/* polymorph manageIp ipId false */
 
 // Validate validates this manage Ip
 func (m *ManageIP) Validate(formats strfmt.Registry) error {

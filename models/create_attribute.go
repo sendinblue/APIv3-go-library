@@ -17,58 +17,24 @@ import (
 
 // CreateAttribute create attribute
 // swagger:model createAttribute
-
 type CreateAttribute struct {
 
-	// Attribute categorisation.
+	// enumeration
+	Enumeration CreateAttributeEnumeration `json:"enumeration"`
+
+	// Type of the attribute ( type 'id' only available if the category is 'transactional' attribute & type 'category' only available if the category is 'category' attribute )
 	// Required: true
-	Category *string `json:"category"`
-
-	// enumemaration
-	Enumemaration CreateAttributeEnumemaration `json:"enumemaration"`
-
-	// Name of the attribute
-	// Required: true
-	Name *string `json:"name"`
-
-	// Type of the attribute
-	Type string `json:"type,omitempty"`
+	Type *string `json:"type"`
 
 	// Value of the attribute
-	// Required: true
-	Value *string `json:"value"`
+	Value string `json:"value,omitempty"`
 }
-
-/* polymorph createAttribute category false */
-
-/* polymorph createAttribute enumemaration false */
-
-/* polymorph createAttribute name false */
-
-/* polymorph createAttribute type false */
-
-/* polymorph createAttribute value false */
 
 // Validate validates this create attribute
 func (m *CreateAttribute) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateCategory(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
 	if err := m.validateType(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateValue(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -79,67 +45,11 @@ func (m *CreateAttribute) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-var createAttributeTypeCategoryPropEnum []interface{}
-
-func init() {
-	var res []string
-	if err := json.Unmarshal([]byte(`["normal","transactional","category","calculated","global"]`), &res); err != nil {
-		panic(err)
-	}
-	for _, v := range res {
-		createAttributeTypeCategoryPropEnum = append(createAttributeTypeCategoryPropEnum, v)
-	}
-}
-
-const (
-	// CreateAttributeCategoryNormal captures enum value "normal"
-	CreateAttributeCategoryNormal string = "normal"
-	// CreateAttributeCategoryTransactional captures enum value "transactional"
-	CreateAttributeCategoryTransactional string = "transactional"
-	// CreateAttributeCategoryCategory captures enum value "category"
-	CreateAttributeCategoryCategory string = "category"
-	// CreateAttributeCategoryCalculated captures enum value "calculated"
-	CreateAttributeCategoryCalculated string = "calculated"
-	// CreateAttributeCategoryGlobal captures enum value "global"
-	CreateAttributeCategoryGlobal string = "global"
-)
-
-// prop value enum
-func (m *CreateAttribute) validateCategoryEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, createAttributeTypeCategoryPropEnum); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *CreateAttribute) validateCategory(formats strfmt.Registry) error {
-
-	if err := validate.Required("category", "body", m.Category); err != nil {
-		return err
-	}
-
-	// value enum
-	if err := m.validateCategoryEnum("category", "body", *m.Category); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *CreateAttribute) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 var createAttributeTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["text","date","float","id"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["text","date","float","id","category"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -156,6 +66,8 @@ const (
 	CreateAttributeTypeFloat string = "float"
 	// CreateAttributeTypeID captures enum value "id"
 	CreateAttributeTypeID string = "id"
+	// CreateAttributeTypeCategory captures enum value "category"
+	CreateAttributeTypeCategory string = "category"
 )
 
 // prop value enum
@@ -168,21 +80,12 @@ func (m *CreateAttribute) validateTypeEnum(path, location string, value string) 
 
 func (m *CreateAttribute) validateType(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Type) { // not required
-		return nil
-	}
-
-	// value enum
-	if err := m.validateTypeEnum("type", "body", m.Type); err != nil {
+	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
 	}
 
-	return nil
-}
-
-func (m *CreateAttribute) validateValue(formats strfmt.Registry) error {
-
-	if err := validate.Required("value", "body", m.Value); err != nil {
+	// value enum
+	if err := m.validateTypeEnum("type", "body", *m.Type); err != nil {
 		return err
 	}
 

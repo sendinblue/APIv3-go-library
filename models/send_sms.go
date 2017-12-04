@@ -15,15 +15,12 @@ import (
 
 // SendSms send sms
 // swagger:model sendSms
-
 type SendSms struct {
 
 	// reference
 	// Required: true
 	Reference *string `json:"reference"`
 }
-
-/* polymorph sendSms reference false */
 
 // Validate validates this send sms
 func (m *SendSms) Validate(formats strfmt.Registry) error {

@@ -15,7 +15,6 @@ import (
 
 // GetProcesses get processes
 // swagger:model getProcesses
-
 type GetProcesses struct {
 
 	// Number of processes available on your account
@@ -25,10 +24,6 @@ type GetProcesses struct {
 	// processes
 	Processes GetProcessesProcesses `json:"processes"`
 }
-
-/* polymorph getProcesses count false */
-
-/* polymorph getProcesses processes false */
 
 // Validate validates this get processes
 func (m *GetProcesses) Validate(formats strfmt.Registry) error {

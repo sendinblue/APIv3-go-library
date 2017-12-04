@@ -15,7 +15,6 @@ import (
 
 // SendSMTPEmail send Smtp email
 // swagger:model sendSmtpEmail
-
 type SendSMTPEmail struct {
 
 	// attachment
@@ -52,26 +51,6 @@ type SendSMTPEmail struct {
 	// Required: true
 	To SendSMTPEmailTo `json:"to"`
 }
-
-/* polymorph sendSmtpEmail attachment false */
-
-/* polymorph sendSmtpEmail bcc false */
-
-/* polymorph sendSmtpEmail cc false */
-
-/* polymorph sendSmtpEmail headers false */
-
-/* polymorph sendSmtpEmail htmlContent false */
-
-/* polymorph sendSmtpEmail replyTo false */
-
-/* polymorph sendSmtpEmail sender false */
-
-/* polymorph sendSmtpEmail subject false */
-
-/* polymorph sendSmtpEmail textContent false */
-
-/* polymorph sendSmtpEmail to false */
 
 // Validate validates this send Smtp email
 func (m *SendSMTPEmail) Validate(formats strfmt.Registry) error {
@@ -167,6 +146,13 @@ func (m *SendSMTPEmail) validateSubject(formats strfmt.Registry) error {
 func (m *SendSMTPEmail) validateTo(formats strfmt.Registry) error {
 
 	if err := validate.Required("to", "body", m.To); err != nil {
+		return err
+	}
+
+	if err := m.To.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("to")
+		}
 		return err
 	}
 

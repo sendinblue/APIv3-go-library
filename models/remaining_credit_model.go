@@ -15,7 +15,6 @@ import (
 
 // RemainingCreditModel remaining credit model
 // swagger:model remainingCreditModel
-
 type RemainingCreditModel struct {
 
 	// child
@@ -26,10 +25,6 @@ type RemainingCreditModel struct {
 	// Required: true
 	Reseller *RemainingCreditModelReseller `json:"reseller"`
 }
-
-/* polymorph remainingCreditModel child false */
-
-/* polymorph remainingCreditModel reseller false */
 
 // Validate validates this remaining credit model
 func (m *RemainingCreditModel) Validate(formats strfmt.Registry) error {

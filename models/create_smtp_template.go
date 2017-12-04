@@ -15,7 +15,6 @@ import (
 
 // CreateSMTPTemplate create Smtp template
 // swagger:model createSmtpTemplate
-
 type CreateSMTPTemplate struct {
 
 	// Absolute url of the attachment (no local file). Extensions allowed xlsx, xls, ods, docx, docm, doc, csv, pdf, txt, gif, jpg, jpeg, png, tif, tiff and rtf
@@ -51,26 +50,6 @@ type CreateSMTPTemplate struct {
 	// This is to personalize the «To» Field. If you want to include the first name and last name of your recipient, add [FNAME] [LNAME]. To use the contact attributes here, these must already exist in SendinBlue account
 	ToField string `json:"toField,omitempty"`
 }
-
-/* polymorph createSmtpTemplate attachmentUrl false */
-
-/* polymorph createSmtpTemplate htmlContent false */
-
-/* polymorph createSmtpTemplate htmlUrl false */
-
-/* polymorph createSmtpTemplate isActive false */
-
-/* polymorph createSmtpTemplate replyTo false */
-
-/* polymorph createSmtpTemplate sender false */
-
-/* polymorph createSmtpTemplate subject false */
-
-/* polymorph createSmtpTemplate tag false */
-
-/* polymorph createSmtpTemplate templateName false */
-
-/* polymorph createSmtpTemplate toField false */
 
 // Validate validates this create Smtp template
 func (m *CreateSMTPTemplate) Validate(formats strfmt.Registry) error {

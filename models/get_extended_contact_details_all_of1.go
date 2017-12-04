@@ -15,15 +15,12 @@ import (
 
 // GetExtendedContactDetailsAllOf1 get extended contact details all of1
 // swagger:model getExtendedContactDetailsAllOf1
-
 type GetExtendedContactDetailsAllOf1 struct {
 
 	// statistics
 	// Required: true
 	Statistics *GetExtendedContactDetailsAllOf1Statistics `json:"statistics"`
 }
-
-/* polymorph getExtendedContactDetailsAllOf1 statistics false */
 
 // Validate validates this get extended contact details all of1
 func (m *GetExtendedContactDetailsAllOf1) Validate(formats strfmt.Registry) error {

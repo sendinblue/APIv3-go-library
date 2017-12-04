@@ -15,7 +15,6 @@ import (
 
 // GetSmsCampaigns get sms campaigns
 // swagger:model getSmsCampaigns
-
 type GetSmsCampaigns struct {
 
 	// campaigns
@@ -25,10 +24,6 @@ type GetSmsCampaigns struct {
 	// Required: true
 	Count *int64 `json:"count"`
 }
-
-/* polymorph getSmsCampaigns campaigns false */
-
-/* polymorph getSmsCampaigns count false */
 
 // Validate validates this get sms campaigns
 func (m *GetSmsCampaigns) Validate(formats strfmt.Registry) error {

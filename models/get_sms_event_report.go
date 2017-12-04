@@ -14,14 +14,11 @@ import (
 
 // GetSmsEventReport get sms event report
 // swagger:model getSmsEventReport
-
 type GetSmsEventReport struct {
 
 	// events
 	Events GetSmsEventReportEvents `json:"events"`
 }
-
-/* polymorph getSmsEventReport events false */
 
 // Validate validates this get sms event report
 func (m *GetSmsEventReport) Validate(formats strfmt.Registry) error {

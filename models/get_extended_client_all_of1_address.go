@@ -15,7 +15,6 @@ import (
 
 // GetExtendedClientAllOf1Address Address informations
 // swagger:model getExtendedClientAllOf1Address
-
 type GetExtendedClientAllOf1Address struct {
 
 	// City information
@@ -34,14 +33,6 @@ type GetExtendedClientAllOf1Address struct {
 	// Required: true
 	ZipCode *string `json:"zipCode"`
 }
-
-/* polymorph getExtendedClientAllOf1Address city false */
-
-/* polymorph getExtendedClientAllOf1Address country false */
-
-/* polymorph getExtendedClientAllOf1Address street false */
-
-/* polymorph getExtendedClientAllOf1Address zipCode false */
 
 // Validate validates this get extended client all of1 address
 func (m *GetExtendedClientAllOf1Address) Validate(formats strfmt.Registry) error {

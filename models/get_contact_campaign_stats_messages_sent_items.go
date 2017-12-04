@@ -15,7 +15,6 @@ import (
 
 // GetContactCampaignStatsMessagesSentItems get contact campaign stats messages sent items
 // swagger:model getContactCampaignStatsMessagesSentItems
-
 type GetContactCampaignStatsMessagesSentItems struct {
 
 	// ID of the campaign which generated the event
@@ -26,10 +25,6 @@ type GetContactCampaignStatsMessagesSentItems struct {
 	// Required: true
 	EventTime *strfmt.DateTime `json:"eventTime"`
 }
-
-/* polymorph getContactCampaignStatsMessagesSentItems campaignId false */
-
-/* polymorph getContactCampaignStatsMessagesSentItems eventTime false */
 
 // Validate validates this get contact campaign stats messages sent items
 func (m *GetContactCampaignStatsMessagesSentItems) Validate(formats strfmt.Registry) error {

@@ -15,7 +15,6 @@ import (
 
 // SendSMTPEmailBccItems send Smtp email bcc items
 // swagger:model sendSmtpEmailBccItems
-
 type SendSMTPEmailBccItems struct {
 
 	// Email address of the recipient in bcc
@@ -25,10 +24,6 @@ type SendSMTPEmailBccItems struct {
 	// Name of the recipient in bcc
 	Name string `json:"name,omitempty"`
 }
-
-/* polymorph sendSmtpEmailBccItems email false */
-
-/* polymorph sendSmtpEmailBccItems name false */
 
 // Validate validates this send Smtp email bcc items
 func (m *SendSMTPEmailBccItems) Validate(formats strfmt.Registry) error {

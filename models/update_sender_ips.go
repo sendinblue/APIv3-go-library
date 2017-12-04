@@ -16,7 +16,6 @@ import (
 
 // UpdateSenderIps Only in case of dedicated IP, IPs to associate to the sender. If passed, will replace all the existing IPs.
 // swagger:model updateSenderIps
-
 type UpdateSenderIps []*UpdateSenderIpsItems
 
 // Validate validates this update sender ips

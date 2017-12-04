@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
-	"github.com/go-openapi/swag"
 
 	strfmt "github.com/go-openapi/strfmt"
 )
@@ -63,11 +62,16 @@ for the delete attribute operation typically these are written to a http.Request
 */
 type DeleteAttributeParams struct {
 
-	/*AttributeID
-	  id of the attribute
+	/*AttributeCategory
+	  Category of the attribute
 
 	*/
-	AttributeID int64
+	AttributeCategory string
+	/*AttributeName
+	  Name of the existing attribute
+
+	*/
+	AttributeName string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -107,15 +111,26 @@ func (o *DeleteAttributeParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAttributeID adds the attributeID to the delete attribute params
-func (o *DeleteAttributeParams) WithAttributeID(attributeID int64) *DeleteAttributeParams {
-	o.SetAttributeID(attributeID)
+// WithAttributeCategory adds the attributeCategory to the delete attribute params
+func (o *DeleteAttributeParams) WithAttributeCategory(attributeCategory string) *DeleteAttributeParams {
+	o.SetAttributeCategory(attributeCategory)
 	return o
 }
 
-// SetAttributeID adds the attributeId to the delete attribute params
-func (o *DeleteAttributeParams) SetAttributeID(attributeID int64) {
-	o.AttributeID = attributeID
+// SetAttributeCategory adds the attributeCategory to the delete attribute params
+func (o *DeleteAttributeParams) SetAttributeCategory(attributeCategory string) {
+	o.AttributeCategory = attributeCategory
+}
+
+// WithAttributeName adds the attributeName to the delete attribute params
+func (o *DeleteAttributeParams) WithAttributeName(attributeName string) *DeleteAttributeParams {
+	o.SetAttributeName(attributeName)
+	return o
+}
+
+// SetAttributeName adds the attributeName to the delete attribute params
+func (o *DeleteAttributeParams) SetAttributeName(attributeName string) {
+	o.AttributeName = attributeName
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -126,8 +141,13 @@ func (o *DeleteAttributeParams) WriteToRequest(r runtime.ClientRequest, reg strf
 	}
 	var res []error
 
-	// path param attributeId
-	if err := r.SetPathParam("attributeId", swag.FormatInt64(o.AttributeID)); err != nil {
+	// path param attributeCategory
+	if err := r.SetPathParam("attributeCategory", o.AttributeCategory); err != nil {
+		return err
+	}
+
+	// path param attributeName
+	if err := r.SetPathParam("attributeName", o.AttributeName); err != nil {
 		return err
 	}
 

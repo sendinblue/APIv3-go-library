@@ -15,7 +15,6 @@ import (
 
 // GetLists get lists
 // swagger:model getLists
-
 type GetLists struct {
 
 	// Number of lists in your account
@@ -26,10 +25,6 @@ type GetLists struct {
 	// Required: true
 	Lists GetListsLists `json:"lists"`
 }
-
-/* polymorph getLists count false */
-
-/* polymorph getLists lists false */
 
 // Validate validates this get lists
 func (m *GetLists) Validate(formats strfmt.Registry) error {
@@ -63,6 +58,13 @@ func (m *GetLists) validateCount(formats strfmt.Registry) error {
 func (m *GetLists) validateLists(formats strfmt.Registry) error {
 
 	if err := validate.Required("lists", "body", m.Lists); err != nil {
+		return err
+	}
+
+	if err := m.Lists.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("lists")
+		}
 		return err
 	}
 

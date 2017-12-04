@@ -15,7 +15,6 @@ import (
 
 // CreateSMTPTemplateSender create Smtp template sender
 // swagger:model createSmtpTemplateSender
-
 type CreateSMTPTemplateSender struct {
 
 	// Email of the sender
@@ -25,10 +24,6 @@ type CreateSMTPTemplateSender struct {
 	// Name of the sender. If not passed, will be set to default
 	Name string `json:"name,omitempty"`
 }
-
-/* polymorph createSmtpTemplateSender email false */
-
-/* polymorph createSmtpTemplateSender name false */
 
 // Validate validates this create Smtp template sender
 func (m *CreateSMTPTemplateSender) Validate(formats strfmt.Registry) error {

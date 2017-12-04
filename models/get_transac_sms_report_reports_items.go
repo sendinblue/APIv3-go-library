@@ -15,7 +15,6 @@ import (
 
 // GetTransacSmsReportReportsItems get transac sms report reports items
 // swagger:model getTransacSmsReportReportsItems
-
 type GetTransacSmsReportReportsItems struct {
 
 	// Number of accepted for the date
@@ -62,28 +61,6 @@ type GetTransacSmsReportReportsItems struct {
 	// Required: true
 	Unsubscribed *int64 `json:"unsubscribed"`
 }
-
-/* polymorph getTransacSmsReportReportsItems accepted false */
-
-/* polymorph getTransacSmsReportReportsItems blocked false */
-
-/* polymorph getTransacSmsReportReportsItems date false */
-
-/* polymorph getTransacSmsReportReportsItems delivered false */
-
-/* polymorph getTransacSmsReportReportsItems hardBounces false */
-
-/* polymorph getTransacSmsReportReportsItems rejected false */
-
-/* polymorph getTransacSmsReportReportsItems replied false */
-
-/* polymorph getTransacSmsReportReportsItems requests false */
-
-/* polymorph getTransacSmsReportReportsItems softBounces false */
-
-/* polymorph getTransacSmsReportReportsItems tag false */
-
-/* polymorph getTransacSmsReportReportsItems unsubscribed false */
 
 // Validate validates this get transac sms report reports items
 func (m *GetTransacSmsReportReportsItems) Validate(formats strfmt.Registry) error {

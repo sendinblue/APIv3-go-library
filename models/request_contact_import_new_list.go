@@ -14,7 +14,6 @@ import (
 
 // RequestContactImportNewList request contact import new list
 // swagger:model requestContactImportNewList
-
 type RequestContactImportNewList struct {
 
 	// Folder id will be used with listName to make newly created list’s desired parent (Mandatory if listName is not empty).
@@ -23,10 +22,6 @@ type RequestContactImportNewList struct {
 	// List with listName will be created first and users will be imported in it (Mandatory if listIds is empty).
 	ListName string `json:"listName,omitempty"`
 }
-
-/* polymorph requestContactImportNewList folderId false */
-
-/* polymorph requestContactImportNewList listName false */
 
 // Validate validates this request contact import new list
 func (m *RequestContactImportNewList) Validate(formats strfmt.Registry) error {

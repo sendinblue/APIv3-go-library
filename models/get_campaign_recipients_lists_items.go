@@ -15,7 +15,6 @@ import (
 
 // GetCampaignRecipientsListsItems get campaign recipients lists items
 // swagger:model getCampaignRecipientsListsItems
-
 type GetCampaignRecipientsListsItems struct {
 
 	// ID of the list included in the campaign
@@ -26,10 +25,6 @@ type GetCampaignRecipientsListsItems struct {
 	// Required: true
 	Name *string `json:"name"`
 }
-
-/* polymorph getCampaignRecipientsListsItems id false */
-
-/* polymorph getCampaignRecipientsListsItems name false */
 
 // Validate validates this get campaign recipients lists items
 func (m *GetCampaignRecipientsListsItems) Validate(formats strfmt.Registry) error {

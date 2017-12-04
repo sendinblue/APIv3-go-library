@@ -15,15 +15,12 @@ import (
 
 // GetListsListsItemsAllOf1 get lists lists items all of1
 // swagger:model getListsListsItemsAllOf1
-
 type GetListsListsItemsAllOf1 struct {
 
 	// ID of the folder
 	// Required: true
 	FolderID *int64 `json:"folderId"`
 }
-
-/* polymorph getListsListsItemsAllOf1 folderId false */
 
 // Validate validates this get lists lists items all of1
 func (m *GetListsListsItemsAllOf1) Validate(formats strfmt.Registry) error {

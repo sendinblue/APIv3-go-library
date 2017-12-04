@@ -15,7 +15,6 @@ import (
 
 // GetChildInfoAllOf1IpsItems get child info all of1 ips items
 // swagger:model getChildInfoAllOf1IpsItems
-
 type GetChildInfoAllOf1IpsItems struct {
 
 	// ID of the IP
@@ -26,10 +25,6 @@ type GetChildInfoAllOf1IpsItems struct {
 	// Required: true
 	IP *string `json:"ip"`
 }
-
-/* polymorph getChildInfoAllOf1IpsItems id false */
-
-/* polymorph getChildInfoAllOf1IpsItems ip false */
 
 // Validate validates this get child info all of1 ips items
 func (m *GetChildInfoAllOf1IpsItems) Validate(formats strfmt.Registry) error {

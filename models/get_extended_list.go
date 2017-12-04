@@ -14,7 +14,6 @@ import (
 
 // GetExtendedList get extended list
 // swagger:model getExtendedList
-
 type GetExtendedList struct {
 	GetList
 

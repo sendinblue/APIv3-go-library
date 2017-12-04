@@ -14,7 +14,6 @@ import (
 
 // RemoveCredits remove credits
 // swagger:model removeCredits
-
 type RemoveCredits struct {
 
 	// Email credits to be removed from the child account
@@ -23,10 +22,6 @@ type RemoveCredits struct {
 	// SMS credits to be removed from the child account
 	Sms int64 `json:"sms,omitempty"`
 }
-
-/* polymorph removeCredits email false */
-
-/* polymorph removeCredits sms false */
 
 // Validate validates this remove credits
 func (m *RemoveCredits) Validate(formats strfmt.Registry) error {

@@ -16,7 +16,6 @@ import (
 
 // GetExtendedContactDetailsAllOf1StatisticsUnsubscriptionsUserUnsubscription Contact unsubscribe via unsubscription link in a campaign
 // swagger:model getExtendedContactDetailsAllOf1StatisticsUnsubscriptionsUserUnsubscription
-
 type GetExtendedContactDetailsAllOf1StatisticsUnsubscriptionsUserUnsubscription []*GetExtendedContactDetailsAllOf1StatisticsUnsubscriptionsUserUnsubscriptionItems
 
 // Validate validates this get extended contact details all of1 statistics unsubscriptions user unsubscription

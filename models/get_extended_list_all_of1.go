@@ -15,7 +15,6 @@ import (
 
 // GetExtendedListAllOf1 get extended list all of1
 // swagger:model getExtendedListAllOf1
-
 type GetExtendedListAllOf1 struct {
 
 	// campaign stats
@@ -32,14 +31,6 @@ type GetExtendedListAllOf1 struct {
 	// Required: true
 	FolderID *int64 `json:"folderId"`
 }
-
-/* polymorph getExtendedListAllOf1 campaignStats false */
-
-/* polymorph getExtendedListAllOf1 createdAt false */
-
-/* polymorph getExtendedListAllOf1 dynamicList false */
-
-/* polymorph getExtendedListAllOf1 folderId false */
 
 // Validate validates this get extended list all of1
 func (m *GetExtendedListAllOf1) Validate(formats strfmt.Registry) error {

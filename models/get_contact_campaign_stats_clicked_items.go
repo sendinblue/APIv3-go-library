@@ -15,7 +15,6 @@ import (
 
 // GetContactCampaignStatsClickedItems get contact campaign stats clicked items
 // swagger:model getContactCampaignStatsClickedItems
-
 type GetContactCampaignStatsClickedItems struct {
 
 	// ID of the campaign which generated the event
@@ -26,10 +25,6 @@ type GetContactCampaignStatsClickedItems struct {
 	// Required: true
 	Links GetContactCampaignStatsClickedItemsLinks `json:"links"`
 }
-
-/* polymorph getContactCampaignStatsClickedItems campaignId false */
-
-/* polymorph getContactCampaignStatsClickedItems links false */
 
 // Validate validates this get contact campaign stats clicked items
 func (m *GetContactCampaignStatsClickedItems) Validate(formats strfmt.Registry) error {
@@ -63,6 +58,13 @@ func (m *GetContactCampaignStatsClickedItems) validateCampaignID(formats strfmt.
 func (m *GetContactCampaignStatsClickedItems) validateLinks(formats strfmt.Registry) error {
 
 	if err := validate.Required("links", "body", m.Links); err != nil {
+		return err
+	}
+
+	if err := m.Links.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("links")
+		}
 		return err
 	}
 

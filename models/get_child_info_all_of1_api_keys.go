@@ -16,7 +16,6 @@ import (
 
 // GetChildInfoAllOf1APIKeys API Keys associated to child account
 // swagger:model getChildInfoAllOf1ApiKeys
-
 type GetChildInfoAllOf1APIKeys []*GetChildInfoAllOf1APIKeysItems
 
 // Validate validates this get child info all of1 Api keys

@@ -14,7 +14,6 @@ import (
 
 // UpdateContact update contact
 // swagger:model updateContact
-
 type UpdateContact struct {
 
 	// attributes
@@ -32,16 +31,6 @@ type UpdateContact struct {
 	// Ids of the lists to remove the contact from
 	UnlinkListIds []int64 `json:"unlinkListIds"`
 }
-
-/* polymorph updateContact attributes false */
-
-/* polymorph updateContact emailBlacklisted false */
-
-/* polymorph updateContact listIds false */
-
-/* polymorph updateContact smsBlacklisted false */
-
-/* polymorph updateContact unlinkListIds false */
 
 // Validate validates this update contact
 func (m *UpdateContact) Validate(formats strfmt.Registry) error {

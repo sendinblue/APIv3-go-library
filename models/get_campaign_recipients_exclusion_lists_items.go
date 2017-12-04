@@ -15,7 +15,6 @@ import (
 
 // GetCampaignRecipientsExclusionListsItems get campaign recipients exclusion lists items
 // swagger:model getCampaignRecipientsExclusionListsItems
-
 type GetCampaignRecipientsExclusionListsItems struct {
 
 	// ID of the list excluded of the campaign
@@ -26,10 +25,6 @@ type GetCampaignRecipientsExclusionListsItems struct {
 	// Required: true
 	Name *string `json:"name"`
 }
-
-/* polymorph getCampaignRecipientsExclusionListsItems id false */
-
-/* polymorph getCampaignRecipientsExclusionListsItems name false */
 
 // Validate validates this get campaign recipients exclusion lists items
 func (m *GetCampaignRecipientsExclusionListsItems) Validate(formats strfmt.Registry) error {

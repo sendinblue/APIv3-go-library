@@ -15,7 +15,6 @@ import (
 
 // PostSendSmsTestFailed post send sms test failed
 // swagger:model postSendSmsTestFailed
-
 type PostSendSmsTestFailed struct {
 
 	// Response code
@@ -32,14 +31,6 @@ type PostSendSmsTestFailed struct {
 	// without list sms
 	WithoutListSms []strfmt.Email `json:"withoutListSms"`
 }
-
-/* polymorph postSendSmsTestFailed code false */
-
-/* polymorph postSendSmsTestFailed message false */
-
-/* polymorph postSendSmsTestFailed unexistingSms false */
-
-/* polymorph postSendSmsTestFailed withoutListSms false */
 
 // Validate validates this post send sms test failed
 func (m *PostSendSmsTestFailed) Validate(formats strfmt.Registry) error {

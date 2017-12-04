@@ -15,15 +15,12 @@ import (
 
 // SendTemplateEmail send template email
 // swagger:model sendTemplateEmail
-
 type SendTemplateEmail struct {
 
 	// Message ID of the template Email sent
 	// Required: true
 	MessageID *string `json:"messageId"`
 }
-
-/* polymorph sendTemplateEmail messageId false */
 
 // Validate validates this send template email
 func (m *SendTemplateEmail) Validate(formats strfmt.Registry) error {

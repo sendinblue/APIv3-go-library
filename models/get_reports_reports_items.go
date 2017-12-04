@@ -15,7 +15,6 @@ import (
 
 // GetReportsReportsItems get reports reports items
 // swagger:model getReportsReportsItems
-
 type GetReportsReportsItems struct {
 
 	// Number of blocked emails for the date
@@ -70,32 +69,6 @@ type GetReportsReportsItems struct {
 	// Required: true
 	UniqueOpens *int64 `json:"uniqueOpens"`
 }
-
-/* polymorph getReportsReportsItems blocked false */
-
-/* polymorph getReportsReportsItems clicks false */
-
-/* polymorph getReportsReportsItems date false */
-
-/* polymorph getReportsReportsItems delivered false */
-
-/* polymorph getReportsReportsItems hardBounces false */
-
-/* polymorph getReportsReportsItems invalid false */
-
-/* polymorph getReportsReportsItems opens false */
-
-/* polymorph getReportsReportsItems requests false */
-
-/* polymorph getReportsReportsItems softBounces false */
-
-/* polymorph getReportsReportsItems spamReports false */
-
-/* polymorph getReportsReportsItems tag false */
-
-/* polymorph getReportsReportsItems uniqueClicks false */
-
-/* polymorph getReportsReportsItems uniqueOpens false */
 
 // Validate validates this get reports reports items
 func (m *GetReportsReportsItems) Validate(formats strfmt.Registry) error {

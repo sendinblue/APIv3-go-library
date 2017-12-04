@@ -16,7 +16,6 @@ import (
 
 // GetExtendedContactDetailsAllOf1StatisticsMessagesSent Listing of the sent campaign for the contact
 // swagger:model getExtendedContactDetailsAllOf1StatisticsMessagesSent
-
 type GetExtendedContactDetailsAllOf1StatisticsMessagesSent []*GetExtendedContactDetailsAllOf1StatisticsMessagesSentItems
 
 // Validate validates this get extended contact details all of1 statistics messages sent

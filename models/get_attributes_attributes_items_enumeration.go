@@ -16,7 +16,6 @@ import (
 
 // GetAttributesAttributesItemsEnumeration Parameter only available for "category" type attributes.
 // swagger:model getAttributesAttributesItemsEnumeration
-
 type GetAttributesAttributesItemsEnumeration []*GetAttributesAttributesItemsEnumerationItems
 
 // Validate validates this get attributes attributes items enumeration

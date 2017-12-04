@@ -16,7 +16,6 @@ import (
 
 // GetContactCampaignStatsOpened get contact campaign stats opened
 // swagger:model getContactCampaignStatsOpened
-
 type GetContactCampaignStatsOpened []*GetContactCampaignStatsOpenedItems
 
 // Validate validates this get contact campaign stats opened

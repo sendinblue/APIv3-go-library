@@ -16,7 +16,6 @@ import (
 
 // GetFolderListsLists get folder lists lists
 // swagger:model getFolderListsLists
-
 type GetFolderListsLists []*GetFolderListsListsItems
 
 // Validate validates this get folder lists lists

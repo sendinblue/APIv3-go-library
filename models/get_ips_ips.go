@@ -16,7 +16,6 @@ import (
 
 // GetIpsIps Dedicated IP(s) available on your account
 // swagger:model getIpsIps
-
 type GetIpsIps []*GetIP
 
 // Validate validates this get ips ips

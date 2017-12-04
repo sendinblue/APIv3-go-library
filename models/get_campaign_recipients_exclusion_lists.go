@@ -16,7 +16,6 @@ import (
 
 // GetCampaignRecipientsExclusionLists Lists excluded of the campaign
 // swagger:model getCampaignRecipientsExclusionLists
-
 type GetCampaignRecipientsExclusionLists []*GetCampaignRecipientsExclusionListsItems
 
 // Validate validates this get campaign recipients exclusion lists

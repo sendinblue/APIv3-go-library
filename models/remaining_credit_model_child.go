@@ -15,7 +15,6 @@ import (
 
 // RemainingCreditModelChild Credits remaining for child account
 // swagger:model remainingCreditModelChild
-
 type RemainingCreditModelChild struct {
 
 	// Email Credits remaining for child account
@@ -26,10 +25,6 @@ type RemainingCreditModelChild struct {
 	// Required: true
 	Sms *int64 `json:"sms"`
 }
-
-/* polymorph remainingCreditModelChild email false */
-
-/* polymorph remainingCreditModelChild sms false */
 
 // Validate validates this remaining credit model child
 func (m *RemainingCreditModelChild) Validate(formats strfmt.Registry) error {

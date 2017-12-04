@@ -17,10 +17,10 @@ import (
 	"github.com/sendinblue/APIv3-go-library/client/operations"
 	"github.com/sendinblue/APIv3-go-library/client/process"
 	"github.com/sendinblue/APIv3-go-library/client/reseller"
-	"github.com/sendinblue/APIv3-go-library/client/s_m_s_campaigns"
 	"github.com/sendinblue/APIv3-go-library/client/senders"
+	"github.com/sendinblue/APIv3-go-library/client/sms_campaigns"
 	"github.com/sendinblue/APIv3-go-library/client/smtp"
-	"github.com/sendinblue/APIv3-go-library/client/transactional_s_m_s"
+	"github.com/sendinblue/APIv3-go-library/client/transactional_sms"
 	"github.com/sendinblue/APIv3-go-library/client/webhooks"
 )
 
@@ -77,13 +77,13 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *SendinBlue
 
 	cli.Reseller = reseller.New(transport, formats)
 
-	cli.SMSCampaigns = s_m_s_campaigns.New(transport, formats)
-
 	cli.Senders = senders.New(transport, formats)
+
+	cli.SmsCampaigns = sms_campaigns.New(transport, formats)
 
 	cli.SMTP = smtp.New(transport, formats)
 
-	cli.TransactionalSMS = transactional_s_m_s.New(transport, formats)
+	cli.TransactionalSms = transactional_sms.New(transport, formats)
 
 	cli.Webhooks = webhooks.New(transport, formats)
 
@@ -143,13 +143,13 @@ type SendinBlue struct {
 
 	Reseller *reseller.Client
 
-	SMSCampaigns *s_m_s_campaigns.Client
-
 	Senders *senders.Client
+
+	SmsCampaigns *sms_campaigns.Client
 
 	SMTP *smtp.Client
 
-	TransactionalSMS *transactional_s_m_s.Client
+	TransactionalSms *transactional_sms.Client
 
 	Webhooks *webhooks.Client
 
@@ -172,13 +172,13 @@ func (c *SendinBlue) SetTransport(transport runtime.ClientTransport) {
 
 	c.Reseller.SetTransport(transport)
 
-	c.SMSCampaigns.SetTransport(transport)
-
 	c.Senders.SetTransport(transport)
+
+	c.SmsCampaigns.SetTransport(transport)
 
 	c.SMTP.SetTransport(transport)
 
-	c.TransactionalSMS.SetTransport(transport)
+	c.TransactionalSms.SetTransport(transport)
 
 	c.Webhooks.SetTransport(transport)
 

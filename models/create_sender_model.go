@@ -15,7 +15,6 @@ import (
 
 // CreateSenderModel create sender model
 // swagger:model createSenderModel
-
 type CreateSenderModel struct {
 
 	// Status of DKIM configuration for the sender (true = DKIM not well configured, false = DKIM well configured)
@@ -28,12 +27,6 @@ type CreateSenderModel struct {
 	// Status of SPF configuration for the sender (true = SPF not well configured, false = SPF well configured)
 	SpfError bool `json:"spfError,omitempty"`
 }
-
-/* polymorph createSenderModel dkimError false */
-
-/* polymorph createSenderModel id false */
-
-/* polymorph createSenderModel spfError false */
 
 // Validate validates this create sender model
 func (m *CreateSenderModel) Validate(formats strfmt.Registry) error {

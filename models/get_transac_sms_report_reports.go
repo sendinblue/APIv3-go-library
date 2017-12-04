@@ -16,7 +16,6 @@ import (
 
 // GetTransacSmsReportReports get transac sms report reports
 // swagger:model getTransacSmsReportReports
-
 type GetTransacSmsReportReports []*GetTransacSmsReportReportsItems
 
 // Validate validates this get transac sms report reports

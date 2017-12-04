@@ -14,7 +14,6 @@ import (
 
 // GetExtendedContactDetails get extended contact details
 // swagger:model getExtendedContactDetails
-
 type GetExtendedContactDetails struct {
 	GetContactDetails
 

@@ -14,7 +14,6 @@ import (
 
 // GetExtendedCampaignOverviewAllOf1Sender get extended campaign overview all of1 sender
 // swagger:model getExtendedCampaignOverviewAllOf1Sender
-
 type GetExtendedCampaignOverviewAllOf1Sender struct {
 
 	// Sender email of the campaign
@@ -23,10 +22,6 @@ type GetExtendedCampaignOverviewAllOf1Sender struct {
 	// Sender name of the campaign
 	Name string `json:"name,omitempty"`
 }
-
-/* polymorph getExtendedCampaignOverviewAllOf1Sender email false */
-
-/* polymorph getExtendedCampaignOverviewAllOf1Sender name false */
 
 // Validate validates this get extended campaign overview all of1 sender
 func (m *GetExtendedCampaignOverviewAllOf1Sender) Validate(formats strfmt.Registry) error {

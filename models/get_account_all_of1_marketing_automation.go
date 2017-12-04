@@ -15,7 +15,6 @@ import (
 
 // GetAccountAllOf1MarketingAutomation get account all of1 marketing automation
 // swagger:model getAccountAllOf1MarketingAutomation
-
 type GetAccountAllOf1MarketingAutomation struct {
 
 	// Status of Marketing Automation Plateform activation for your account (true=enabled, false=disabled)
@@ -25,10 +24,6 @@ type GetAccountAllOf1MarketingAutomation struct {
 	// Marketing Automation Tracker ID
 	Key string `json:"key,omitempty"`
 }
-
-/* polymorph getAccountAllOf1MarketingAutomation enabled false */
-
-/* polymorph getAccountAllOf1MarketingAutomation key false */
 
 // Validate validates this get account all of1 marketing automation
 func (m *GetAccountAllOf1MarketingAutomation) Validate(formats strfmt.Registry) error {

@@ -64,7 +64,7 @@ type DeleteAttributeNoContent struct {
 }
 
 func (o *DeleteAttributeNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /contacts/attributes/{attributeId}][%d] deleteAttributeNoContent ", 204)
+	return fmt.Sprintf("[DELETE /contacts/attributes/{attributeCategory}/{attributeName}][%d] deleteAttributeNoContent ", 204)
 }
 
 func (o *DeleteAttributeNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -86,7 +86,7 @@ type DeleteAttributeBadRequest struct {
 }
 
 func (o *DeleteAttributeBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /contacts/attributes/{attributeId}][%d] deleteAttributeBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /contacts/attributes/{attributeCategory}/{attributeName}][%d] deleteAttributeBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *DeleteAttributeBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -108,14 +108,14 @@ func NewDeleteAttributeNotFound() *DeleteAttributeNotFound {
 
 /*DeleteAttributeNotFound handles this case with default header values.
 
-Attribute ID not found
+Attribute not found
 */
 type DeleteAttributeNotFound struct {
 	Payload *models.ErrorModel
 }
 
 func (o *DeleteAttributeNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /contacts/attributes/{attributeId}][%d] deleteAttributeNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /contacts/attributes/{attributeCategory}/{attributeName}][%d] deleteAttributeNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteAttributeNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -15,7 +15,6 @@ import (
 
 // SendSMTPEmailSender send Smtp email sender
 // swagger:model sendSmtpEmailSender
-
 type SendSMTPEmailSender struct {
 
 	// Sender Email from which the emails are sent
@@ -25,10 +24,6 @@ type SendSMTPEmailSender struct {
 	// Sender Name from which the emails are sent
 	Name string `json:"name,omitempty"`
 }
-
-/* polymorph sendSmtpEmailSender email false */
-
-/* polymorph sendSmtpEmailSender name false */
 
 // Validate validates this send Smtp email sender
 func (m *SendSMTPEmailSender) Validate(formats strfmt.Registry) error {

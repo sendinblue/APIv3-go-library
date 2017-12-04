@@ -17,7 +17,6 @@ import (
 
 // GetWebhook get webhook
 // swagger:model getWebhook
-
 type GetWebhook struct {
 
 	// Creation date of the webhook (YYYY-MM-DDTHH:mm:ss.SSSZ)
@@ -48,20 +47,6 @@ type GetWebhook struct {
 	// Required: true
 	URL *string `json:"url"`
 }
-
-/* polymorph getWebhook createdAt false */
-
-/* polymorph getWebhook description false */
-
-/* polymorph getWebhook events false */
-
-/* polymorph getWebhook id false */
-
-/* polymorph getWebhook modifiedAt false */
-
-/* polymorph getWebhook type false */
-
-/* polymorph getWebhook url false */
 
 // Validate validates this get webhook
 func (m *GetWebhook) Validate(formats strfmt.Registry) error {

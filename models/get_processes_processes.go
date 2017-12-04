@@ -16,7 +16,6 @@ import (
 
 // GetProcessesProcesses List of processes available on your account
 // swagger:model getProcessesProcesses
-
 type GetProcessesProcesses []*GetProcess
 
 // Validate validates this get processes processes

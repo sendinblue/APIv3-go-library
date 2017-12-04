@@ -15,7 +15,6 @@ import (
 
 // PostContactInfoContacts post contact info contacts
 // swagger:model postContactInfoContacts
-
 type PostContactInfoContacts struct {
 
 	// failure
@@ -25,10 +24,6 @@ type PostContactInfoContacts struct {
 	// Required: true
 	Success []strfmt.Email `json:"success"`
 }
-
-/* polymorph postContactInfoContacts failure false */
-
-/* polymorph postContactInfoContacts success false */
 
 // Validate validates this post contact info contacts
 func (m *PostContactInfoContacts) Validate(formats strfmt.Registry) error {

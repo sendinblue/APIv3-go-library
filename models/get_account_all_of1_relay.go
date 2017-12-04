@@ -15,7 +15,6 @@ import (
 
 // GetAccountAllOf1Relay Information about your SMTP account
 // swagger:model getAccountAllOf1Relay
-
 type GetAccountAllOf1Relay struct {
 
 	// data
@@ -26,10 +25,6 @@ type GetAccountAllOf1Relay struct {
 	// Required: true
 	Enabled *bool `json:"enabled"`
 }
-
-/* polymorph getAccountAllOf1Relay data false */
-
-/* polymorph getAccountAllOf1Relay enabled false */
 
 // Validate validates this get account all of1 relay
 func (m *GetAccountAllOf1Relay) Validate(formats strfmt.Registry) error {
