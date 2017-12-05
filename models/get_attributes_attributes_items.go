@@ -17,7 +17,6 @@ import (
 
 // GetAttributesAttributesItems get attributes attributes items
 // swagger:model getAttributesAttributesItems
-
 type GetAttributesAttributesItems struct {
 
 	// Calculated value formula
@@ -30,10 +29,6 @@ type GetAttributesAttributesItems struct {
 	// enumeration
 	Enumeration GetAttributesAttributesItemsEnumeration `json:"enumeration"`
 
-	// ID of the attribute
-	// Required: true
-	ID *int64 `json:"id"`
-
 	// Name of the attribute
 	// Required: true
 	Name *string `json:"name"`
@@ -42,28 +37,11 @@ type GetAttributesAttributesItems struct {
 	Type string `json:"type,omitempty"`
 }
 
-/* polymorph getAttributesAttributesItems calculatedValue false */
-
-/* polymorph getAttributesAttributesItems category false */
-
-/* polymorph getAttributesAttributesItems enumeration false */
-
-/* polymorph getAttributesAttributesItems id false */
-
-/* polymorph getAttributesAttributesItems name false */
-
-/* polymorph getAttributesAttributesItems type false */
-
 // Validate validates this get attributes attributes items
 func (m *GetAttributesAttributesItems) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCategory(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateID(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -125,15 +103,6 @@ func (m *GetAttributesAttributesItems) validateCategory(formats strfmt.Registry)
 
 	// value enum
 	if err := m.validateCategoryEnum("category", "body", *m.Category); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GetAttributesAttributesItems) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
 		return err
 	}
 

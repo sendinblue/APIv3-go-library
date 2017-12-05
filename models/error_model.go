@@ -17,7 +17,6 @@ import (
 
 // ErrorModel error model
 // swagger:model errorModel
-
 type ErrorModel struct {
 
 	// Error code displayed in case of a failure
@@ -28,10 +27,6 @@ type ErrorModel struct {
 	// Required: true
 	Message *string `json:"message"`
 }
-
-/* polymorph errorModel code false */
-
-/* polymorph errorModel message false */
 
 // Validate validates this error model
 func (m *ErrorModel) Validate(formats strfmt.Registry) error {

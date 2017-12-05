@@ -15,7 +15,6 @@ import (
 
 // GetExtendedContactDetailsAllOf1StatisticsUnsubscriptionsUserUnsubscriptionItems get extended contact details all of1 statistics unsubscriptions user unsubscription items
 // swagger:model getExtendedContactDetailsAllOf1StatisticsUnsubscriptionsUserUnsubscriptionItems
-
 type GetExtendedContactDetailsAllOf1StatisticsUnsubscriptionsUserUnsubscriptionItems struct {
 
 	// ID of the campaign which generated the event
@@ -30,12 +29,6 @@ type GetExtendedContactDetailsAllOf1StatisticsUnsubscriptionsUserUnsubscriptionI
 	// Required: true
 	IP *string `json:"ip"`
 }
-
-/* polymorph getExtendedContactDetailsAllOf1StatisticsUnsubscriptionsUserUnsubscriptionItems campaignId false */
-
-/* polymorph getExtendedContactDetailsAllOf1StatisticsUnsubscriptionsUserUnsubscriptionItems eventTime false */
-
-/* polymorph getExtendedContactDetailsAllOf1StatisticsUnsubscriptionsUserUnsubscriptionItems ip false */
 
 // Validate validates this get extended contact details all of1 statistics unsubscriptions user unsubscription items
 func (m *GetExtendedContactDetailsAllOf1StatisticsUnsubscriptionsUserUnsubscriptionItems) Validate(formats strfmt.Registry) error {

@@ -15,7 +15,6 @@ import (
 
 // GetChildInfoAllOf1 get child info all of1
 // swagger:model getChildInfoAllOf1
-
 type GetChildInfoAllOf1 struct {
 
 	// api keys
@@ -34,16 +33,6 @@ type GetChildInfoAllOf1 struct {
 	// statistics
 	Statistics *GetChildInfoAllOf1Statistics `json:"statistics,omitempty"`
 }
-
-/* polymorph getChildInfoAllOf1 apiKeys false */
-
-/* polymorph getChildInfoAllOf1 credits false */
-
-/* polymorph getChildInfoAllOf1 ips false */
-
-/* polymorph getChildInfoAllOf1 password false */
-
-/* polymorph getChildInfoAllOf1 statistics false */
 
 // Validate validates this get child info all of1
 func (m *GetChildInfoAllOf1) Validate(formats strfmt.Registry) error {

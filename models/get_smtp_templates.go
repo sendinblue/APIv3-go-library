@@ -14,7 +14,6 @@ import (
 
 // GetSMTPTemplates get Smtp templates
 // swagger:model getSmtpTemplates
-
 type GetSMTPTemplates struct {
 
 	// Count of smtp templates
@@ -23,10 +22,6 @@ type GetSMTPTemplates struct {
 	// templates
 	Templates GetSMTPTemplatesTemplates `json:"templates"`
 }
-
-/* polymorph getSmtpTemplates count false */
-
-/* polymorph getSmtpTemplates templates false */
 
 // Validate validates this get Smtp templates
 func (m *GetSMTPTemplates) Validate(formats strfmt.Registry) error {

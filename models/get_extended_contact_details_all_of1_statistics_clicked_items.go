@@ -15,7 +15,6 @@ import (
 
 // GetExtendedContactDetailsAllOf1StatisticsClickedItems get extended contact details all of1 statistics clicked items
 // swagger:model getExtendedContactDetailsAllOf1StatisticsClickedItems
-
 type GetExtendedContactDetailsAllOf1StatisticsClickedItems struct {
 
 	// ID of the campaign which generated the event
@@ -26,10 +25,6 @@ type GetExtendedContactDetailsAllOf1StatisticsClickedItems struct {
 	// Required: true
 	Links GetExtendedContactDetailsAllOf1StatisticsClickedItemsLinks `json:"links"`
 }
-
-/* polymorph getExtendedContactDetailsAllOf1StatisticsClickedItems campaignId false */
-
-/* polymorph getExtendedContactDetailsAllOf1StatisticsClickedItems links false */
 
 // Validate validates this get extended contact details all of1 statistics clicked items
 func (m *GetExtendedContactDetailsAllOf1StatisticsClickedItems) Validate(formats strfmt.Registry) error {
@@ -63,6 +58,13 @@ func (m *GetExtendedContactDetailsAllOf1StatisticsClickedItems) validateCampaign
 func (m *GetExtendedContactDetailsAllOf1StatisticsClickedItems) validateLinks(formats strfmt.Registry) error {
 
 	if err := validate.Required("links", "body", m.Links); err != nil {
+		return err
+	}
+
+	if err := m.Links.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("links")
+		}
 		return err
 	}
 

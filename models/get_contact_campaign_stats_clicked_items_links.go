@@ -16,7 +16,6 @@ import (
 
 // GetContactCampaignStatsClickedItemsLinks get contact campaign stats clicked items links
 // swagger:model getContactCampaignStatsClickedItemsLinks
-
 type GetContactCampaignStatsClickedItemsLinks []*GetContactCampaignStatsClickedItemsLinksItems
 
 // Validate validates this get contact campaign stats clicked items links

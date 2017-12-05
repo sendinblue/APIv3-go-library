@@ -15,7 +15,6 @@ import (
 
 // GetList get list
 // swagger:model getList
-
 type GetList struct {
 
 	// ID of the list
@@ -34,14 +33,6 @@ type GetList struct {
 	// Required: true
 	TotalSubscribers *int64 `json:"totalSubscribers"`
 }
-
-/* polymorph getList id false */
-
-/* polymorph getList name false */
-
-/* polymorph getList totalBlacklisted false */
-
-/* polymorph getList totalSubscribers false */
 
 // Validate validates this get list
 func (m *GetList) Validate(formats strfmt.Registry) error {

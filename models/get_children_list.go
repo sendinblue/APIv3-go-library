@@ -14,14 +14,11 @@ import (
 
 // GetChildrenList get children list
 // swagger:model getChildrenList
-
 type GetChildrenList struct {
 
 	// children
 	Children GetChildrenListChildren `json:"children"`
 }
-
-/* polymorph getChildrenList children false */
 
 // Validate validates this get children list
 func (m *GetChildrenList) Validate(formats strfmt.Registry) error {

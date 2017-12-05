@@ -14,7 +14,6 @@ import (
 
 // GetChildInfoAllOf1Statistics Statistics about your child account activity
 // swagger:model getChildInfoAllOf1Statistics
-
 type GetChildInfoAllOf1Statistics struct {
 
 	// Overall emails sent for current month
@@ -26,12 +25,6 @@ type GetChildInfoAllOf1Statistics struct {
 	// Overall emails sent for since the account exists
 	TotalSent int64 `json:"totalSent,omitempty"`
 }
-
-/* polymorph getChildInfoAllOf1Statistics currentMonthTotalSent false */
-
-/* polymorph getChildInfoAllOf1Statistics previousMonthTotalSent false */
-
-/* polymorph getChildInfoAllOf1Statistics totalSent false */
 
 // Validate validates this get child info all of1 statistics
 func (m *GetChildInfoAllOf1Statistics) Validate(formats strfmt.Registry) error {

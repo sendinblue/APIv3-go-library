@@ -15,7 +15,6 @@ import (
 
 // SendEmail send email
 // swagger:model sendEmail
-
 type SendEmail struct {
 
 	// attachment
@@ -43,22 +42,6 @@ type SendEmail struct {
 	// Email on which campaign recipients will be able to reply to
 	ReplyTo strfmt.Email `json:"replyTo,omitempty"`
 }
-
-/* polymorph sendEmail attachment false */
-
-/* polymorph sendEmail attachmentUrl false */
-
-/* polymorph sendEmail attributes false */
-
-/* polymorph sendEmail emailBcc false */
-
-/* polymorph sendEmail emailCc false */
-
-/* polymorph sendEmail emailTo false */
-
-/* polymorph sendEmail headers false */
-
-/* polymorph sendEmail replyTo false */
 
 // Validate validates this send email
 func (m *SendEmail) Validate(formats strfmt.Registry) error {

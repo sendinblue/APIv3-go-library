@@ -15,7 +15,6 @@ import (
 
 // GetContactCampaignStatsClickedItemsLinksItems get contact campaign stats clicked items links items
 // swagger:model getContactCampaignStatsClickedItemsLinksItems
-
 type GetContactCampaignStatsClickedItemsLinksItems struct {
 
 	// Number of clicks on this link for the campaign
@@ -34,14 +33,6 @@ type GetContactCampaignStatsClickedItemsLinksItems struct {
 	// Required: true
 	URL *string `json:"url"`
 }
-
-/* polymorph getContactCampaignStatsClickedItemsLinksItems count false */
-
-/* polymorph getContactCampaignStatsClickedItemsLinksItems eventTime false */
-
-/* polymorph getContactCampaignStatsClickedItemsLinksItems ip false */
-
-/* polymorph getContactCampaignStatsClickedItemsLinksItems url false */
 
 // Validate validates this get contact campaign stats clicked items links items
 func (m *GetContactCampaignStatsClickedItemsLinksItems) Validate(formats strfmt.Registry) error {

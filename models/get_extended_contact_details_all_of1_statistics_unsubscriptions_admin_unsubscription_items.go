@@ -15,7 +15,6 @@ import (
 
 // GetExtendedContactDetailsAllOf1StatisticsUnsubscriptionsAdminUnsubscriptionItems get extended contact details all of1 statistics unsubscriptions admin unsubscription items
 // swagger:model getExtendedContactDetailsAllOf1StatisticsUnsubscriptionsAdminUnsubscriptionItems
-
 type GetExtendedContactDetailsAllOf1StatisticsUnsubscriptionsAdminUnsubscriptionItems struct {
 
 	// Date of the event
@@ -26,10 +25,6 @@ type GetExtendedContactDetailsAllOf1StatisticsUnsubscriptionsAdminUnsubscription
 	// Required: true
 	IP *string `json:"ip"`
 }
-
-/* polymorph getExtendedContactDetailsAllOf1StatisticsUnsubscriptionsAdminUnsubscriptionItems eventTime false */
-
-/* polymorph getExtendedContactDetailsAllOf1StatisticsUnsubscriptionsAdminUnsubscriptionItems ip false */
 
 // Validate validates this get extended contact details all of1 statistics unsubscriptions admin unsubscription items
 func (m *GetExtendedContactDetailsAllOf1StatisticsUnsubscriptionsAdminUnsubscriptionItems) Validate(formats strfmt.Registry) error {

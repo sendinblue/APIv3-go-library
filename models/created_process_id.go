@@ -15,15 +15,12 @@ import (
 
 // CreatedProcessID created process Id
 // swagger:model createdProcessId
-
 type CreatedProcessID struct {
 
 	// Id of the process created
 	// Required: true
 	ProcessID *int64 `json:"processId"`
 }
-
-/* polymorph createdProcessId processId false */
 
 // Validate validates this created process Id
 func (m *CreatedProcessID) Validate(formats strfmt.Registry) error {

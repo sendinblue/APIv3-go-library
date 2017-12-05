@@ -14,14 +14,11 @@ import (
 
 // CreateUpdateFolder create update folder
 // swagger:model createUpdateFolder
-
 type CreateUpdateFolder struct {
 
 	// Name of the folder
 	Name string `json:"name,omitempty"`
 }
-
-/* polymorph createUpdateFolder name false */
 
 // Validate validates this create update folder
 func (m *CreateUpdateFolder) Validate(formats strfmt.Registry) error {

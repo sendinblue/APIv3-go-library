@@ -14,7 +14,6 @@ import (
 
 // SendSMTPEmailAttachmentItems send Smtp email attachment items
 // swagger:model sendSmtpEmailAttachmentItems
-
 type SendSMTPEmailAttachmentItems struct {
 
 	// Base64 encoded chunk data of the attachment generated on the fly
@@ -26,12 +25,6 @@ type SendSMTPEmailAttachmentItems struct {
 	// Absolute url of the attachment (no local file).
 	URL string `json:"url,omitempty"`
 }
-
-/* polymorph sendSmtpEmailAttachmentItems content false */
-
-/* polymorph sendSmtpEmailAttachmentItems name false */
-
-/* polymorph sendSmtpEmailAttachmentItems url false */
 
 // Validate validates this send Smtp email attachment items
 func (m *SendSMTPEmailAttachmentItems) Validate(formats strfmt.Registry) error {

@@ -15,7 +15,6 @@ import (
 
 // CreateSmsCampaign create sms campaign
 // swagger:model createSmsCampaign
-
 type CreateSmsCampaign struct {
 
 	// Content of the message. The maximum characters used per SMS is 160, if used more than that, it will be counted as more than one SMS
@@ -36,16 +35,6 @@ type CreateSmsCampaign struct {
 	// Max Length: 11
 	Sender *string `json:"sender"`
 }
-
-/* polymorph createSmsCampaign content false */
-
-/* polymorph createSmsCampaign name false */
-
-/* polymorph createSmsCampaign recipients false */
-
-/* polymorph createSmsCampaign scheduledAt false */
-
-/* polymorph createSmsCampaign sender false */
 
 // Validate validates this create sms campaign
 func (m *CreateSmsCampaign) Validate(formats strfmt.Registry) error {

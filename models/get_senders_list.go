@@ -14,14 +14,11 @@ import (
 
 // GetSendersList get senders list
 // swagger:model getSendersList
-
 type GetSendersList struct {
 
 	// senders
 	Senders GetSendersListSenders `json:"senders"`
 }
-
-/* polymorph getSendersList senders false */
 
 // Validate validates this get senders list
 func (m *GetSendersList) Validate(formats strfmt.Registry) error {

@@ -17,7 +17,6 @@ import (
 
 // GetSmsCampaignOverview get sms campaign overview
 // swagger:model getSmsCampaignOverview
-
 type GetSmsCampaignOverview struct {
 
 	// Content of the SMS Campaign
@@ -56,24 +55,6 @@ type GetSmsCampaignOverview struct {
 	// Required: true
 	TestSent *bool `json:"testSent"`
 }
-
-/* polymorph getSmsCampaignOverview content false */
-
-/* polymorph getSmsCampaignOverview createdAt false */
-
-/* polymorph getSmsCampaignOverview id false */
-
-/* polymorph getSmsCampaignOverview modifiedAt false */
-
-/* polymorph getSmsCampaignOverview name false */
-
-/* polymorph getSmsCampaignOverview scheduledAt false */
-
-/* polymorph getSmsCampaignOverview sender false */
-
-/* polymorph getSmsCampaignOverview status false */
-
-/* polymorph getSmsCampaignOverview testSent false */
 
 // Validate validates this get sms campaign overview
 func (m *GetSmsCampaignOverview) Validate(formats strfmt.Registry) error {

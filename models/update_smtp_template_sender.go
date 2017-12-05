@@ -14,7 +14,6 @@ import (
 
 // UpdateSMTPTemplateSender update Smtp template sender
 // swagger:model updateSmtpTemplateSender
-
 type UpdateSMTPTemplateSender struct {
 
 	// Email of the sender
@@ -23,10 +22,6 @@ type UpdateSMTPTemplateSender struct {
 	// Name of the sender
 	Name string `json:"name,omitempty"`
 }
-
-/* polymorph updateSmtpTemplateSender email false */
-
-/* polymorph updateSmtpTemplateSender name false */
 
 // Validate validates this update Smtp template sender
 func (m *UpdateSMTPTemplateSender) Validate(formats strfmt.Registry) error {

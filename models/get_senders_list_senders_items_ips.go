@@ -16,7 +16,6 @@ import (
 
 // GetSendersListSendersItemsIps List of dedicated IP(s) available in the account. This data is displayed only for dedicated IPs
 // swagger:model getSendersListSendersItemsIps
-
 type GetSendersListSendersItemsIps []*GetSendersListSendersItemsIpsItems
 
 // Validate validates this get senders list senders items ips

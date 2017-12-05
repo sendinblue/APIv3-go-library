@@ -15,7 +15,6 @@ import (
 
 // GetContacts get contacts
 // swagger:model getContacts
-
 type GetContacts struct {
 
 	// contacts
@@ -26,10 +25,6 @@ type GetContacts struct {
 	// Required: true
 	Count *int64 `json:"count"`
 }
-
-/* polymorph getContacts contacts false */
-
-/* polymorph getContacts count false */
 
 // Validate validates this get contacts
 func (m *GetContacts) Validate(formats strfmt.Registry) error {
@@ -54,6 +49,13 @@ func (m *GetContacts) Validate(formats strfmt.Registry) error {
 func (m *GetContacts) validateContacts(formats strfmt.Registry) error {
 
 	if err := validate.Required("contacts", "body", m.Contacts); err != nil {
+		return err
+	}
+
+	if err := m.Contacts.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("contacts")
+		}
 		return err
 	}
 

@@ -14,7 +14,6 @@ import (
 
 // GetFolders get folders
 // swagger:model getFolders
-
 type GetFolders struct {
 
 	// Number of folders available in your account
@@ -23,10 +22,6 @@ type GetFolders struct {
 	// folders
 	Folders GetFoldersFolders `json:"folders"`
 }
-
-/* polymorph getFolders count false */
-
-/* polymorph getFolders folders false */
 
 // Validate validates this get folders
 func (m *GetFolders) Validate(formats strfmt.Registry) error {

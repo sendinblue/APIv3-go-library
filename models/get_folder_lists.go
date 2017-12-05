@@ -15,7 +15,6 @@ import (
 
 // GetFolderLists get folder lists
 // swagger:model getFolderLists
-
 type GetFolderLists struct {
 
 	// Number of lists in the folder
@@ -26,10 +25,6 @@ type GetFolderLists struct {
 	// Required: true
 	Lists GetFolderListsLists `json:"lists"`
 }
-
-/* polymorph getFolderLists count false */
-
-/* polymorph getFolderLists lists false */
 
 // Validate validates this get folder lists
 func (m *GetFolderLists) Validate(formats strfmt.Registry) error {
@@ -63,6 +58,13 @@ func (m *GetFolderLists) validateCount(formats strfmt.Registry) error {
 func (m *GetFolderLists) validateLists(formats strfmt.Registry) error {
 
 	if err := validate.Required("lists", "body", m.Lists); err != nil {
+		return err
+	}
+
+	if err := m.Lists.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("lists")
+		}
 		return err
 	}
 

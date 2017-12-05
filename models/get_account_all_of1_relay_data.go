@@ -15,7 +15,6 @@ import (
 
 // GetAccountAllOf1RelayData Data regarding the SMTP account
 // swagger:model getAccountAllOf1RelayData
-
 type GetAccountAllOf1RelayData struct {
 
 	// Port used for SMTP Relay
@@ -30,12 +29,6 @@ type GetAccountAllOf1RelayData struct {
 	// Required: true
 	UserName *strfmt.Email `json:"userName"`
 }
-
-/* polymorph getAccountAllOf1RelayData port false */
-
-/* polymorph getAccountAllOf1RelayData relay false */
-
-/* polymorph getAccountAllOf1RelayData userName false */
 
 // Validate validates this get account all of1 relay data
 func (m *GetAccountAllOf1RelayData) Validate(formats strfmt.Registry) error {

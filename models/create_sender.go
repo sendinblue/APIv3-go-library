@@ -15,7 +15,6 @@ import (
 
 // CreateSender create sender
 // swagger:model createSender
-
 type CreateSender struct {
 
 	// From Email to use for the sender
@@ -29,12 +28,6 @@ type CreateSender struct {
 	// Required: true
 	Name *string `json:"name"`
 }
-
-/* polymorph createSender email false */
-
-/* polymorph createSender ips false */
-
-/* polymorph createSender name false */
 
 // Validate validates this create sender
 func (m *CreateSender) Validate(formats strfmt.Registry) error {

@@ -14,7 +14,6 @@ import (
 
 // GetExtendedContactDetailsAllOf1Statistics Campaign statistics of the contact
 // swagger:model getExtendedContactDetailsAllOf1Statistics
-
 type GetExtendedContactDetailsAllOf1Statistics struct {
 
 	// clicked
@@ -41,22 +40,6 @@ type GetExtendedContactDetailsAllOf1Statistics struct {
 	// unsubscriptions
 	Unsubscriptions *GetExtendedContactDetailsAllOf1StatisticsUnsubscriptions `json:"unsubscriptions,omitempty"`
 }
-
-/* polymorph getExtendedContactDetailsAllOf1Statistics clicked false */
-
-/* polymorph getExtendedContactDetailsAllOf1Statistics complaints false */
-
-/* polymorph getExtendedContactDetailsAllOf1Statistics hardBounces false */
-
-/* polymorph getExtendedContactDetailsAllOf1Statistics messagesSent false */
-
-/* polymorph getExtendedContactDetailsAllOf1Statistics opened false */
-
-/* polymorph getExtendedContactDetailsAllOf1Statistics softBounces false */
-
-/* polymorph getExtendedContactDetailsAllOf1Statistics transacAttributes false */
-
-/* polymorph getExtendedContactDetailsAllOf1Statistics unsubscriptions false */
 
 // Validate validates this get extended contact details all of1 statistics
 func (m *GetExtendedContactDetailsAllOf1Statistics) Validate(formats strfmt.Registry) error {

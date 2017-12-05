@@ -17,14 +17,11 @@ import (
 
 // UpdateCampaignStatus Status of the campaign
 // swagger:model updateCampaignStatus
-
 type UpdateCampaignStatus struct {
 
 	// status
 	Status string `json:"status,omitempty"`
 }
-
-/* polymorph updateCampaignStatus status false */
 
 // Validate validates this update campaign status
 func (m *UpdateCampaignStatus) Validate(formats strfmt.Registry) error {

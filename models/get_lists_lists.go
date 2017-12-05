@@ -16,7 +16,6 @@ import (
 
 // GetListsLists Listing of all the lists available in your account
 // swagger:model getListsLists
-
 type GetListsLists []*GetListsListsItems
 
 // Validate validates this get lists lists

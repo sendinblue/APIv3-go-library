@@ -15,7 +15,6 @@ import (
 
 // GetSmsCampaignStats get sms campaign stats
 // swagger:model getSmsCampaignStats
-
 type GetSmsCampaignStats struct {
 
 	// Number of replies to the SMS
@@ -46,20 +45,6 @@ type GetSmsCampaignStats struct {
 	// Required: true
 	Unsubscriptions *int64 `json:"unsubscriptions"`
 }
-
-/* polymorph getSmsCampaignStats answered false */
-
-/* polymorph getSmsCampaignStats delivered false */
-
-/* polymorph getSmsCampaignStats hardBounces false */
-
-/* polymorph getSmsCampaignStats processing false */
-
-/* polymorph getSmsCampaignStats sent false */
-
-/* polymorph getSmsCampaignStats softBounces false */
-
-/* polymorph getSmsCampaignStats unsubscriptions false */
 
 // Validate validates this get sms campaign stats
 func (m *GetSmsCampaignStats) Validate(formats strfmt.Registry) error {

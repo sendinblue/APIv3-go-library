@@ -15,7 +15,6 @@ import (
 
 // GetChildInfoAllOf1APIKeysItems get child info all of1 Api keys items
 // swagger:model getChildInfoAllOf1ApiKeysItems
-
 type GetChildInfoAllOf1APIKeysItems struct {
 
 	// API Key
@@ -29,12 +28,6 @@ type GetChildInfoAllOf1APIKeysItems struct {
 	// Secret Key associated to the API Key (in case v1 Key is used only)
 	Secret string `json:"secret,omitempty"`
 }
-
-/* polymorph getChildInfoAllOf1ApiKeysItems key false */
-
-/* polymorph getChildInfoAllOf1ApiKeysItems name false */
-
-/* polymorph getChildInfoAllOf1ApiKeysItems secret false */
 
 // Validate validates this get child info all of1 Api keys items
 func (m *GetChildInfoAllOf1APIKeysItems) Validate(formats strfmt.Registry) error {

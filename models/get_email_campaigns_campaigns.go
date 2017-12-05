@@ -16,7 +16,6 @@ import (
 
 // GetEmailCampaignsCampaigns get email campaigns campaigns
 // swagger:model getEmailCampaignsCampaigns
-
 type GetEmailCampaignsCampaigns []*GetEmailCampaignsCampaignsItems
 
 // Validate validates this get email campaigns campaigns

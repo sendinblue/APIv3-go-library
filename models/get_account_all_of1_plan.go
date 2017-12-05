@@ -16,7 +16,6 @@ import (
 
 // GetAccountAllOf1Plan Information about your plans and credits
 // swagger:model getAccountAllOf1Plan
-
 type GetAccountAllOf1Plan []*GetAccountAllOf1PlanItems
 
 // Validate validates this get account all of1 plan

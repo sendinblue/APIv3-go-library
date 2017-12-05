@@ -16,7 +16,6 @@ import (
 
 // GetContactCampaignStatsMessagesSent get contact campaign stats messages sent
 // swagger:model getContactCampaignStatsMessagesSent
-
 type GetContactCampaignStatsMessagesSent []*GetContactCampaignStatsMessagesSentItems
 
 // Validate validates this get contact campaign stats messages sent

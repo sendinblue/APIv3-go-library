@@ -16,7 +16,6 @@ import (
 
 // GetChildInfoAllOf1Ips IP(s) associated to a child account user
 // swagger:model getChildInfoAllOf1Ips
-
 type GetChildInfoAllOf1Ips []*GetChildInfoAllOf1IpsItems
 
 // Validate validates this get child info all of1 ips

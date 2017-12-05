@@ -15,15 +15,12 @@ import (
 
 // GetExtendedCampaignStatsLinksStatsAdditionalProperties Statistics about the clicked links
 // swagger:model getExtendedCampaignStatsLinksStatsAdditionalProperties
-
 type GetExtendedCampaignStatsLinksStatsAdditionalProperties struct {
 
 	// Number of clicks for the link
 	// Required: true
 	NbClick *int64 `json:"nbClick"`
 }
-
-/* polymorph getExtendedCampaignStatsLinksStatsAdditionalProperties nbClick false */
 
 // Validate validates this get extended campaign stats links stats additional properties
 func (m *GetExtendedCampaignStatsLinksStatsAdditionalProperties) Validate(formats strfmt.Registry) error {

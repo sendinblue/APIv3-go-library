@@ -16,7 +16,6 @@ import (
 
 // GetWebhooksWebhooks get webhooks webhooks
 // swagger:model getWebhooksWebhooks
-
 type GetWebhooksWebhooks []*GetWebhooksWebhooksItems
 
 // Validate validates this get webhooks webhooks

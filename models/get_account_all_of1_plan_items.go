@@ -17,7 +17,6 @@ import (
 
 // GetAccountAllOf1PlanItems get account all of1 plan items
 // swagger:model getAccountAllOf1PlanItems
-
 type GetAccountAllOf1PlanItems struct {
 
 	// Remaining credits of the user. This can either be "User Limit" or "Send Limit" depending on the plan.
@@ -38,16 +37,6 @@ type GetAccountAllOf1PlanItems struct {
 	// Required: true
 	Type *string `json:"type"`
 }
-
-/* polymorph getAccountAllOf1PlanItems credits false */
-
-/* polymorph getAccountAllOf1PlanItems creditsType false */
-
-/* polymorph getAccountAllOf1PlanItems endDate false */
-
-/* polymorph getAccountAllOf1PlanItems startDate false */
-
-/* polymorph getAccountAllOf1PlanItems type false */
 
 // Validate validates this get account all of1 plan items
 func (m *GetAccountAllOf1PlanItems) Validate(formats strfmt.Registry) error {

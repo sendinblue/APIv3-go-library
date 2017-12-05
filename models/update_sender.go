@@ -14,7 +14,6 @@ import (
 
 // UpdateSender update sender
 // swagger:model updateSender
-
 type UpdateSender struct {
 
 	// From Email to update the sender
@@ -26,12 +25,6 @@ type UpdateSender struct {
 	// From Name to update the sender
 	Name string `json:"name,omitempty"`
 }
-
-/* polymorph updateSender email false */
-
-/* polymorph updateSender ips false */
-
-/* polymorph updateSender name false */
 
 // Validate validates this update sender
 func (m *UpdateSender) Validate(formats strfmt.Registry) error {

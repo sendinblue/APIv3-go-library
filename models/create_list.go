@@ -15,7 +15,6 @@ import (
 
 // CreateList create list
 // swagger:model createList
-
 type CreateList struct {
 
 	// Id of the folder in which to create the list
@@ -26,10 +25,6 @@ type CreateList struct {
 	// Required: true
 	Name *string `json:"name"`
 }
-
-/* polymorph createList folderId false */
-
-/* polymorph createList name false */
 
 // Validate validates this create list
 func (m *CreateList) Validate(formats strfmt.Registry) error {

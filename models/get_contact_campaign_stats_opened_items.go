@@ -15,7 +15,6 @@ import (
 
 // GetContactCampaignStatsOpenedItems get contact campaign stats opened items
 // swagger:model getContactCampaignStatsOpenedItems
-
 type GetContactCampaignStatsOpenedItems struct {
 
 	// ID of the campaign which generated the event
@@ -34,14 +33,6 @@ type GetContactCampaignStatsOpenedItems struct {
 	// Required: true
 	IP *string `json:"ip"`
 }
-
-/* polymorph getContactCampaignStatsOpenedItems campaignId false */
-
-/* polymorph getContactCampaignStatsOpenedItems count false */
-
-/* polymorph getContactCampaignStatsOpenedItems eventTime false */
-
-/* polymorph getContactCampaignStatsOpenedItems ip false */
 
 // Validate validates this get contact campaign stats opened items
 func (m *GetContactCampaignStatsOpenedItems) Validate(formats strfmt.Registry) error {

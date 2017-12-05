@@ -14,7 +14,6 @@ import (
 
 // GetWebhooksWebhooksItems get webhooks webhooks items
 // swagger:model getWebhooksWebhooksItems
-
 type GetWebhooksWebhooksItems struct {
 	GetWebhook
 }

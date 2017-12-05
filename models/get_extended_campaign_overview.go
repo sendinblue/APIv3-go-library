@@ -14,7 +14,6 @@ import (
 
 // GetExtendedCampaignOverview get extended campaign overview
 // swagger:model getExtendedCampaignOverview
-
 type GetExtendedCampaignOverview struct {
 	GetCampaignOverview
 

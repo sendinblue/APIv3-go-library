@@ -17,7 +17,6 @@ import (
 
 // GetProcess get process
 // swagger:model getProcess
-
 type GetProcess struct {
 
 	// URL on which send export the of contacts once the process is completed
@@ -35,14 +34,6 @@ type GetProcess struct {
 	// Required: true
 	Status *string `json:"status"`
 }
-
-/* polymorph getProcess export_url false */
-
-/* polymorph getProcess id false */
-
-/* polymorph getProcess name false */
-
-/* polymorph getProcess status false */
 
 // Validate validates this get process
 func (m *GetProcess) Validate(formats strfmt.Registry) error {

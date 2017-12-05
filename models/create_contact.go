@@ -14,7 +14,6 @@ import (
 
 // CreateContact create contact
 // swagger:model createContact
-
 type CreateContact struct {
 
 	// Values of the attributes to fill. The attributes must exist in you contact database
@@ -35,18 +34,6 @@ type CreateContact struct {
 	// Facilitate to update existing contact in same request (updateEnabled = true)
 	UpdateEnabled *bool `json:"updateEnabled,omitempty"`
 }
-
-/* polymorph createContact attributes false */
-
-/* polymorph createContact email false */
-
-/* polymorph createContact emailBlacklisted false */
-
-/* polymorph createContact listIds false */
-
-/* polymorph createContact smsBlacklisted false */
-
-/* polymorph createContact updateEnabled false */
 
 // Validate validates this create contact
 func (m *CreateContact) Validate(formats strfmt.Registry) error {

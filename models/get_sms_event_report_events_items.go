@@ -17,7 +17,6 @@ import (
 
 // GetSmsEventReportEventsItems get sms event report events items
 // swagger:model getSmsEventReportEventsItems
-
 type GetSmsEventReportEventsItems struct {
 
 	// Date on which the event has been generated
@@ -47,20 +46,6 @@ type GetSmsEventReportEventsItems struct {
 	// Required: true
 	Tag *string `json:"tag"`
 }
-
-/* polymorph getSmsEventReportEventsItems date false */
-
-/* polymorph getSmsEventReportEventsItems event false */
-
-/* polymorph getSmsEventReportEventsItems messageId false */
-
-/* polymorph getSmsEventReportEventsItems phoneNumber false */
-
-/* polymorph getSmsEventReportEventsItems reason false */
-
-/* polymorph getSmsEventReportEventsItems reply false */
-
-/* polymorph getSmsEventReportEventsItems tag false */
 
 // Validate validates this get sms event report events items
 func (m *GetSmsEventReportEventsItems) Validate(formats strfmt.Registry) error {

@@ -15,15 +15,12 @@ import (
 
 // CreateSMTPEmail create Smtp email
 // swagger:model createSmtpEmail
-
 type CreateSMTPEmail struct {
 
 	// Message ID of the SMTP Email sent
 	// Required: true
 	MessageID *string `json:"messageId"`
 }
-
-/* polymorph createSmtpEmail messageId false */
 
 // Validate validates this create Smtp email
 func (m *CreateSMTPEmail) Validate(formats strfmt.Registry) error {

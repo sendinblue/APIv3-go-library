@@ -16,7 +16,6 @@ import (
 
 // GetContactCampaignStatsSoftBounces get contact campaign stats soft bounces
 // swagger:model getContactCampaignStatsSoftBounces
-
 type GetContactCampaignStatsSoftBounces []*GetContactCampaignStatsSoftBouncesItems
 
 // Validate validates this get contact campaign stats soft bounces

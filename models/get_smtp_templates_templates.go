@@ -16,7 +16,6 @@ import (
 
 // GetSMTPTemplatesTemplates get Smtp templates templates
 // swagger:model getSmtpTemplatesTemplates
-
 type GetSMTPTemplatesTemplates []*GetSMTPTemplateOverview
 
 // Validate validates this get Smtp templates templates

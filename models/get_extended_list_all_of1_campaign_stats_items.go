@@ -15,7 +15,6 @@ import (
 
 // GetExtendedListAllOf1CampaignStatsItems get extended list all of1 campaign stats items
 // swagger:model getExtendedListAllOf1CampaignStatsItems
-
 type GetExtendedListAllOf1CampaignStatsItems struct {
 
 	// ID of the campaign
@@ -26,10 +25,6 @@ type GetExtendedListAllOf1CampaignStatsItems struct {
 	// Required: true
 	Stats *GetCampaignStats `json:"stats"`
 }
-
-/* polymorph getExtendedListAllOf1CampaignStatsItems campaignId false */
-
-/* polymorph getExtendedListAllOf1CampaignStatsItems stats false */
 
 // Validate validates this get extended list all of1 campaign stats items
 func (m *GetExtendedListAllOf1CampaignStatsItems) Validate(formats strfmt.Registry) error {

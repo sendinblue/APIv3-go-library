@@ -14,14 +14,11 @@ import (
 
 // SendTestSms send test sms
 // swagger:model sendTestSms
-
 type SendTestSms struct {
 
 	// Mobile number with the country code to send test SMS. The mobile number defined here must belong to one of your contacts in SendinBlue account and must not be blacklisted
 	PhoneNumbers []string `json:"phoneNumbers"`
 }
-
-/* polymorph sendTestSms phoneNumbers false */
 
 // Validate validates this send test sms
 func (m *SendTestSms) Validate(formats strfmt.Registry) error {

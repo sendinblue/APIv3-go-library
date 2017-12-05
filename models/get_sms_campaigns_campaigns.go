@@ -16,7 +16,6 @@ import (
 
 // GetSmsCampaignsCampaigns get sms campaigns campaigns
 // swagger:model getSmsCampaignsCampaigns
-
 type GetSmsCampaignsCampaigns []*GetSmsCampaignsCampaignsItems
 
 // Validate validates this get sms campaigns campaigns

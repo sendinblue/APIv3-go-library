@@ -64,6 +64,16 @@ for the create attribute operation typically these are written to a http.Request
 */
 type CreateAttributeParams struct {
 
+	/*AttributeCategory
+	  Category of the attribute
+
+	*/
+	AttributeCategory string
+	/*AttributeName
+	  Name of the existing attribute
+
+	*/
+	AttributeName string
 	/*CreateAttribute
 	  Values to create an attribute
 
@@ -108,6 +118,28 @@ func (o *CreateAttributeParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAttributeCategory adds the attributeCategory to the create attribute params
+func (o *CreateAttributeParams) WithAttributeCategory(attributeCategory string) *CreateAttributeParams {
+	o.SetAttributeCategory(attributeCategory)
+	return o
+}
+
+// SetAttributeCategory adds the attributeCategory to the create attribute params
+func (o *CreateAttributeParams) SetAttributeCategory(attributeCategory string) {
+	o.AttributeCategory = attributeCategory
+}
+
+// WithAttributeName adds the attributeName to the create attribute params
+func (o *CreateAttributeParams) WithAttributeName(attributeName string) *CreateAttributeParams {
+	o.SetAttributeName(attributeName)
+	return o
+}
+
+// SetAttributeName adds the attributeName to the create attribute params
+func (o *CreateAttributeParams) SetAttributeName(attributeName string) {
+	o.AttributeName = attributeName
+}
+
 // WithCreateAttribute adds the createAttribute to the create attribute params
 func (o *CreateAttributeParams) WithCreateAttribute(createAttribute *models.CreateAttribute) *CreateAttributeParams {
 	o.SetCreateAttribute(createAttribute)
@@ -126,6 +158,16 @@ func (o *CreateAttributeParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		return err
 	}
 	var res []error
+
+	// path param attributeCategory
+	if err := r.SetPathParam("attributeCategory", o.AttributeCategory); err != nil {
+		return err
+	}
+
+	// path param attributeName
+	if err := r.SetPathParam("attributeName", o.AttributeName); err != nil {
+		return err
+	}
 
 	if o.CreateAttribute != nil {
 		if err := r.SetBodyParam(o.CreateAttribute); err != nil {

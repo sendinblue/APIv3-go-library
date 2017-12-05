@@ -14,7 +14,6 @@ import (
 
 // GetExtendedCampaignStatsCampaignStatsItems get extended campaign stats campaign stats items
 // swagger:model getExtendedCampaignStatsCampaignStatsItems
-
 type GetExtendedCampaignStatsCampaignStatsItems struct {
 	GetCampaignStats
 }

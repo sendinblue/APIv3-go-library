@@ -16,7 +16,6 @@ import (
 
 // GetReportsReports get reports reports
 // swagger:model getReportsReports
-
 type GetReportsReports []*GetReportsReportsItems
 
 // Validate validates this get reports reports

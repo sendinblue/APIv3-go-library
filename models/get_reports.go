@@ -14,14 +14,11 @@ import (
 
 // GetReports get reports
 // swagger:model getReports
-
 type GetReports struct {
 
 	// reports
 	Reports GetReportsReports `json:"reports"`
 }
-
-/* polymorph getReports reports false */
 
 // Validate validates this get reports
 func (m *GetReports) Validate(formats strfmt.Registry) error {

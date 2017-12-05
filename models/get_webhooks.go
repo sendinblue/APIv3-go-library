@@ -15,15 +15,12 @@ import (
 
 // GetWebhooks get webhooks
 // swagger:model getWebhooks
-
 type GetWebhooks struct {
 
 	// webhooks
 	// Required: true
 	Webhooks GetWebhooksWebhooks `json:"webhooks"`
 }
-
-/* polymorph getWebhooks webhooks false */
 
 // Validate validates this get webhooks
 func (m *GetWebhooks) Validate(formats strfmt.Registry) error {
@@ -43,6 +40,13 @@ func (m *GetWebhooks) Validate(formats strfmt.Registry) error {
 func (m *GetWebhooks) validateWebhooks(formats strfmt.Registry) error {
 
 	if err := validate.Required("webhooks", "body", m.Webhooks); err != nil {
+		return err
+	}
+
+	if err := m.Webhooks.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("webhooks")
+		}
 		return err
 	}
 

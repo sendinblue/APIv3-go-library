@@ -15,7 +15,6 @@ import (
 
 // GetExtendedContactDetailsAllOf1StatisticsSoftBouncesItems get extended contact details all of1 statistics soft bounces items
 // swagger:model getExtendedContactDetailsAllOf1StatisticsSoftBouncesItems
-
 type GetExtendedContactDetailsAllOf1StatisticsSoftBouncesItems struct {
 
 	// ID of the campaign which generated the event
@@ -26,10 +25,6 @@ type GetExtendedContactDetailsAllOf1StatisticsSoftBouncesItems struct {
 	// Required: true
 	EventTime *strfmt.DateTime `json:"eventTime"`
 }
-
-/* polymorph getExtendedContactDetailsAllOf1StatisticsSoftBouncesItems campaignId false */
-
-/* polymorph getExtendedContactDetailsAllOf1StatisticsSoftBouncesItems eventTime false */
 
 // Validate validates this get extended contact details all of1 statistics soft bounces items
 func (m *GetExtendedContactDetailsAllOf1StatisticsSoftBouncesItems) Validate(formats strfmt.Registry) error {

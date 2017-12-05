@@ -15,7 +15,6 @@ import (
 
 // GetClient get client
 // swagger:model getClient
-
 type GetClient struct {
 
 	// Name of the company
@@ -34,14 +33,6 @@ type GetClient struct {
 	// Required: true
 	LastName *string `json:"lastName"`
 }
-
-/* polymorph getClient companyName false */
-
-/* polymorph getClient email false */
-
-/* polymorph getClient firstName false */
-
-/* polymorph getClient lastName false */
 
 // Validate validates this get client
 func (m *GetClient) Validate(formats strfmt.Registry) error {

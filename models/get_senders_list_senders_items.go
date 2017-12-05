@@ -15,7 +15,6 @@ import (
 
 // GetSendersListSendersItems get senders list senders items
 // swagger:model getSendersListSendersItems
-
 type GetSendersListSendersItems struct {
 
 	// Status of sender (true=activated, false=deactivated)
@@ -37,16 +36,6 @@ type GetSendersListSendersItems struct {
 	// Required: true
 	Name *string `json:"name"`
 }
-
-/* polymorph getSendersListSendersItems active false */
-
-/* polymorph getSendersListSendersItems email false */
-
-/* polymorph getSendersListSendersItems id false */
-
-/* polymorph getSendersListSendersItems ips false */
-
-/* polymorph getSendersListSendersItems name false */
 
 // Validate validates this get senders list senders items
 func (m *GetSendersListSendersItems) Validate(formats strfmt.Registry) error {

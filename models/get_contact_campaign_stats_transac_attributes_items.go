@@ -15,7 +15,6 @@ import (
 
 // GetContactCampaignStatsTransacAttributesItems get contact campaign stats transac attributes items
 // swagger:model getContactCampaignStatsTransacAttributesItems
-
 type GetContactCampaignStatsTransacAttributesItems struct {
 
 	// Date of the order
@@ -30,12 +29,6 @@ type GetContactCampaignStatsTransacAttributesItems struct {
 	// Required: true
 	OrderPrice *float32 `json:"orderPrice"`
 }
-
-/* polymorph getContactCampaignStatsTransacAttributesItems orderDate false */
-
-/* polymorph getContactCampaignStatsTransacAttributesItems orderId false */
-
-/* polymorph getContactCampaignStatsTransacAttributesItems orderPrice false */
 
 // Validate validates this get contact campaign stats transac attributes items
 func (m *GetContactCampaignStatsTransacAttributesItems) Validate(formats strfmt.Registry) error {

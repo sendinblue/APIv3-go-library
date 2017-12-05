@@ -16,7 +16,6 @@ import (
 
 // GetEmailEventReportEvents get email event report events
 // swagger:model getEmailEventReportEvents
-
 type GetEmailEventReportEvents []*GetEmailEventReportEventsItems
 
 // Validate validates this get email event report events

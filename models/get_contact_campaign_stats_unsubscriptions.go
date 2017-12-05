@@ -15,7 +15,6 @@ import (
 
 // GetContactCampaignStatsUnsubscriptions get contact campaign stats unsubscriptions
 // swagger:model getContactCampaignStatsUnsubscriptions
-
 type GetContactCampaignStatsUnsubscriptions struct {
 
 	// admin unsubscription
@@ -26,10 +25,6 @@ type GetContactCampaignStatsUnsubscriptions struct {
 	// Required: true
 	UserUnsubscription GetContactCampaignStatsUnsubscriptionsUserUnsubscription `json:"userUnsubscription"`
 }
-
-/* polymorph getContactCampaignStatsUnsubscriptions adminUnsubscription false */
-
-/* polymorph getContactCampaignStatsUnsubscriptions userUnsubscription false */
 
 // Validate validates this get contact campaign stats unsubscriptions
 func (m *GetContactCampaignStatsUnsubscriptions) Validate(formats strfmt.Registry) error {
@@ -57,12 +52,26 @@ func (m *GetContactCampaignStatsUnsubscriptions) validateAdminUnsubscription(for
 		return err
 	}
 
+	if err := m.AdminUnsubscription.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("adminUnsubscription")
+		}
+		return err
+	}
+
 	return nil
 }
 
 func (m *GetContactCampaignStatsUnsubscriptions) validateUserUnsubscription(formats strfmt.Registry) error {
 
 	if err := validate.Required("userUnsubscription", "body", m.UserUnsubscription); err != nil {
+		return err
+	}
+
+	if err := m.UserUnsubscription.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("userUnsubscription")
+		}
 		return err
 	}
 

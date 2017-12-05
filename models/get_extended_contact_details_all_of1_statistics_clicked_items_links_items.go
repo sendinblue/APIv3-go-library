@@ -15,7 +15,6 @@ import (
 
 // GetExtendedContactDetailsAllOf1StatisticsClickedItemsLinksItems get extended contact details all of1 statistics clicked items links items
 // swagger:model getExtendedContactDetailsAllOf1StatisticsClickedItemsLinksItems
-
 type GetExtendedContactDetailsAllOf1StatisticsClickedItemsLinksItems struct {
 
 	// Number of clicks on this link for the campaign
@@ -34,14 +33,6 @@ type GetExtendedContactDetailsAllOf1StatisticsClickedItemsLinksItems struct {
 	// Required: true
 	URL *string `json:"url"`
 }
-
-/* polymorph getExtendedContactDetailsAllOf1StatisticsClickedItemsLinksItems count false */
-
-/* polymorph getExtendedContactDetailsAllOf1StatisticsClickedItemsLinksItems eventTime false */
-
-/* polymorph getExtendedContactDetailsAllOf1StatisticsClickedItemsLinksItems ip false */
-
-/* polymorph getExtendedContactDetailsAllOf1StatisticsClickedItemsLinksItems url false */
 
 // Validate validates this get extended contact details all of1 statistics clicked items links items
 func (m *GetExtendedContactDetailsAllOf1StatisticsClickedItemsLinksItems) Validate(formats strfmt.Registry) error {

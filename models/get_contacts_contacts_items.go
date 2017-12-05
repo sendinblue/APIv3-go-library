@@ -14,7 +14,6 @@ import (
 
 // GetContactsContactsItems get contacts contacts items
 // swagger:model getContactsContactsItems
-
 type GetContactsContactsItems struct {
 	GetContactDetails
 }

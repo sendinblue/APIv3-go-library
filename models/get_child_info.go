@@ -14,7 +14,6 @@ import (
 
 // GetChildInfo get child info
 // swagger:model getChildInfo
-
 type GetChildInfo struct {
 	GetClient
 

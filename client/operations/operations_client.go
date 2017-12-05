@@ -54,7 +54,7 @@ func (a *Client) AddContactToList(params *AddContactToListParams, authInfo runti
 }
 
 /*
-CreateAttribute creates contact attributes
+CreateAttribute creates contact attribute
 */
 func (a *Client) CreateAttribute(params *CreateAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*CreateAttributeCreated, error) {
 	// TODO: Validate the params before sending
@@ -65,7 +65,7 @@ func (a *Client) CreateAttribute(params *CreateAttributeParams, authInfo runtime
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createAttribute",
 		Method:             "POST",
-		PathPattern:        "/contacts/attributes",
+		PathPattern:        "/contacts/attributes/{attributeCategory}/{attributeName}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -152,7 +152,7 @@ func (a *Client) DeleteAttribute(params *DeleteAttributeParams, authInfo runtime
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteAttribute",
 		Method:             "DELETE",
-		PathPattern:        "/contacts/attributes/{attributeId}",
+		PathPattern:        "/contacts/attributes/{attributeCategory}/{attributeName}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -456,6 +456,35 @@ func (a *Client) RemoveContactToList(params *RemoveContactToListParams, authInfo
 		return nil, err
 	}
 	return result.(*RemoveContactToListCreated), nil
+
+}
+
+/*
+UpdateAttribute updates contact attribute
+*/
+func (a *Client) UpdateAttribute(params *UpdateAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAttributeNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateAttributeParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateAttribute",
+		Method:             "PUT",
+		PathPattern:        "/contacts/attributes/{attributeCategory}/{attributeName}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateAttributeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*UpdateAttributeNoContent), nil
 
 }
 

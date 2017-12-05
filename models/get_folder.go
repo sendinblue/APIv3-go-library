@@ -15,7 +15,6 @@ import (
 
 // GetFolder get folder
 // swagger:model getFolder
-
 type GetFolder struct {
 
 	// ID of the folder
@@ -38,16 +37,6 @@ type GetFolder struct {
 	// Required: true
 	UniqueSubscribers *int64 `json:"uniqueSubscribers"`
 }
-
-/* polymorph getFolder id false */
-
-/* polymorph getFolder name false */
-
-/* polymorph getFolder totalBlacklisted false */
-
-/* polymorph getFolder totalSubscribers false */
-
-/* polymorph getFolder uniqueSubscribers false */
 
 // Validate validates this get folder
 func (m *GetFolder) Validate(formats strfmt.Registry) error {

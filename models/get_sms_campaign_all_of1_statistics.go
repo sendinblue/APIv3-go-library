@@ -14,7 +14,6 @@ import (
 
 // GetSmsCampaignAllOf1Statistics get sms campaign all of1 statistics
 // swagger:model getSmsCampaignAllOf1Statistics
-
 type GetSmsCampaignAllOf1Statistics struct {
 	GetSmsCampaignStats
 }

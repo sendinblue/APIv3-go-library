@@ -15,7 +15,6 @@ import (
 
 // GetSendersListSendersItemsIpsItems get senders list senders items ips items
 // swagger:model getSendersListSendersItemsIpsItems
-
 type GetSendersListSendersItemsIpsItems struct {
 
 	// Domain of the IP
@@ -30,12 +29,6 @@ type GetSendersListSendersItemsIpsItems struct {
 	// Required: true
 	Weight *int64 `json:"weight"`
 }
-
-/* polymorph getSendersListSendersItemsIpsItems domain false */
-
-/* polymorph getSendersListSendersItemsIpsItems ip false */
-
-/* polymorph getSendersListSendersItemsIpsItems weight false */
 
 // Validate validates this get senders list senders items ips items
 func (m *GetSendersListSendersItemsIpsItems) Validate(formats strfmt.Registry) error {

@@ -14,14 +14,11 @@ import (
 
 // GetTransacSmsReport get transac sms report
 // swagger:model getTransacSmsReport
-
 type GetTransacSmsReport struct {
 
 	// reports
 	Reports GetTransacSmsReportReports `json:"reports"`
 }
-
-/* polymorph getTransacSmsReport reports false */
 
 // Validate validates this get transac sms report
 func (m *GetTransacSmsReport) Validate(formats strfmt.Registry) error {

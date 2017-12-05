@@ -15,7 +15,6 @@ import (
 
 // SendSMTPEmailCcItems send Smtp email cc items
 // swagger:model sendSmtpEmailCcItems
-
 type SendSMTPEmailCcItems struct {
 
 	// Email address of the recipient in cc
@@ -25,10 +24,6 @@ type SendSMTPEmailCcItems struct {
 	// Name of the recipient in cc
 	Name string `json:"name,omitempty"`
 }
-
-/* polymorph sendSmtpEmailCcItems email false */
-
-/* polymorph sendSmtpEmailCcItems name false */
 
 // Validate validates this send Smtp email cc items
 func (m *SendSMTPEmailCcItems) Validate(formats strfmt.Registry) error {

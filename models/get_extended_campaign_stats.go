@@ -15,7 +15,6 @@ import (
 
 // GetExtendedCampaignStats get extended campaign stats
 // swagger:model getExtendedCampaignStats
-
 type GetExtendedCampaignStats struct {
 
 	// campaign stats
@@ -38,16 +37,6 @@ type GetExtendedCampaignStats struct {
 	// Required: true
 	StatsByDomain GetStatsByDomain `json:"statsByDomain"`
 }
-
-/* polymorph getExtendedCampaignStats campaignStats false */
-
-/* polymorph getExtendedCampaignStats linksStats false */
-
-/* polymorph getExtendedCampaignStats mirrorClick false */
-
-/* polymorph getExtendedCampaignStats remaining false */
-
-/* polymorph getExtendedCampaignStats statsByDomain false */
 
 // Validate validates this get extended campaign stats
 func (m *GetExtendedCampaignStats) Validate(formats strfmt.Registry) error {
@@ -87,6 +76,13 @@ func (m *GetExtendedCampaignStats) Validate(formats strfmt.Registry) error {
 func (m *GetExtendedCampaignStats) validateCampaignStats(formats strfmt.Registry) error {
 
 	if err := validate.Required("campaignStats", "body", m.CampaignStats); err != nil {
+		return err
+	}
+
+	if err := m.CampaignStats.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("campaignStats")
+		}
 		return err
 	}
 

@@ -14,7 +14,6 @@ import (
 
 // GetSmsCampaign get sms campaign
 // swagger:model getSmsCampaign
-
 type GetSmsCampaign struct {
 	GetSmsCampaignOverview
 

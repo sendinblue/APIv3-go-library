@@ -15,7 +15,6 @@ import (
 
 // GetExtendedCampaignOverviewAllOf1 get extended campaign overview all of1
 // swagger:model getExtendedCampaignOverviewAllOf1
-
 type GetExtendedCampaignOverviewAllOf1 struct {
 
 	// Creation date of the campaign (YYYY-MM-DDTHH:mm:ss.SSSZ)
@@ -70,34 +69,6 @@ type GetExtendedCampaignOverviewAllOf1 struct {
 	// Required: true
 	ToField *string `json:"toField"`
 }
-
-/* polymorph getExtendedCampaignOverviewAllOf1 createdAt false */
-
-/* polymorph getExtendedCampaignOverviewAllOf1 footer false */
-
-/* polymorph getExtendedCampaignOverviewAllOf1 header false */
-
-/* polymorph getExtendedCampaignOverviewAllOf1 htmlContent false */
-
-/* polymorph getExtendedCampaignOverviewAllOf1 inlineImageActivation false */
-
-/* polymorph getExtendedCampaignOverviewAllOf1 mirrorActive false */
-
-/* polymorph getExtendedCampaignOverviewAllOf1 modifiedAt false */
-
-/* polymorph getExtendedCampaignOverviewAllOf1 recurring false */
-
-/* polymorph getExtendedCampaignOverviewAllOf1 replyTo false */
-
-/* polymorph getExtendedCampaignOverviewAllOf1 sender false */
-
-/* polymorph getExtendedCampaignOverviewAllOf1 shareLink false */
-
-/* polymorph getExtendedCampaignOverviewAllOf1 tag false */
-
-/* polymorph getExtendedCampaignOverviewAllOf1 testSent false */
-
-/* polymorph getExtendedCampaignOverviewAllOf1 toField false */
 
 // Validate validates this get extended campaign overview all of1
 func (m *GetExtendedCampaignOverviewAllOf1) Validate(formats strfmt.Registry) error {

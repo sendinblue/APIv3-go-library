@@ -15,7 +15,6 @@ import (
 
 // GetExtendedContactDetailsAllOf1StatisticsOpenedItems get extended contact details all of1 statistics opened items
 // swagger:model getExtendedContactDetailsAllOf1StatisticsOpenedItems
-
 type GetExtendedContactDetailsAllOf1StatisticsOpenedItems struct {
 
 	// ID of the campaign which generated the event
@@ -34,14 +33,6 @@ type GetExtendedContactDetailsAllOf1StatisticsOpenedItems struct {
 	// Required: true
 	IP *string `json:"ip"`
 }
-
-/* polymorph getExtendedContactDetailsAllOf1StatisticsOpenedItems campaignId false */
-
-/* polymorph getExtendedContactDetailsAllOf1StatisticsOpenedItems count false */
-
-/* polymorph getExtendedContactDetailsAllOf1StatisticsOpenedItems eventTime false */
-
-/* polymorph getExtendedContactDetailsAllOf1StatisticsOpenedItems ip false */
 
 // Validate validates this get extended contact details all of1 statistics opened items
 func (m *GetExtendedContactDetailsAllOf1StatisticsOpenedItems) Validate(formats strfmt.Registry) error {

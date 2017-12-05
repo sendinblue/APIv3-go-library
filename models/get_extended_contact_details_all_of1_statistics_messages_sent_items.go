@@ -15,7 +15,6 @@ import (
 
 // GetExtendedContactDetailsAllOf1StatisticsMessagesSentItems get extended contact details all of1 statistics messages sent items
 // swagger:model getExtendedContactDetailsAllOf1StatisticsMessagesSentItems
-
 type GetExtendedContactDetailsAllOf1StatisticsMessagesSentItems struct {
 
 	// ID of the campaign which generated the event
@@ -26,10 +25,6 @@ type GetExtendedContactDetailsAllOf1StatisticsMessagesSentItems struct {
 	// Required: true
 	EventTime *strfmt.DateTime `json:"eventTime"`
 }
-
-/* polymorph getExtendedContactDetailsAllOf1StatisticsMessagesSentItems campaignId false */
-
-/* polymorph getExtendedContactDetailsAllOf1StatisticsMessagesSentItems eventTime false */
 
 // Validate validates this get extended contact details all of1 statistics messages sent items
 func (m *GetExtendedContactDetailsAllOf1StatisticsMessagesSentItems) Validate(formats strfmt.Registry) error {

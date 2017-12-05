@@ -15,7 +15,6 @@ import (
 
 // GetAttributesAttributesItemsEnumerationItems get attributes attributes items enumeration items
 // swagger:model getAttributesAttributesItemsEnumerationItems
-
 type GetAttributesAttributesItemsEnumerationItems struct {
 
 	// Label of the "category" type attribute
@@ -26,10 +25,6 @@ type GetAttributesAttributesItemsEnumerationItems struct {
 	// Required: true
 	Value *int64 `json:"value"`
 }
-
-/* polymorph getAttributesAttributesItemsEnumerationItems label false */
-
-/* polymorph getAttributesAttributesItemsEnumerationItems value false */
 
 // Validate validates this get attributes attributes items enumeration items
 func (m *GetAttributesAttributesItemsEnumerationItems) Validate(formats strfmt.Registry) error {

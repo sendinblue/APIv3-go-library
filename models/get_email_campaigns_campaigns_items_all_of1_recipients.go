@@ -14,7 +14,6 @@ import (
 
 // GetEmailCampaignsCampaignsItemsAllOf1Recipients get email campaigns campaigns items all of1 recipients
 // swagger:model getEmailCampaignsCampaignsItemsAllOf1Recipients
-
 type GetEmailCampaignsCampaignsItemsAllOf1Recipients struct {
 	GetCampaignRecipients
 }

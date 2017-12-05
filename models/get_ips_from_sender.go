@@ -15,15 +15,12 @@ import (
 
 // GetIpsFromSender get ips from sender
 // swagger:model getIpsFromSender
-
 type GetIpsFromSender struct {
 
 	// ips
 	// Required: true
 	Ips GetIpsFromSenderIps `json:"ips"`
 }
-
-/* polymorph getIpsFromSender ips false */
 
 // Validate validates this get ips from sender
 func (m *GetIpsFromSender) Validate(formats strfmt.Registry) error {
@@ -43,6 +40,13 @@ func (m *GetIpsFromSender) Validate(formats strfmt.Registry) error {
 func (m *GetIpsFromSender) validateIps(formats strfmt.Registry) error {
 
 	if err := validate.Required("ips", "body", m.Ips); err != nil {
+		return err
+	}
+
+	if err := m.Ips.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("ips")
+		}
 		return err
 	}
 

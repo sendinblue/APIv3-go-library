@@ -14,7 +14,6 @@ import (
 
 // GetFolderListsListsItems get folder lists lists items
 // swagger:model getFolderListsListsItems
-
 type GetFolderListsListsItems struct {
 	GetList
 }

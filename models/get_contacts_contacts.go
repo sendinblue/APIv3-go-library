@@ -16,7 +16,6 @@ import (
 
 // GetContactsContacts get contacts contacts
 // swagger:model getContactsContacts
-
 type GetContactsContacts []*GetContactsContactsItems
 
 // Validate validates this get contacts contacts

@@ -16,7 +16,6 @@ import (
 
 // GetAttributesAttributes Listing of available contact attributes in your account
 // swagger:model getAttributesAttributes
-
 type GetAttributesAttributes []*GetAttributesAttributesItems
 
 // Validate validates this get attributes attributes

@@ -15,15 +15,12 @@ import (
 
 // GetIps get ips
 // swagger:model getIps
-
 type GetIps struct {
 
 	// ips
 	// Required: true
 	Ips GetIpsIps `json:"ips"`
 }
-
-/* polymorph getIps ips false */
 
 // Validate validates this get ips
 func (m *GetIps) Validate(formats strfmt.Registry) error {
@@ -43,6 +40,13 @@ func (m *GetIps) Validate(formats strfmt.Registry) error {
 func (m *GetIps) validateIps(formats strfmt.Registry) error {
 
 	if err := validate.Required("ips", "body", m.Ips); err != nil {
+		return err
+	}
+
+	if err := m.Ips.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("ips")
+		}
 		return err
 	}
 

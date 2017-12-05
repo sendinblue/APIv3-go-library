@@ -15,7 +15,6 @@ import (
 
 // GetCampaignStats get campaign stats
 // swagger:model getCampaignStats
-
 type GetCampaignStats struct {
 
 	// Number of clicks for the campaign
@@ -65,30 +64,6 @@ type GetCampaignStats struct {
 	// Required: true
 	Viewed *int64 `json:"viewed"`
 }
-
-/* polymorph getCampaignStats clickers false */
-
-/* polymorph getCampaignStats complaints false */
-
-/* polymorph getCampaignStats deferred false */
-
-/* polymorph getCampaignStats delivered false */
-
-/* polymorph getCampaignStats hardBounces false */
-
-/* polymorph getCampaignStats listId false */
-
-/* polymorph getCampaignStats sent false */
-
-/* polymorph getCampaignStats softBounces false */
-
-/* polymorph getCampaignStats uniqueClicks false */
-
-/* polymorph getCampaignStats uniqueViews false */
-
-/* polymorph getCampaignStats unsubscriptions false */
-
-/* polymorph getCampaignStats viewed false */
 
 // Validate validates this get campaign stats
 func (m *GetCampaignStats) Validate(formats strfmt.Registry) error {

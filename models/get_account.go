@@ -14,7 +14,6 @@ import (
 
 // GetAccount get account
 // swagger:model getAccount
-
 type GetAccount struct {
 	GetExtendedClient
 

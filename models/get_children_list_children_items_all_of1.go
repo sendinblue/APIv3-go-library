@@ -14,14 +14,11 @@ import (
 
 // GetChildrenListChildrenItemsAllOf1 get children list children items all of1
 // swagger:model getChildrenListChildrenItemsAllOf1
-
 type GetChildrenListChildrenItemsAllOf1 struct {
 
 	// ID of the child
 	ID int64 `json:"id,omitempty"`
 }
-
-/* polymorph getChildrenListChildrenItemsAllOf1 id false */
 
 // Validate validates this get children list children items all of1
 func (m *GetChildrenListChildrenItemsAllOf1) Validate(formats strfmt.Registry) error {

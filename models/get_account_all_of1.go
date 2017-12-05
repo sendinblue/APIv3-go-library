@@ -15,7 +15,6 @@ import (
 
 // GetAccountAllOf1 get account all of1
 // swagger:model getAccountAllOf1
-
 type GetAccountAllOf1 struct {
 
 	// marketing automation
@@ -29,12 +28,6 @@ type GetAccountAllOf1 struct {
 	// Required: true
 	Relay *GetAccountAllOf1Relay `json:"relay"`
 }
-
-/* polymorph getAccountAllOf1 marketingAutomation false */
-
-/* polymorph getAccountAllOf1 plan false */
-
-/* polymorph getAccountAllOf1 relay false */
 
 // Validate validates this get account all of1
 func (m *GetAccountAllOf1) Validate(formats strfmt.Registry) error {
@@ -83,6 +76,13 @@ func (m *GetAccountAllOf1) validateMarketingAutomation(formats strfmt.Registry) 
 func (m *GetAccountAllOf1) validatePlan(formats strfmt.Registry) error {
 
 	if err := validate.Required("plan", "body", m.Plan); err != nil {
+		return err
+	}
+
+	if err := m.Plan.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("plan")
+		}
 		return err
 	}
 

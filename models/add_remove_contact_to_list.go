@@ -14,14 +14,11 @@ import (
 
 // AddRemoveContactToList add remove contact to list
 // swagger:model addRemoveContactToList
-
 type AddRemoveContactToList struct {
 
 	// Emails to add or remove from a list
 	Emails []strfmt.Email `json:"emails"`
 }
-
-/* polymorph addRemoveContactToList emails false */
 
 // Validate validates this add remove contact to list
 func (m *AddRemoveContactToList) Validate(formats strfmt.Registry) error {

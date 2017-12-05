@@ -16,7 +16,6 @@ import (
 
 // GetContactCampaignStatsComplaints get contact campaign stats complaints
 // swagger:model getContactCampaignStatsComplaints
-
 type GetContactCampaignStatsComplaints []*GetContactCampaignStatsComplaintsItems
 
 // Validate validates this get contact campaign stats complaints

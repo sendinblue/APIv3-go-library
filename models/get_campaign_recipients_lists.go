@@ -16,7 +16,6 @@ import (
 
 // GetCampaignRecipientsLists Lists included in the campaign
 // swagger:model getCampaignRecipientsLists
-
 type GetCampaignRecipientsLists []*GetCampaignRecipientsListsItems
 
 // Validate validates this get campaign recipients lists

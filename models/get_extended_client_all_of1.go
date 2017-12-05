@@ -15,15 +15,12 @@ import (
 
 // GetExtendedClientAllOf1 get extended client all of1
 // swagger:model getExtendedClientAllOf1
-
 type GetExtendedClientAllOf1 struct {
 
 	// address
 	// Required: true
 	Address *GetExtendedClientAllOf1Address `json:"address"`
 }
-
-/* polymorph getExtendedClientAllOf1 address false */
 
 // Validate validates this get extended client all of1
 func (m *GetExtendedClientAllOf1) Validate(formats strfmt.Registry) error {

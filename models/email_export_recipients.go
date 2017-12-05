@@ -17,7 +17,6 @@ import (
 
 // EmailExportRecipients email export recipients
 // swagger:model emailExportRecipients
-
 type EmailExportRecipients struct {
 
 	// Webhook called once the export process is finished
@@ -27,10 +26,6 @@ type EmailExportRecipients struct {
 	// Required: true
 	RecipientsType *string `json:"recipientsType"`
 }
-
-/* polymorph emailExportRecipients notifyURL false */
-
-/* polymorph emailExportRecipients recipientsType false */
 
 // Validate validates this email export recipients
 func (m *EmailExportRecipients) Validate(formats strfmt.Registry) error {

@@ -14,7 +14,6 @@ import (
 
 // GetSMTPTemplateOverviewSender get Smtp template overview sender
 // swagger:model getSmtpTemplateOverviewSender
-
 type GetSMTPTemplateOverviewSender struct {
 
 	// From email for the template
@@ -23,10 +22,6 @@ type GetSMTPTemplateOverviewSender struct {
 	// From email for the template
 	Name string `json:"name,omitempty"`
 }
-
-/* polymorph getSmtpTemplateOverviewSender email false */
-
-/* polymorph getSmtpTemplateOverviewSender name false */
 
 // Validate validates this get Smtp template overview sender
 func (m *GetSMTPTemplateOverviewSender) Validate(formats strfmt.Registry) error {
