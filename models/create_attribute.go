@@ -22,11 +22,10 @@ type CreateAttribute struct {
 	// enumeration
 	Enumeration CreateAttributeEnumeration `json:"enumeration"`
 
-	// Type of the attribute ( type 'id' only available if the category is 'transactional' attribute & type 'category' only available if the category is 'category' attribute )
-	// Required: true
-	Type *string `json:"type"`
+	// Type of the attribute. Use only if the attribute's category is normal, category or transactional ( type 'id' only available if the category is 'transactional' attribute & type 'category' only available if the category is 'category' attribute )
+	Type string `json:"type,omitempty"`
 
-	// Value of the attribute
+	// Value of the attribute. Use only if the attribute's category is calculated or global
 	Value string `json:"value,omitempty"`
 }
 
@@ -80,12 +79,12 @@ func (m *CreateAttribute) validateTypeEnum(path, location string, value string) 
 
 func (m *CreateAttribute) validateType(formats strfmt.Registry) error {
 
-	if err := validate.Required("type", "body", m.Type); err != nil {
-		return err
+	if swag.IsZero(m.Type) { // not required
+		return nil
 	}
 
 	// value enum
-	if err := m.validateTypeEnum("type", "body", *m.Type); err != nil {
+	if err := m.validateTypeEnum("type", "body", m.Type); err != nil {
 		return err
 	}
 

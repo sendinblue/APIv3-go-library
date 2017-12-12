@@ -52,7 +52,7 @@ var errorModelTypeCodePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["invalid_parameter","missing_parameter","out_of_range","campaign_processing","campaign_sent","document_not_found","reseller_permission","not_enough_credits","permission_denied","duplicate_parameter","method_not_allowed","unauthorized","account_under_validation","not_acceptable"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["invalid_parameter","missing_parameter","out_of_range","campaign_processing","campaign_sent","document_not_found","reseller_permission","not_enough_credits","permission_denied","duplicate_parameter","duplicate_request","method_not_allowed","unauthorized","account_under_validation","not_acceptable"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -81,6 +81,8 @@ const (
 	ErrorModelCodePermissionDenied string = "permission_denied"
 	// ErrorModelCodeDuplicateParameter captures enum value "duplicate_parameter"
 	ErrorModelCodeDuplicateParameter string = "duplicate_parameter"
+	// ErrorModelCodeDuplicateRequest captures enum value "duplicate_request"
+	ErrorModelCodeDuplicateRequest string = "duplicate_request"
 	// ErrorModelCodeMethodNotAllowed captures enum value "method_not_allowed"
 	ErrorModelCodeMethodNotAllowed string = "method_not_allowed"
 	// ErrorModelCodeUnauthorized captures enum value "unauthorized"
