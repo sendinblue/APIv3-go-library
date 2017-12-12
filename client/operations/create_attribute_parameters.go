@@ -70,7 +70,7 @@ type CreateAttributeParams struct {
 	*/
 	AttributeCategory string
 	/*AttributeName
-	  Name of the existing attribute
+	  Name of the attribute
 
 	*/
 	AttributeName string
