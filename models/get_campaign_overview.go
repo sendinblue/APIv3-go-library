@@ -27,7 +27,7 @@ type GetCampaignOverview struct {
 	// Required: true
 	Name *string `json:"name"`
 
-	// Date on which campaign is scheduled (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	// UTC date-time on which campaign is scheduled (YYYY-MM-DDTHH:mm:ss.SSSZ)
 	ScheduledAt strfmt.DateTime `json:"scheduledAt,omitempty"`
 
 	// Status of the campaign

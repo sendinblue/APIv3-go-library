@@ -25,7 +25,7 @@ type GetContactCampaignStatsOpenedItems struct {
 	// Required: true
 	Count *int64 `json:"count"`
 
-	// Date of the event
+	// UTC date-time of the event
 	// Required: true
 	EventTime *strfmt.DateTime `json:"eventTime"`
 

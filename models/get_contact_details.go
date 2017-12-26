@@ -40,7 +40,7 @@ type GetContactDetails struct {
 	// list unsubscribed
 	ListUnsubscribed []int64 `json:"listUnsubscribed"`
 
-	// Last modification date of the contact (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	// Last modification UTC date-time of the contact (YYYY-MM-DDTHH:mm:ss.SSSZ)
 	// Required: true
 	ModifiedAt *strfmt.DateTime `json:"modifiedAt"`
 

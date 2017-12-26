@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	"github.com/sendinblue/APIv3-go-library/models"
+	models "github.com/sendinblue/APIv3-go-library/models"
 )
 
 // UpdateAttributeReader is a Reader for the UpdateAttribute structure.

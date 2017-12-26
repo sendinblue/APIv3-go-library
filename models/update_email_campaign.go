@@ -49,7 +49,7 @@ type UpdateEmailCampaign struct {
 	// Email on which campaign recipients will be able to reply to
 	ReplyTo strfmt.Email `json:"replyTo,omitempty"`
 
-	// Date and time on which the campaign has to run (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	// UTC date-time on which the campaign has to run (YYYY-MM-DDTHH:mm:ss.SSSZ)
 	ScheduledAt strfmt.DateTime `json:"scheduledAt,omitempty"`
 
 	// sender

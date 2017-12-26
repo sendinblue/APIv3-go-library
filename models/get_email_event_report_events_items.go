@@ -19,7 +19,7 @@ import (
 // swagger:model getEmailEventReportEventsItems
 type GetEmailEventReportEventsItems struct {
 
-	// Date on which the event has been generated
+	// UTC date-time on which the event has been generated
 	// Required: true
 	Date *strfmt.DateTime `json:"date"`
 

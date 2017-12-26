@@ -21,7 +21,7 @@ type GetExtendedContactDetailsAllOf1StatisticsUnsubscriptionsUserUnsubscriptionI
 	// Required: true
 	CampaignID *int64 `json:"campaignId"`
 
-	// Date of the event
+	// UTC date-time of the event
 	// Required: true
 	EventTime *strfmt.DateTime `json:"eventTime"`
 

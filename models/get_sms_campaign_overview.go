@@ -23,7 +23,7 @@ type GetSmsCampaignOverview struct {
 	// Required: true
 	Content *string `json:"content"`
 
-	// Creation date of the SMS campaign (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	// Creation UTC date-time of the SMS campaign (YYYY-MM-DDTHH:mm:ss.SSSZ)
 	// Required: true
 	CreatedAt *strfmt.DateTime `json:"createdAt"`
 
@@ -31,7 +31,7 @@ type GetSmsCampaignOverview struct {
 	// Required: true
 	ID *int64 `json:"id"`
 
-	// Date of last modification of the SMS campaign (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	// UTC date-time of last modification of the SMS campaign (YYYY-MM-DDTHH:mm:ss.SSSZ)
 	// Required: true
 	ModifiedAt *strfmt.DateTime `json:"modifiedAt"`
 
@@ -39,7 +39,7 @@ type GetSmsCampaignOverview struct {
 	// Required: true
 	Name *string `json:"name"`
 
-	// Date on which SMS campaign is scheduled. Should be in YYYY-MM-DDTHH:mm:ss.SSSZ format
+	// UTC date-time on which SMS campaign is scheduled. Should be in YYYY-MM-DDTHH:mm:ss.SSSZ format
 	// Required: true
 	ScheduledAt *strfmt.DateTime `json:"scheduledAt"`
 
