@@ -26,7 +26,7 @@ type UpdateSmsCampaign struct {
 	// recipients
 	Recipients *UpdateSmsCampaignRecipients `json:"recipients,omitempty"`
 
-	// Date and time on which the campaign has to run (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	// UTC date-time on which the campaign has to run (YYYY-MM-DDTHH:mm:ss.SSSZ)
 	ScheduledAt strfmt.DateTime `json:"scheduledAt,omitempty"`
 
 	// Name of the sender. The number of characters is limited to 11

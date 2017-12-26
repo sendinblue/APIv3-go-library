@@ -17,7 +17,7 @@ import (
 // swagger:model getSmtpTemplateOverview
 type GetSMTPTemplateOverview struct {
 
-	// Creation date of the template (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	// Creation UTC date-time of the template (YYYY-MM-DDTHH:mm:ss.SSSZ)
 	// Required: true
 	CreatedAt *strfmt.DateTime `json:"createdAt"`
 
@@ -33,7 +33,7 @@ type GetSMTPTemplateOverview struct {
 	// Required: true
 	IsActive *bool `json:"isActive"`
 
-	// Last modification date of the template (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	// Last modification UTC date-time of the template (YYYY-MM-DDTHH:mm:ss.SSSZ)
 	// Required: true
 	ModifiedAt *strfmt.DateTime `json:"modifiedAt"`
 

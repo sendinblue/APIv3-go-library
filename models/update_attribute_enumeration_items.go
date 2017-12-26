@@ -10,26 +10,57 @@ import (
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // UpdateAttributeEnumerationItems update attribute enumeration items
 // swagger:model updateAttributeEnumerationItems
 type UpdateAttributeEnumerationItems struct {
 
-	// Id of the value
-	ID int64 `json:"id,omitempty"`
-
 	// Label of the value
-	Label string `json:"label,omitempty"`
+	// Required: true
+	Label *string `json:"label"`
+
+	// Id of the value
+	// Required: true
+	Value *int64 `json:"value"`
 }
 
 // Validate validates this update attribute enumeration items
 func (m *UpdateAttributeEnumerationItems) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateLabel(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateValue(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *UpdateAttributeEnumerationItems) validateLabel(formats strfmt.Registry) error {
+
+	if err := validate.Required("label", "body", m.Label); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *UpdateAttributeEnumerationItems) validateValue(formats strfmt.Registry) error {
+
+	if err := validate.Required("value", "body", m.Value); err != nil {
+		return err
+	}
+
 	return nil
 }
 

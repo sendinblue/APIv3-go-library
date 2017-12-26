@@ -20,7 +20,7 @@ type GetExtendedListAllOf1 struct {
 	// campaign stats
 	CampaignStats GetExtendedListAllOf1CampaignStats `json:"campaignStats"`
 
-	// Creation Date of the list (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	// Creation UTC date-time of the list (YYYY-MM-DDTHH:mm:ss.SSSZ)
 	// Required: true
 	CreatedAt *strfmt.DateTime `json:"createdAt"`
 

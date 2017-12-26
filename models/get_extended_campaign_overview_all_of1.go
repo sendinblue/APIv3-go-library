@@ -17,7 +17,7 @@ import (
 // swagger:model getExtendedCampaignOverviewAllOf1
 type GetExtendedCampaignOverviewAllOf1 struct {
 
-	// Creation date of the campaign (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	// Creation UTC date-time of the campaign (YYYY-MM-DDTHH:mm:ss.SSSZ)
 	// Required: true
 	CreatedAt *strfmt.DateTime `json:"createdAt"`
 
@@ -39,7 +39,7 @@ type GetExtendedCampaignOverviewAllOf1 struct {
 	// Status of mirror links in campaign. mirrorActive = false means mirror links are deactivated, & mirrorActive = true means mirror links are activated, in the campaign
 	MirrorActive bool `json:"mirrorActive,omitempty"`
 
-	// Date of last modification of the campaign (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	// UTC date-time of last modification of the campaign (YYYY-MM-DDTHH:mm:ss.SSSZ)
 	// Required: true
 	ModifiedAt *strfmt.DateTime `json:"modifiedAt"`
 

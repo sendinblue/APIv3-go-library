@@ -17,7 +17,7 @@ import (
 // swagger:model getContactCampaignStatsUnsubscriptionsAdminUnsubscriptionItems
 type GetContactCampaignStatsUnsubscriptionsAdminUnsubscriptionItems struct {
 
-	// Date of the event
+	// UTC date-time of the event
 	// Required: true
 	EventTime *strfmt.DateTime `json:"eventTime"`
 

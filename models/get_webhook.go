@@ -19,7 +19,7 @@ import (
 // swagger:model getWebhook
 type GetWebhook struct {
 
-	// Creation date of the webhook (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	// Creation UTC date-time of the webhook (YYYY-MM-DDTHH:mm:ss.SSSZ)
 	// Required: true
 	CreatedAt *strfmt.DateTime `json:"createdAt"`
 
@@ -35,7 +35,7 @@ type GetWebhook struct {
 	// Required: true
 	ID *int64 `json:"id"`
 
-	// Last modification date of the webhook (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	// Last modification UTC date-time of the webhook (YYYY-MM-DDTHH:mm:ss.SSSZ)
 	// Required: true
 	ModifiedAt *strfmt.DateTime `json:"modifiedAt"`
 

@@ -53,7 +53,7 @@ type CreateEmailCampaign struct {
 	// Email on which the campaign recipients will be able to reply to
 	ReplyTo strfmt.Email `json:"replyTo,omitempty"`
 
-	// Sending date and time (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	// Sending UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ)
 	ScheduledAt strfmt.DateTime `json:"scheduledAt,omitempty"`
 
 	// sender

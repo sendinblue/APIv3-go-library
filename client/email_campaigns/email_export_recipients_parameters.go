@@ -18,7 +18,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	"github.com/sendinblue/APIv3-go-library/models"
+	models "github.com/sendinblue/APIv3-go-library/models"
 )
 
 // NewEmailExportRecipientsParams creates a new EmailExportRecipientsParams object
