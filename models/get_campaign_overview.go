@@ -57,6 +57,11 @@ func (m *GetCampaignOverview) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateScheduledAt(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if err := m.validateStatus(formats); err != nil {
 		// prop
 		res = append(res, err)
@@ -90,6 +95,19 @@ func (m *GetCampaignOverview) validateID(formats strfmt.Registry) error {
 func (m *GetCampaignOverview) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetCampaignOverview) validateScheduledAt(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ScheduledAt) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("scheduledAt", "body", "date-time", m.ScheduledAt.String(), formats); err != nil {
 		return err
 	}
 

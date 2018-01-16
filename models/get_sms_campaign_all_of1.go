@@ -13,21 +13,21 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// GetSmsCampaignAllOf1 get sms campaign all of1
+// GetSMSCampaignAllOf1 get Sms campaign all of1
 // swagger:model getSmsCampaignAllOf1
-type GetSmsCampaignAllOf1 struct {
+type GetSMSCampaignAllOf1 struct {
 
 	// recipients
 	// Required: true
-	Recipients *GetSmsCampaignAllOf1Recipients `json:"recipients"`
+	Recipients *GetSMSCampaignAllOf1Recipients `json:"recipients"`
 
 	// statistics
 	// Required: true
-	Statistics *GetSmsCampaignAllOf1Statistics `json:"statistics"`
+	Statistics *GetSMSCampaignAllOf1Statistics `json:"statistics"`
 }
 
-// Validate validates this get sms campaign all of1
-func (m *GetSmsCampaignAllOf1) Validate(formats strfmt.Registry) error {
+// Validate validates this get Sms campaign all of1
+func (m *GetSMSCampaignAllOf1) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateRecipients(formats); err != nil {
@@ -46,7 +46,7 @@ func (m *GetSmsCampaignAllOf1) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *GetSmsCampaignAllOf1) validateRecipients(formats strfmt.Registry) error {
+func (m *GetSMSCampaignAllOf1) validateRecipients(formats strfmt.Registry) error {
 
 	if err := validate.Required("recipients", "body", m.Recipients); err != nil {
 		return err
@@ -65,7 +65,7 @@ func (m *GetSmsCampaignAllOf1) validateRecipients(formats strfmt.Registry) error
 	return nil
 }
 
-func (m *GetSmsCampaignAllOf1) validateStatistics(formats strfmt.Registry) error {
+func (m *GetSMSCampaignAllOf1) validateStatistics(formats strfmt.Registry) error {
 
 	if err := validate.Required("statistics", "body", m.Statistics); err != nil {
 		return err
@@ -85,7 +85,7 @@ func (m *GetSmsCampaignAllOf1) validateStatistics(formats strfmt.Registry) error
 }
 
 // MarshalBinary interface implementation
-func (m *GetSmsCampaignAllOf1) MarshalBinary() ([]byte, error) {
+func (m *GetSMSCampaignAllOf1) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -93,8 +93,8 @@ func (m *GetSmsCampaignAllOf1) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *GetSmsCampaignAllOf1) UnmarshalBinary(b []byte) error {
-	var res GetSmsCampaignAllOf1
+func (m *GetSMSCampaignAllOf1) UnmarshalBinary(b []byte) error {
+	var res GetSMSCampaignAllOf1
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

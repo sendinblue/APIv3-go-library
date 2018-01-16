@@ -13,9 +13,9 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// CreateSmsCampaignRecipients create sms campaign recipients
+// CreateSMSCampaignRecipients create Sms campaign recipients
 // swagger:model createSmsCampaignRecipients
-type CreateSmsCampaignRecipients struct {
+type CreateSMSCampaignRecipients struct {
 
 	// List ids which have to be excluded from a campaign
 	// Required: true
@@ -26,8 +26,8 @@ type CreateSmsCampaignRecipients struct {
 	ListIds []int64 `json:"listIds"`
 }
 
-// Validate validates this create sms campaign recipients
-func (m *CreateSmsCampaignRecipients) Validate(formats strfmt.Registry) error {
+// Validate validates this create Sms campaign recipients
+func (m *CreateSMSCampaignRecipients) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateExclusionListIds(formats); err != nil {
@@ -46,7 +46,7 @@ func (m *CreateSmsCampaignRecipients) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *CreateSmsCampaignRecipients) validateExclusionListIds(formats strfmt.Registry) error {
+func (m *CreateSMSCampaignRecipients) validateExclusionListIds(formats strfmt.Registry) error {
 
 	if err := validate.Required("exclusionListIds", "body", m.ExclusionListIds); err != nil {
 		return err
@@ -55,7 +55,7 @@ func (m *CreateSmsCampaignRecipients) validateExclusionListIds(formats strfmt.Re
 	return nil
 }
 
-func (m *CreateSmsCampaignRecipients) validateListIds(formats strfmt.Registry) error {
+func (m *CreateSMSCampaignRecipients) validateListIds(formats strfmt.Registry) error {
 
 	if err := validate.Required("listIds", "body", m.ListIds); err != nil {
 		return err
@@ -65,7 +65,7 @@ func (m *CreateSmsCampaignRecipients) validateListIds(formats strfmt.Registry) e
 }
 
 // MarshalBinary interface implementation
-func (m *CreateSmsCampaignRecipients) MarshalBinary() ([]byte, error) {
+func (m *CreateSMSCampaignRecipients) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -73,8 +73,8 @@ func (m *CreateSmsCampaignRecipients) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *CreateSmsCampaignRecipients) UnmarshalBinary(b []byte) error {
-	var res CreateSmsCampaignRecipients
+func (m *CreateSMSCampaignRecipients) UnmarshalBinary(b []byte) error {
+	var res CreateSMSCampaignRecipients
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

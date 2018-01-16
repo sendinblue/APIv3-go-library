@@ -54,16 +54,16 @@ func NewGetSMSCampaignsOK() *GetSMSCampaignsOK {
 SMS campaigns informations
 */
 type GetSMSCampaignsOK struct {
-	Payload *models.GetSmsCampaigns
+	Payload *models.GetSMSCampaigns
 }
 
 func (o *GetSMSCampaignsOK) Error() string {
-	return fmt.Sprintf("[GET /smsCampaigns][%d] getSMSCampaignsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /smsCampaigns][%d] getSmsCampaignsOK  %+v", 200, o.Payload)
 }
 
 func (o *GetSMSCampaignsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GetSmsCampaigns)
+	o.Payload = new(models.GetSMSCampaigns)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -87,7 +87,7 @@ type GetSMSCampaignsBadRequest struct {
 }
 
 func (o *GetSMSCampaignsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /smsCampaigns][%d] getSMSCampaignsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /smsCampaigns][%d] getSmsCampaignsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetSMSCampaignsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

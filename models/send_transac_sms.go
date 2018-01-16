@@ -15,9 +15,9 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// SendTransacSms send transac sms
+// SendTransacSMS send transac Sms
 // swagger:model sendTransacSms
-type SendTransacSms struct {
+type SendTransacSMS struct {
 
 	// Content of the message. If more than 160 characters long, multiple text messages will be sent
 	// Required: true
@@ -43,8 +43,8 @@ type SendTransacSms struct {
 	WebURL string `json:"webUrl,omitempty"`
 }
 
-// Validate validates this send transac sms
-func (m *SendTransacSms) Validate(formats strfmt.Registry) error {
+// Validate validates this send transac Sms
+func (m *SendTransacSMS) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateContent(formats); err != nil {
@@ -73,7 +73,7 @@ func (m *SendTransacSms) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *SendTransacSms) validateContent(formats strfmt.Registry) error {
+func (m *SendTransacSMS) validateContent(formats strfmt.Registry) error {
 
 	if err := validate.Required("content", "body", m.Content); err != nil {
 		return err
@@ -86,7 +86,7 @@ func (m *SendTransacSms) validateContent(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *SendTransacSms) validateRecipient(formats strfmt.Registry) error {
+func (m *SendTransacSMS) validateRecipient(formats strfmt.Registry) error {
 
 	if err := validate.Required("recipient", "body", m.Recipient); err != nil {
 		return err
@@ -95,7 +95,7 @@ func (m *SendTransacSms) validateRecipient(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *SendTransacSms) validateSender(formats strfmt.Registry) error {
+func (m *SendTransacSMS) validateSender(formats strfmt.Registry) error {
 
 	if err := validate.Required("sender", "body", m.Sender); err != nil {
 		return err
@@ -121,21 +121,21 @@ func init() {
 }
 
 const (
-	// SendTransacSmsTypeTransactional captures enum value "transactional"
-	SendTransacSmsTypeTransactional string = "transactional"
-	// SendTransacSmsTypeMarketing captures enum value "marketing"
-	SendTransacSmsTypeMarketing string = "marketing"
+	// SendTransacSMSTypeTransactional captures enum value "transactional"
+	SendTransacSMSTypeTransactional string = "transactional"
+	// SendTransacSMSTypeMarketing captures enum value "marketing"
+	SendTransacSMSTypeMarketing string = "marketing"
 )
 
 // prop value enum
-func (m *SendTransacSms) validateTypeEnum(path, location string, value string) error {
+func (m *SendTransacSMS) validateTypeEnum(path, location string, value string) error {
 	if err := validate.Enum(path, location, value, sendTransacSmsTypeTypePropEnum); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *SendTransacSms) validateType(formats strfmt.Registry) error {
+func (m *SendTransacSMS) validateType(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Type) { // not required
 		return nil
@@ -150,7 +150,7 @@ func (m *SendTransacSms) validateType(formats strfmt.Registry) error {
 }
 
 // MarshalBinary interface implementation
-func (m *SendTransacSms) MarshalBinary() ([]byte, error) {
+func (m *SendTransacSMS) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -158,8 +158,8 @@ func (m *SendTransacSms) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *SendTransacSms) UnmarshalBinary(b []byte) error {
-	var res SendTransacSms
+func (m *SendTransacSMS) UnmarshalBinary(b []byte) error {
+	var res SendTransacSMS
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

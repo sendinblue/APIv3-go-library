@@ -10,13 +10,14 @@ import (
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // UpdateEmailCampaign update email campaign
 // swagger:model updateEmailCampaign
 type UpdateEmailCampaign struct {
 
-	// Absolute url of the attachment. Url not allowed from local machine. File must be hosted somewhere.Possilbe extension values are xlsx, xls, ods, docx, docm, doc, csv, pdf, txt, gif, jpg, jpeg, png, tif, tiff and rtf
+	// Absolute url of the attachment (no local file). Extension allowed: xlsx, xls, ods, docx, docm, doc, csv, pdf, txt, gif, jpg, jpeg, png, tif, tiff, rtf, bmp, cgm, css, shtml, html, htm, zip, xml, ppt, pptx, tar, ez, ics, mobi, msg, pub and eps
 	AttachmentURL string `json:"attachmentUrl,omitempty"`
 
 	// Footer of the email campaign
@@ -49,7 +50,7 @@ type UpdateEmailCampaign struct {
 	// Email on which campaign recipients will be able to reply to
 	ReplyTo strfmt.Email `json:"replyTo,omitempty"`
 
-	// UTC date-time on which the campaign has to run (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	// UTC date-time on which the campaign has to run (YYYY-MM-DDTHH:mm:ss.SSSZ). Prefer to pass your timezone in date-time format for accurate result.
 	ScheduledAt strfmt.DateTime `json:"scheduledAt,omitempty"`
 
 	// sender
@@ -73,6 +74,16 @@ func (m *UpdateEmailCampaign) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateRecipients(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateReplyTo(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateScheduledAt(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -102,6 +113,32 @@ func (m *UpdateEmailCampaign) validateRecipients(formats strfmt.Registry) error 
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *UpdateEmailCampaign) validateReplyTo(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ReplyTo) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("replyTo", "body", "email", m.ReplyTo.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *UpdateEmailCampaign) validateScheduledAt(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ScheduledAt) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("scheduledAt", "body", "date-time", m.ScheduledAt.String(), formats); err != nil {
+		return err
 	}
 
 	return nil

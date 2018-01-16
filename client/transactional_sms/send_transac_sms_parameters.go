@@ -20,115 +20,115 @@ import (
 	models "github.com/sendinblue/APIv3-go-library/models"
 )
 
-// NewSendTransacSmsParams creates a new SendTransacSmsParams object
+// NewSendTransacSMSParams creates a new SendTransacSMSParams object
 // with the default values initialized.
-func NewSendTransacSmsParams() *SendTransacSmsParams {
+func NewSendTransacSMSParams() *SendTransacSMSParams {
 	var ()
-	return &SendTransacSmsParams{
+	return &SendTransacSMSParams{
 
 		timeout: cr.DefaultTimeout,
 	}
 }
 
-// NewSendTransacSmsParamsWithTimeout creates a new SendTransacSmsParams object
+// NewSendTransacSMSParamsWithTimeout creates a new SendTransacSMSParams object
 // with the default values initialized, and the ability to set a timeout on a request
-func NewSendTransacSmsParamsWithTimeout(timeout time.Duration) *SendTransacSmsParams {
+func NewSendTransacSMSParamsWithTimeout(timeout time.Duration) *SendTransacSMSParams {
 	var ()
-	return &SendTransacSmsParams{
+	return &SendTransacSMSParams{
 
 		timeout: timeout,
 	}
 }
 
-// NewSendTransacSmsParamsWithContext creates a new SendTransacSmsParams object
+// NewSendTransacSMSParamsWithContext creates a new SendTransacSMSParams object
 // with the default values initialized, and the ability to set a context for a request
-func NewSendTransacSmsParamsWithContext(ctx context.Context) *SendTransacSmsParams {
+func NewSendTransacSMSParamsWithContext(ctx context.Context) *SendTransacSMSParams {
 	var ()
-	return &SendTransacSmsParams{
+	return &SendTransacSMSParams{
 
 		Context: ctx,
 	}
 }
 
-// NewSendTransacSmsParamsWithHTTPClient creates a new SendTransacSmsParams object
+// NewSendTransacSMSParamsWithHTTPClient creates a new SendTransacSMSParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
-func NewSendTransacSmsParamsWithHTTPClient(client *http.Client) *SendTransacSmsParams {
+func NewSendTransacSMSParamsWithHTTPClient(client *http.Client) *SendTransacSMSParams {
 	var ()
-	return &SendTransacSmsParams{
+	return &SendTransacSMSParams{
 		HTTPClient: client,
 	}
 }
 
-/*SendTransacSmsParams contains all the parameters to send to the API endpoint
-for the send transac sms operation typically these are written to a http.Request
+/*SendTransacSMSParams contains all the parameters to send to the API endpoint
+for the send transac Sms operation typically these are written to a http.Request
 */
-type SendTransacSmsParams struct {
+type SendTransacSMSParams struct {
 
-	/*SendTransacSms
+	/*SendTransacSMS
 	  Values to send a transactional SMS
 
 	*/
-	SendTransacSms *models.SendTransacSms
+	SendTransacSMS *models.SendTransacSMS
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
 }
 
-// WithTimeout adds the timeout to the send transac sms params
-func (o *SendTransacSmsParams) WithTimeout(timeout time.Duration) *SendTransacSmsParams {
+// WithTimeout adds the timeout to the send transac Sms params
+func (o *SendTransacSMSParams) WithTimeout(timeout time.Duration) *SendTransacSMSParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the send transac sms params
-func (o *SendTransacSmsParams) SetTimeout(timeout time.Duration) {
+// SetTimeout adds the timeout to the send transac Sms params
+func (o *SendTransacSMSParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the send transac sms params
-func (o *SendTransacSmsParams) WithContext(ctx context.Context) *SendTransacSmsParams {
+// WithContext adds the context to the send transac Sms params
+func (o *SendTransacSMSParams) WithContext(ctx context.Context) *SendTransacSMSParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the send transac sms params
-func (o *SendTransacSmsParams) SetContext(ctx context.Context) {
+// SetContext adds the context to the send transac Sms params
+func (o *SendTransacSMSParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the send transac sms params
-func (o *SendTransacSmsParams) WithHTTPClient(client *http.Client) *SendTransacSmsParams {
+// WithHTTPClient adds the HTTPClient to the send transac Sms params
+func (o *SendTransacSMSParams) WithHTTPClient(client *http.Client) *SendTransacSMSParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the send transac sms params
-func (o *SendTransacSmsParams) SetHTTPClient(client *http.Client) {
+// SetHTTPClient adds the HTTPClient to the send transac Sms params
+func (o *SendTransacSMSParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithSendTransacSms adds the sendTransacSms to the send transac sms params
-func (o *SendTransacSmsParams) WithSendTransacSms(sendTransacSms *models.SendTransacSms) *SendTransacSmsParams {
-	o.SetSendTransacSms(sendTransacSms)
+// WithSendTransacSMS adds the sendTransacSMS to the send transac Sms params
+func (o *SendTransacSMSParams) WithSendTransacSMS(sendTransacSMS *models.SendTransacSMS) *SendTransacSMSParams {
+	o.SetSendTransacSMS(sendTransacSMS)
 	return o
 }
 
-// SetSendTransacSms adds the sendTransacSms to the send transac sms params
-func (o *SendTransacSmsParams) SetSendTransacSms(sendTransacSms *models.SendTransacSms) {
-	o.SendTransacSms = sendTransacSms
+// SetSendTransacSMS adds the sendTransacSms to the send transac Sms params
+func (o *SendTransacSMSParams) SetSendTransacSMS(sendTransacSMS *models.SendTransacSMS) {
+	o.SendTransacSMS = sendTransacSMS
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *SendTransacSmsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
+func (o *SendTransacSMSParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	if err := r.SetTimeout(o.timeout); err != nil {
 		return err
 	}
 	var res []error
 
-	if o.SendTransacSms != nil {
-		if err := r.SetBodyParam(o.SendTransacSms); err != nil {
+	if o.SendTransacSMS != nil {
+		if err := r.SetBodyParam(o.SendTransacSMS); err != nil {
 			return err
 		}
 	}

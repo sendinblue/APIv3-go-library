@@ -20,7 +20,7 @@ type SendEmail struct {
 	// attachment
 	Attachment SendEmailAttachment `json:"attachment"`
 
-	// Absolute url of the attachment (no local file). Extension allowed: gif, png, bmp, cgm, jpg, jpeg, tif, tiff, rtf, txt, css, shtml, html, htm, csv, zip, pdf, xml, ods, doc, docx, docm, ics, xls, xlsx, ppt, tar, and ez
+	// Absolute url of the attachment (no local file). Extension allowed: xlsx, xls, ods, docx, docm, doc, csv, pdf, txt, gif, jpg, jpeg, png, tif, tiff, rtf, bmp, cgm, css, shtml, html, htm, zip, xml, ppt, pptx, tar, ez, ics, mobi, msg, pub and eps
 	AttachmentURL string `json:"attachmentUrl,omitempty"`
 
 	// attributes
@@ -62,6 +62,11 @@ func (m *SendEmail) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateReplyTo(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -89,6 +94,19 @@ func (m *SendEmail) validateEmailCc(formats strfmt.Registry) error {
 func (m *SendEmail) validateEmailTo(formats strfmt.Registry) error {
 
 	if err := validate.Required("emailTo", "body", m.EmailTo); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *SendEmail) validateReplyTo(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ReplyTo) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("replyTo", "body", "email", m.ReplyTo.String(), formats); err != nil {
 		return err
 	}
 

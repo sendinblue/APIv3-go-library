@@ -13,9 +13,9 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// GetSmsCampaignStats get sms campaign stats
+// GetSMSCampaignStats get Sms campaign stats
 // swagger:model getSmsCampaignStats
-type GetSmsCampaignStats struct {
+type GetSMSCampaignStats struct {
 
 	// Number of replies to the SMS
 	// Required: true
@@ -46,8 +46,8 @@ type GetSmsCampaignStats struct {
 	Unsubscriptions *int64 `json:"unsubscriptions"`
 }
 
-// Validate validates this get sms campaign stats
-func (m *GetSmsCampaignStats) Validate(formats strfmt.Registry) error {
+// Validate validates this get Sms campaign stats
+func (m *GetSMSCampaignStats) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAnswered(formats); err != nil {
@@ -91,7 +91,7 @@ func (m *GetSmsCampaignStats) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *GetSmsCampaignStats) validateAnswered(formats strfmt.Registry) error {
+func (m *GetSMSCampaignStats) validateAnswered(formats strfmt.Registry) error {
 
 	if err := validate.Required("answered", "body", m.Answered); err != nil {
 		return err
@@ -100,7 +100,7 @@ func (m *GetSmsCampaignStats) validateAnswered(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *GetSmsCampaignStats) validateDelivered(formats strfmt.Registry) error {
+func (m *GetSMSCampaignStats) validateDelivered(formats strfmt.Registry) error {
 
 	if err := validate.Required("delivered", "body", m.Delivered); err != nil {
 		return err
@@ -109,7 +109,7 @@ func (m *GetSmsCampaignStats) validateDelivered(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *GetSmsCampaignStats) validateHardBounces(formats strfmt.Registry) error {
+func (m *GetSMSCampaignStats) validateHardBounces(formats strfmt.Registry) error {
 
 	if err := validate.Required("hardBounces", "body", m.HardBounces); err != nil {
 		return err
@@ -118,7 +118,7 @@ func (m *GetSmsCampaignStats) validateHardBounces(formats strfmt.Registry) error
 	return nil
 }
 
-func (m *GetSmsCampaignStats) validateProcessing(formats strfmt.Registry) error {
+func (m *GetSMSCampaignStats) validateProcessing(formats strfmt.Registry) error {
 
 	if err := validate.Required("processing", "body", m.Processing); err != nil {
 		return err
@@ -127,7 +127,7 @@ func (m *GetSmsCampaignStats) validateProcessing(formats strfmt.Registry) error 
 	return nil
 }
 
-func (m *GetSmsCampaignStats) validateSent(formats strfmt.Registry) error {
+func (m *GetSMSCampaignStats) validateSent(formats strfmt.Registry) error {
 
 	if err := validate.Required("sent", "body", m.Sent); err != nil {
 		return err
@@ -136,7 +136,7 @@ func (m *GetSmsCampaignStats) validateSent(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *GetSmsCampaignStats) validateSoftBounces(formats strfmt.Registry) error {
+func (m *GetSMSCampaignStats) validateSoftBounces(formats strfmt.Registry) error {
 
 	if err := validate.Required("softBounces", "body", m.SoftBounces); err != nil {
 		return err
@@ -145,7 +145,7 @@ func (m *GetSmsCampaignStats) validateSoftBounces(formats strfmt.Registry) error
 	return nil
 }
 
-func (m *GetSmsCampaignStats) validateUnsubscriptions(formats strfmt.Registry) error {
+func (m *GetSMSCampaignStats) validateUnsubscriptions(formats strfmt.Registry) error {
 
 	if err := validate.Required("unsubscriptions", "body", m.Unsubscriptions); err != nil {
 		return err
@@ -155,7 +155,7 @@ func (m *GetSmsCampaignStats) validateUnsubscriptions(formats strfmt.Registry) e
 }
 
 // MarshalBinary interface implementation
-func (m *GetSmsCampaignStats) MarshalBinary() ([]byte, error) {
+func (m *GetSMSCampaignStats) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -163,8 +163,8 @@ func (m *GetSmsCampaignStats) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *GetSmsCampaignStats) UnmarshalBinary(b []byte) error {
-	var res GetSmsCampaignStats
+func (m *GetSMSCampaignStats) UnmarshalBinary(b []byte) error {
+	var res GetSMSCampaignStats
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

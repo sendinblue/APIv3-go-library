@@ -12,43 +12,43 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// GetSmsCampaign get sms campaign
+// GetSMSCampaign get Sms campaign
 // swagger:model getSmsCampaign
-type GetSmsCampaign struct {
-	GetSmsCampaignOverview
+type GetSMSCampaign struct {
+	GetSMSCampaignOverview
 
-	GetSmsCampaignAllOf1
+	GetSMSCampaignAllOf1
 }
 
 // UnmarshalJSON unmarshals this object from a JSON structure
-func (m *GetSmsCampaign) UnmarshalJSON(raw []byte) error {
+func (m *GetSMSCampaign) UnmarshalJSON(raw []byte) error {
 
-	var aO0 GetSmsCampaignOverview
+	var aO0 GetSMSCampaignOverview
 	if err := swag.ReadJSON(raw, &aO0); err != nil {
 		return err
 	}
-	m.GetSmsCampaignOverview = aO0
+	m.GetSMSCampaignOverview = aO0
 
-	var aO1 GetSmsCampaignAllOf1
+	var aO1 GetSMSCampaignAllOf1
 	if err := swag.ReadJSON(raw, &aO1); err != nil {
 		return err
 	}
-	m.GetSmsCampaignAllOf1 = aO1
+	m.GetSMSCampaignAllOf1 = aO1
 
 	return nil
 }
 
 // MarshalJSON marshals this object to a JSON structure
-func (m GetSmsCampaign) MarshalJSON() ([]byte, error) {
+func (m GetSMSCampaign) MarshalJSON() ([]byte, error) {
 	var _parts [][]byte
 
-	aO0, err := swag.WriteJSON(m.GetSmsCampaignOverview)
+	aO0, err := swag.WriteJSON(m.GetSMSCampaignOverview)
 	if err != nil {
 		return nil, err
 	}
 	_parts = append(_parts, aO0)
 
-	aO1, err := swag.WriteJSON(m.GetSmsCampaignAllOf1)
+	aO1, err := swag.WriteJSON(m.GetSMSCampaignAllOf1)
 	if err != nil {
 		return nil, err
 	}
@@ -57,15 +57,15 @@ func (m GetSmsCampaign) MarshalJSON() ([]byte, error) {
 	return swag.ConcatJSON(_parts...), nil
 }
 
-// Validate validates this get sms campaign
-func (m *GetSmsCampaign) Validate(formats strfmt.Registry) error {
+// Validate validates this get Sms campaign
+func (m *GetSMSCampaign) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.GetSmsCampaignOverview.Validate(formats); err != nil {
+	if err := m.GetSMSCampaignOverview.Validate(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.GetSmsCampaignAllOf1.Validate(formats); err != nil {
+	if err := m.GetSMSCampaignAllOf1.Validate(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -76,7 +76,7 @@ func (m *GetSmsCampaign) Validate(formats strfmt.Registry) error {
 }
 
 // MarshalBinary interface implementation
-func (m *GetSmsCampaign) MarshalBinary() ([]byte, error) {
+func (m *GetSMSCampaign) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -84,8 +84,8 @@ func (m *GetSmsCampaign) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *GetSmsCampaign) UnmarshalBinary(b []byte) error {
-	var res GetSmsCampaign
+func (m *GetSMSCampaign) UnmarshalBinary(b []byte) error {
+	var res GetSMSCampaign
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

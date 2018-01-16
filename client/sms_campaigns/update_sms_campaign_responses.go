@@ -16,31 +16,31 @@ import (
 	models "github.com/sendinblue/APIv3-go-library/models"
 )
 
-// UpdateSmsCampaignReader is a Reader for the UpdateSmsCampaign structure.
-type UpdateSmsCampaignReader struct {
+// UpdateSMSCampaignReader is a Reader for the UpdateSMSCampaign structure.
+type UpdateSMSCampaignReader struct {
 	formats strfmt.Registry
 }
 
 // ReadResponse reads a server response into the received o.
-func (o *UpdateSmsCampaignReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
+func (o *UpdateSMSCampaignReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 204:
-		result := NewUpdateSmsCampaignNoContent()
+		result := NewUpdateSMSCampaignNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 
 	case 400:
-		result := NewUpdateSmsCampaignBadRequest()
+		result := NewUpdateSMSCampaignBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 
 	case 404:
-		result := NewUpdateSmsCampaignNotFound()
+		result := NewUpdateSMSCampaignNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -51,45 +51,45 @@ func (o *UpdateSmsCampaignReader) ReadResponse(response runtime.ClientResponse, 
 	}
 }
 
-// NewUpdateSmsCampaignNoContent creates a UpdateSmsCampaignNoContent with default headers values
-func NewUpdateSmsCampaignNoContent() *UpdateSmsCampaignNoContent {
-	return &UpdateSmsCampaignNoContent{}
+// NewUpdateSMSCampaignNoContent creates a UpdateSMSCampaignNoContent with default headers values
+func NewUpdateSMSCampaignNoContent() *UpdateSMSCampaignNoContent {
+	return &UpdateSMSCampaignNoContent{}
 }
 
-/*UpdateSmsCampaignNoContent handles this case with default header values.
+/*UpdateSMSCampaignNoContent handles this case with default header values.
 
 SMS campaign updated
 */
-type UpdateSmsCampaignNoContent struct {
+type UpdateSMSCampaignNoContent struct {
 }
 
-func (o *UpdateSmsCampaignNoContent) Error() string {
+func (o *UpdateSMSCampaignNoContent) Error() string {
 	return fmt.Sprintf("[PUT /smsCampaigns/{campaignId}][%d] updateSmsCampaignNoContent ", 204)
 }
 
-func (o *UpdateSmsCampaignNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *UpdateSMSCampaignNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
 
-// NewUpdateSmsCampaignBadRequest creates a UpdateSmsCampaignBadRequest with default headers values
-func NewUpdateSmsCampaignBadRequest() *UpdateSmsCampaignBadRequest {
-	return &UpdateSmsCampaignBadRequest{}
+// NewUpdateSMSCampaignBadRequest creates a UpdateSMSCampaignBadRequest with default headers values
+func NewUpdateSMSCampaignBadRequest() *UpdateSMSCampaignBadRequest {
+	return &UpdateSMSCampaignBadRequest{}
 }
 
-/*UpdateSmsCampaignBadRequest handles this case with default header values.
+/*UpdateSMSCampaignBadRequest handles this case with default header values.
 
 bad request
 */
-type UpdateSmsCampaignBadRequest struct {
+type UpdateSMSCampaignBadRequest struct {
 	Payload *models.ErrorModel
 }
 
-func (o *UpdateSmsCampaignBadRequest) Error() string {
+func (o *UpdateSMSCampaignBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /smsCampaigns/{campaignId}][%d] updateSmsCampaignBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *UpdateSmsCampaignBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *UpdateSMSCampaignBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ErrorModel)
 
@@ -101,24 +101,24 @@ func (o *UpdateSmsCampaignBadRequest) readResponse(response runtime.ClientRespon
 	return nil
 }
 
-// NewUpdateSmsCampaignNotFound creates a UpdateSmsCampaignNotFound with default headers values
-func NewUpdateSmsCampaignNotFound() *UpdateSmsCampaignNotFound {
-	return &UpdateSmsCampaignNotFound{}
+// NewUpdateSMSCampaignNotFound creates a UpdateSMSCampaignNotFound with default headers values
+func NewUpdateSMSCampaignNotFound() *UpdateSMSCampaignNotFound {
+	return &UpdateSMSCampaignNotFound{}
 }
 
-/*UpdateSmsCampaignNotFound handles this case with default header values.
+/*UpdateSMSCampaignNotFound handles this case with default header values.
 
 Campaign ID not found
 */
-type UpdateSmsCampaignNotFound struct {
+type UpdateSMSCampaignNotFound struct {
 	Payload *models.ErrorModel
 }
 
-func (o *UpdateSmsCampaignNotFound) Error() string {
+func (o *UpdateSMSCampaignNotFound) Error() string {
 	return fmt.Sprintf("[PUT /smsCampaigns/{campaignId}][%d] updateSmsCampaignNotFound  %+v", 404, o.Payload)
 }
 
-func (o *UpdateSmsCampaignNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *UpdateSMSCampaignNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ErrorModel)
 

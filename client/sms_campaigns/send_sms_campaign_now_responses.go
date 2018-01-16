@@ -71,7 +71,7 @@ type SendSMSCampaignNowNoContent struct {
 }
 
 func (o *SendSMSCampaignNowNoContent) Error() string {
-	return fmt.Sprintf("[POST /smsCampaigns/{campaignId}/sendNow][%d] sendSMSCampaignNowNoContent ", 204)
+	return fmt.Sprintf("[POST /smsCampaigns/{campaignId}/sendNow][%d] sendSmsCampaignNowNoContent ", 204)
 }
 
 func (o *SendSMSCampaignNowNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -93,7 +93,7 @@ type SendSMSCampaignNowBadRequest struct {
 }
 
 func (o *SendSMSCampaignNowBadRequest) Error() string {
-	return fmt.Sprintf("[POST /smsCampaigns/{campaignId}/sendNow][%d] sendSMSCampaignNowBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /smsCampaigns/{campaignId}/sendNow][%d] sendSmsCampaignNowBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *SendSMSCampaignNowBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -122,7 +122,7 @@ type SendSMSCampaignNowPaymentRequired struct {
 }
 
 func (o *SendSMSCampaignNowPaymentRequired) Error() string {
-	return fmt.Sprintf("[POST /smsCampaigns/{campaignId}/sendNow][%d] sendSMSCampaignNowPaymentRequired  %+v", 402, o.Payload)
+	return fmt.Sprintf("[POST /smsCampaigns/{campaignId}/sendNow][%d] sendSmsCampaignNowPaymentRequired  %+v", 402, o.Payload)
 }
 
 func (o *SendSMSCampaignNowPaymentRequired) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -151,7 +151,7 @@ type SendSMSCampaignNowNotFound struct {
 }
 
 func (o *SendSMSCampaignNowNotFound) Error() string {
-	return fmt.Sprintf("[POST /smsCampaigns/{campaignId}/sendNow][%d] sendSMSCampaignNowNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /smsCampaigns/{campaignId}/sendNow][%d] sendSmsCampaignNowNotFound  %+v", 404, o.Payload)
 }
 
 func (o *SendSMSCampaignNowNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

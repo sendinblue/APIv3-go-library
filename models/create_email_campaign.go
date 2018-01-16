@@ -19,7 +19,7 @@ import (
 // swagger:model createEmailCampaign
 type CreateEmailCampaign struct {
 
-	// Absolute url of the attachment (no local file). Extensions allowed xlsx, xls, ods, docx, docm, doc, csv, pdf, txt, gif, jpg, jpeg, png, tif, tiff and rtf
+	// Absolute url of the attachment (no local file). Extension allowed: xlsx, xls, ods, docx, docm, doc, csv, pdf, txt, gif, jpg, jpeg, png, tif, tiff, rtf, bmp, cgm, css, shtml, html, htm, zip, xml, ppt, pptx, tar, ez, ics, mobi, msg, pub and eps
 	AttachmentURL string `json:"attachmentUrl,omitempty"`
 
 	// Footer of the email campaign
@@ -53,7 +53,7 @@ type CreateEmailCampaign struct {
 	// Email on which the campaign recipients will be able to reply to
 	ReplyTo strfmt.Email `json:"replyTo,omitempty"`
 
-	// Sending UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	// Sending UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). Prefer to pass your timezone in date-time format for accurate result.
 	ScheduledAt strfmt.DateTime `json:"scheduledAt,omitempty"`
 
 	// sender
@@ -88,6 +88,16 @@ func (m *CreateEmailCampaign) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateRecipients(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateReplyTo(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateScheduledAt(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -136,6 +146,32 @@ func (m *CreateEmailCampaign) validateRecipients(formats strfmt.Registry) error 
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *CreateEmailCampaign) validateReplyTo(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ReplyTo) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("replyTo", "body", "email", m.ReplyTo.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *CreateEmailCampaign) validateScheduledAt(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ScheduledAt) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("scheduledAt", "body", "date-time", m.ScheduledAt.String(), formats); err != nil {
+		return err
 	}
 
 	return nil

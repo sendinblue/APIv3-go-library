@@ -57,10 +57,6 @@ type GetReportsReportsItems struct {
 	// Required: true
 	SpamReports *int64 `json:"spamReports"`
 
-	// Reminder of the specified tag (only available if a specific tag has been specified in the request)
-	// Required: true
-	Tag *string `json:"tag"`
-
 	// Number of unique clicks for the date
 	// Required: true
 	UniqueClicks *int64 `json:"uniqueClicks"`
@@ -120,11 +116,6 @@ func (m *GetReportsReportsItems) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateSpamReports(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateTag(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -233,15 +224,6 @@ func (m *GetReportsReportsItems) validateSoftBounces(formats strfmt.Registry) er
 func (m *GetReportsReportsItems) validateSpamReports(formats strfmt.Registry) error {
 
 	if err := validate.Required("spamReports", "body", m.SpamReports); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GetReportsReportsItems) validateTag(formats strfmt.Registry) error {
-
-	if err := validate.Required("tag", "body", m.Tag); err != nil {
 		return err
 	}
 

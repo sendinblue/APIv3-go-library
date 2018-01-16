@@ -64,7 +64,7 @@ type DeleteSMSCampaignsNoContent struct {
 }
 
 func (o *DeleteSMSCampaignsNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /smsCampaigns/{campaignId}][%d] deleteSMSCampaignsNoContent ", 204)
+	return fmt.Sprintf("[DELETE /smsCampaigns/{campaignId}][%d] deleteSmsCampaignsNoContent ", 204)
 }
 
 func (o *DeleteSMSCampaignsNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -86,7 +86,7 @@ type DeleteSMSCampaignsBadRequest struct {
 }
 
 func (o *DeleteSMSCampaignsBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /smsCampaigns/{campaignId}][%d] deleteSMSCampaignsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /smsCampaigns/{campaignId}][%d] deleteSmsCampaignsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *DeleteSMSCampaignsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -115,7 +115,7 @@ type DeleteSMSCampaignsNotFound struct {
 }
 
 func (o *DeleteSMSCampaignsNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /smsCampaigns/{campaignId}][%d] deleteSMSCampaignsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /smsCampaigns/{campaignId}][%d] deleteSmsCampaignsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteSMSCampaignsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

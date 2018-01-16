@@ -59,7 +59,7 @@ func NewDeleteSMSCampaignsParamsWithHTTPClient(client *http.Client) *DeleteSMSCa
 }
 
 /*DeleteSMSCampaignsParams contains all the parameters to send to the API endpoint
-for the delete s m s campaigns operation typically these are written to a http.Request
+for the delete SMS campaigns operation typically these are written to a http.Request
 */
 type DeleteSMSCampaignsParams struct {
 
@@ -74,46 +74,46 @@ type DeleteSMSCampaignsParams struct {
 	HTTPClient *http.Client
 }
 
-// WithTimeout adds the timeout to the delete s m s campaigns params
+// WithTimeout adds the timeout to the delete SMS campaigns params
 func (o *DeleteSMSCampaignsParams) WithTimeout(timeout time.Duration) *DeleteSMSCampaignsParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the delete s m s campaigns params
+// SetTimeout adds the timeout to the delete SMS campaigns params
 func (o *DeleteSMSCampaignsParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the delete s m s campaigns params
+// WithContext adds the context to the delete SMS campaigns params
 func (o *DeleteSMSCampaignsParams) WithContext(ctx context.Context) *DeleteSMSCampaignsParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the delete s m s campaigns params
+// SetContext adds the context to the delete SMS campaigns params
 func (o *DeleteSMSCampaignsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the delete s m s campaigns params
+// WithHTTPClient adds the HTTPClient to the delete SMS campaigns params
 func (o *DeleteSMSCampaignsParams) WithHTTPClient(client *http.Client) *DeleteSMSCampaignsParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the delete s m s campaigns params
+// SetHTTPClient adds the HTTPClient to the delete SMS campaigns params
 func (o *DeleteSMSCampaignsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithCampaignID adds the campaignID to the delete s m s campaigns params
+// WithCampaignID adds the campaignID to the delete SMS campaigns params
 func (o *DeleteSMSCampaignsParams) WithCampaignID(campaignID int64) *DeleteSMSCampaignsParams {
 	o.SetCampaignID(campaignID)
 	return o
 }
 
-// SetCampaignID adds the campaignId to the delete s m s campaigns params
+// SetCampaignID adds the campaignId to the delete SMS campaigns params
 func (o *DeleteSMSCampaignsParams) SetCampaignID(campaignID int64) {
 	o.CampaignID = campaignID
 }

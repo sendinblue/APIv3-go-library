@@ -13,9 +13,9 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// GetTransacSmsReportReportsItems get transac sms report reports items
+// GetTransacSMSReportReportsItems get transac Sms report reports items
 // swagger:model getTransacSmsReportReportsItems
-type GetTransacSmsReportReportsItems struct {
+type GetTransacSMSReportReportsItems struct {
 
 	// Number of accepted for the date
 	// Required: true
@@ -53,17 +53,13 @@ type GetTransacSmsReportReportsItems struct {
 	// Required: true
 	SoftBounces *int64 `json:"softBounces"`
 
-	// Tag specified in request
-	// Required: true
-	Tag *string `json:"tag"`
-
 	// Number of unsubscription for the date
 	// Required: true
 	Unsubscribed *int64 `json:"unsubscribed"`
 }
 
-// Validate validates this get transac sms report reports items
-func (m *GetTransacSmsReportReportsItems) Validate(formats strfmt.Registry) error {
+// Validate validates this get transac Sms report reports items
+func (m *GetTransacSMSReportReportsItems) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAccepted(formats); err != nil {
@@ -111,11 +107,6 @@ func (m *GetTransacSmsReportReportsItems) Validate(formats strfmt.Registry) erro
 		res = append(res, err)
 	}
 
-	if err := m.validateTag(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
 	if err := m.validateUnsubscribed(formats); err != nil {
 		// prop
 		res = append(res, err)
@@ -127,7 +118,7 @@ func (m *GetTransacSmsReportReportsItems) Validate(formats strfmt.Registry) erro
 	return nil
 }
 
-func (m *GetTransacSmsReportReportsItems) validateAccepted(formats strfmt.Registry) error {
+func (m *GetTransacSMSReportReportsItems) validateAccepted(formats strfmt.Registry) error {
 
 	if err := validate.Required("accepted", "body", m.Accepted); err != nil {
 		return err
@@ -136,7 +127,7 @@ func (m *GetTransacSmsReportReportsItems) validateAccepted(formats strfmt.Regist
 	return nil
 }
 
-func (m *GetTransacSmsReportReportsItems) validateBlocked(formats strfmt.Registry) error {
+func (m *GetTransacSMSReportReportsItems) validateBlocked(formats strfmt.Registry) error {
 
 	if err := validate.Required("blocked", "body", m.Blocked); err != nil {
 		return err
@@ -145,7 +136,7 @@ func (m *GetTransacSmsReportReportsItems) validateBlocked(formats strfmt.Registr
 	return nil
 }
 
-func (m *GetTransacSmsReportReportsItems) validateDate(formats strfmt.Registry) error {
+func (m *GetTransacSMSReportReportsItems) validateDate(formats strfmt.Registry) error {
 
 	if err := validate.Required("date", "body", m.Date); err != nil {
 		return err
@@ -158,7 +149,7 @@ func (m *GetTransacSmsReportReportsItems) validateDate(formats strfmt.Registry) 
 	return nil
 }
 
-func (m *GetTransacSmsReportReportsItems) validateDelivered(formats strfmt.Registry) error {
+func (m *GetTransacSMSReportReportsItems) validateDelivered(formats strfmt.Registry) error {
 
 	if err := validate.Required("delivered", "body", m.Delivered); err != nil {
 		return err
@@ -167,7 +158,7 @@ func (m *GetTransacSmsReportReportsItems) validateDelivered(formats strfmt.Regis
 	return nil
 }
 
-func (m *GetTransacSmsReportReportsItems) validateHardBounces(formats strfmt.Registry) error {
+func (m *GetTransacSMSReportReportsItems) validateHardBounces(formats strfmt.Registry) error {
 
 	if err := validate.Required("hardBounces", "body", m.HardBounces); err != nil {
 		return err
@@ -176,7 +167,7 @@ func (m *GetTransacSmsReportReportsItems) validateHardBounces(formats strfmt.Reg
 	return nil
 }
 
-func (m *GetTransacSmsReportReportsItems) validateRejected(formats strfmt.Registry) error {
+func (m *GetTransacSMSReportReportsItems) validateRejected(formats strfmt.Registry) error {
 
 	if err := validate.Required("rejected", "body", m.Rejected); err != nil {
 		return err
@@ -185,7 +176,7 @@ func (m *GetTransacSmsReportReportsItems) validateRejected(formats strfmt.Regist
 	return nil
 }
 
-func (m *GetTransacSmsReportReportsItems) validateReplied(formats strfmt.Registry) error {
+func (m *GetTransacSMSReportReportsItems) validateReplied(formats strfmt.Registry) error {
 
 	if err := validate.Required("replied", "body", m.Replied); err != nil {
 		return err
@@ -194,7 +185,7 @@ func (m *GetTransacSmsReportReportsItems) validateReplied(formats strfmt.Registr
 	return nil
 }
 
-func (m *GetTransacSmsReportReportsItems) validateRequests(formats strfmt.Registry) error {
+func (m *GetTransacSMSReportReportsItems) validateRequests(formats strfmt.Registry) error {
 
 	if err := validate.Required("requests", "body", m.Requests); err != nil {
 		return err
@@ -203,7 +194,7 @@ func (m *GetTransacSmsReportReportsItems) validateRequests(formats strfmt.Regist
 	return nil
 }
 
-func (m *GetTransacSmsReportReportsItems) validateSoftBounces(formats strfmt.Registry) error {
+func (m *GetTransacSMSReportReportsItems) validateSoftBounces(formats strfmt.Registry) error {
 
 	if err := validate.Required("softBounces", "body", m.SoftBounces); err != nil {
 		return err
@@ -212,16 +203,7 @@ func (m *GetTransacSmsReportReportsItems) validateSoftBounces(formats strfmt.Reg
 	return nil
 }
 
-func (m *GetTransacSmsReportReportsItems) validateTag(formats strfmt.Registry) error {
-
-	if err := validate.Required("tag", "body", m.Tag); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GetTransacSmsReportReportsItems) validateUnsubscribed(formats strfmt.Registry) error {
+func (m *GetTransacSMSReportReportsItems) validateUnsubscribed(formats strfmt.Registry) error {
 
 	if err := validate.Required("unsubscribed", "body", m.Unsubscribed); err != nil {
 		return err
@@ -231,7 +213,7 @@ func (m *GetTransacSmsReportReportsItems) validateUnsubscribed(formats strfmt.Re
 }
 
 // MarshalBinary interface implementation
-func (m *GetTransacSmsReportReportsItems) MarshalBinary() ([]byte, error) {
+func (m *GetTransacSMSReportReportsItems) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -239,8 +221,8 @@ func (m *GetTransacSmsReportReportsItems) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *GetTransacSmsReportReportsItems) UnmarshalBinary(b []byte) error {
-	var res GetTransacSmsReportReportsItems
+func (m *GetTransacSMSReportReportsItems) UnmarshalBinary(b []byte) error {
+	var res GetTransacSMSReportReportsItems
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

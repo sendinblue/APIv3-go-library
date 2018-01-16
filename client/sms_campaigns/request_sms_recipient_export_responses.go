@@ -65,7 +65,7 @@ type RequestSMSRecipientExportAccepted struct {
 }
 
 func (o *RequestSMSRecipientExportAccepted) Error() string {
-	return fmt.Sprintf("[POST /smsCampaigns/{campaignId}/exportRecipients][%d] requestSMSRecipientExportAccepted  %+v", 202, o.Payload)
+	return fmt.Sprintf("[POST /smsCampaigns/{campaignId}/exportRecipients][%d] requestSmsRecipientExportAccepted  %+v", 202, o.Payload)
 }
 
 func (o *RequestSMSRecipientExportAccepted) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -94,7 +94,7 @@ type RequestSMSRecipientExportBadRequest struct {
 }
 
 func (o *RequestSMSRecipientExportBadRequest) Error() string {
-	return fmt.Sprintf("[POST /smsCampaigns/{campaignId}/exportRecipients][%d] requestSMSRecipientExportBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /smsCampaigns/{campaignId}/exportRecipients][%d] requestSmsRecipientExportBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *RequestSMSRecipientExportBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -123,7 +123,7 @@ type RequestSMSRecipientExportNotFound struct {
 }
 
 func (o *RequestSMSRecipientExportNotFound) Error() string {
-	return fmt.Sprintf("[POST /smsCampaigns/{campaignId}/exportRecipients][%d] requestSMSRecipientExportNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /smsCampaigns/{campaignId}/exportRecipients][%d] requestSmsRecipientExportNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RequestSMSRecipientExportNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -20,7 +20,7 @@ type RemoveCredits struct {
 	Email int64 `json:"email,omitempty"`
 
 	// SMS credits to be removed from the child account
-	Sms int64 `json:"sms,omitempty"`
+	SMS int64 `json:"sms,omitempty"`
 }
 
 // Validate validates this remove credits

@@ -15,7 +15,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// RequestSMSRecipientExport request s m s recipient export
+// RequestSMSRecipientExport request SMS recipient export
 // swagger:model requestSMSRecipientExport
 type RequestSMSRecipientExport struct {
 
@@ -27,7 +27,7 @@ type RequestSMSRecipientExport struct {
 	RecipientsType *string `json:"recipientsType"`
 }
 
-// Validate validates this request s m s recipient export
+// Validate validates this request SMS recipient export
 func (m *RequestSMSRecipientExport) Validate(formats strfmt.Registry) error {
 	var res []error
 
@@ -42,7 +42,7 @@ func (m *RequestSMSRecipientExport) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-var requestSMSRecipientExportTypeRecipientsTypePropEnum []interface{}
+var requestSmsRecipientExportTypeRecipientsTypePropEnum []interface{}
 
 func init() {
 	var res []string
@@ -50,7 +50,7 @@ func init() {
 		panic(err)
 	}
 	for _, v := range res {
-		requestSMSRecipientExportTypeRecipientsTypePropEnum = append(requestSMSRecipientExportTypeRecipientsTypePropEnum, v)
+		requestSmsRecipientExportTypeRecipientsTypePropEnum = append(requestSmsRecipientExportTypeRecipientsTypePropEnum, v)
 	}
 }
 
@@ -71,7 +71,7 @@ const (
 
 // prop value enum
 func (m *RequestSMSRecipientExport) validateRecipientsTypeEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, requestSMSRecipientExportTypeRecipientsTypePropEnum); err != nil {
+	if err := validate.Enum(path, location, value, requestSmsRecipientExportTypeRecipientsTypePropEnum); err != nil {
 		return err
 	}
 	return nil

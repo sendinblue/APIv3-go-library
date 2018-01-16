@@ -23,7 +23,7 @@ type RemainingCreditModelReseller struct {
 
 	// SMS Credits remaining for reseller account
 	// Required: true
-	Sms *int64 `json:"sms"`
+	SMS *int64 `json:"sms"`
 }
 
 // Validate validates this remaining credit model reseller
@@ -35,7 +35,7 @@ func (m *RemainingCreditModelReseller) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateSms(formats); err != nil {
+	if err := m.validateSMS(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -55,9 +55,9 @@ func (m *RemainingCreditModelReseller) validateEmail(formats strfmt.Registry) er
 	return nil
 }
 
-func (m *RemainingCreditModelReseller) validateSms(formats strfmt.Registry) error {
+func (m *RemainingCreditModelReseller) validateSMS(formats strfmt.Registry) error {
 
-	if err := validate.Required("sms", "body", m.Sms); err != nil {
+	if err := validate.Required("sms", "body", m.SMS); err != nil {
 		return err
 	}
 

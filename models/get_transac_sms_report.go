@@ -12,16 +12,16 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// GetTransacSmsReport get transac sms report
+// GetTransacSMSReport get transac Sms report
 // swagger:model getTransacSmsReport
-type GetTransacSmsReport struct {
+type GetTransacSMSReport struct {
 
 	// reports
-	Reports GetTransacSmsReportReports `json:"reports"`
+	Reports GetTransacSMSReportReports `json:"reports"`
 }
 
-// Validate validates this get transac sms report
-func (m *GetTransacSmsReport) Validate(formats strfmt.Registry) error {
+// Validate validates this get transac Sms report
+func (m *GetTransacSMSReport) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if len(res) > 0 {
@@ -31,7 +31,7 @@ func (m *GetTransacSmsReport) Validate(formats strfmt.Registry) error {
 }
 
 // MarshalBinary interface implementation
-func (m *GetTransacSmsReport) MarshalBinary() ([]byte, error) {
+func (m *GetTransacSMSReport) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -39,8 +39,8 @@ func (m *GetTransacSmsReport) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *GetTransacSmsReport) UnmarshalBinary(b []byte) error {
-	var res GetTransacSmsReport
+func (m *GetTransacSMSReport) UnmarshalBinary(b []byte) error {
+	var res GetTransacSMSReport
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

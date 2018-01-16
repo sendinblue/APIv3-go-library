@@ -59,7 +59,7 @@ func NewSendSMSCampaignNowParamsWithHTTPClient(client *http.Client) *SendSMSCamp
 }
 
 /*SendSMSCampaignNowParams contains all the parameters to send to the API endpoint
-for the send s m s campaign now operation typically these are written to a http.Request
+for the send SMS campaign now operation typically these are written to a http.Request
 */
 type SendSMSCampaignNowParams struct {
 
@@ -74,46 +74,46 @@ type SendSMSCampaignNowParams struct {
 	HTTPClient *http.Client
 }
 
-// WithTimeout adds the timeout to the send s m s campaign now params
+// WithTimeout adds the timeout to the send SMS campaign now params
 func (o *SendSMSCampaignNowParams) WithTimeout(timeout time.Duration) *SendSMSCampaignNowParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the send s m s campaign now params
+// SetTimeout adds the timeout to the send SMS campaign now params
 func (o *SendSMSCampaignNowParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the send s m s campaign now params
+// WithContext adds the context to the send SMS campaign now params
 func (o *SendSMSCampaignNowParams) WithContext(ctx context.Context) *SendSMSCampaignNowParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the send s m s campaign now params
+// SetContext adds the context to the send SMS campaign now params
 func (o *SendSMSCampaignNowParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the send s m s campaign now params
+// WithHTTPClient adds the HTTPClient to the send SMS campaign now params
 func (o *SendSMSCampaignNowParams) WithHTTPClient(client *http.Client) *SendSMSCampaignNowParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the send s m s campaign now params
+// SetHTTPClient adds the HTTPClient to the send SMS campaign now params
 func (o *SendSMSCampaignNowParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithCampaignID adds the campaignID to the send s m s campaign now params
+// WithCampaignID adds the campaignID to the send SMS campaign now params
 func (o *SendSMSCampaignNowParams) WithCampaignID(campaignID int64) *SendSMSCampaignNowParams {
 	o.SetCampaignID(campaignID)
 	return o
 }
 
-// SetCampaignID adds the campaignId to the send s m s campaign now params
+// SetCampaignID adds the campaignId to the send SMS campaign now params
 func (o *SendSMSCampaignNowParams) SetCampaignID(campaignID int64) {
 	o.CampaignID = campaignID
 }

@@ -10,6 +10,7 @@ import (
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // UpdateSender update sender
@@ -30,9 +31,27 @@ type UpdateSender struct {
 func (m *UpdateSender) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateEmail(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *UpdateSender) validateEmail(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Email) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("email", "body", "email", m.Email.String(), formats); err != nil {
+		return err
+	}
+
 	return nil
 }
 

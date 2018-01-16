@@ -20,7 +20,7 @@ type AddCredits struct {
 	Email int64 `json:"email,omitempty"`
 
 	// SMS credits to be added to the child account
-	Sms int64 `json:"sms,omitempty"`
+	SMS int64 `json:"sms,omitempty"`
 }
 
 // Validate validates this add credits

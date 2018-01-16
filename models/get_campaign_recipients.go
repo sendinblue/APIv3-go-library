@@ -19,11 +19,11 @@ type GetCampaignRecipients struct {
 
 	// exclusion lists
 	// Required: true
-	ExclusionLists GetCampaignRecipientsExclusionLists `json:"exclusionLists"`
+	ExclusionLists []int64 `json:"exclusionLists"`
 
 	// lists
 	// Required: true
-	Lists GetCampaignRecipientsLists `json:"lists"`
+	Lists []int64 `json:"lists"`
 }
 
 // Validate validates this get campaign recipients
@@ -52,26 +52,12 @@ func (m *GetCampaignRecipients) validateExclusionLists(formats strfmt.Registry) 
 		return err
 	}
 
-	if err := m.ExclusionLists.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("exclusionLists")
-		}
-		return err
-	}
-
 	return nil
 }
 
 func (m *GetCampaignRecipients) validateLists(formats strfmt.Registry) error {
 
 	if err := validate.Required("lists", "body", m.Lists); err != nil {
-		return err
-	}
-
-	if err := m.Lists.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("lists")
-		}
 		return err
 	}
 

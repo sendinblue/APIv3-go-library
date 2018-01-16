@@ -13,9 +13,9 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// CreateSmsCampaign create sms campaign
+// CreateSMSCampaign create Sms campaign
 // swagger:model createSmsCampaign
-type CreateSmsCampaign struct {
+type CreateSMSCampaign struct {
 
 	// Content of the message. The maximum characters used per SMS is 160, if used more than that, it will be counted as more than one SMS
 	Content string `json:"content,omitempty"`
@@ -25,9 +25,9 @@ type CreateSmsCampaign struct {
 	Name *string `json:"name"`
 
 	// recipients
-	Recipients *CreateSmsCampaignRecipients `json:"recipients,omitempty"`
+	Recipients *CreateSMSCampaignRecipients `json:"recipients,omitempty"`
 
-	// UTC date-time on which the campaign has to run (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	// UTC date-time on which the campaign has to run (YYYY-MM-DDTHH:mm:ss.SSSZ). Prefer to pass your timezone in date-time format for accurate result.
 	ScheduledAt strfmt.DateTime `json:"scheduledAt,omitempty"`
 
 	// Name of the sender. The number of characters is limited to 11
@@ -36,8 +36,8 @@ type CreateSmsCampaign struct {
 	Sender *string `json:"sender"`
 }
 
-// Validate validates this create sms campaign
-func (m *CreateSmsCampaign) Validate(formats strfmt.Registry) error {
+// Validate validates this create Sms campaign
+func (m *CreateSMSCampaign) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateName(formats); err != nil {
@@ -46,6 +46,11 @@ func (m *CreateSmsCampaign) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateRecipients(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateScheduledAt(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -61,7 +66,7 @@ func (m *CreateSmsCampaign) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *CreateSmsCampaign) validateName(formats strfmt.Registry) error {
+func (m *CreateSMSCampaign) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
 		return err
@@ -70,7 +75,7 @@ func (m *CreateSmsCampaign) validateName(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *CreateSmsCampaign) validateRecipients(formats strfmt.Registry) error {
+func (m *CreateSMSCampaign) validateRecipients(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Recipients) { // not required
 		return nil
@@ -89,7 +94,20 @@ func (m *CreateSmsCampaign) validateRecipients(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *CreateSmsCampaign) validateSender(formats strfmt.Registry) error {
+func (m *CreateSMSCampaign) validateScheduledAt(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ScheduledAt) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("scheduledAt", "body", "date-time", m.ScheduledAt.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *CreateSMSCampaign) validateSender(formats strfmt.Registry) error {
 
 	if err := validate.Required("sender", "body", m.Sender); err != nil {
 		return err
@@ -103,7 +121,7 @@ func (m *CreateSmsCampaign) validateSender(formats strfmt.Registry) error {
 }
 
 // MarshalBinary interface implementation
-func (m *CreateSmsCampaign) MarshalBinary() ([]byte, error) {
+func (m *CreateSMSCampaign) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -111,8 +129,8 @@ func (m *CreateSmsCampaign) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *CreateSmsCampaign) UnmarshalBinary(b []byte) error {
-	var res CreateSmsCampaign
+func (m *CreateSMSCampaign) UnmarshalBinary(b []byte) error {
+	var res CreateSMSCampaign
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

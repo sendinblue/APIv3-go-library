@@ -14,12 +14,12 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// GetSmsCampaignsCampaigns get sms campaigns campaigns
+// GetSMSCampaignsCampaigns get Sms campaigns campaigns
 // swagger:model getSmsCampaignsCampaigns
-type GetSmsCampaignsCampaigns []*GetSmsCampaignsCampaignsItems
+type GetSMSCampaignsCampaigns []*GetSMSCampaignsCampaignsItems
 
-// Validate validates this get sms campaigns campaigns
-func (m GetSmsCampaignsCampaigns) Validate(formats strfmt.Registry) error {
+// Validate validates this get Sms campaigns campaigns
+func (m GetSMSCampaignsCampaigns) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	for i := 0; i < len(m); i++ {

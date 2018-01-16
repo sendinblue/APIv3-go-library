@@ -15,9 +15,9 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// GetSmsCampaignOverview get sms campaign overview
+// GetSMSCampaignOverview get Sms campaign overview
 // swagger:model getSmsCampaignOverview
-type GetSmsCampaignOverview struct {
+type GetSMSCampaignOverview struct {
 
 	// Content of the SMS Campaign
 	// Required: true
@@ -56,8 +56,8 @@ type GetSmsCampaignOverview struct {
 	TestSent *bool `json:"testSent"`
 }
 
-// Validate validates this get sms campaign overview
-func (m *GetSmsCampaignOverview) Validate(formats strfmt.Registry) error {
+// Validate validates this get Sms campaign overview
+func (m *GetSMSCampaignOverview) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateContent(formats); err != nil {
@@ -111,7 +111,7 @@ func (m *GetSmsCampaignOverview) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *GetSmsCampaignOverview) validateContent(formats strfmt.Registry) error {
+func (m *GetSMSCampaignOverview) validateContent(formats strfmt.Registry) error {
 
 	if err := validate.Required("content", "body", m.Content); err != nil {
 		return err
@@ -120,7 +120,7 @@ func (m *GetSmsCampaignOverview) validateContent(formats strfmt.Registry) error 
 	return nil
 }
 
-func (m *GetSmsCampaignOverview) validateCreatedAt(formats strfmt.Registry) error {
+func (m *GetSMSCampaignOverview) validateCreatedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
 		return err
@@ -133,7 +133,7 @@ func (m *GetSmsCampaignOverview) validateCreatedAt(formats strfmt.Registry) erro
 	return nil
 }
 
-func (m *GetSmsCampaignOverview) validateID(formats strfmt.Registry) error {
+func (m *GetSMSCampaignOverview) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
 		return err
@@ -142,7 +142,7 @@ func (m *GetSmsCampaignOverview) validateID(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *GetSmsCampaignOverview) validateModifiedAt(formats strfmt.Registry) error {
+func (m *GetSMSCampaignOverview) validateModifiedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("modifiedAt", "body", m.ModifiedAt); err != nil {
 		return err
@@ -155,7 +155,7 @@ func (m *GetSmsCampaignOverview) validateModifiedAt(formats strfmt.Registry) err
 	return nil
 }
 
-func (m *GetSmsCampaignOverview) validateName(formats strfmt.Registry) error {
+func (m *GetSMSCampaignOverview) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
 		return err
@@ -164,7 +164,7 @@ func (m *GetSmsCampaignOverview) validateName(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *GetSmsCampaignOverview) validateScheduledAt(formats strfmt.Registry) error {
+func (m *GetSMSCampaignOverview) validateScheduledAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("scheduledAt", "body", m.ScheduledAt); err != nil {
 		return err
@@ -177,7 +177,7 @@ func (m *GetSmsCampaignOverview) validateScheduledAt(formats strfmt.Registry) er
 	return nil
 }
 
-func (m *GetSmsCampaignOverview) validateSender(formats strfmt.Registry) error {
+func (m *GetSMSCampaignOverview) validateSender(formats strfmt.Registry) error {
 
 	if err := validate.Required("sender", "body", m.Sender); err != nil {
 		return err
@@ -199,29 +199,29 @@ func init() {
 }
 
 const (
-	// GetSmsCampaignOverviewStatusDraft captures enum value "draft"
-	GetSmsCampaignOverviewStatusDraft string = "draft"
-	// GetSmsCampaignOverviewStatusSent captures enum value "sent"
-	GetSmsCampaignOverviewStatusSent string = "sent"
-	// GetSmsCampaignOverviewStatusArchive captures enum value "archive"
-	GetSmsCampaignOverviewStatusArchive string = "archive"
-	// GetSmsCampaignOverviewStatusQueued captures enum value "queued"
-	GetSmsCampaignOverviewStatusQueued string = "queued"
-	// GetSmsCampaignOverviewStatusSuspended captures enum value "suspended"
-	GetSmsCampaignOverviewStatusSuspended string = "suspended"
-	// GetSmsCampaignOverviewStatusInProcess captures enum value "in_process"
-	GetSmsCampaignOverviewStatusInProcess string = "in_process"
+	// GetSMSCampaignOverviewStatusDraft captures enum value "draft"
+	GetSMSCampaignOverviewStatusDraft string = "draft"
+	// GetSMSCampaignOverviewStatusSent captures enum value "sent"
+	GetSMSCampaignOverviewStatusSent string = "sent"
+	// GetSMSCampaignOverviewStatusArchive captures enum value "archive"
+	GetSMSCampaignOverviewStatusArchive string = "archive"
+	// GetSMSCampaignOverviewStatusQueued captures enum value "queued"
+	GetSMSCampaignOverviewStatusQueued string = "queued"
+	// GetSMSCampaignOverviewStatusSuspended captures enum value "suspended"
+	GetSMSCampaignOverviewStatusSuspended string = "suspended"
+	// GetSMSCampaignOverviewStatusInProcess captures enum value "in_process"
+	GetSMSCampaignOverviewStatusInProcess string = "in_process"
 )
 
 // prop value enum
-func (m *GetSmsCampaignOverview) validateStatusEnum(path, location string, value string) error {
+func (m *GetSMSCampaignOverview) validateStatusEnum(path, location string, value string) error {
 	if err := validate.Enum(path, location, value, getSmsCampaignOverviewTypeStatusPropEnum); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *GetSmsCampaignOverview) validateStatus(formats strfmt.Registry) error {
+func (m *GetSMSCampaignOverview) validateStatus(formats strfmt.Registry) error {
 
 	if err := validate.Required("status", "body", m.Status); err != nil {
 		return err
@@ -235,7 +235,7 @@ func (m *GetSmsCampaignOverview) validateStatus(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *GetSmsCampaignOverview) validateTestSent(formats strfmt.Registry) error {
+func (m *GetSMSCampaignOverview) validateTestSent(formats strfmt.Registry) error {
 
 	if err := validate.Required("testSent", "body", m.TestSent); err != nil {
 		return err
@@ -245,7 +245,7 @@ func (m *GetSmsCampaignOverview) validateTestSent(formats strfmt.Registry) error
 }
 
 // MarshalBinary interface implementation
-func (m *GetSmsCampaignOverview) MarshalBinary() ([]byte, error) {
+func (m *GetSMSCampaignOverview) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -253,8 +253,8 @@ func (m *GetSmsCampaignOverview) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *GetSmsCampaignOverview) UnmarshalBinary(b []byte) error {
-	var res GetSmsCampaignOverview
+func (m *GetSMSCampaignOverview) UnmarshalBinary(b []byte) error {
+	var res GetSMSCampaignOverview
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

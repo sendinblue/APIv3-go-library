@@ -64,7 +64,7 @@ type UpdateSMSCampaignStatusNoContent struct {
 }
 
 func (o *UpdateSMSCampaignStatusNoContent) Error() string {
-	return fmt.Sprintf("[PUT /smsCampaigns/{campaignId}/status][%d] updateSMSCampaignStatusNoContent ", 204)
+	return fmt.Sprintf("[PUT /smsCampaigns/{campaignId}/status][%d] updateSmsCampaignStatusNoContent ", 204)
 }
 
 func (o *UpdateSMSCampaignStatusNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -86,7 +86,7 @@ type UpdateSMSCampaignStatusBadRequest struct {
 }
 
 func (o *UpdateSMSCampaignStatusBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /smsCampaigns/{campaignId}/status][%d] updateSMSCampaignStatusBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /smsCampaigns/{campaignId}/status][%d] updateSmsCampaignStatusBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateSMSCampaignStatusBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -115,7 +115,7 @@ type UpdateSMSCampaignStatusNotFound struct {
 }
 
 func (o *UpdateSMSCampaignStatusNotFound) Error() string {
-	return fmt.Sprintf("[PUT /smsCampaigns/{campaignId}/status][%d] updateSMSCampaignStatusNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /smsCampaigns/{campaignId}/status][%d] updateSmsCampaignStatusNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateSMSCampaignStatusNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

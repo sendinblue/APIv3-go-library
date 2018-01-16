@@ -16,24 +16,24 @@ import (
 	models "github.com/sendinblue/APIv3-go-library/models"
 )
 
-// GetSmsEventsReader is a Reader for the GetSmsEvents structure.
-type GetSmsEventsReader struct {
+// GetSMSEventsReader is a Reader for the GetSMSEvents structure.
+type GetSMSEventsReader struct {
 	formats strfmt.Registry
 }
 
 // ReadResponse reads a server response into the received o.
-func (o *GetSmsEventsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
+func (o *GetSMSEventsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
-		result := NewGetSmsEventsOK()
+		result := NewGetSMSEventsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 
 	case 400:
-		result := NewGetSmsEventsBadRequest()
+		result := NewGetSMSEventsBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -44,26 +44,26 @@ func (o *GetSmsEventsReader) ReadResponse(response runtime.ClientResponse, consu
 	}
 }
 
-// NewGetSmsEventsOK creates a GetSmsEventsOK with default headers values
-func NewGetSmsEventsOK() *GetSmsEventsOK {
-	return &GetSmsEventsOK{}
+// NewGetSMSEventsOK creates a GetSMSEventsOK with default headers values
+func NewGetSMSEventsOK() *GetSMSEventsOK {
+	return &GetSMSEventsOK{}
 }
 
-/*GetSmsEventsOK handles this case with default header values.
+/*GetSMSEventsOK handles this case with default header values.
 
 Sms events report informations
 */
-type GetSmsEventsOK struct {
-	Payload *models.GetSmsEventReport
+type GetSMSEventsOK struct {
+	Payload *models.GetSMSEventReport
 }
 
-func (o *GetSmsEventsOK) Error() string {
+func (o *GetSMSEventsOK) Error() string {
 	return fmt.Sprintf("[GET /transactionalSMS/statistics/events][%d] getSmsEventsOK  %+v", 200, o.Payload)
 }
 
-func (o *GetSmsEventsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *GetSMSEventsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GetSmsEventReport)
+	o.Payload = new(models.GetSMSEventReport)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -73,24 +73,24 @@ func (o *GetSmsEventsOK) readResponse(response runtime.ClientResponse, consumer 
 	return nil
 }
 
-// NewGetSmsEventsBadRequest creates a GetSmsEventsBadRequest with default headers values
-func NewGetSmsEventsBadRequest() *GetSmsEventsBadRequest {
-	return &GetSmsEventsBadRequest{}
+// NewGetSMSEventsBadRequest creates a GetSMSEventsBadRequest with default headers values
+func NewGetSMSEventsBadRequest() *GetSMSEventsBadRequest {
+	return &GetSMSEventsBadRequest{}
 }
 
-/*GetSmsEventsBadRequest handles this case with default header values.
+/*GetSMSEventsBadRequest handles this case with default header values.
 
 bad request
 */
-type GetSmsEventsBadRequest struct {
+type GetSMSEventsBadRequest struct {
 	Payload *models.ErrorModel
 }
 
-func (o *GetSmsEventsBadRequest) Error() string {
+func (o *GetSMSEventsBadRequest) Error() string {
 	return fmt.Sprintf("[GET /transactionalSMS/statistics/events][%d] getSmsEventsBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *GetSmsEventsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *GetSMSEventsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ErrorModel)
 
