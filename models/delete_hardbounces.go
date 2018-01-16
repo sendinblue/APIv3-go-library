@@ -10,6 +10,7 @@ import (
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // DeleteHardbounces delete hardbounces
@@ -30,9 +31,63 @@ type DeleteHardbounces struct {
 func (m *DeleteHardbounces) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateContactEmail(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateEndDate(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateStartDate(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *DeleteHardbounces) validateContactEmail(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ContactEmail) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("contactEmail", "body", "email", m.ContactEmail.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeleteHardbounces) validateEndDate(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.EndDate) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("endDate", "body", "date", m.EndDate.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeleteHardbounces) validateStartDate(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.StartDate) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("startDate", "body", "date", m.StartDate.String(), formats); err != nil {
+		return err
+	}
+
 	return nil
 }
 

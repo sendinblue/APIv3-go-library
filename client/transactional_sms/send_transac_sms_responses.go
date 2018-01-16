@@ -16,31 +16,31 @@ import (
 	models "github.com/sendinblue/APIv3-go-library/models"
 )
 
-// SendTransacSmsReader is a Reader for the SendTransacSms structure.
-type SendTransacSmsReader struct {
+// SendTransacSMSReader is a Reader for the SendTransacSMS structure.
+type SendTransacSMSReader struct {
 	formats strfmt.Registry
 }
 
 // ReadResponse reads a server response into the received o.
-func (o *SendTransacSmsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
+func (o *SendTransacSMSReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 201:
-		result := NewSendTransacSmsCreated()
+		result := NewSendTransacSMSCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 
 	case 400:
-		result := NewSendTransacSmsBadRequest()
+		result := NewSendTransacSMSBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 
 	case 402:
-		result := NewSendTransacSmsPaymentRequired()
+		result := NewSendTransacSMSPaymentRequired()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -51,26 +51,26 @@ func (o *SendTransacSmsReader) ReadResponse(response runtime.ClientResponse, con
 	}
 }
 
-// NewSendTransacSmsCreated creates a SendTransacSmsCreated with default headers values
-func NewSendTransacSmsCreated() *SendTransacSmsCreated {
-	return &SendTransacSmsCreated{}
+// NewSendTransacSMSCreated creates a SendTransacSMSCreated with default headers values
+func NewSendTransacSMSCreated() *SendTransacSMSCreated {
+	return &SendTransacSMSCreated{}
 }
 
-/*SendTransacSmsCreated handles this case with default header values.
+/*SendTransacSMSCreated handles this case with default header values.
 
 SMS has been sent successfully to the recipient
 */
-type SendTransacSmsCreated struct {
-	Payload *models.SendSms
+type SendTransacSMSCreated struct {
+	Payload *models.SendSMS
 }
 
-func (o *SendTransacSmsCreated) Error() string {
+func (o *SendTransacSMSCreated) Error() string {
 	return fmt.Sprintf("[POST /transactionalSMS/sms][%d] sendTransacSmsCreated  %+v", 201, o.Payload)
 }
 
-func (o *SendTransacSmsCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *SendTransacSMSCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.SendSms)
+	o.Payload = new(models.SendSMS)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -80,24 +80,24 @@ func (o *SendTransacSmsCreated) readResponse(response runtime.ClientResponse, co
 	return nil
 }
 
-// NewSendTransacSmsBadRequest creates a SendTransacSmsBadRequest with default headers values
-func NewSendTransacSmsBadRequest() *SendTransacSmsBadRequest {
-	return &SendTransacSmsBadRequest{}
+// NewSendTransacSMSBadRequest creates a SendTransacSMSBadRequest with default headers values
+func NewSendTransacSMSBadRequest() *SendTransacSMSBadRequest {
+	return &SendTransacSMSBadRequest{}
 }
 
-/*SendTransacSmsBadRequest handles this case with default header values.
+/*SendTransacSMSBadRequest handles this case with default header values.
 
 bad request
 */
-type SendTransacSmsBadRequest struct {
+type SendTransacSMSBadRequest struct {
 	Payload *models.ErrorModel
 }
 
-func (o *SendTransacSmsBadRequest) Error() string {
+func (o *SendTransacSMSBadRequest) Error() string {
 	return fmt.Sprintf("[POST /transactionalSMS/sms][%d] sendTransacSmsBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *SendTransacSmsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *SendTransacSMSBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ErrorModel)
 
@@ -109,24 +109,24 @@ func (o *SendTransacSmsBadRequest) readResponse(response runtime.ClientResponse,
 	return nil
 }
 
-// NewSendTransacSmsPaymentRequired creates a SendTransacSmsPaymentRequired with default headers values
-func NewSendTransacSmsPaymentRequired() *SendTransacSmsPaymentRequired {
-	return &SendTransacSmsPaymentRequired{}
+// NewSendTransacSMSPaymentRequired creates a SendTransacSMSPaymentRequired with default headers values
+func NewSendTransacSMSPaymentRequired() *SendTransacSMSPaymentRequired {
+	return &SendTransacSMSPaymentRequired{}
 }
 
-/*SendTransacSmsPaymentRequired handles this case with default header values.
+/*SendTransacSMSPaymentRequired handles this case with default header values.
 
 You don't have enough credit to send your SMS. Please update your plan
 */
-type SendTransacSmsPaymentRequired struct {
+type SendTransacSMSPaymentRequired struct {
 	Payload *models.ErrorModel
 }
 
-func (o *SendTransacSmsPaymentRequired) Error() string {
+func (o *SendTransacSMSPaymentRequired) Error() string {
 	return fmt.Sprintf("[POST /transactionalSMS/sms][%d] sendTransacSmsPaymentRequired  %+v", 402, o.Payload)
 }
 
-func (o *SendTransacSmsPaymentRequired) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *SendTransacSMSPaymentRequired) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ErrorModel)
 

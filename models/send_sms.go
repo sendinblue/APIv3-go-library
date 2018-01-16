@@ -13,9 +13,9 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// SendSms send sms
+// SendSMS send Sms
 // swagger:model sendSms
-type SendSms struct {
+type SendSMS struct {
 
 	// message Id
 	// Required: true
@@ -26,8 +26,8 @@ type SendSms struct {
 	Reference *string `json:"reference"`
 }
 
-// Validate validates this send sms
-func (m *SendSms) Validate(formats strfmt.Registry) error {
+// Validate validates this send Sms
+func (m *SendSMS) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateMessageID(formats); err != nil {
@@ -46,7 +46,7 @@ func (m *SendSms) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *SendSms) validateMessageID(formats strfmt.Registry) error {
+func (m *SendSMS) validateMessageID(formats strfmt.Registry) error {
 
 	if err := validate.Required("messageId", "body", m.MessageID); err != nil {
 		return err
@@ -55,7 +55,7 @@ func (m *SendSms) validateMessageID(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *SendSms) validateReference(formats strfmt.Registry) error {
+func (m *SendSMS) validateReference(formats strfmt.Registry) error {
 
 	if err := validate.Required("reference", "body", m.Reference); err != nil {
 		return err
@@ -65,7 +65,7 @@ func (m *SendSms) validateReference(formats strfmt.Registry) error {
 }
 
 // MarshalBinary interface implementation
-func (m *SendSms) MarshalBinary() ([]byte, error) {
+func (m *SendSMS) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -73,8 +73,8 @@ func (m *SendSms) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *SendSms) UnmarshalBinary(b []byte) error {
-	var res SendSms
+func (m *SendSMS) UnmarshalBinary(b []byte) error {
+	var res SendSMS
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -79,11 +79,11 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *SendinBlue
 
 	cli.Senders = senders.New(transport, formats)
 
-	cli.SmsCampaigns = sms_campaigns.New(transport, formats)
+	cli.SMSCampaigns = sms_campaigns.New(transport, formats)
 
 	cli.SMTP = smtp.New(transport, formats)
 
-	cli.TransactionalSms = transactional_sms.New(transport, formats)
+	cli.TransactionalSMS = transactional_sms.New(transport, formats)
 
 	cli.Webhooks = webhooks.New(transport, formats)
 
@@ -145,11 +145,11 @@ type SendinBlue struct {
 
 	Senders *senders.Client
 
-	SmsCampaigns *sms_campaigns.Client
+	SMSCampaigns *sms_campaigns.Client
 
 	SMTP *smtp.Client
 
-	TransactionalSms *transactional_sms.Client
+	TransactionalSMS *transactional_sms.Client
 
 	Webhooks *webhooks.Client
 
@@ -174,11 +174,11 @@ func (c *SendinBlue) SetTransport(transport runtime.ClientTransport) {
 
 	c.Senders.SetTransport(transport)
 
-	c.SmsCampaigns.SetTransport(transport)
+	c.SMSCampaigns.SetTransport(transport)
 
 	c.SMTP.SetTransport(transport)
 
-	c.TransactionalSms.SetTransport(transport)
+	c.TransactionalSMS.SetTransport(transport)
 
 	c.Webhooks.SetTransport(transport)
 

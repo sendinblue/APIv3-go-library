@@ -5,7 +5,7 @@ generate: \
 	build/swagger_definition.yml \
 	install-go-swagger
 	rm -rf client models
-	swagger generate client -f build/swagger_definition.yml
+	swagger generate client -f build/swagger_definition.yml --additional-initialism=SMS
 
 build/swagger_definition.yml: Makefile
 	mkdir -p build

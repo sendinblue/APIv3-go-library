@@ -61,7 +61,7 @@ func NewUpdateSMSCampaignStatusParamsWithHTTPClient(client *http.Client) *Update
 }
 
 /*UpdateSMSCampaignStatusParams contains all the parameters to send to the API endpoint
-for the update s m s campaign status operation typically these are written to a http.Request
+for the update SMS campaign status operation typically these are written to a http.Request
 */
 type UpdateSMSCampaignStatusParams struct {
 
@@ -81,57 +81,57 @@ type UpdateSMSCampaignStatusParams struct {
 	HTTPClient *http.Client
 }
 
-// WithTimeout adds the timeout to the update s m s campaign status params
+// WithTimeout adds the timeout to the update SMS campaign status params
 func (o *UpdateSMSCampaignStatusParams) WithTimeout(timeout time.Duration) *UpdateSMSCampaignStatusParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the update s m s campaign status params
+// SetTimeout adds the timeout to the update SMS campaign status params
 func (o *UpdateSMSCampaignStatusParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the update s m s campaign status params
+// WithContext adds the context to the update SMS campaign status params
 func (o *UpdateSMSCampaignStatusParams) WithContext(ctx context.Context) *UpdateSMSCampaignStatusParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the update s m s campaign status params
+// SetContext adds the context to the update SMS campaign status params
 func (o *UpdateSMSCampaignStatusParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the update s m s campaign status params
+// WithHTTPClient adds the HTTPClient to the update SMS campaign status params
 func (o *UpdateSMSCampaignStatusParams) WithHTTPClient(client *http.Client) *UpdateSMSCampaignStatusParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the update s m s campaign status params
+// SetHTTPClient adds the HTTPClient to the update SMS campaign status params
 func (o *UpdateSMSCampaignStatusParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithCampaignID adds the campaignID to the update s m s campaign status params
+// WithCampaignID adds the campaignID to the update SMS campaign status params
 func (o *UpdateSMSCampaignStatusParams) WithCampaignID(campaignID int64) *UpdateSMSCampaignStatusParams {
 	o.SetCampaignID(campaignID)
 	return o
 }
 
-// SetCampaignID adds the campaignId to the update s m s campaign status params
+// SetCampaignID adds the campaignId to the update SMS campaign status params
 func (o *UpdateSMSCampaignStatusParams) SetCampaignID(campaignID int64) {
 	o.CampaignID = campaignID
 }
 
-// WithStatus adds the status to the update s m s campaign status params
+// WithStatus adds the status to the update SMS campaign status params
 func (o *UpdateSMSCampaignStatusParams) WithStatus(status *models.UpdateCampaignStatus) *UpdateSMSCampaignStatusParams {
 	o.SetStatus(status)
 	return o
 }
 
-// SetStatus adds the status to the update s m s campaign status params
+// SetStatus adds the status to the update SMS campaign status params
 func (o *UpdateSMSCampaignStatusParams) SetStatus(status *models.UpdateCampaignStatus) {
 	o.Status = status
 }

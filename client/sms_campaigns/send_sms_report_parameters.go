@@ -61,7 +61,7 @@ func NewSendSMSReportParamsWithHTTPClient(client *http.Client) *SendSMSReportPar
 }
 
 /*SendSMSReportParams contains all the parameters to send to the API endpoint
-for the send s m s report operation typically these are written to a http.Request
+for the send SMS report operation typically these are written to a http.Request
 */
 type SendSMSReportParams struct {
 
@@ -81,57 +81,57 @@ type SendSMSReportParams struct {
 	HTTPClient *http.Client
 }
 
-// WithTimeout adds the timeout to the send s m s report params
+// WithTimeout adds the timeout to the send SMS report params
 func (o *SendSMSReportParams) WithTimeout(timeout time.Duration) *SendSMSReportParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the send s m s report params
+// SetTimeout adds the timeout to the send SMS report params
 func (o *SendSMSReportParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the send s m s report params
+// WithContext adds the context to the send SMS report params
 func (o *SendSMSReportParams) WithContext(ctx context.Context) *SendSMSReportParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the send s m s report params
+// SetContext adds the context to the send SMS report params
 func (o *SendSMSReportParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the send s m s report params
+// WithHTTPClient adds the HTTPClient to the send SMS report params
 func (o *SendSMSReportParams) WithHTTPClient(client *http.Client) *SendSMSReportParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the send s m s report params
+// SetHTTPClient adds the HTTPClient to the send SMS report params
 func (o *SendSMSReportParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithCampaignID adds the campaignID to the send s m s report params
+// WithCampaignID adds the campaignID to the send SMS report params
 func (o *SendSMSReportParams) WithCampaignID(campaignID int64) *SendSMSReportParams {
 	o.SetCampaignID(campaignID)
 	return o
 }
 
-// SetCampaignID adds the campaignId to the send s m s report params
+// SetCampaignID adds the campaignId to the send SMS report params
 func (o *SendSMSReportParams) SetCampaignID(campaignID int64) {
 	o.CampaignID = campaignID
 }
 
-// WithSendReport adds the sendReport to the send s m s report params
+// WithSendReport adds the sendReport to the send SMS report params
 func (o *SendSMSReportParams) WithSendReport(sendReport *models.SendReport) *SendSMSReportParams {
 	o.SetSendReport(sendReport)
 	return o
 }
 
-// SetSendReport adds the sendReport to the send s m s report params
+// SetSendReport adds the sendReport to the send SMS report params
 func (o *SendSMSReportParams) SetSendReport(sendReport *models.SendReport) {
 	o.SendReport = sendReport
 }

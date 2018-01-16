@@ -12,14 +12,14 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// GetSmsCampaignAllOf1Recipients get sms campaign all of1 recipients
+// GetSMSCampaignAllOf1Recipients get Sms campaign all of1 recipients
 // swagger:model getSmsCampaignAllOf1Recipients
-type GetSmsCampaignAllOf1Recipients struct {
+type GetSMSCampaignAllOf1Recipients struct {
 	GetCampaignRecipients
 }
 
 // UnmarshalJSON unmarshals this object from a JSON structure
-func (m *GetSmsCampaignAllOf1Recipients) UnmarshalJSON(raw []byte) error {
+func (m *GetSMSCampaignAllOf1Recipients) UnmarshalJSON(raw []byte) error {
 
 	var aO0 GetCampaignRecipients
 	if err := swag.ReadJSON(raw, &aO0); err != nil {
@@ -31,7 +31,7 @@ func (m *GetSmsCampaignAllOf1Recipients) UnmarshalJSON(raw []byte) error {
 }
 
 // MarshalJSON marshals this object to a JSON structure
-func (m GetSmsCampaignAllOf1Recipients) MarshalJSON() ([]byte, error) {
+func (m GetSMSCampaignAllOf1Recipients) MarshalJSON() ([]byte, error) {
 	var _parts [][]byte
 
 	aO0, err := swag.WriteJSON(m.GetCampaignRecipients)
@@ -43,8 +43,8 @@ func (m GetSmsCampaignAllOf1Recipients) MarshalJSON() ([]byte, error) {
 	return swag.ConcatJSON(_parts...), nil
 }
 
-// Validate validates this get sms campaign all of1 recipients
-func (m *GetSmsCampaignAllOf1Recipients) Validate(formats strfmt.Registry) error {
+// Validate validates this get Sms campaign all of1 recipients
+func (m *GetSMSCampaignAllOf1Recipients) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.GetCampaignRecipients.Validate(formats); err != nil {
@@ -58,7 +58,7 @@ func (m *GetSmsCampaignAllOf1Recipients) Validate(formats strfmt.Registry) error
 }
 
 // MarshalBinary interface implementation
-func (m *GetSmsCampaignAllOf1Recipients) MarshalBinary() ([]byte, error) {
+func (m *GetSMSCampaignAllOf1Recipients) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -66,8 +66,8 @@ func (m *GetSmsCampaignAllOf1Recipients) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *GetSmsCampaignAllOf1Recipients) UnmarshalBinary(b []byte) error {
-	var res GetSmsCampaignAllOf1Recipients
+func (m *GetSMSCampaignAllOf1Recipients) UnmarshalBinary(b []byte) error {
+	var res GetSMSCampaignAllOf1Recipients
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

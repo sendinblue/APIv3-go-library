@@ -12,16 +12,16 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// SendTestSms send test sms
+// SendTestSMS send test Sms
 // swagger:model sendTestSms
-type SendTestSms struct {
+type SendTestSMS struct {
 
 	// Mobile number with the country code to send test SMS. The mobile number defined here must belong to one of your contacts in SendinBlue account and must not be blacklisted
 	PhoneNumbers []string `json:"phoneNumbers"`
 }
 
-// Validate validates this send test sms
-func (m *SendTestSms) Validate(formats strfmt.Registry) error {
+// Validate validates this send test Sms
+func (m *SendTestSMS) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validatePhoneNumbers(formats); err != nil {
@@ -35,7 +35,7 @@ func (m *SendTestSms) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *SendTestSms) validatePhoneNumbers(formats strfmt.Registry) error {
+func (m *SendTestSMS) validatePhoneNumbers(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.PhoneNumbers) { // not required
 		return nil
@@ -45,7 +45,7 @@ func (m *SendTestSms) validatePhoneNumbers(formats strfmt.Registry) error {
 }
 
 // MarshalBinary interface implementation
-func (m *SendTestSms) MarshalBinary() ([]byte, error) {
+func (m *SendTestSMS) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -53,8 +53,8 @@ func (m *SendTestSms) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *SendTestSms) UnmarshalBinary(b []byte) error {
-	var res SendTestSms
+func (m *SendTestSMS) UnmarshalBinary(b []byte) error {
+	var res SendTestSMS
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

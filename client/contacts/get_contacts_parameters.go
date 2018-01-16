@@ -89,7 +89,7 @@ type GetContactsParams struct {
 	*/
 	Limit *int64
 	/*ModifiedSince
-	  Filter (urlencoded) the contacts modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	  Filter (urlencoded) the contacts modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). Prefer to pass your timezone in date-time format for accurate result.
 
 	*/
 	ModifiedSince *strfmt.DateTime

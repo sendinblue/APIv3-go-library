@@ -79,7 +79,7 @@ func NewGetSMSCampaignsParamsWithHTTPClient(client *http.Client) *GetSMSCampaign
 }
 
 /*GetSMSCampaignsParams contains all the parameters to send to the API endpoint
-for the get s m s campaigns operation typically these are written to a http.Request
+for the get SMS campaigns operation typically these are written to a http.Request
 */
 type GetSMSCampaignsParams struct {
 
@@ -104,68 +104,68 @@ type GetSMSCampaignsParams struct {
 	HTTPClient *http.Client
 }
 
-// WithTimeout adds the timeout to the get s m s campaigns params
+// WithTimeout adds the timeout to the get SMS campaigns params
 func (o *GetSMSCampaignsParams) WithTimeout(timeout time.Duration) *GetSMSCampaignsParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the get s m s campaigns params
+// SetTimeout adds the timeout to the get SMS campaigns params
 func (o *GetSMSCampaignsParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the get s m s campaigns params
+// WithContext adds the context to the get SMS campaigns params
 func (o *GetSMSCampaignsParams) WithContext(ctx context.Context) *GetSMSCampaignsParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the get s m s campaigns params
+// SetContext adds the context to the get SMS campaigns params
 func (o *GetSMSCampaignsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the get s m s campaigns params
+// WithHTTPClient adds the HTTPClient to the get SMS campaigns params
 func (o *GetSMSCampaignsParams) WithHTTPClient(client *http.Client) *GetSMSCampaignsParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the get s m s campaigns params
+// SetHTTPClient adds the HTTPClient to the get SMS campaigns params
 func (o *GetSMSCampaignsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithLimit adds the limit to the get s m s campaigns params
+// WithLimit adds the limit to the get SMS campaigns params
 func (o *GetSMSCampaignsParams) WithLimit(limit *int64) *GetSMSCampaignsParams {
 	o.SetLimit(limit)
 	return o
 }
 
-// SetLimit adds the limit to the get s m s campaigns params
+// SetLimit adds the limit to the get SMS campaigns params
 func (o *GetSMSCampaignsParams) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
-// WithOffset adds the offset to the get s m s campaigns params
+// WithOffset adds the offset to the get SMS campaigns params
 func (o *GetSMSCampaignsParams) WithOffset(offset *int64) *GetSMSCampaignsParams {
 	o.SetOffset(offset)
 	return o
 }
 
-// SetOffset adds the offset to the get s m s campaigns params
+// SetOffset adds the offset to the get SMS campaigns params
 func (o *GetSMSCampaignsParams) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
-// WithStatus adds the status to the get s m s campaigns params
+// WithStatus adds the status to the get SMS campaigns params
 func (o *GetSMSCampaignsParams) WithStatus(status *string) *GetSMSCampaignsParams {
 	o.SetStatus(status)
 	return o
 }
 
-// SetStatus adds the status to the get s m s campaigns params
+// SetStatus adds the status to the get SMS campaigns params
 func (o *GetSMSCampaignsParams) SetStatus(status *string) {
 	o.Status = status
 }

@@ -10,6 +10,7 @@ import (
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // SendEmailAttachmentItems send email attachment items
@@ -27,9 +28,27 @@ type SendEmailAttachmentItems struct {
 func (m *SendEmailAttachmentItems) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateContent(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *SendEmailAttachmentItems) validateContent(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Content) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("content", "body", "byte", m.Content.String(), formats); err != nil {
+		return err
+	}
+
 	return nil
 }
 

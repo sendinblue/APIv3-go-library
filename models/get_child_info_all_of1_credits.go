@@ -20,7 +20,7 @@ type GetChildInfoAllOf1Credits struct {
 	EmailCredits int64 `json:"emailCredits,omitempty"`
 
 	// SMS credits available for your child
-	SmsCredits int64 `json:"smsCredits,omitempty"`
+	SMSCredits int64 `json:"smsCredits,omitempty"`
 }
 
 // Validate validates this get child info all of1 credits

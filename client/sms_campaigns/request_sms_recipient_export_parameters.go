@@ -61,7 +61,7 @@ func NewRequestSMSRecipientExportParamsWithHTTPClient(client *http.Client) *Requ
 }
 
 /*RequestSMSRecipientExportParams contains all the parameters to send to the API endpoint
-for the request s m s recipient export operation typically these are written to a http.Request
+for the request SMS recipient export operation typically these are written to a http.Request
 */
 type RequestSMSRecipientExportParams struct {
 
@@ -81,57 +81,57 @@ type RequestSMSRecipientExportParams struct {
 	HTTPClient *http.Client
 }
 
-// WithTimeout adds the timeout to the request s m s recipient export params
+// WithTimeout adds the timeout to the request SMS recipient export params
 func (o *RequestSMSRecipientExportParams) WithTimeout(timeout time.Duration) *RequestSMSRecipientExportParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the request s m s recipient export params
+// SetTimeout adds the timeout to the request SMS recipient export params
 func (o *RequestSMSRecipientExportParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the request s m s recipient export params
+// WithContext adds the context to the request SMS recipient export params
 func (o *RequestSMSRecipientExportParams) WithContext(ctx context.Context) *RequestSMSRecipientExportParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the request s m s recipient export params
+// SetContext adds the context to the request SMS recipient export params
 func (o *RequestSMSRecipientExportParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the request s m s recipient export params
+// WithHTTPClient adds the HTTPClient to the request SMS recipient export params
 func (o *RequestSMSRecipientExportParams) WithHTTPClient(client *http.Client) *RequestSMSRecipientExportParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the request s m s recipient export params
+// SetHTTPClient adds the HTTPClient to the request SMS recipient export params
 func (o *RequestSMSRecipientExportParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithCampaignID adds the campaignID to the request s m s recipient export params
+// WithCampaignID adds the campaignID to the request SMS recipient export params
 func (o *RequestSMSRecipientExportParams) WithCampaignID(campaignID int64) *RequestSMSRecipientExportParams {
 	o.SetCampaignID(campaignID)
 	return o
 }
 
-// SetCampaignID adds the campaignId to the request s m s recipient export params
+// SetCampaignID adds the campaignId to the request SMS recipient export params
 func (o *RequestSMSRecipientExportParams) SetCampaignID(campaignID int64) {
 	o.CampaignID = campaignID
 }
 
-// WithRecipientExport adds the recipientExport to the request s m s recipient export params
+// WithRecipientExport adds the recipientExport to the request SMS recipient export params
 func (o *RequestSMSRecipientExportParams) WithRecipientExport(recipientExport *models.RequestSMSRecipientExport) *RequestSMSRecipientExportParams {
 	o.SetRecipientExport(recipientExport)
 	return o
 }
 
-// SetRecipientExport adds the recipientExport to the request s m s recipient export params
+// SetRecipientExport adds the recipientExport to the request SMS recipient export params
 func (o *RequestSMSRecipientExportParams) SetRecipientExport(recipientExport *models.RequestSMSRecipientExport) {
 	o.RecipientExport = recipientExport
 }

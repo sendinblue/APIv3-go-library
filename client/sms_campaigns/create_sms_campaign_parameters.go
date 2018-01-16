@@ -60,63 +60,63 @@ func NewCreateSMSCampaignParamsWithHTTPClient(client *http.Client) *CreateSMSCam
 }
 
 /*CreateSMSCampaignParams contains all the parameters to send to the API endpoint
-for the create s m s campaign operation typically these are written to a http.Request
+for the create SMS campaign operation typically these are written to a http.Request
 */
 type CreateSMSCampaignParams struct {
 
-	/*CreateSmsCampaign
+	/*CreateSMSCampaign
 	  Values to create an SMS Campaign
 
 	*/
-	CreateSmsCampaign *models.CreateSmsCampaign
+	CreateSMSCampaign *models.CreateSMSCampaign
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
 }
 
-// WithTimeout adds the timeout to the create s m s campaign params
+// WithTimeout adds the timeout to the create SMS campaign params
 func (o *CreateSMSCampaignParams) WithTimeout(timeout time.Duration) *CreateSMSCampaignParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the create s m s campaign params
+// SetTimeout adds the timeout to the create SMS campaign params
 func (o *CreateSMSCampaignParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the create s m s campaign params
+// WithContext adds the context to the create SMS campaign params
 func (o *CreateSMSCampaignParams) WithContext(ctx context.Context) *CreateSMSCampaignParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the create s m s campaign params
+// SetContext adds the context to the create SMS campaign params
 func (o *CreateSMSCampaignParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the create s m s campaign params
+// WithHTTPClient adds the HTTPClient to the create SMS campaign params
 func (o *CreateSMSCampaignParams) WithHTTPClient(client *http.Client) *CreateSMSCampaignParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the create s m s campaign params
+// SetHTTPClient adds the HTTPClient to the create SMS campaign params
 func (o *CreateSMSCampaignParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithCreateSmsCampaign adds the createSmsCampaign to the create s m s campaign params
-func (o *CreateSMSCampaignParams) WithCreateSmsCampaign(createSmsCampaign *models.CreateSmsCampaign) *CreateSMSCampaignParams {
-	o.SetCreateSmsCampaign(createSmsCampaign)
+// WithCreateSMSCampaign adds the createSMSCampaign to the create SMS campaign params
+func (o *CreateSMSCampaignParams) WithCreateSMSCampaign(createSMSCampaign *models.CreateSMSCampaign) *CreateSMSCampaignParams {
+	o.SetCreateSMSCampaign(createSMSCampaign)
 	return o
 }
 
-// SetCreateSmsCampaign adds the createSmsCampaign to the create s m s campaign params
-func (o *CreateSMSCampaignParams) SetCreateSmsCampaign(createSmsCampaign *models.CreateSmsCampaign) {
-	o.CreateSmsCampaign = createSmsCampaign
+// SetCreateSMSCampaign adds the createSmsCampaign to the create SMS campaign params
+func (o *CreateSMSCampaignParams) SetCreateSMSCampaign(createSMSCampaign *models.CreateSMSCampaign) {
+	o.CreateSMSCampaign = createSMSCampaign
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -127,8 +127,8 @@ func (o *CreateSMSCampaignParams) WriteToRequest(r runtime.ClientRequest, reg st
 	}
 	var res []error
 
-	if o.CreateSmsCampaign != nil {
-		if err := r.SetBodyParam(o.CreateSmsCampaign); err != nil {
+	if o.CreateSMSCampaign != nil {
+		if err := r.SetBodyParam(o.CreateSMSCampaign); err != nil {
 			return err
 		}
 	}

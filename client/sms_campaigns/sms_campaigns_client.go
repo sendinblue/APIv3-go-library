@@ -25,7 +25,7 @@ type Client struct {
 }
 
 /*
-CreateSMSCampaign creates an s m s campaign
+CreateSMSCampaign creates an SMS campaign
 */
 func (a *Client) CreateSMSCampaign(params *CreateSMSCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSMSCampaignCreated, error) {
 	// TODO: Validate the params before sending
@@ -54,7 +54,7 @@ func (a *Client) CreateSMSCampaign(params *CreateSMSCampaignParams, authInfo run
 }
 
 /*
-DeleteSMSCampaigns deletes the s m s campaign
+DeleteSMSCampaigns deletes the SMS campaign
 */
 func (a *Client) DeleteSMSCampaigns(params *DeleteSMSCampaignsParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSMSCampaignsNoContent, error) {
 	// TODO: Validate the params before sending
@@ -83,7 +83,7 @@ func (a *Client) DeleteSMSCampaigns(params *DeleteSMSCampaignsParams, authInfo r
 }
 
 /*
-GetSMSCampaigns returns the informations for all your created s m s campaigns
+GetSMSCampaigns returns the informations for all your created SMS campaigns
 */
 func (a *Client) GetSMSCampaigns(params *GetSMSCampaignsParams, authInfo runtime.ClientAuthInfoWriter) (*GetSMSCampaignsOK, error) {
 	// TODO: Validate the params before sending
@@ -112,12 +112,12 @@ func (a *Client) GetSMSCampaigns(params *GetSMSCampaignsParams, authInfo runtime
 }
 
 /*
-GetSmsCampaign gets an s m s campaign
+GetSMSCampaign gets an SMS campaign
 */
-func (a *Client) GetSmsCampaign(params *GetSmsCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*GetSmsCampaignOK, error) {
+func (a *Client) GetSMSCampaign(params *GetSMSCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*GetSMSCampaignOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetSmsCampaignParams()
+		params = NewGetSMSCampaignParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -128,7 +128,7 @@ func (a *Client) GetSmsCampaign(params *GetSmsCampaignParams, authInfo runtime.C
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &GetSmsCampaignReader{formats: a.formats},
+		Reader:             &GetSMSCampaignReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -136,7 +136,7 @@ func (a *Client) GetSmsCampaign(params *GetSmsCampaignParams, authInfo runtime.C
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetSmsCampaignOK), nil
+	return result.(*GetSMSCampaignOK), nil
 
 }
 
@@ -172,7 +172,7 @@ func (a *Client) RequestSMSRecipientExport(params *RequestSMSRecipientExportPara
 }
 
 /*
-SendSMSCampaignNow sends your s m s campaign immediately
+SendSMSCampaignNow sends your SMS campaign immediately
 */
 func (a *Client) SendSMSCampaignNow(params *SendSMSCampaignNowParams, authInfo runtime.ClientAuthInfoWriter) (*SendSMSCampaignNowNoContent, error) {
 	// TODO: Validate the params before sending
@@ -201,7 +201,7 @@ func (a *Client) SendSMSCampaignNow(params *SendSMSCampaignNowParams, authInfo r
 }
 
 /*
-SendSMSReport sends report of s m s campaigns
+SendSMSReport sends report of SMS campaigns
 
 Send report of Sent and Archived campaign, to the specified email addresses, with respective data and a pdf attachment in detail.
 */
@@ -232,12 +232,12 @@ func (a *Client) SendSMSReport(params *SendSMSReportParams, authInfo runtime.Cli
 }
 
 /*
-SendTestSms sends an s m s
+SendTestSMS sends an SMS
 */
-func (a *Client) SendTestSms(params *SendTestSmsParams, authInfo runtime.ClientAuthInfoWriter) (*SendTestSmsNoContent, error) {
+func (a *Client) SendTestSMS(params *SendTestSMSParams, authInfo runtime.ClientAuthInfoWriter) (*SendTestSMSNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewSendTestSmsParams()
+		params = NewSendTestSMSParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -248,7 +248,7 @@ func (a *Client) SendTestSms(params *SendTestSmsParams, authInfo runtime.ClientA
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &SendTestSmsReader{formats: a.formats},
+		Reader:             &SendTestSMSReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -256,7 +256,7 @@ func (a *Client) SendTestSms(params *SendTestSmsParams, authInfo runtime.ClientA
 	if err != nil {
 		return nil, err
 	}
-	return result.(*SendTestSmsNoContent), nil
+	return result.(*SendTestSMSNoContent), nil
 
 }
 
@@ -290,12 +290,12 @@ func (a *Client) UpdateSMSCampaignStatus(params *UpdateSMSCampaignStatusParams, 
 }
 
 /*
-UpdateSmsCampaign updates an s m s campaign
+UpdateSMSCampaign updates an SMS campaign
 */
-func (a *Client) UpdateSmsCampaign(params *UpdateSmsCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSmsCampaignNoContent, error) {
+func (a *Client) UpdateSMSCampaign(params *UpdateSMSCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSMSCampaignNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewUpdateSmsCampaignParams()
+		params = NewUpdateSMSCampaignParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -306,7 +306,7 @@ func (a *Client) UpdateSmsCampaign(params *UpdateSmsCampaignParams, authInfo run
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &UpdateSmsCampaignReader{formats: a.formats},
+		Reader:             &UpdateSMSCampaignReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -314,7 +314,7 @@ func (a *Client) UpdateSmsCampaign(params *UpdateSmsCampaignParams, authInfo run
 	if err != nil {
 		return nil, err
 	}
-	return result.(*UpdateSmsCampaignNoContent), nil
+	return result.(*UpdateSMSCampaignNoContent), nil
 
 }
 

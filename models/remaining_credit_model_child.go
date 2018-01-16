@@ -23,7 +23,7 @@ type RemainingCreditModelChild struct {
 
 	// SMS Credits remaining for child account
 	// Required: true
-	Sms *int64 `json:"sms"`
+	SMS *int64 `json:"sms"`
 }
 
 // Validate validates this remaining credit model child
@@ -35,7 +35,7 @@ func (m *RemainingCreditModelChild) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateSms(formats); err != nil {
+	if err := m.validateSMS(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -55,9 +55,9 @@ func (m *RemainingCreditModelChild) validateEmail(formats strfmt.Registry) error
 	return nil
 }
 
-func (m *RemainingCreditModelChild) validateSms(formats strfmt.Registry) error {
+func (m *RemainingCreditModelChild) validateSMS(formats strfmt.Registry) error {
 
-	if err := validate.Required("sms", "body", m.Sms); err != nil {
+	if err := validate.Required("sms", "body", m.SMS); err != nil {
 		return err
 	}
 

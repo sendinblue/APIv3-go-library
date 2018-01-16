@@ -19,49 +19,49 @@ import (
 	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetTransacAggregatedSmsReportParams creates a new GetTransacAggregatedSmsReportParams object
+// NewGetTransacAggregatedSMSReportParams creates a new GetTransacAggregatedSMSReportParams object
 // with the default values initialized.
-func NewGetTransacAggregatedSmsReportParams() *GetTransacAggregatedSmsReportParams {
+func NewGetTransacAggregatedSMSReportParams() *GetTransacAggregatedSMSReportParams {
 	var ()
-	return &GetTransacAggregatedSmsReportParams{
+	return &GetTransacAggregatedSMSReportParams{
 
 		timeout: cr.DefaultTimeout,
 	}
 }
 
-// NewGetTransacAggregatedSmsReportParamsWithTimeout creates a new GetTransacAggregatedSmsReportParams object
+// NewGetTransacAggregatedSMSReportParamsWithTimeout creates a new GetTransacAggregatedSMSReportParams object
 // with the default values initialized, and the ability to set a timeout on a request
-func NewGetTransacAggregatedSmsReportParamsWithTimeout(timeout time.Duration) *GetTransacAggregatedSmsReportParams {
+func NewGetTransacAggregatedSMSReportParamsWithTimeout(timeout time.Duration) *GetTransacAggregatedSMSReportParams {
 	var ()
-	return &GetTransacAggregatedSmsReportParams{
+	return &GetTransacAggregatedSMSReportParams{
 
 		timeout: timeout,
 	}
 }
 
-// NewGetTransacAggregatedSmsReportParamsWithContext creates a new GetTransacAggregatedSmsReportParams object
+// NewGetTransacAggregatedSMSReportParamsWithContext creates a new GetTransacAggregatedSMSReportParams object
 // with the default values initialized, and the ability to set a context for a request
-func NewGetTransacAggregatedSmsReportParamsWithContext(ctx context.Context) *GetTransacAggregatedSmsReportParams {
+func NewGetTransacAggregatedSMSReportParamsWithContext(ctx context.Context) *GetTransacAggregatedSMSReportParams {
 	var ()
-	return &GetTransacAggregatedSmsReportParams{
+	return &GetTransacAggregatedSMSReportParams{
 
 		Context: ctx,
 	}
 }
 
-// NewGetTransacAggregatedSmsReportParamsWithHTTPClient creates a new GetTransacAggregatedSmsReportParams object
+// NewGetTransacAggregatedSMSReportParamsWithHTTPClient creates a new GetTransacAggregatedSMSReportParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
-func NewGetTransacAggregatedSmsReportParamsWithHTTPClient(client *http.Client) *GetTransacAggregatedSmsReportParams {
+func NewGetTransacAggregatedSMSReportParamsWithHTTPClient(client *http.Client) *GetTransacAggregatedSMSReportParams {
 	var ()
-	return &GetTransacAggregatedSmsReportParams{
+	return &GetTransacAggregatedSMSReportParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetTransacAggregatedSmsReportParams contains all the parameters to send to the API endpoint
-for the get transac aggregated sms report operation typically these are written to a http.Request
+/*GetTransacAggregatedSMSReportParams contains all the parameters to send to the API endpoint
+for the get transac aggregated Sms report operation typically these are written to a http.Request
 */
-type GetTransacAggregatedSmsReportParams struct {
+type GetTransacAggregatedSMSReportParams struct {
 
 	/*Days
 	  Number of days in the past including today (positive integer). Not compatible with startDate and endDate
@@ -89,85 +89,85 @@ type GetTransacAggregatedSmsReportParams struct {
 	HTTPClient *http.Client
 }
 
-// WithTimeout adds the timeout to the get transac aggregated sms report params
-func (o *GetTransacAggregatedSmsReportParams) WithTimeout(timeout time.Duration) *GetTransacAggregatedSmsReportParams {
+// WithTimeout adds the timeout to the get transac aggregated Sms report params
+func (o *GetTransacAggregatedSMSReportParams) WithTimeout(timeout time.Duration) *GetTransacAggregatedSMSReportParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the get transac aggregated sms report params
-func (o *GetTransacAggregatedSmsReportParams) SetTimeout(timeout time.Duration) {
+// SetTimeout adds the timeout to the get transac aggregated Sms report params
+func (o *GetTransacAggregatedSMSReportParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the get transac aggregated sms report params
-func (o *GetTransacAggregatedSmsReportParams) WithContext(ctx context.Context) *GetTransacAggregatedSmsReportParams {
+// WithContext adds the context to the get transac aggregated Sms report params
+func (o *GetTransacAggregatedSMSReportParams) WithContext(ctx context.Context) *GetTransacAggregatedSMSReportParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the get transac aggregated sms report params
-func (o *GetTransacAggregatedSmsReportParams) SetContext(ctx context.Context) {
+// SetContext adds the context to the get transac aggregated Sms report params
+func (o *GetTransacAggregatedSMSReportParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the get transac aggregated sms report params
-func (o *GetTransacAggregatedSmsReportParams) WithHTTPClient(client *http.Client) *GetTransacAggregatedSmsReportParams {
+// WithHTTPClient adds the HTTPClient to the get transac aggregated Sms report params
+func (o *GetTransacAggregatedSMSReportParams) WithHTTPClient(client *http.Client) *GetTransacAggregatedSMSReportParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the get transac aggregated sms report params
-func (o *GetTransacAggregatedSmsReportParams) SetHTTPClient(client *http.Client) {
+// SetHTTPClient adds the HTTPClient to the get transac aggregated Sms report params
+func (o *GetTransacAggregatedSMSReportParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithDays adds the days to the get transac aggregated sms report params
-func (o *GetTransacAggregatedSmsReportParams) WithDays(days *int64) *GetTransacAggregatedSmsReportParams {
+// WithDays adds the days to the get transac aggregated Sms report params
+func (o *GetTransacAggregatedSMSReportParams) WithDays(days *int64) *GetTransacAggregatedSMSReportParams {
 	o.SetDays(days)
 	return o
 }
 
-// SetDays adds the days to the get transac aggregated sms report params
-func (o *GetTransacAggregatedSmsReportParams) SetDays(days *int64) {
+// SetDays adds the days to the get transac aggregated Sms report params
+func (o *GetTransacAggregatedSMSReportParams) SetDays(days *int64) {
 	o.Days = days
 }
 
-// WithEndDate adds the endDate to the get transac aggregated sms report params
-func (o *GetTransacAggregatedSmsReportParams) WithEndDate(endDate *strfmt.Date) *GetTransacAggregatedSmsReportParams {
+// WithEndDate adds the endDate to the get transac aggregated Sms report params
+func (o *GetTransacAggregatedSMSReportParams) WithEndDate(endDate *strfmt.Date) *GetTransacAggregatedSMSReportParams {
 	o.SetEndDate(endDate)
 	return o
 }
 
-// SetEndDate adds the endDate to the get transac aggregated sms report params
-func (o *GetTransacAggregatedSmsReportParams) SetEndDate(endDate *strfmt.Date) {
+// SetEndDate adds the endDate to the get transac aggregated Sms report params
+func (o *GetTransacAggregatedSMSReportParams) SetEndDate(endDate *strfmt.Date) {
 	o.EndDate = endDate
 }
 
-// WithStartDate adds the startDate to the get transac aggregated sms report params
-func (o *GetTransacAggregatedSmsReportParams) WithStartDate(startDate *strfmt.Date) *GetTransacAggregatedSmsReportParams {
+// WithStartDate adds the startDate to the get transac aggregated Sms report params
+func (o *GetTransacAggregatedSMSReportParams) WithStartDate(startDate *strfmt.Date) *GetTransacAggregatedSMSReportParams {
 	o.SetStartDate(startDate)
 	return o
 }
 
-// SetStartDate adds the startDate to the get transac aggregated sms report params
-func (o *GetTransacAggregatedSmsReportParams) SetStartDate(startDate *strfmt.Date) {
+// SetStartDate adds the startDate to the get transac aggregated Sms report params
+func (o *GetTransacAggregatedSMSReportParams) SetStartDate(startDate *strfmt.Date) {
 	o.StartDate = startDate
 }
 
-// WithTag adds the tag to the get transac aggregated sms report params
-func (o *GetTransacAggregatedSmsReportParams) WithTag(tag *string) *GetTransacAggregatedSmsReportParams {
+// WithTag adds the tag to the get transac aggregated Sms report params
+func (o *GetTransacAggregatedSMSReportParams) WithTag(tag *string) *GetTransacAggregatedSMSReportParams {
 	o.SetTag(tag)
 	return o
 }
 
-// SetTag adds the tag to the get transac aggregated sms report params
-func (o *GetTransacAggregatedSmsReportParams) SetTag(tag *string) {
+// SetTag adds the tag to the get transac aggregated Sms report params
+func (o *GetTransacAggregatedSMSReportParams) SetTag(tag *string) {
 	o.Tag = tag
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetTransacAggregatedSmsReportParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
+func (o *GetTransacAggregatedSMSReportParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	if err := r.SetTimeout(o.timeout); err != nil {
 		return err

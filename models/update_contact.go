@@ -26,7 +26,10 @@ type UpdateContact struct {
 	ListIds []int64 `json:"listIds"`
 
 	// Blacklist the contact for SMS (smsBlacklisted = true)
-	SmsBlacklisted bool `json:"smsBlacklisted,omitempty"`
+	SMSBlacklisted bool `json:"smsBlacklisted,omitempty"`
+
+	// SMTP forbidden sender for contact. Use only for email Contact
+	SMTPBlacklistSender []strfmt.Email `json:"smtpBlacklistSender"`
 
 	// Ids of the lists to remove the contact from
 	UnlinkListIds []int64 `json:"unlinkListIds"`
@@ -37,6 +40,11 @@ func (m *UpdateContact) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateListIds(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateSMTPBlacklistSender(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -55,6 +63,15 @@ func (m *UpdateContact) Validate(formats strfmt.Registry) error {
 func (m *UpdateContact) validateListIds(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.ListIds) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *UpdateContact) validateSMTPBlacklistSender(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SMTPBlacklistSender) { // not required
 		return nil
 	}
 

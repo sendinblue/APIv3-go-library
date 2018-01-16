@@ -58,7 +58,7 @@ type CreateSMSCampaignCreated struct {
 }
 
 func (o *CreateSMSCampaignCreated) Error() string {
-	return fmt.Sprintf("[POST /smsCampaigns][%d] createSMSCampaignCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /smsCampaigns][%d] createSmsCampaignCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateSMSCampaignCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -87,7 +87,7 @@ type CreateSMSCampaignBadRequest struct {
 }
 
 func (o *CreateSMSCampaignBadRequest) Error() string {
-	return fmt.Sprintf("[POST /smsCampaigns][%d] createSMSCampaignBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /smsCampaigns][%d] createSmsCampaignBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateSMSCampaignBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

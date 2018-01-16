@@ -52,6 +52,16 @@ func (m *GetAccountAllOf1PlanItems) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateEndDate(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateStartDate(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if err := m.validateType(formats); err != nil {
 		// prop
 		res = append(res, err)
@@ -113,6 +123,32 @@ func (m *GetAccountAllOf1PlanItems) validateCreditsType(formats strfmt.Registry)
 	return nil
 }
 
+func (m *GetAccountAllOf1PlanItems) validateEndDate(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.EndDate) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("endDate", "body", "date", m.EndDate.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetAccountAllOf1PlanItems) validateStartDate(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.StartDate) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("startDate", "body", "date", m.StartDate.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 var getAccountAllOf1PlanItemsTypeTypePropEnum []interface{}
 
 func init() {
@@ -134,8 +170,8 @@ const (
 	GetAccountAllOf1PlanItemsTypeFree string = "free"
 	// GetAccountAllOf1PlanItemsTypeSubscription captures enum value "subscription"
 	GetAccountAllOf1PlanItemsTypeSubscription string = "subscription"
-	// GetAccountAllOf1PlanItemsTypeSms captures enum value "sms"
-	GetAccountAllOf1PlanItemsTypeSms string = "sms"
+	// GetAccountAllOf1PlanItemsTypeSMS captures enum value "sms"
+	GetAccountAllOf1PlanItemsTypeSMS string = "sms"
 	// GetAccountAllOf1PlanItemsTypeReseller captures enum value "reseller"
 	GetAccountAllOf1PlanItemsTypeReseller string = "reseller"
 )

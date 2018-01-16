@@ -10,13 +10,14 @@ import (
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // UpdateSMTPTemplate update Smtp template
 // swagger:model updateSmtpTemplate
 type UpdateSMTPTemplate struct {
 
-	// Absolute url of the attachment (no local file). Extension allowed: xlsx, xls, ods, docx, docm, doc, csv, pdf, txt, gif, jpg, jpeg, png, tif, tiff and rtf
+	// Absolute url of the attachment (no local file). Extension allowed: xlsx, xls, ods, docx, docm, doc, csv, pdf, txt, gif, jpg, jpeg, png, tif, tiff, rtf, bmp, cgm, css, shtml, html, htm, zip, xml, ppt, pptx, tar, ez, ics, mobi, msg, pub and eps
 	AttachmentURL string `json:"attachmentUrl,omitempty"`
 
 	// Required if htmlUrl is empty. Body of the message (HTML must have more than 10 characters)
@@ -51,6 +52,11 @@ type UpdateSMTPTemplate struct {
 func (m *UpdateSMTPTemplate) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateReplyTo(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if err := m.validateSender(formats); err != nil {
 		// prop
 		res = append(res, err)
@@ -59,6 +65,19 @@ func (m *UpdateSMTPTemplate) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *UpdateSMTPTemplate) validateReplyTo(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ReplyTo) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("replyTo", "body", "email", m.ReplyTo.String(), formats); err != nil {
+		return err
+	}
+
 	return nil
 }
 

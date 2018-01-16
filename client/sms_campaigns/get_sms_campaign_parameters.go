@@ -21,123 +21,123 @@ import (
 	models "github.com/sendinblue/APIv3-go-library/models"
 )
 
-// NewGetSmsCampaignParams creates a new GetSmsCampaignParams object
+// NewGetSMSCampaignParams creates a new GetSMSCampaignParams object
 // with the default values initialized.
-func NewGetSmsCampaignParams() *GetSmsCampaignParams {
+func NewGetSMSCampaignParams() *GetSMSCampaignParams {
 	var ()
-	return &GetSmsCampaignParams{
+	return &GetSMSCampaignParams{
 
 		timeout: cr.DefaultTimeout,
 	}
 }
 
-// NewGetSmsCampaignParamsWithTimeout creates a new GetSmsCampaignParams object
+// NewGetSMSCampaignParamsWithTimeout creates a new GetSMSCampaignParams object
 // with the default values initialized, and the ability to set a timeout on a request
-func NewGetSmsCampaignParamsWithTimeout(timeout time.Duration) *GetSmsCampaignParams {
+func NewGetSMSCampaignParamsWithTimeout(timeout time.Duration) *GetSMSCampaignParams {
 	var ()
-	return &GetSmsCampaignParams{
+	return &GetSMSCampaignParams{
 
 		timeout: timeout,
 	}
 }
 
-// NewGetSmsCampaignParamsWithContext creates a new GetSmsCampaignParams object
+// NewGetSMSCampaignParamsWithContext creates a new GetSMSCampaignParams object
 // with the default values initialized, and the ability to set a context for a request
-func NewGetSmsCampaignParamsWithContext(ctx context.Context) *GetSmsCampaignParams {
+func NewGetSMSCampaignParamsWithContext(ctx context.Context) *GetSMSCampaignParams {
 	var ()
-	return &GetSmsCampaignParams{
+	return &GetSMSCampaignParams{
 
 		Context: ctx,
 	}
 }
 
-// NewGetSmsCampaignParamsWithHTTPClient creates a new GetSmsCampaignParams object
+// NewGetSMSCampaignParamsWithHTTPClient creates a new GetSMSCampaignParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
-func NewGetSmsCampaignParamsWithHTTPClient(client *http.Client) *GetSmsCampaignParams {
+func NewGetSMSCampaignParamsWithHTTPClient(client *http.Client) *GetSMSCampaignParams {
 	var ()
-	return &GetSmsCampaignParams{
+	return &GetSMSCampaignParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetSmsCampaignParams contains all the parameters to send to the API endpoint
-for the get sms campaign operation typically these are written to a http.Request
+/*GetSMSCampaignParams contains all the parameters to send to the API endpoint
+for the get Sms campaign operation typically these are written to a http.Request
 */
-type GetSmsCampaignParams struct {
+type GetSMSCampaignParams struct {
 
 	/*CampaignID
 	  id of the SMS campaign
 
 	*/
 	CampaignID int64
-	/*GetSmsCampaign
+	/*GetSMSCampaign
 	  Values to update an SMS Campaign
 
 	*/
-	GetSmsCampaign *models.GetSmsCampaign
+	GetSMSCampaign *models.GetSMSCampaign
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
 }
 
-// WithTimeout adds the timeout to the get sms campaign params
-func (o *GetSmsCampaignParams) WithTimeout(timeout time.Duration) *GetSmsCampaignParams {
+// WithTimeout adds the timeout to the get Sms campaign params
+func (o *GetSMSCampaignParams) WithTimeout(timeout time.Duration) *GetSMSCampaignParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the get sms campaign params
-func (o *GetSmsCampaignParams) SetTimeout(timeout time.Duration) {
+// SetTimeout adds the timeout to the get Sms campaign params
+func (o *GetSMSCampaignParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the get sms campaign params
-func (o *GetSmsCampaignParams) WithContext(ctx context.Context) *GetSmsCampaignParams {
+// WithContext adds the context to the get Sms campaign params
+func (o *GetSMSCampaignParams) WithContext(ctx context.Context) *GetSMSCampaignParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the get sms campaign params
-func (o *GetSmsCampaignParams) SetContext(ctx context.Context) {
+// SetContext adds the context to the get Sms campaign params
+func (o *GetSMSCampaignParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the get sms campaign params
-func (o *GetSmsCampaignParams) WithHTTPClient(client *http.Client) *GetSmsCampaignParams {
+// WithHTTPClient adds the HTTPClient to the get Sms campaign params
+func (o *GetSMSCampaignParams) WithHTTPClient(client *http.Client) *GetSMSCampaignParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the get sms campaign params
-func (o *GetSmsCampaignParams) SetHTTPClient(client *http.Client) {
+// SetHTTPClient adds the HTTPClient to the get Sms campaign params
+func (o *GetSMSCampaignParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithCampaignID adds the campaignID to the get sms campaign params
-func (o *GetSmsCampaignParams) WithCampaignID(campaignID int64) *GetSmsCampaignParams {
+// WithCampaignID adds the campaignID to the get Sms campaign params
+func (o *GetSMSCampaignParams) WithCampaignID(campaignID int64) *GetSMSCampaignParams {
 	o.SetCampaignID(campaignID)
 	return o
 }
 
-// SetCampaignID adds the campaignId to the get sms campaign params
-func (o *GetSmsCampaignParams) SetCampaignID(campaignID int64) {
+// SetCampaignID adds the campaignId to the get Sms campaign params
+func (o *GetSMSCampaignParams) SetCampaignID(campaignID int64) {
 	o.CampaignID = campaignID
 }
 
-// WithGetSmsCampaign adds the getSmsCampaign to the get sms campaign params
-func (o *GetSmsCampaignParams) WithGetSmsCampaign(getSmsCampaign *models.GetSmsCampaign) *GetSmsCampaignParams {
-	o.SetGetSmsCampaign(getSmsCampaign)
+// WithGetSMSCampaign adds the getSMSCampaign to the get Sms campaign params
+func (o *GetSMSCampaignParams) WithGetSMSCampaign(getSMSCampaign *models.GetSMSCampaign) *GetSMSCampaignParams {
+	o.SetGetSMSCampaign(getSMSCampaign)
 	return o
 }
 
-// SetGetSmsCampaign adds the getSmsCampaign to the get sms campaign params
-func (o *GetSmsCampaignParams) SetGetSmsCampaign(getSmsCampaign *models.GetSmsCampaign) {
-	o.GetSmsCampaign = getSmsCampaign
+// SetGetSMSCampaign adds the getSmsCampaign to the get Sms campaign params
+func (o *GetSMSCampaignParams) SetGetSMSCampaign(getSMSCampaign *models.GetSMSCampaign) {
+	o.GetSMSCampaign = getSMSCampaign
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetSmsCampaignParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
+func (o *GetSMSCampaignParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	if err := r.SetTimeout(o.timeout); err != nil {
 		return err
@@ -149,8 +149,8 @@ func (o *GetSmsCampaignParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 		return err
 	}
 
-	if o.GetSmsCampaign != nil {
-		if err := r.SetBodyParam(o.GetSmsCampaign); err != nil {
+	if o.GetSMSCampaign != nil {
+		if err := r.SetBodyParam(o.GetSMSCampaign); err != nil {
 			return err
 		}
 	}

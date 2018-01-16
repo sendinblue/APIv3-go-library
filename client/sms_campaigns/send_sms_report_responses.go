@@ -64,7 +64,7 @@ type SendSMSReportNoContent struct {
 }
 
 func (o *SendSMSReportNoContent) Error() string {
-	return fmt.Sprintf("[POST /smsCampaigns/{campaignId}/sendReport][%d] sendSMSReportNoContent ", 204)
+	return fmt.Sprintf("[POST /smsCampaigns/{campaignId}/sendReport][%d] sendSmsReportNoContent ", 204)
 }
 
 func (o *SendSMSReportNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -86,7 +86,7 @@ type SendSMSReportBadRequest struct {
 }
 
 func (o *SendSMSReportBadRequest) Error() string {
-	return fmt.Sprintf("[POST /smsCampaigns/{campaignId}/sendReport][%d] sendSMSReportBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /smsCampaigns/{campaignId}/sendReport][%d] sendSmsReportBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *SendSMSReportBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -115,7 +115,7 @@ type SendSMSReportNotFound struct {
 }
 
 func (o *SendSMSReportNotFound) Error() string {
-	return fmt.Sprintf("[POST /smsCampaigns/{campaignId}/sendReport][%d] sendSMSReportNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /smsCampaigns/{campaignId}/sendReport][%d] sendSmsReportNotFound  %+v", 404, o.Payload)
 }
 
 func (o *SendSMSReportNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

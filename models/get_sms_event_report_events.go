@@ -14,12 +14,12 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// GetSmsEventReportEvents get sms event report events
+// GetSMSEventReportEvents get Sms event report events
 // swagger:model getSmsEventReportEvents
-type GetSmsEventReportEvents []*GetSmsEventReportEventsItems
+type GetSMSEventReportEvents []*GetSMSEventReportEventsItems
 
-// Validate validates this get sms event report events
-func (m GetSmsEventReportEvents) Validate(formats strfmt.Registry) error {
+// Validate validates this get Sms event report events
+func (m GetSMSEventReportEvents) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	for i := 0; i < len(m); i++ {

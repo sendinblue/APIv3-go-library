@@ -13,9 +13,9 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// PostSendSmsTestFailed post send sms test failed
+// PostSendSMSTestFailed post send Sms test failed
 // swagger:model postSendSmsTestFailed
-type PostSendSmsTestFailed struct {
+type PostSendSMSTestFailed struct {
 
 	// Response code
 	// Required: true
@@ -25,15 +25,15 @@ type PostSendSmsTestFailed struct {
 	// Required: true
 	Message *string `json:"message"`
 
-	// unexisting sms
-	UnexistingSms []strfmt.Email `json:"unexistingSms"`
+	// unexisting Sms
+	UnexistingSMS []strfmt.Email `json:"unexistingSms"`
 
-	// without list sms
-	WithoutListSms []strfmt.Email `json:"withoutListSms"`
+	// without list Sms
+	WithoutListSMS []strfmt.Email `json:"withoutListSms"`
 }
 
-// Validate validates this post send sms test failed
-func (m *PostSendSmsTestFailed) Validate(formats strfmt.Registry) error {
+// Validate validates this post send Sms test failed
+func (m *PostSendSMSTestFailed) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCode(formats); err != nil {
@@ -46,12 +46,12 @@ func (m *PostSendSmsTestFailed) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateUnexistingSms(formats); err != nil {
+	if err := m.validateUnexistingSMS(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
 
-	if err := m.validateWithoutListSms(formats); err != nil {
+	if err := m.validateWithoutListSMS(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -62,7 +62,7 @@ func (m *PostSendSmsTestFailed) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *PostSendSmsTestFailed) validateCode(formats strfmt.Registry) error {
+func (m *PostSendSMSTestFailed) validateCode(formats strfmt.Registry) error {
 
 	if err := validate.Required("code", "body", m.Code); err != nil {
 		return err
@@ -71,7 +71,7 @@ func (m *PostSendSmsTestFailed) validateCode(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *PostSendSmsTestFailed) validateMessage(formats strfmt.Registry) error {
+func (m *PostSendSMSTestFailed) validateMessage(formats strfmt.Registry) error {
 
 	if err := validate.Required("message", "body", m.Message); err != nil {
 		return err
@@ -80,18 +80,18 @@ func (m *PostSendSmsTestFailed) validateMessage(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *PostSendSmsTestFailed) validateUnexistingSms(formats strfmt.Registry) error {
+func (m *PostSendSMSTestFailed) validateUnexistingSMS(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.UnexistingSms) { // not required
+	if swag.IsZero(m.UnexistingSMS) { // not required
 		return nil
 	}
 
 	return nil
 }
 
-func (m *PostSendSmsTestFailed) validateWithoutListSms(formats strfmt.Registry) error {
+func (m *PostSendSMSTestFailed) validateWithoutListSMS(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.WithoutListSms) { // not required
+	if swag.IsZero(m.WithoutListSMS) { // not required
 		return nil
 	}
 
@@ -99,7 +99,7 @@ func (m *PostSendSmsTestFailed) validateWithoutListSms(formats strfmt.Registry) 
 }
 
 // MarshalBinary interface implementation
-func (m *PostSendSmsTestFailed) MarshalBinary() ([]byte, error) {
+func (m *PostSendSMSTestFailed) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -107,8 +107,8 @@ func (m *PostSendSmsTestFailed) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *PostSendSmsTestFailed) UnmarshalBinary(b []byte) error {
-	var res PostSendSmsTestFailed
+func (m *PostSendSMSTestFailed) UnmarshalBinary(b []byte) error {
+	var res PostSendSMSTestFailed
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

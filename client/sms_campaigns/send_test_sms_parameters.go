@@ -21,123 +21,123 @@ import (
 	models "github.com/sendinblue/APIv3-go-library/models"
 )
 
-// NewSendTestSmsParams creates a new SendTestSmsParams object
+// NewSendTestSMSParams creates a new SendTestSMSParams object
 // with the default values initialized.
-func NewSendTestSmsParams() *SendTestSmsParams {
+func NewSendTestSMSParams() *SendTestSMSParams {
 	var ()
-	return &SendTestSmsParams{
+	return &SendTestSMSParams{
 
 		timeout: cr.DefaultTimeout,
 	}
 }
 
-// NewSendTestSmsParamsWithTimeout creates a new SendTestSmsParams object
+// NewSendTestSMSParamsWithTimeout creates a new SendTestSMSParams object
 // with the default values initialized, and the ability to set a timeout on a request
-func NewSendTestSmsParamsWithTimeout(timeout time.Duration) *SendTestSmsParams {
+func NewSendTestSMSParamsWithTimeout(timeout time.Duration) *SendTestSMSParams {
 	var ()
-	return &SendTestSmsParams{
+	return &SendTestSMSParams{
 
 		timeout: timeout,
 	}
 }
 
-// NewSendTestSmsParamsWithContext creates a new SendTestSmsParams object
+// NewSendTestSMSParamsWithContext creates a new SendTestSMSParams object
 // with the default values initialized, and the ability to set a context for a request
-func NewSendTestSmsParamsWithContext(ctx context.Context) *SendTestSmsParams {
+func NewSendTestSMSParamsWithContext(ctx context.Context) *SendTestSMSParams {
 	var ()
-	return &SendTestSmsParams{
+	return &SendTestSMSParams{
 
 		Context: ctx,
 	}
 }
 
-// NewSendTestSmsParamsWithHTTPClient creates a new SendTestSmsParams object
+// NewSendTestSMSParamsWithHTTPClient creates a new SendTestSMSParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
-func NewSendTestSmsParamsWithHTTPClient(client *http.Client) *SendTestSmsParams {
+func NewSendTestSMSParamsWithHTTPClient(client *http.Client) *SendTestSMSParams {
 	var ()
-	return &SendTestSmsParams{
+	return &SendTestSMSParams{
 		HTTPClient: client,
 	}
 }
 
-/*SendTestSmsParams contains all the parameters to send to the API endpoint
-for the send test sms operation typically these are written to a http.Request
+/*SendTestSMSParams contains all the parameters to send to the API endpoint
+for the send test Sms operation typically these are written to a http.Request
 */
-type SendTestSmsParams struct {
+type SendTestSMSParams struct {
 
 	/*CampaignID
 	  Id of the SMS campaign
 
 	*/
 	CampaignID int64
-	/*SendTestSms
+	/*SendTestSMS
 	  Mobile number to which send the test
 
 	*/
-	SendTestSms *models.SendTestSms
+	SendTestSMS *models.SendTestSMS
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
 }
 
-// WithTimeout adds the timeout to the send test sms params
-func (o *SendTestSmsParams) WithTimeout(timeout time.Duration) *SendTestSmsParams {
+// WithTimeout adds the timeout to the send test Sms params
+func (o *SendTestSMSParams) WithTimeout(timeout time.Duration) *SendTestSMSParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the send test sms params
-func (o *SendTestSmsParams) SetTimeout(timeout time.Duration) {
+// SetTimeout adds the timeout to the send test Sms params
+func (o *SendTestSMSParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the send test sms params
-func (o *SendTestSmsParams) WithContext(ctx context.Context) *SendTestSmsParams {
+// WithContext adds the context to the send test Sms params
+func (o *SendTestSMSParams) WithContext(ctx context.Context) *SendTestSMSParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the send test sms params
-func (o *SendTestSmsParams) SetContext(ctx context.Context) {
+// SetContext adds the context to the send test Sms params
+func (o *SendTestSMSParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the send test sms params
-func (o *SendTestSmsParams) WithHTTPClient(client *http.Client) *SendTestSmsParams {
+// WithHTTPClient adds the HTTPClient to the send test Sms params
+func (o *SendTestSMSParams) WithHTTPClient(client *http.Client) *SendTestSMSParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the send test sms params
-func (o *SendTestSmsParams) SetHTTPClient(client *http.Client) {
+// SetHTTPClient adds the HTTPClient to the send test Sms params
+func (o *SendTestSMSParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithCampaignID adds the campaignID to the send test sms params
-func (o *SendTestSmsParams) WithCampaignID(campaignID int64) *SendTestSmsParams {
+// WithCampaignID adds the campaignID to the send test Sms params
+func (o *SendTestSMSParams) WithCampaignID(campaignID int64) *SendTestSMSParams {
 	o.SetCampaignID(campaignID)
 	return o
 }
 
-// SetCampaignID adds the campaignId to the send test sms params
-func (o *SendTestSmsParams) SetCampaignID(campaignID int64) {
+// SetCampaignID adds the campaignId to the send test Sms params
+func (o *SendTestSMSParams) SetCampaignID(campaignID int64) {
 	o.CampaignID = campaignID
 }
 
-// WithSendTestSms adds the sendTestSms to the send test sms params
-func (o *SendTestSmsParams) WithSendTestSms(sendTestSms *models.SendTestSms) *SendTestSmsParams {
-	o.SetSendTestSms(sendTestSms)
+// WithSendTestSMS adds the sendTestSMS to the send test Sms params
+func (o *SendTestSMSParams) WithSendTestSMS(sendTestSMS *models.SendTestSMS) *SendTestSMSParams {
+	o.SetSendTestSMS(sendTestSMS)
 	return o
 }
 
-// SetSendTestSms adds the sendTestSms to the send test sms params
-func (o *SendTestSmsParams) SetSendTestSms(sendTestSms *models.SendTestSms) {
-	o.SendTestSms = sendTestSms
+// SetSendTestSMS adds the sendTestSms to the send test Sms params
+func (o *SendTestSMSParams) SetSendTestSMS(sendTestSMS *models.SendTestSMS) {
+	o.SendTestSMS = sendTestSMS
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *SendTestSmsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
+func (o *SendTestSMSParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	if err := r.SetTimeout(o.timeout); err != nil {
 		return err
@@ -149,8 +149,8 @@ func (o *SendTestSmsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		return err
 	}
 
-	if o.SendTestSms != nil {
-		if err := r.SetBodyParam(o.SendTestSms); err != nil {
+	if o.SendTestSMS != nil {
+		if err := r.SetBodyParam(o.SendTestSMS); err != nil {
 			return err
 		}
 	}

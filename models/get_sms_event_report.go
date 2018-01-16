@@ -12,16 +12,16 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// GetSmsEventReport get sms event report
+// GetSMSEventReport get Sms event report
 // swagger:model getSmsEventReport
-type GetSmsEventReport struct {
+type GetSMSEventReport struct {
 
 	// events
-	Events GetSmsEventReportEvents `json:"events"`
+	Events GetSMSEventReportEvents `json:"events"`
 }
 
-// Validate validates this get sms event report
-func (m *GetSmsEventReport) Validate(formats strfmt.Registry) error {
+// Validate validates this get Sms event report
+func (m *GetSMSEventReport) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if len(res) > 0 {
@@ -31,7 +31,7 @@ func (m *GetSmsEventReport) Validate(formats strfmt.Registry) error {
 }
 
 // MarshalBinary interface implementation
-func (m *GetSmsEventReport) MarshalBinary() ([]byte, error) {
+func (m *GetSMSEventReport) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -39,8 +39,8 @@ func (m *GetSmsEventReport) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *GetSmsEventReport) UnmarshalBinary(b []byte) error {
-	var res GetSmsEventReport
+func (m *GetSMSEventReport) UnmarshalBinary(b []byte) error {
+	var res GetSMSEventReport
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

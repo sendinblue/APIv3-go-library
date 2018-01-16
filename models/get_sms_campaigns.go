@@ -13,20 +13,20 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// GetSmsCampaigns get sms campaigns
+// GetSMSCampaigns get Sms campaigns
 // swagger:model getSmsCampaigns
-type GetSmsCampaigns struct {
+type GetSMSCampaigns struct {
 
 	// campaigns
-	Campaigns GetSmsCampaignsCampaigns `json:"campaigns"`
+	Campaigns GetSMSCampaignsCampaigns `json:"campaigns"`
 
 	// Number of SMS campaigns retrieved
 	// Required: true
 	Count *int64 `json:"count"`
 }
 
-// Validate validates this get sms campaigns
-func (m *GetSmsCampaigns) Validate(formats strfmt.Registry) error {
+// Validate validates this get Sms campaigns
+func (m *GetSMSCampaigns) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCount(formats); err != nil {
@@ -40,7 +40,7 @@ func (m *GetSmsCampaigns) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *GetSmsCampaigns) validateCount(formats strfmt.Registry) error {
+func (m *GetSMSCampaigns) validateCount(formats strfmt.Registry) error {
 
 	if err := validate.Required("count", "body", m.Count); err != nil {
 		return err
@@ -50,7 +50,7 @@ func (m *GetSmsCampaigns) validateCount(formats strfmt.Registry) error {
 }
 
 // MarshalBinary interface implementation
-func (m *GetSmsCampaigns) MarshalBinary() ([]byte, error) {
+func (m *GetSMSCampaigns) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -58,8 +58,8 @@ func (m *GetSmsCampaigns) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *GetSmsCampaigns) UnmarshalBinary(b []byte) error {
-	var res GetSmsCampaigns
+func (m *GetSMSCampaigns) UnmarshalBinary(b []byte) error {
+	var res GetSMSCampaigns
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

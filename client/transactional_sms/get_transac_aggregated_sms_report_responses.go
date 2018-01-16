@@ -16,24 +16,24 @@ import (
 	models "github.com/sendinblue/APIv3-go-library/models"
 )
 
-// GetTransacAggregatedSmsReportReader is a Reader for the GetTransacAggregatedSmsReport structure.
-type GetTransacAggregatedSmsReportReader struct {
+// GetTransacAggregatedSMSReportReader is a Reader for the GetTransacAggregatedSMSReport structure.
+type GetTransacAggregatedSMSReportReader struct {
 	formats strfmt.Registry
 }
 
 // ReadResponse reads a server response into the received o.
-func (o *GetTransacAggregatedSmsReportReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
+func (o *GetTransacAggregatedSMSReportReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
-		result := NewGetTransacAggregatedSmsReportOK()
+		result := NewGetTransacAggregatedSMSReportOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 
 	case 400:
-		result := NewGetTransacAggregatedSmsReportBadRequest()
+		result := NewGetTransacAggregatedSMSReportBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -44,26 +44,26 @@ func (o *GetTransacAggregatedSmsReportReader) ReadResponse(response runtime.Clie
 	}
 }
 
-// NewGetTransacAggregatedSmsReportOK creates a GetTransacAggregatedSmsReportOK with default headers values
-func NewGetTransacAggregatedSmsReportOK() *GetTransacAggregatedSmsReportOK {
-	return &GetTransacAggregatedSmsReportOK{}
+// NewGetTransacAggregatedSMSReportOK creates a GetTransacAggregatedSMSReportOK with default headers values
+func NewGetTransacAggregatedSMSReportOK() *GetTransacAggregatedSMSReportOK {
+	return &GetTransacAggregatedSMSReportOK{}
 }
 
-/*GetTransacAggregatedSmsReportOK handles this case with default header values.
+/*GetTransacAggregatedSMSReportOK handles this case with default header values.
 
 Aggregated SMS report informations
 */
-type GetTransacAggregatedSmsReportOK struct {
-	Payload *models.GetTransacAggregatedSmsReport
+type GetTransacAggregatedSMSReportOK struct {
+	Payload *models.GetTransacAggregatedSMSReport
 }
 
-func (o *GetTransacAggregatedSmsReportOK) Error() string {
+func (o *GetTransacAggregatedSMSReportOK) Error() string {
 	return fmt.Sprintf("[GET /transactionalSMS/statistics/aggregatedReport][%d] getTransacAggregatedSmsReportOK  %+v", 200, o.Payload)
 }
 
-func (o *GetTransacAggregatedSmsReportOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *GetTransacAggregatedSMSReportOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GetTransacAggregatedSmsReport)
+	o.Payload = new(models.GetTransacAggregatedSMSReport)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -73,24 +73,24 @@ func (o *GetTransacAggregatedSmsReportOK) readResponse(response runtime.ClientRe
 	return nil
 }
 
-// NewGetTransacAggregatedSmsReportBadRequest creates a GetTransacAggregatedSmsReportBadRequest with default headers values
-func NewGetTransacAggregatedSmsReportBadRequest() *GetTransacAggregatedSmsReportBadRequest {
-	return &GetTransacAggregatedSmsReportBadRequest{}
+// NewGetTransacAggregatedSMSReportBadRequest creates a GetTransacAggregatedSMSReportBadRequest with default headers values
+func NewGetTransacAggregatedSMSReportBadRequest() *GetTransacAggregatedSMSReportBadRequest {
+	return &GetTransacAggregatedSMSReportBadRequest{}
 }
 
-/*GetTransacAggregatedSmsReportBadRequest handles this case with default header values.
+/*GetTransacAggregatedSMSReportBadRequest handles this case with default header values.
 
 bad request
 */
-type GetTransacAggregatedSmsReportBadRequest struct {
+type GetTransacAggregatedSMSReportBadRequest struct {
 	Payload *models.ErrorModel
 }
 
-func (o *GetTransacAggregatedSmsReportBadRequest) Error() string {
+func (o *GetTransacAggregatedSMSReportBadRequest) Error() string {
 	return fmt.Sprintf("[GET /transactionalSMS/statistics/aggregatedReport][%d] getTransacAggregatedSmsReportBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *GetTransacAggregatedSmsReportBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *GetTransacAggregatedSMSReportBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ErrorModel)
 

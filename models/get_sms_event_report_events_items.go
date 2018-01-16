@@ -15,9 +15,9 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// GetSmsEventReportEventsItems get sms event report events items
+// GetSMSEventReportEventsItems get Sms event report events items
 // swagger:model getSmsEventReportEventsItems
-type GetSmsEventReportEventsItems struct {
+type GetSMSEventReportEventsItems struct {
 
 	// Date on which the event has been generated
 	// Required: true
@@ -36,19 +36,17 @@ type GetSmsEventReportEventsItems struct {
 	PhoneNumber *string `json:"phoneNumber"`
 
 	// Reason of bounce (only available if the event is hardbounce or softbounce)
-	// Required: true
-	Reason *string `json:"reason"`
+	Reason string `json:"reason,omitempty"`
 
 	// reply
 	Reply string `json:"reply,omitempty"`
 
 	// Tag of the SMS which generated the event
-	// Required: true
-	Tag *string `json:"tag"`
+	Tag string `json:"tag,omitempty"`
 }
 
-// Validate validates this get sms event report events items
-func (m *GetSmsEventReportEventsItems) Validate(formats strfmt.Registry) error {
+// Validate validates this get Sms event report events items
+func (m *GetSMSEventReportEventsItems) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateDate(formats); err != nil {
@@ -71,23 +69,13 @@ func (m *GetSmsEventReportEventsItems) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateReason(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateTag(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
 }
 
-func (m *GetSmsEventReportEventsItems) validateDate(formats strfmt.Registry) error {
+func (m *GetSMSEventReportEventsItems) validateDate(formats strfmt.Registry) error {
 
 	if err := validate.Required("date", "body", m.Date); err != nil {
 		return err
@@ -113,35 +101,35 @@ func init() {
 }
 
 const (
-	// GetSmsEventReportEventsItemsEventBounces captures enum value "bounces"
-	GetSmsEventReportEventsItemsEventBounces string = "bounces"
-	// GetSmsEventReportEventsItemsEventHardBounces captures enum value "hardBounces"
-	GetSmsEventReportEventsItemsEventHardBounces string = "hardBounces"
-	// GetSmsEventReportEventsItemsEventSoftBounces captures enum value "softBounces"
-	GetSmsEventReportEventsItemsEventSoftBounces string = "softBounces"
-	// GetSmsEventReportEventsItemsEventDelivered captures enum value "delivered"
-	GetSmsEventReportEventsItemsEventDelivered string = "delivered"
-	// GetSmsEventReportEventsItemsEventSent captures enum value "sent"
-	GetSmsEventReportEventsItemsEventSent string = "sent"
-	// GetSmsEventReportEventsItemsEventAccepted captures enum value "accepted"
-	GetSmsEventReportEventsItemsEventAccepted string = "accepted"
-	// GetSmsEventReportEventsItemsEventUnsubscription captures enum value "unsubscription"
-	GetSmsEventReportEventsItemsEventUnsubscription string = "unsubscription"
-	// GetSmsEventReportEventsItemsEventReplies captures enum value "replies"
-	GetSmsEventReportEventsItemsEventReplies string = "replies"
-	// GetSmsEventReportEventsItemsEventBlocked captures enum value "blocked"
-	GetSmsEventReportEventsItemsEventBlocked string = "blocked"
+	// GetSMSEventReportEventsItemsEventBounces captures enum value "bounces"
+	GetSMSEventReportEventsItemsEventBounces string = "bounces"
+	// GetSMSEventReportEventsItemsEventHardBounces captures enum value "hardBounces"
+	GetSMSEventReportEventsItemsEventHardBounces string = "hardBounces"
+	// GetSMSEventReportEventsItemsEventSoftBounces captures enum value "softBounces"
+	GetSMSEventReportEventsItemsEventSoftBounces string = "softBounces"
+	// GetSMSEventReportEventsItemsEventDelivered captures enum value "delivered"
+	GetSMSEventReportEventsItemsEventDelivered string = "delivered"
+	// GetSMSEventReportEventsItemsEventSent captures enum value "sent"
+	GetSMSEventReportEventsItemsEventSent string = "sent"
+	// GetSMSEventReportEventsItemsEventAccepted captures enum value "accepted"
+	GetSMSEventReportEventsItemsEventAccepted string = "accepted"
+	// GetSMSEventReportEventsItemsEventUnsubscription captures enum value "unsubscription"
+	GetSMSEventReportEventsItemsEventUnsubscription string = "unsubscription"
+	// GetSMSEventReportEventsItemsEventReplies captures enum value "replies"
+	GetSMSEventReportEventsItemsEventReplies string = "replies"
+	// GetSMSEventReportEventsItemsEventBlocked captures enum value "blocked"
+	GetSMSEventReportEventsItemsEventBlocked string = "blocked"
 )
 
 // prop value enum
-func (m *GetSmsEventReportEventsItems) validateEventEnum(path, location string, value string) error {
+func (m *GetSMSEventReportEventsItems) validateEventEnum(path, location string, value string) error {
 	if err := validate.Enum(path, location, value, getSmsEventReportEventsItemsTypeEventPropEnum); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *GetSmsEventReportEventsItems) validateEvent(formats strfmt.Registry) error {
+func (m *GetSMSEventReportEventsItems) validateEvent(formats strfmt.Registry) error {
 
 	if err := validate.Required("event", "body", m.Event); err != nil {
 		return err
@@ -155,7 +143,7 @@ func (m *GetSmsEventReportEventsItems) validateEvent(formats strfmt.Registry) er
 	return nil
 }
 
-func (m *GetSmsEventReportEventsItems) validateMessageID(formats strfmt.Registry) error {
+func (m *GetSMSEventReportEventsItems) validateMessageID(formats strfmt.Registry) error {
 
 	if err := validate.Required("messageId", "body", m.MessageID); err != nil {
 		return err
@@ -164,7 +152,7 @@ func (m *GetSmsEventReportEventsItems) validateMessageID(formats strfmt.Registry
 	return nil
 }
 
-func (m *GetSmsEventReportEventsItems) validatePhoneNumber(formats strfmt.Registry) error {
+func (m *GetSMSEventReportEventsItems) validatePhoneNumber(formats strfmt.Registry) error {
 
 	if err := validate.Required("phoneNumber", "body", m.PhoneNumber); err != nil {
 		return err
@@ -173,26 +161,8 @@ func (m *GetSmsEventReportEventsItems) validatePhoneNumber(formats strfmt.Regist
 	return nil
 }
 
-func (m *GetSmsEventReportEventsItems) validateReason(formats strfmt.Registry) error {
-
-	if err := validate.Required("reason", "body", m.Reason); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GetSmsEventReportEventsItems) validateTag(formats strfmt.Registry) error {
-
-	if err := validate.Required("tag", "body", m.Tag); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 // MarshalBinary interface implementation
-func (m *GetSmsEventReportEventsItems) MarshalBinary() ([]byte, error) {
+func (m *GetSMSEventReportEventsItems) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -200,8 +170,8 @@ func (m *GetSmsEventReportEventsItems) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *GetSmsEventReportEventsItems) UnmarshalBinary(b []byte) error {
-	var res GetSmsEventReportEventsItems
+func (m *GetSMSEventReportEventsItems) UnmarshalBinary(b []byte) error {
+	var res GetSMSEventReportEventsItems
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

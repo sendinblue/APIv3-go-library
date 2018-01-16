@@ -25,7 +25,7 @@ type Client struct {
 }
 
 /*
-AddCredits adds email and or s m s credits to a specific child account
+AddCredits adds email and or SMS credits to a specific child account
 */
 func (a *Client) AddCredits(params *AddCreditsParams, authInfo runtime.ClientAuthInfoWriter) (*AddCreditsOK, error) {
 	// TODO: Validate the params before sending
@@ -228,7 +228,7 @@ func (a *Client) GetResellerChilds(params *GetResellerChildsParams, authInfo run
 }
 
 /*
-RemoveCredits removes email and or s m s credits from a specific child account
+RemoveCredits removes email and or SMS credits from a specific child account
 */
 func (a *Client) RemoveCredits(params *RemoveCreditsParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveCreditsOK, error) {
 	// TODO: Validate the params before sending

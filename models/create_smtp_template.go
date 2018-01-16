@@ -17,7 +17,7 @@ import (
 // swagger:model createSmtpTemplate
 type CreateSMTPTemplate struct {
 
-	// Absolute url of the attachment (no local file). Extensions allowed xlsx, xls, ods, docx, docm, doc, csv, pdf, txt, gif, jpg, jpeg, png, tif, tiff and rtf
+	// Absolute url of the attachment (no local file). Extension allowed: xlsx, xls, ods, docx, docm, doc, csv, pdf, txt, gif, jpg, jpeg, png, tif, tiff, rtf, bmp, cgm, css, shtml, html, htm, zip, xml, ppt, pptx, tar, ez, ics, mobi, msg, pub and eps
 	AttachmentURL string `json:"attachmentUrl,omitempty"`
 
 	// Body of the message (HTML version). The field must have more than 10 characters. REQUIRED if htmlUrl is empty
@@ -55,6 +55,11 @@ type CreateSMTPTemplate struct {
 func (m *CreateSMTPTemplate) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateReplyTo(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if err := m.validateSender(formats); err != nil {
 		// prop
 		res = append(res, err)
@@ -73,6 +78,19 @@ func (m *CreateSMTPTemplate) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *CreateSMTPTemplate) validateReplyTo(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ReplyTo) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("replyTo", "body", "email", m.ReplyTo.String(), formats); err != nil {
+		return err
+	}
+
 	return nil
 }
 

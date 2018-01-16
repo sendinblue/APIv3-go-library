@@ -25,12 +25,12 @@ type Client struct {
 }
 
 /*
-GetSmsEvents gets all the s m s activity unaggregated events
+GetSMSEvents gets all the SMS activity unaggregated events
 */
-func (a *Client) GetSmsEvents(params *GetSmsEventsParams, authInfo runtime.ClientAuthInfoWriter) (*GetSmsEventsOK, error) {
+func (a *Client) GetSMSEvents(params *GetSMSEventsParams, authInfo runtime.ClientAuthInfoWriter) (*GetSMSEventsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetSmsEventsParams()
+		params = NewGetSMSEventsParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -41,7 +41,7 @@ func (a *Client) GetSmsEvents(params *GetSmsEventsParams, authInfo runtime.Clien
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &GetSmsEventsReader{formats: a.formats},
+		Reader:             &GetSMSEventsReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -49,17 +49,17 @@ func (a *Client) GetSmsEvents(params *GetSmsEventsParams, authInfo runtime.Clien
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetSmsEventsOK), nil
+	return result.(*GetSMSEventsOK), nil
 
 }
 
 /*
-GetTransacAggregatedSmsReport gets your s m s activity aggregated over a period of time
+GetTransacAggregatedSMSReport gets your SMS activity aggregated over a period of time
 */
-func (a *Client) GetTransacAggregatedSmsReport(params *GetTransacAggregatedSmsReportParams, authInfo runtime.ClientAuthInfoWriter) (*GetTransacAggregatedSmsReportOK, error) {
+func (a *Client) GetTransacAggregatedSMSReport(params *GetTransacAggregatedSMSReportParams, authInfo runtime.ClientAuthInfoWriter) (*GetTransacAggregatedSMSReportOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetTransacAggregatedSmsReportParams()
+		params = NewGetTransacAggregatedSMSReportParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -70,7 +70,7 @@ func (a *Client) GetTransacAggregatedSmsReport(params *GetTransacAggregatedSmsRe
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &GetTransacAggregatedSmsReportReader{formats: a.formats},
+		Reader:             &GetTransacAggregatedSMSReportReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -78,17 +78,17 @@ func (a *Client) GetTransacAggregatedSmsReport(params *GetTransacAggregatedSmsRe
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetTransacAggregatedSmsReportOK), nil
+	return result.(*GetTransacAggregatedSMSReportOK), nil
 
 }
 
 /*
-GetTransacSmsReport gets your s m s activity aggregated per day
+GetTransacSMSReport gets your SMS activity aggregated per day
 */
-func (a *Client) GetTransacSmsReport(params *GetTransacSmsReportParams, authInfo runtime.ClientAuthInfoWriter) (*GetTransacSmsReportOK, error) {
+func (a *Client) GetTransacSMSReport(params *GetTransacSMSReportParams, authInfo runtime.ClientAuthInfoWriter) (*GetTransacSMSReportOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetTransacSmsReportParams()
+		params = NewGetTransacSMSReportParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -99,7 +99,7 @@ func (a *Client) GetTransacSmsReport(params *GetTransacSmsReportParams, authInfo
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &GetTransacSmsReportReader{formats: a.formats},
+		Reader:             &GetTransacSMSReportReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -107,17 +107,17 @@ func (a *Client) GetTransacSmsReport(params *GetTransacSmsReportParams, authInfo
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetTransacSmsReportOK), nil
+	return result.(*GetTransacSMSReportOK), nil
 
 }
 
 /*
-SendTransacSms sends the s m s campaign to the specified mobile number
+SendTransacSMS sends the SMS campaign to the specified mobile number
 */
-func (a *Client) SendTransacSms(params *SendTransacSmsParams, authInfo runtime.ClientAuthInfoWriter) (*SendTransacSmsCreated, error) {
+func (a *Client) SendTransacSMS(params *SendTransacSMSParams, authInfo runtime.ClientAuthInfoWriter) (*SendTransacSMSCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewSendTransacSmsParams()
+		params = NewSendTransacSMSParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -128,7 +128,7 @@ func (a *Client) SendTransacSms(params *SendTransacSmsParams, authInfo runtime.C
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &SendTransacSmsReader{formats: a.formats},
+		Reader:             &SendTransacSMSReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -136,7 +136,7 @@ func (a *Client) SendTransacSms(params *SendTransacSmsParams, authInfo runtime.C
 	if err != nil {
 		return nil, err
 	}
-	return result.(*SendTransacSmsCreated), nil
+	return result.(*SendTransacSMSCreated), nil
 
 }
 

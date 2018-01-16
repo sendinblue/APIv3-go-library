@@ -16,31 +16,31 @@ import (
 	models "github.com/sendinblue/APIv3-go-library/models"
 )
 
-// SendTestSmsReader is a Reader for the SendTestSms structure.
-type SendTestSmsReader struct {
+// SendTestSMSReader is a Reader for the SendTestSMS structure.
+type SendTestSMSReader struct {
 	formats strfmt.Registry
 }
 
 // ReadResponse reads a server response into the received o.
-func (o *SendTestSmsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
+func (o *SendTestSMSReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 204:
-		result := NewSendTestSmsNoContent()
+		result := NewSendTestSMSNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 
 	case 400:
-		result := NewSendTestSmsBadRequest()
+		result := NewSendTestSMSBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 
 	case 404:
-		result := NewSendTestSmsNotFound()
+		result := NewSendTestSMSNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -51,47 +51,47 @@ func (o *SendTestSmsReader) ReadResponse(response runtime.ClientResponse, consum
 	}
 }
 
-// NewSendTestSmsNoContent creates a SendTestSmsNoContent with default headers values
-func NewSendTestSmsNoContent() *SendTestSmsNoContent {
-	return &SendTestSmsNoContent{}
+// NewSendTestSMSNoContent creates a SendTestSMSNoContent with default headers values
+func NewSendTestSMSNoContent() *SendTestSMSNoContent {
+	return &SendTestSMSNoContent{}
 }
 
-/*SendTestSmsNoContent handles this case with default header values.
+/*SendTestSMSNoContent handles this case with default header values.
 
 Test SMS has been sent successfully to the recipient
 */
-type SendTestSmsNoContent struct {
+type SendTestSMSNoContent struct {
 }
 
-func (o *SendTestSmsNoContent) Error() string {
+func (o *SendTestSMSNoContent) Error() string {
 	return fmt.Sprintf("[POST /smsCampaigns/{campaignId}/sendTest][%d] sendTestSmsNoContent ", 204)
 }
 
-func (o *SendTestSmsNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *SendTestSMSNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
 
-// NewSendTestSmsBadRequest creates a SendTestSmsBadRequest with default headers values
-func NewSendTestSmsBadRequest() *SendTestSmsBadRequest {
-	return &SendTestSmsBadRequest{}
+// NewSendTestSMSBadRequest creates a SendTestSMSBadRequest with default headers values
+func NewSendTestSMSBadRequest() *SendTestSMSBadRequest {
+	return &SendTestSMSBadRequest{}
 }
 
-/*SendTestSmsBadRequest handles this case with default header values.
+/*SendTestSMSBadRequest handles this case with default header values.
 
 Test SMS could not be sent to the following email addresses
 */
-type SendTestSmsBadRequest struct {
-	Payload *models.PostSendSmsTestFailed
+type SendTestSMSBadRequest struct {
+	Payload *models.PostSendSMSTestFailed
 }
 
-func (o *SendTestSmsBadRequest) Error() string {
+func (o *SendTestSMSBadRequest) Error() string {
 	return fmt.Sprintf("[POST /smsCampaigns/{campaignId}/sendTest][%d] sendTestSmsBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *SendTestSmsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *SendTestSMSBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.PostSendSmsTestFailed)
+	o.Payload = new(models.PostSendSMSTestFailed)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -101,24 +101,24 @@ func (o *SendTestSmsBadRequest) readResponse(response runtime.ClientResponse, co
 	return nil
 }
 
-// NewSendTestSmsNotFound creates a SendTestSmsNotFound with default headers values
-func NewSendTestSmsNotFound() *SendTestSmsNotFound {
-	return &SendTestSmsNotFound{}
+// NewSendTestSMSNotFound creates a SendTestSMSNotFound with default headers values
+func NewSendTestSMSNotFound() *SendTestSMSNotFound {
+	return &SendTestSMSNotFound{}
 }
 
-/*SendTestSmsNotFound handles this case with default header values.
+/*SendTestSMSNotFound handles this case with default header values.
 
 Campaign ID not found
 */
-type SendTestSmsNotFound struct {
+type SendTestSMSNotFound struct {
 	Payload *models.ErrorModel
 }
 
-func (o *SendTestSmsNotFound) Error() string {
+func (o *SendTestSMSNotFound) Error() string {
 	return fmt.Sprintf("[POST /smsCampaigns/{campaignId}/sendTest][%d] sendTestSmsNotFound  %+v", 404, o.Payload)
 }
 
-func (o *SendTestSmsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *SendTestSMSNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ErrorModel)
 

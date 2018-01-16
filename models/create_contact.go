@@ -10,6 +10,7 @@ import (
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // CreateContact create contact
@@ -29,7 +30,10 @@ type CreateContact struct {
 	ListIds []int64 `json:"listIds"`
 
 	// Blacklist the contact for SMS (smsBlacklisted = true)
-	SmsBlacklisted bool `json:"smsBlacklisted,omitempty"`
+	SMSBlacklisted bool `json:"smsBlacklisted,omitempty"`
+
+	// SMTP forbidden sender for contact. Use only for email Contact ( only available if updateEnabled = true )
+	SMTPBlacklistSender []strfmt.Email `json:"smtpBlacklistSender"`
 
 	// Facilitate to update existing contact in same request (updateEnabled = true)
 	UpdateEnabled *bool `json:"updateEnabled,omitempty"`
@@ -39,7 +43,17 @@ type CreateContact struct {
 func (m *CreateContact) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateEmail(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if err := m.validateListIds(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateSMTPBlacklistSender(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -50,9 +64,31 @@ func (m *CreateContact) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *CreateContact) validateEmail(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Email) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("email", "body", "email", m.Email.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *CreateContact) validateListIds(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.ListIds) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *CreateContact) validateSMTPBlacklistSender(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SMTPBlacklistSender) { // not required
 		return nil
 	}
 

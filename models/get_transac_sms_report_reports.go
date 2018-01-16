@@ -14,12 +14,12 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// GetTransacSmsReportReports get transac sms report reports
+// GetTransacSMSReportReports get transac Sms report reports
 // swagger:model getTransacSmsReportReports
-type GetTransacSmsReportReports []*GetTransacSmsReportReportsItems
+type GetTransacSMSReportReports []*GetTransacSMSReportReportsItems
 
-// Validate validates this get transac sms report reports
-func (m GetTransacSmsReportReports) Validate(formats strfmt.Registry) error {
+// Validate validates this get transac Sms report reports
+func (m GetTransacSMSReportReports) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	for i := 0; i < len(m); i++ {

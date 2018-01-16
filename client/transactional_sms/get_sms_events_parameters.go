@@ -19,14 +19,14 @@ import (
 	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetSmsEventsParams creates a new GetSmsEventsParams object
+// NewGetSMSEventsParams creates a new GetSMSEventsParams object
 // with the default values initialized.
-func NewGetSmsEventsParams() *GetSmsEventsParams {
+func NewGetSMSEventsParams() *GetSMSEventsParams {
 	var (
 		limitDefault  = int64(50)
 		offsetDefault = int64(0)
 	)
-	return &GetSmsEventsParams{
+	return &GetSMSEventsParams{
 		Limit:  &limitDefault,
 		Offset: &offsetDefault,
 
@@ -34,14 +34,14 @@ func NewGetSmsEventsParams() *GetSmsEventsParams {
 	}
 }
 
-// NewGetSmsEventsParamsWithTimeout creates a new GetSmsEventsParams object
+// NewGetSMSEventsParamsWithTimeout creates a new GetSMSEventsParams object
 // with the default values initialized, and the ability to set a timeout on a request
-func NewGetSmsEventsParamsWithTimeout(timeout time.Duration) *GetSmsEventsParams {
+func NewGetSMSEventsParamsWithTimeout(timeout time.Duration) *GetSMSEventsParams {
 	var (
 		limitDefault  = int64(50)
 		offsetDefault = int64(0)
 	)
-	return &GetSmsEventsParams{
+	return &GetSMSEventsParams{
 		Limit:  &limitDefault,
 		Offset: &offsetDefault,
 
@@ -49,14 +49,14 @@ func NewGetSmsEventsParamsWithTimeout(timeout time.Duration) *GetSmsEventsParams
 	}
 }
 
-// NewGetSmsEventsParamsWithContext creates a new GetSmsEventsParams object
+// NewGetSMSEventsParamsWithContext creates a new GetSMSEventsParams object
 // with the default values initialized, and the ability to set a context for a request
-func NewGetSmsEventsParamsWithContext(ctx context.Context) *GetSmsEventsParams {
+func NewGetSMSEventsParamsWithContext(ctx context.Context) *GetSMSEventsParams {
 	var (
 		limitDefault  = int64(50)
 		offsetDefault = int64(0)
 	)
-	return &GetSmsEventsParams{
+	return &GetSMSEventsParams{
 		Limit:  &limitDefault,
 		Offset: &offsetDefault,
 
@@ -64,24 +64,24 @@ func NewGetSmsEventsParamsWithContext(ctx context.Context) *GetSmsEventsParams {
 	}
 }
 
-// NewGetSmsEventsParamsWithHTTPClient creates a new GetSmsEventsParams object
+// NewGetSMSEventsParamsWithHTTPClient creates a new GetSMSEventsParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
-func NewGetSmsEventsParamsWithHTTPClient(client *http.Client) *GetSmsEventsParams {
+func NewGetSMSEventsParamsWithHTTPClient(client *http.Client) *GetSMSEventsParams {
 	var (
 		limitDefault  = int64(50)
 		offsetDefault = int64(0)
 	)
-	return &GetSmsEventsParams{
+	return &GetSMSEventsParams{
 		Limit:      &limitDefault,
 		Offset:     &offsetDefault,
 		HTTPClient: client,
 	}
 }
 
-/*GetSmsEventsParams contains all the parameters to send to the API endpoint
-for the get sms events operation typically these are written to a http.Request
+/*GetSMSEventsParams contains all the parameters to send to the API endpoint
+for the get Sms events operation typically these are written to a http.Request
 */
-type GetSmsEventsParams struct {
+type GetSMSEventsParams struct {
 
 	/*Days
 	  Number of days in the past including today (positive integer). Not compatible with 'startDate' and 'endDate'
@@ -129,129 +129,129 @@ type GetSmsEventsParams struct {
 	HTTPClient *http.Client
 }
 
-// WithTimeout adds the timeout to the get sms events params
-func (o *GetSmsEventsParams) WithTimeout(timeout time.Duration) *GetSmsEventsParams {
+// WithTimeout adds the timeout to the get Sms events params
+func (o *GetSMSEventsParams) WithTimeout(timeout time.Duration) *GetSMSEventsParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the get sms events params
-func (o *GetSmsEventsParams) SetTimeout(timeout time.Duration) {
+// SetTimeout adds the timeout to the get Sms events params
+func (o *GetSMSEventsParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the get sms events params
-func (o *GetSmsEventsParams) WithContext(ctx context.Context) *GetSmsEventsParams {
+// WithContext adds the context to the get Sms events params
+func (o *GetSMSEventsParams) WithContext(ctx context.Context) *GetSMSEventsParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the get sms events params
-func (o *GetSmsEventsParams) SetContext(ctx context.Context) {
+// SetContext adds the context to the get Sms events params
+func (o *GetSMSEventsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the get sms events params
-func (o *GetSmsEventsParams) WithHTTPClient(client *http.Client) *GetSmsEventsParams {
+// WithHTTPClient adds the HTTPClient to the get Sms events params
+func (o *GetSMSEventsParams) WithHTTPClient(client *http.Client) *GetSMSEventsParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the get sms events params
-func (o *GetSmsEventsParams) SetHTTPClient(client *http.Client) {
+// SetHTTPClient adds the HTTPClient to the get Sms events params
+func (o *GetSMSEventsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithDays adds the days to the get sms events params
-func (o *GetSmsEventsParams) WithDays(days *int64) *GetSmsEventsParams {
+// WithDays adds the days to the get Sms events params
+func (o *GetSMSEventsParams) WithDays(days *int64) *GetSMSEventsParams {
 	o.SetDays(days)
 	return o
 }
 
-// SetDays adds the days to the get sms events params
-func (o *GetSmsEventsParams) SetDays(days *int64) {
+// SetDays adds the days to the get Sms events params
+func (o *GetSMSEventsParams) SetDays(days *int64) {
 	o.Days = days
 }
 
-// WithEndDate adds the endDate to the get sms events params
-func (o *GetSmsEventsParams) WithEndDate(endDate *strfmt.Date) *GetSmsEventsParams {
+// WithEndDate adds the endDate to the get Sms events params
+func (o *GetSMSEventsParams) WithEndDate(endDate *strfmt.Date) *GetSMSEventsParams {
 	o.SetEndDate(endDate)
 	return o
 }
 
-// SetEndDate adds the endDate to the get sms events params
-func (o *GetSmsEventsParams) SetEndDate(endDate *strfmt.Date) {
+// SetEndDate adds the endDate to the get Sms events params
+func (o *GetSMSEventsParams) SetEndDate(endDate *strfmt.Date) {
 	o.EndDate = endDate
 }
 
-// WithEvent adds the event to the get sms events params
-func (o *GetSmsEventsParams) WithEvent(event *string) *GetSmsEventsParams {
+// WithEvent adds the event to the get Sms events params
+func (o *GetSMSEventsParams) WithEvent(event *string) *GetSMSEventsParams {
 	o.SetEvent(event)
 	return o
 }
 
-// SetEvent adds the event to the get sms events params
-func (o *GetSmsEventsParams) SetEvent(event *string) {
+// SetEvent adds the event to the get Sms events params
+func (o *GetSMSEventsParams) SetEvent(event *string) {
 	o.Event = event
 }
 
-// WithLimit adds the limit to the get sms events params
-func (o *GetSmsEventsParams) WithLimit(limit *int64) *GetSmsEventsParams {
+// WithLimit adds the limit to the get Sms events params
+func (o *GetSMSEventsParams) WithLimit(limit *int64) *GetSMSEventsParams {
 	o.SetLimit(limit)
 	return o
 }
 
-// SetLimit adds the limit to the get sms events params
-func (o *GetSmsEventsParams) SetLimit(limit *int64) {
+// SetLimit adds the limit to the get Sms events params
+func (o *GetSMSEventsParams) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
-// WithOffset adds the offset to the get sms events params
-func (o *GetSmsEventsParams) WithOffset(offset *int64) *GetSmsEventsParams {
+// WithOffset adds the offset to the get Sms events params
+func (o *GetSMSEventsParams) WithOffset(offset *int64) *GetSMSEventsParams {
 	o.SetOffset(offset)
 	return o
 }
 
-// SetOffset adds the offset to the get sms events params
-func (o *GetSmsEventsParams) SetOffset(offset *int64) {
+// SetOffset adds the offset to the get Sms events params
+func (o *GetSMSEventsParams) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
-// WithPhoneNumber adds the phoneNumber to the get sms events params
-func (o *GetSmsEventsParams) WithPhoneNumber(phoneNumber *string) *GetSmsEventsParams {
+// WithPhoneNumber adds the phoneNumber to the get Sms events params
+func (o *GetSMSEventsParams) WithPhoneNumber(phoneNumber *string) *GetSMSEventsParams {
 	o.SetPhoneNumber(phoneNumber)
 	return o
 }
 
-// SetPhoneNumber adds the phoneNumber to the get sms events params
-func (o *GetSmsEventsParams) SetPhoneNumber(phoneNumber *string) {
+// SetPhoneNumber adds the phoneNumber to the get Sms events params
+func (o *GetSMSEventsParams) SetPhoneNumber(phoneNumber *string) {
 	o.PhoneNumber = phoneNumber
 }
 
-// WithStartDate adds the startDate to the get sms events params
-func (o *GetSmsEventsParams) WithStartDate(startDate *strfmt.Date) *GetSmsEventsParams {
+// WithStartDate adds the startDate to the get Sms events params
+func (o *GetSMSEventsParams) WithStartDate(startDate *strfmt.Date) *GetSMSEventsParams {
 	o.SetStartDate(startDate)
 	return o
 }
 
-// SetStartDate adds the startDate to the get sms events params
-func (o *GetSmsEventsParams) SetStartDate(startDate *strfmt.Date) {
+// SetStartDate adds the startDate to the get Sms events params
+func (o *GetSMSEventsParams) SetStartDate(startDate *strfmt.Date) {
 	o.StartDate = startDate
 }
 
-// WithTags adds the tags to the get sms events params
-func (o *GetSmsEventsParams) WithTags(tags *string) *GetSmsEventsParams {
+// WithTags adds the tags to the get Sms events params
+func (o *GetSMSEventsParams) WithTags(tags *string) *GetSMSEventsParams {
 	o.SetTags(tags)
 	return o
 }
 
-// SetTags adds the tags to the get sms events params
-func (o *GetSmsEventsParams) SetTags(tags *string) {
+// SetTags adds the tags to the get Sms events params
+func (o *GetSMSEventsParams) SetTags(tags *string) {
 	o.Tags = tags
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetSmsEventsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
+func (o *GetSMSEventsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	if err := r.SetTimeout(o.timeout); err != nil {
 		return err

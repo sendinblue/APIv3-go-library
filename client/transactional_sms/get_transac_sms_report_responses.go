@@ -16,24 +16,24 @@ import (
 	models "github.com/sendinblue/APIv3-go-library/models"
 )
 
-// GetTransacSmsReportReader is a Reader for the GetTransacSmsReport structure.
-type GetTransacSmsReportReader struct {
+// GetTransacSMSReportReader is a Reader for the GetTransacSMSReport structure.
+type GetTransacSMSReportReader struct {
 	formats strfmt.Registry
 }
 
 // ReadResponse reads a server response into the received o.
-func (o *GetTransacSmsReportReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
+func (o *GetTransacSMSReportReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
-		result := NewGetTransacSmsReportOK()
+		result := NewGetTransacSMSReportOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 
 	case 400:
-		result := NewGetTransacSmsReportBadRequest()
+		result := NewGetTransacSMSReportBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -44,26 +44,26 @@ func (o *GetTransacSmsReportReader) ReadResponse(response runtime.ClientResponse
 	}
 }
 
-// NewGetTransacSmsReportOK creates a GetTransacSmsReportOK with default headers values
-func NewGetTransacSmsReportOK() *GetTransacSmsReportOK {
-	return &GetTransacSmsReportOK{}
+// NewGetTransacSMSReportOK creates a GetTransacSMSReportOK with default headers values
+func NewGetTransacSMSReportOK() *GetTransacSMSReportOK {
+	return &GetTransacSMSReportOK{}
 }
 
-/*GetTransacSmsReportOK handles this case with default header values.
+/*GetTransacSMSReportOK handles this case with default header values.
 
 Aggregated SMS report informations
 */
-type GetTransacSmsReportOK struct {
-	Payload *models.GetTransacSmsReport
+type GetTransacSMSReportOK struct {
+	Payload *models.GetTransacSMSReport
 }
 
-func (o *GetTransacSmsReportOK) Error() string {
+func (o *GetTransacSMSReportOK) Error() string {
 	return fmt.Sprintf("[GET /transactionalSMS/statistics/reports][%d] getTransacSmsReportOK  %+v", 200, o.Payload)
 }
 
-func (o *GetTransacSmsReportOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *GetTransacSMSReportOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GetTransacSmsReport)
+	o.Payload = new(models.GetTransacSMSReport)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -73,24 +73,24 @@ func (o *GetTransacSmsReportOK) readResponse(response runtime.ClientResponse, co
 	return nil
 }
 
-// NewGetTransacSmsReportBadRequest creates a GetTransacSmsReportBadRequest with default headers values
-func NewGetTransacSmsReportBadRequest() *GetTransacSmsReportBadRequest {
-	return &GetTransacSmsReportBadRequest{}
+// NewGetTransacSMSReportBadRequest creates a GetTransacSMSReportBadRequest with default headers values
+func NewGetTransacSMSReportBadRequest() *GetTransacSMSReportBadRequest {
+	return &GetTransacSMSReportBadRequest{}
 }
 
-/*GetTransacSmsReportBadRequest handles this case with default header values.
+/*GetTransacSMSReportBadRequest handles this case with default header values.
 
 bad request
 */
-type GetTransacSmsReportBadRequest struct {
+type GetTransacSMSReportBadRequest struct {
 	Payload *models.ErrorModel
 }
 
-func (o *GetTransacSmsReportBadRequest) Error() string {
+func (o *GetTransacSMSReportBadRequest) Error() string {
 	return fmt.Sprintf("[GET /transactionalSMS/statistics/reports][%d] getTransacSmsReportBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *GetTransacSmsReportBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *GetTransacSMSReportBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ErrorModel)
 

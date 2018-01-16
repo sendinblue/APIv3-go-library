@@ -46,7 +46,7 @@ type GetContactDetails struct {
 
 	// Blacklist status for SMS campaigns (true=blacklisted, false=not blacklisted)
 	// Required: true
-	SmsBlacklisted *bool `json:"smsBlacklisted"`
+	SMSBlacklisted *bool `json:"smsBlacklisted"`
 }
 
 // Validate validates this get contact details
@@ -88,7 +88,7 @@ func (m *GetContactDetails) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateSmsBlacklisted(formats); err != nil {
+	if err := m.validateSMSBlacklisted(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -170,9 +170,9 @@ func (m *GetContactDetails) validateModifiedAt(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *GetContactDetails) validateSmsBlacklisted(formats strfmt.Registry) error {
+func (m *GetContactDetails) validateSMSBlacklisted(formats strfmt.Registry) error {
 
-	if err := validate.Required("smsBlacklisted", "body", m.SmsBlacklisted); err != nil {
+	if err := validate.Required("smsBlacklisted", "body", m.SMSBlacklisted); err != nil {
 		return err
 	}
 
