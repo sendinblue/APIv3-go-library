@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // DeleteHardbouncesReader is a Reader for the DeleteHardbounces structure.
@@ -24,14 +24,12 @@ type DeleteHardbouncesReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteHardbouncesReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 204:
 		result := NewDeleteHardbouncesNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewDeleteHardbouncesBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -80,6 +78,10 @@ type DeleteHardbouncesBadRequest struct {
 
 func (o *DeleteHardbouncesBadRequest) Error() string {
 	return fmt.Sprintf("[POST /smtp/deleteHardbounces][%d] deleteHardbouncesBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *DeleteHardbouncesBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *DeleteHardbouncesBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

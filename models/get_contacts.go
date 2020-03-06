@@ -6,9 +6,10 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"strconv"
 
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -19,7 +20,7 @@ type GetContacts struct {
 
 	// contacts
 	// Required: true
-	Contacts GetContactsContacts `json:"contacts"`
+	Contacts []*GetContactsContactsItems0 `json:"contacts"`
 
 	// Number of contacts
 	// Required: true
@@ -31,12 +32,10 @@ func (m *GetContacts) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateContacts(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateCount(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -52,11 +51,20 @@ func (m *GetContacts) validateContacts(formats strfmt.Registry) error {
 		return err
 	}
 
-	if err := m.Contacts.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("contacts")
+	for i := 0; i < len(m.Contacts); i++ {
+		if swag.IsZero(m.Contacts[i]) { // not required
+			continue
 		}
-		return err
+
+		if m.Contacts[i] != nil {
+			if err := m.Contacts[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("contacts" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -82,6 +90,70 @@ func (m *GetContacts) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *GetContacts) UnmarshalBinary(b []byte) error {
 	var res GetContacts
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetContactsContactsItems0 get contacts contacts items0
+// swagger:model GetContactsContactsItems0
+type GetContactsContactsItems0 struct {
+	GetContactDetails
+}
+
+// UnmarshalJSON unmarshals this object from a JSON structure
+func (m *GetContactsContactsItems0) UnmarshalJSON(raw []byte) error {
+	// AO0
+	var aO0 GetContactDetails
+	if err := swag.ReadJSON(raw, &aO0); err != nil {
+		return err
+	}
+	m.GetContactDetails = aO0
+
+	return nil
+}
+
+// MarshalJSON marshals this object to a JSON structure
+func (m GetContactsContactsItems0) MarshalJSON() ([]byte, error) {
+	_parts := make([][]byte, 0, 1)
+
+	aO0, err := swag.WriteJSON(m.GetContactDetails)
+	if err != nil {
+		return nil, err
+	}
+	_parts = append(_parts, aO0)
+
+	return swag.ConcatJSON(_parts...), nil
+}
+
+// Validate validates this get contacts contacts items0
+func (m *GetContactsContactsItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	// validation for a type composition with GetContactDetails
+	if err := m.GetContactDetails.Validate(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetContactsContactsItems0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetContactsContactsItems0) UnmarshalBinary(b []byte) error {
+	var res GetContactsContactsItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

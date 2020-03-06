@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // GetAggregatedSMTPReportReader is a Reader for the GetAggregatedSMTPReport structure.
@@ -24,14 +24,12 @@ type GetAggregatedSMTPReportReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetAggregatedSMTPReportReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetAggregatedSMTPReportOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewGetAggregatedSMTPReportBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -61,6 +59,10 @@ func (o *GetAggregatedSMTPReportOK) Error() string {
 	return fmt.Sprintf("[GET /smtp/statistics/aggregatedReport][%d] getAggregatedSmtpReportOK  %+v", 200, o.Payload)
 }
 
+func (o *GetAggregatedSMTPReportOK) GetPayload() *models.GetAggregatedReport {
+	return o.Payload
+}
+
 func (o *GetAggregatedSMTPReportOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.GetAggregatedReport)
@@ -88,6 +90,10 @@ type GetAggregatedSMTPReportBadRequest struct {
 
 func (o *GetAggregatedSMTPReportBadRequest) Error() string {
 	return fmt.Sprintf("[GET /smtp/statistics/aggregatedReport][%d] getAggregatedSmtpReportBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *GetAggregatedSMTPReportBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *GetAggregatedSMTPReportBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

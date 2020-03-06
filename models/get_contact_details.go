@@ -6,9 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -17,12 +16,18 @@ import (
 // swagger:model getContactDetails
 type GetContactDetails struct {
 
-	// attributes
+	// Set of attributes of the contact
 	// Required: true
-	Attributes map[string]string `json:"attributes"`
+	Attributes interface{} `json:"attributes"`
+
+	// Creation UTC date-time of the contact (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	// Required: true
+	// Format: date-time
+	CreatedAt *strfmt.DateTime `json:"createdAt"`
 
 	// Email address of the contact for which you requested the details
 	// Required: true
+	// Format: email
 	Email *strfmt.Email `json:"email"`
 
 	// Blacklist status for email campaigns (true=blacklisted, false=not blacklisted)
@@ -42,11 +47,12 @@ type GetContactDetails struct {
 
 	// Last modification UTC date-time of the contact (YYYY-MM-DDTHH:mm:ss.SSSZ)
 	// Required: true
+	// Format: date-time
 	ModifiedAt *strfmt.DateTime `json:"modifiedAt"`
 
 	// Blacklist status for SMS campaigns (true=blacklisted, false=not blacklisted)
 	// Required: true
-	SMSBlacklisted *bool `json:"smsBlacklisted"`
+	SmsBlacklisted *bool `json:"smsBlacklisted"`
 }
 
 // Validate validates this get contact details
@@ -54,42 +60,34 @@ func (m *GetContactDetails) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAttributes(formats); err != nil {
-		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateCreatedAt(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateEmail(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateEmailBlacklisted(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateListIds(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateListUnsubscribed(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateModifiedAt(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
-	if err := m.validateSMSBlacklisted(formats); err != nil {
-		// prop
+	if err := m.validateSmsBlacklisted(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -101,8 +99,21 @@ func (m *GetContactDetails) Validate(formats strfmt.Registry) error {
 
 func (m *GetContactDetails) validateAttributes(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Attributes) { // not required
-		return nil
+	if err := validate.Required("attributes", "body", m.Attributes); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetContactDetails) validateCreatedAt(formats strfmt.Registry) error {
+
+	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("createdAt", "body", "date-time", m.CreatedAt.String(), formats); err != nil {
+		return err
 	}
 
 	return nil
@@ -148,15 +159,6 @@ func (m *GetContactDetails) validateListIds(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *GetContactDetails) validateListUnsubscribed(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.ListUnsubscribed) { // not required
-		return nil
-	}
-
-	return nil
-}
-
 func (m *GetContactDetails) validateModifiedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("modifiedAt", "body", m.ModifiedAt); err != nil {
@@ -170,9 +172,9 @@ func (m *GetContactDetails) validateModifiedAt(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *GetContactDetails) validateSMSBlacklisted(formats strfmt.Registry) error {
+func (m *GetContactDetails) validateSmsBlacklisted(formats strfmt.Registry) error {
 
-	if err := validate.Required("smsBlacklisted", "body", m.SMSBlacklisted); err != nil {
+	if err := validate.Required("smsBlacklisted", "body", m.SmsBlacklisted); err != nil {
 		return err
 	}
 

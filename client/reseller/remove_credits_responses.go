@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // RemoveCreditsReader is a Reader for the RemoveCredits structure.
@@ -24,28 +24,24 @@ type RemoveCreditsReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *RemoveCreditsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewRemoveCreditsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewRemoveCreditsBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewRemoveCreditsForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewRemoveCreditsNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -72,7 +68,11 @@ type RemoveCreditsOK struct {
 }
 
 func (o *RemoveCreditsOK) Error() string {
-	return fmt.Sprintf("[POST /reseller/children/{childId}/credits/remove][%d] removeCreditsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /reseller/children/{childAuthKey}/credits/remove][%d] removeCreditsOK  %+v", 200, o.Payload)
+}
+
+func (o *RemoveCreditsOK) GetPayload() *models.RemainingCreditModel {
+	return o.Payload
 }
 
 func (o *RemoveCreditsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -101,7 +101,11 @@ type RemoveCreditsBadRequest struct {
 }
 
 func (o *RemoveCreditsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /reseller/children/{childId}/credits/remove][%d] removeCreditsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /reseller/children/{childAuthKey}/credits/remove][%d] removeCreditsBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *RemoveCreditsBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *RemoveCreditsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -130,7 +134,11 @@ type RemoveCreditsForbidden struct {
 }
 
 func (o *RemoveCreditsForbidden) Error() string {
-	return fmt.Sprintf("[POST /reseller/children/{childId}/credits/remove][%d] removeCreditsForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /reseller/children/{childAuthKey}/credits/remove][%d] removeCreditsForbidden  %+v", 403, o.Payload)
+}
+
+func (o *RemoveCreditsForbidden) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *RemoveCreditsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -159,7 +167,11 @@ type RemoveCreditsNotFound struct {
 }
 
 func (o *RemoveCreditsNotFound) Error() string {
-	return fmt.Sprintf("[POST /reseller/children/{childId}/credits/remove][%d] removeCreditsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /reseller/children/{childAuthKey}/credits/remove][%d] removeCreditsNotFound  %+v", 404, o.Payload)
+}
+
+func (o *RemoveCreditsNotFound) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *RemoveCreditsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

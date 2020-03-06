@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // GetContactsReader is a Reader for the GetContacts structure.
@@ -24,14 +24,12 @@ type GetContactsReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetContactsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetContactsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewGetContactsBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -61,6 +59,10 @@ func (o *GetContactsOK) Error() string {
 	return fmt.Sprintf("[GET /contacts][%d] getContactsOK  %+v", 200, o.Payload)
 }
 
+func (o *GetContactsOK) GetPayload() *models.GetContacts {
+	return o.Payload
+}
+
 func (o *GetContactsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.GetContacts)
@@ -88,6 +90,10 @@ type GetContactsBadRequest struct {
 
 func (o *GetContactsBadRequest) Error() string {
 	return fmt.Sprintf("[GET /contacts][%d] getContactsBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *GetContactsBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *GetContactsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

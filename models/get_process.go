@@ -8,9 +8,8 @@ package models
 import (
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -32,6 +31,7 @@ type GetProcess struct {
 
 	// Status of the process
 	// Required: true
+	// Enum: [queued in_process completed]
 	Status *string `json:"status"`
 }
 
@@ -40,17 +40,14 @@ func (m *GetProcess) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateName(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateStatus(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -91,10 +88,13 @@ func init() {
 }
 
 const (
+
 	// GetProcessStatusQueued captures enum value "queued"
 	GetProcessStatusQueued string = "queued"
+
 	// GetProcessStatusInProcess captures enum value "in_process"
 	GetProcessStatusInProcess string = "in_process"
+
 	// GetProcessStatusCompleted captures enum value "completed"
 	GetProcessStatusCompleted string = "completed"
 )

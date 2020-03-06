@@ -6,13 +6,14 @@ package contacts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-openapi/runtime"
+	"fmt"
 
-	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 )
 
 // New creates a new contacts API client.
-func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -24,10 +25,137 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientService is the interface for Client methods
+type ClientService interface {
+	AddContactToList(params *AddContactToListParams, authInfo runtime.ClientAuthInfoWriter) (*AddContactToListCreated, error)
+
+	CreateAttribute(params *CreateAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*CreateAttributeCreated, error)
+
+	CreateContact(params *CreateContactParams, authInfo runtime.ClientAuthInfoWriter) (*CreateContactCreated, *CreateContactNoContent, error)
+
+	CreateFolder(params *CreateFolderParams, authInfo runtime.ClientAuthInfoWriter) (*CreateFolderCreated, error)
+
+	CreateList(params *CreateListParams, authInfo runtime.ClientAuthInfoWriter) (*CreateListCreated, error)
+
+	DeleteAttribute(params *DeleteAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAttributeNoContent, error)
+
+	DeleteContact(params *DeleteContactParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteContactNoContent, error)
+
+	DeleteFolder(params *DeleteFolderParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteFolderNoContent, error)
+
+	DeleteList(params *DeleteListParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteListNoContent, error)
+
+	GetAttributes(params *GetAttributesParams, authInfo runtime.ClientAuthInfoWriter) (*GetAttributesOK, error)
+
+	GetContactInfo(params *GetContactInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetContactInfoOK, error)
+
+	GetContactStats(params *GetContactStatsParams, authInfo runtime.ClientAuthInfoWriter) (*GetContactStatsOK, error)
+
+	GetContacts(params *GetContactsParams, authInfo runtime.ClientAuthInfoWriter) (*GetContactsOK, error)
+
+	GetContactsFromList(params *GetContactsFromListParams, authInfo runtime.ClientAuthInfoWriter) (*GetContactsFromListOK, error)
+
+	GetFolder(params *GetFolderParams, authInfo runtime.ClientAuthInfoWriter) (*GetFolderOK, error)
+
+	GetFolderLists(params *GetFolderListsParams, authInfo runtime.ClientAuthInfoWriter) (*GetFolderListsOK, error)
+
+	GetFolders(params *GetFoldersParams, authInfo runtime.ClientAuthInfoWriter) (*GetFoldersOK, error)
+
+	GetList(params *GetListParams, authInfo runtime.ClientAuthInfoWriter) (*GetListOK, error)
+
+	GetLists(params *GetListsParams, authInfo runtime.ClientAuthInfoWriter) (*GetListsOK, error)
+
+	ImportContacts(params *ImportContactsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportContactsAccepted, error)
+
+	RemoveContactFromList(params *RemoveContactFromListParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveContactFromListCreated, error)
+
+	RequestContactExport(params *RequestContactExportParams, authInfo runtime.ClientAuthInfoWriter) (*RequestContactExportAccepted, error)
+
+	UpdateAttribute(params *UpdateAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAttributeNoContent, error)
+
+	UpdateContact(params *UpdateContactParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateContactNoContent, error)
+
+	UpdateFolder(params *UpdateFolderParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateFolderNoContent, error)
+
+	UpdateList(params *UpdateListParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateListNoContent, error)
+
+	SetTransport(transport runtime.ClientTransport)
+}
+
 /*
-CreateContact creates a contact
+  AddContactToList adds existing contacts to a list
 */
-func (a *Client) CreateContact(params *CreateContactParams, authInfo runtime.ClientAuthInfoWriter) (*CreateContactCreated, error) {
+func (a *Client) AddContactToList(params *AddContactToListParams, authInfo runtime.ClientAuthInfoWriter) (*AddContactToListCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAddContactToListParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "addContactToList",
+		Method:             "POST",
+		PathPattern:        "/contacts/lists/{listId}/contacts/add",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AddContactToListReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*AddContactToListCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for addContactToList: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  CreateAttribute creates contact attribute
+*/
+func (a *Client) CreateAttribute(params *CreateAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*CreateAttributeCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateAttributeParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "createAttribute",
+		Method:             "POST",
+		PathPattern:        "/contacts/attributes/{attributeCategory}/{attributeName}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateAttributeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CreateAttributeCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for createAttribute: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  CreateContact creates a contact
+*/
+func (a *Client) CreateContact(params *CreateContactParams, authInfo runtime.ClientAuthInfoWriter) (*CreateContactCreated, *CreateContactNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateContactParams()
@@ -47,14 +175,266 @@ func (a *Client) CreateContact(params *CreateContactParams, authInfo runtime.Cli
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
-	return result.(*CreateContactCreated), nil
-
+	switch value := result.(type) {
+	case *CreateContactCreated:
+		return value, nil, nil
+	case *CreateContactNoContent:
+		return nil, value, nil
+	}
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for contacts: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetContactInfo retrieves contact informations
+  CreateFolder creates a folder
+*/
+func (a *Client) CreateFolder(params *CreateFolderParams, authInfo runtime.ClientAuthInfoWriter) (*CreateFolderCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateFolderParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "createFolder",
+		Method:             "POST",
+		PathPattern:        "/contacts/folders",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateFolderReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CreateFolderCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for createFolder: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  CreateList creates a list
+*/
+func (a *Client) CreateList(params *CreateListParams, authInfo runtime.ClientAuthInfoWriter) (*CreateListCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateListParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "createList",
+		Method:             "POST",
+		PathPattern:        "/contacts/lists",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateListReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CreateListCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for createList: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  DeleteAttribute deletes an attribute
+*/
+func (a *Client) DeleteAttribute(params *DeleteAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAttributeNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteAttributeParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteAttribute",
+		Method:             "DELETE",
+		PathPattern:        "/contacts/attributes/{attributeCategory}/{attributeName}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteAttributeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeleteAttributeNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for deleteAttribute: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  DeleteContact deletes a contact
+*/
+func (a *Client) DeleteContact(params *DeleteContactParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteContactNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteContactParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteContact",
+		Method:             "DELETE",
+		PathPattern:        "/contacts/{email}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteContactReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeleteContactNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for deleteContact: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  DeleteFolder deletes a folder and all its lists
+*/
+func (a *Client) DeleteFolder(params *DeleteFolderParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteFolderNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteFolderParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteFolder",
+		Method:             "DELETE",
+		PathPattern:        "/contacts/folders/{folderId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteFolderReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeleteFolderNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for deleteFolder: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  DeleteList deletes a list
+*/
+func (a *Client) DeleteList(params *DeleteListParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteListNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteListParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteList",
+		Method:             "DELETE",
+		PathPattern:        "/contacts/lists/{listId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteListReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeleteListNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for deleteList: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetAttributes lists all attributes
+*/
+func (a *Client) GetAttributes(params *GetAttributesParams, authInfo runtime.ClientAuthInfoWriter) (*GetAttributesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAttributesParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getAttributes",
+		Method:             "GET",
+		PathPattern:        "/contacts/attributes",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAttributesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetAttributesOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getAttributes: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetContactInfo retrieves contact informations
 */
 func (a *Client) GetContactInfo(params *GetContactInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetContactInfoOK, error) {
 	// TODO: Validate the params before sending
@@ -78,12 +458,18 @@ func (a *Client) GetContactInfo(params *GetContactInfoParams, authInfo runtime.C
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetContactInfoOK), nil
-
+	success, ok := result.(*GetContactInfoOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getContactInfo: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetContactStats gets the campaigns statistics for a contact
+  GetContactStats gets the campaigns statistics for a contact
 */
 func (a *Client) GetContactStats(params *GetContactStatsParams, authInfo runtime.ClientAuthInfoWriter) (*GetContactStatsOK, error) {
 	// TODO: Validate the params before sending
@@ -107,12 +493,18 @@ func (a *Client) GetContactStats(params *GetContactStatsParams, authInfo runtime
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetContactStatsOK), nil
-
+	success, ok := result.(*GetContactStatsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getContactStats: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetContacts gets all the contacts
+  GetContacts gets all the contacts
 */
 func (a *Client) GetContacts(params *GetContactsParams, authInfo runtime.ClientAuthInfoWriter) (*GetContactsOK, error) {
 	// TODO: Validate the params before sending
@@ -136,14 +528,230 @@ func (a *Client) GetContacts(params *GetContactsParams, authInfo runtime.ClientA
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetContactsOK), nil
-
+	success, ok := result.(*GetContactsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getContacts: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-ImportContacts imports contacts
+  GetContactsFromList gets the contacts in a list
+*/
+func (a *Client) GetContactsFromList(params *GetContactsFromListParams, authInfo runtime.ClientAuthInfoWriter) (*GetContactsFromListOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetContactsFromListParams()
+	}
 
-It returns the background process ID which on completion calls the notify URL that you have set in the input.
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getContactsFromList",
+		Method:             "GET",
+		PathPattern:        "/contacts/lists/{listId}/contacts",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetContactsFromListReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetContactsFromListOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getContactsFromList: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetFolder returns folder details
+*/
+func (a *Client) GetFolder(params *GetFolderParams, authInfo runtime.ClientAuthInfoWriter) (*GetFolderOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetFolderParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getFolder",
+		Method:             "GET",
+		PathPattern:        "/contacts/folders/{folderId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetFolderReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetFolderOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getFolder: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetFolderLists gets the lists in a folder
+*/
+func (a *Client) GetFolderLists(params *GetFolderListsParams, authInfo runtime.ClientAuthInfoWriter) (*GetFolderListsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetFolderListsParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getFolderLists",
+		Method:             "GET",
+		PathPattern:        "/contacts/folders/{folderId}/lists",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetFolderListsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetFolderListsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getFolderLists: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetFolders gets all the folders
+*/
+func (a *Client) GetFolders(params *GetFoldersParams, authInfo runtime.ClientAuthInfoWriter) (*GetFoldersOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetFoldersParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getFolders",
+		Method:             "GET",
+		PathPattern:        "/contacts/folders",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetFoldersReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetFoldersOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getFolders: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetList gets the details of a list
+*/
+func (a *Client) GetList(params *GetListParams, authInfo runtime.ClientAuthInfoWriter) (*GetListOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetListParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getList",
+		Method:             "GET",
+		PathPattern:        "/contacts/lists/{listId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetListReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetListOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getList: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetLists gets all the lists
+*/
+func (a *Client) GetLists(params *GetListsParams, authInfo runtime.ClientAuthInfoWriter) (*GetListsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetListsParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getLists",
+		Method:             "GET",
+		PathPattern:        "/contacts/lists",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetListsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetListsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getLists: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  ImportContacts imports contacts
+
+  It returns the background process ID which on completion calls the notify URL that you have set in the input.
 */
 func (a *Client) ImportContacts(params *ImportContactsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportContactsAccepted, error) {
 	// TODO: Validate the params before sending
@@ -167,14 +775,55 @@ func (a *Client) ImportContacts(params *ImportContactsParams, authInfo runtime.C
 	if err != nil {
 		return nil, err
 	}
-	return result.(*ImportContactsAccepted), nil
-
+	success, ok := result.(*ImportContactsAccepted)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for importContacts: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-RequestContactExport exports contacts
+  RemoveContactFromList removes existing contacts from a list
+*/
+func (a *Client) RemoveContactFromList(params *RemoveContactFromListParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveContactFromListCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRemoveContactFromListParams()
+	}
 
-It returns the background process ID which on completion calls the notify URL that you have set in the input. File will be available in csv.
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "removeContactFromList",
+		Method:             "POST",
+		PathPattern:        "/contacts/lists/{listId}/contacts/remove",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RemoveContactFromListReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*RemoveContactFromListCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for removeContactFromList: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  RequestContactExport exports contacts
+
+  It returns the background process ID which on completion calls the notify URL that you have set in the input. File will be available in csv.
 */
 func (a *Client) RequestContactExport(params *RequestContactExportParams, authInfo runtime.ClientAuthInfoWriter) (*RequestContactExportAccepted, error) {
 	// TODO: Validate the params before sending
@@ -198,12 +847,53 @@ func (a *Client) RequestContactExport(params *RequestContactExportParams, authIn
 	if err != nil {
 		return nil, err
 	}
-	return result.(*RequestContactExportAccepted), nil
-
+	success, ok := result.(*RequestContactExportAccepted)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for requestContactExport: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-UpdateContact updates a contact
+  UpdateAttribute updates contact attribute
+*/
+func (a *Client) UpdateAttribute(params *UpdateAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAttributeNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateAttributeParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateAttribute",
+		Method:             "PUT",
+		PathPattern:        "/contacts/attributes/{attributeCategory}/{attributeName}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateAttributeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*UpdateAttributeNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for updateAttribute: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  UpdateContact updates a contact
 */
 func (a *Client) UpdateContact(params *UpdateContactParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateContactNoContent, error) {
 	// TODO: Validate the params before sending
@@ -227,8 +917,84 @@ func (a *Client) UpdateContact(params *UpdateContactParams, authInfo runtime.Cli
 	if err != nil {
 		return nil, err
 	}
-	return result.(*UpdateContactNoContent), nil
+	success, ok := result.(*UpdateContactNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for updateContact: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
 
+/*
+  UpdateFolder updates a contact folder
+*/
+func (a *Client) UpdateFolder(params *UpdateFolderParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateFolderNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateFolderParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateFolder",
+		Method:             "PUT",
+		PathPattern:        "/contacts/folders/{folderId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateFolderReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*UpdateFolderNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for updateFolder: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  UpdateList updates a list
+*/
+func (a *Client) UpdateList(params *UpdateListParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateListNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateListParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateList",
+		Method:             "PUT",
+		PathPattern:        "/contacts/lists/{listId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateListReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*UpdateListNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for updateList: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 // SetTransport changes the transport on the client

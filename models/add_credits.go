@@ -7,8 +7,6 @@ package models
 
 import (
 	strfmt "github.com/go-openapi/strfmt"
-
-	"github.com/go-openapi/errors"
 	"github.com/go-openapi/swag"
 )
 
@@ -16,20 +14,15 @@ import (
 // swagger:model addCredits
 type AddCredits struct {
 
-	// Email credits to be added to the child account
+	// Required if sms credits are empty. Email credits to be added to the child account
 	Email int64 `json:"email,omitempty"`
 
-	// SMS credits to be added to the child account
-	SMS int64 `json:"sms,omitempty"`
+	// Required if email credits are empty. SMS credits to be added to the child account
+	Sms int64 `json:"sms,omitempty"`
 }
 
 // Validate validates this add credits
 func (m *AddCredits) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
 	return nil
 }
 

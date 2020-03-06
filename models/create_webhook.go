@@ -9,9 +9,8 @@ import (
 	"encoding/json"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -24,9 +23,11 @@ type CreateWebhook struct {
 	Description string `json:"description,omitempty"`
 
 	// Events triggering the webhook. Possible values for Transactional type webhook – request, delivered, hardBounce, softBounce, blocked, spam, invalid, deferred, click, opened, uniqueOpened and unsubscribed and possible values for Marketing type webhook – spam, opened, click, hardBounce, softBounce, unsubscribed, listAddition & delivered
+	// Required: true
 	Events []string `json:"events"`
 
 	// Type of the webhook
+	// Enum: [transactional marketing]
 	Type *string `json:"type,omitempty"`
 
 	// URL of the webhook
@@ -39,17 +40,14 @@ func (m *CreateWebhook) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateEvents(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateType(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateURL(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -63,7 +61,7 @@ var createWebhookEventsItemsEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["hardBounce","softBounce","blocked","spam","delivered","request","click","invalid","deferred","opened","uniqueOpened","unsubscribed","listAddition"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["hardBounce","softBounce","blocked","spam","delivered","request","click","invalid","deferred","opened","uniqueOpened","unsubscribed","listAddition","contactUpdated","contactDeleted"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -80,8 +78,8 @@ func (m *CreateWebhook) validateEventsItemsEnum(path, location string, value str
 
 func (m *CreateWebhook) validateEvents(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Events) { // not required
-		return nil
+	if err := validate.Required("events", "body", m.Events); err != nil {
+		return err
 	}
 
 	for i := 0; i < len(m.Events); i++ {
@@ -109,8 +107,10 @@ func init() {
 }
 
 const (
+
 	// CreateWebhookTypeTransactional captures enum value "transactional"
 	CreateWebhookTypeTransactional string = "transactional"
+
 	// CreateWebhookTypeMarketing captures enum value "marketing"
 	CreateWebhookTypeMarketing string = "marketing"
 )

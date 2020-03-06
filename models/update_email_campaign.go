@@ -6,9 +6,10 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"encoding/json"
 
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -16,6 +17,9 @@ import (
 // UpdateEmailCampaign update email campaign
 // swagger:model updateEmailCampaign
 type UpdateEmailCampaign struct {
+
+	// Status of A/B Test. abTesting = false means it is disabled, & abTesting = true means it is enabled. 'subjectA', 'subjectB', 'splitRule', 'winnerCriteria' & 'winnerDelay' will be considered if abTesting is set to true. 'subject' if passed is ignored.  Can be set to true only if 'sendAtBestTime' is 'false'. You will be able to set up two subject lines for your campaign and send them to a random sample of your total recipients. Half of the test group will receive version A, and the other half will receive version B
+	AbTesting *bool `json:"abTesting,omitempty"`
 
 	// Absolute url of the attachment (no local file). Extension allowed: xlsx, xls, ods, docx, docm, doc, csv, pdf, txt, gif, jpg, jpeg, png, tif, tiff, rtf, bmp, cgm, css, shtml, html, htm, zip, xml, ppt, pptx, tar, ez, ics, mobi, msg, pub and eps
 	AttachmentURL string `json:"attachmentUrl,omitempty"`
@@ -32,14 +36,28 @@ type UpdateEmailCampaign struct {
 	// Url which contents the body of the email message. REQUIRED if htmlContent is empty
 	HTMLURL string `json:"htmlUrl,omitempty"`
 
+	// Set a percentage increase rate for warming up your ip. We recommend you set the increase rate to 30% per day. If you want to send the same number of emails every day, set the daily increase value to 0%.
+	// Maximum: 100
+	// Minimum: 0
+	IncreaseRate *int64 `json:"increaseRate,omitempty"`
+
+	// Set an initial quota greater than 1 for warming up your ip. We recommend you set a value of 3000.
+	InitialQuota int64 `json:"initialQuota,omitempty"`
+
 	// Status of inline image. inlineImageActivation = false means image can’t be embedded, & inlineImageActivation = true means image can be embedded, in the email. You cannot send a campaign of more than 4MB with images embedded in the email. Campaigns with the images embedded in the email must be sent to less than 5000 contacts.
 	InlineImageActivation *bool `json:"inlineImageActivation,omitempty"`
+
+	// Available for dedicated ip clients. Set this to true if you wish to warm up your ip.
+	IPWarmupEnable *bool `json:"ipWarmupEnable,omitempty"`
 
 	// Status of mirror links in campaign. mirrorActive = false means mirror links are deactivated, & mirrorActive = true means mirror links are activated, in the campaign
 	MirrorActive bool `json:"mirrorActive,omitempty"`
 
 	// Name of the campaign
 	Name string `json:"name,omitempty"`
+
+	// Pass the set of attributes to customize the type 'classic' campaign. For example, {'FNAME':'Joe', 'LNAME':'Doe'}. The 'params' field will get updated, only if the campaign is in New Template Language, else ignored. The New Template Language is dependent on the values of 'subject', 'htmlContent/htmlUrl', 'sender.name' & 'toField'
+	Params interface{} `json:"params,omitempty"`
 
 	// recipients
 	Recipients *UpdateEmailCampaignRecipients `json:"recipients,omitempty"`
@@ -48,54 +66,108 @@ type UpdateEmailCampaign struct {
 	Recurring *bool `json:"recurring,omitempty"`
 
 	// Email on which campaign recipients will be able to reply to
+	// Format: email
 	ReplyTo strfmt.Email `json:"replyTo,omitempty"`
 
-	// UTC date-time on which the campaign has to run (YYYY-MM-DDTHH:mm:ss.SSSZ). Prefer to pass your timezone in date-time format for accurate result.
+	// UTC date-time on which the campaign has to run (YYYY-MM-DDTHH:mm:ss.SSSZ). Prefer to pass your timezone in date-time format for accurate result. If sendAtBestTime is set to true, your campaign will be sent according to the date passed (ignoring the time part).
+	// Format: date-time
 	ScheduledAt strfmt.DateTime `json:"scheduledAt,omitempty"`
+
+	// Set this to true if you want to send your campaign at best time. Note:- if true, warmup ip will be disabled.
+	SendAtBestTime bool `json:"sendAtBestTime,omitempty"`
 
 	// sender
 	Sender *UpdateEmailCampaignSender `json:"sender,omitempty"`
 
+	// Add the size of your test groups. Considered if abTesting = true. We'll send version A and B to a random sample of recipients, and then the winning version to everyone else
+	// Maximum: 50
+	// Minimum: 1
+	SplitRule int64 `json:"splitRule,omitempty"`
+
 	// Subject of the campaign
 	Subject string `json:"subject,omitempty"`
+
+	// Subject A of the campaign. Considered if abTesting = true. subjectA & subjectB should have unique value
+	SubjectA string `json:"subjectA,omitempty"`
+
+	// Subject B of the campaign. Considered if abTesting = true. subjectA & subjectB should have unique value
+	SubjectB string `json:"subjectB,omitempty"`
 
 	// Tag of the campaign
 	Tag string `json:"tag,omitempty"`
 
-	// This is to personalize the «To» Field. If you want to include the first name and last name of your recipient, add [FNAME] [LNAME]. To use the contact attributes here, these must already exist in SendinBlue account
+	// To personalize the «To» Field. If you want to include the first name and last name of your recipient, add {FNAME} {LNAME}. These contact attributes must already exist in your SendinBlue account. If input parameter 'params' used please use {{contact.FNAME}} {{contact.LNAME}} for personalization
 	ToField string `json:"toField,omitempty"`
 
 	// Customize the utm_campaign value. If this field is empty, the campaign name will be used. Only alphanumeric characters and spaces are allowed
 	UtmCampaign string `json:"utmCampaign,omitempty"`
+
+	// Choose the metrics that will determinate the winning version. Considered if 'splitRule' >= 1 and < 50. If splitRule = 50, 'winnerCriteria' is ignored if passed or alreday exist in record
+	// Enum: [open click]
+	WinnerCriteria string `json:"winnerCriteria,omitempty"`
+
+	// Choose the duration of the test in hours. Maximum is 7 days, pass 24*7 = 168 hours. The winning version will be sent at the end of the test. Considered if 'splitRule' >= 1 and < 50. If splitRule = 50, 'winnerDelay' is ignored if passed or alreday exist in record
+	// Maximum: 168
+	// Minimum: 1
+	WinnerDelay int64 `json:"winnerDelay,omitempty"`
 }
 
 // Validate validates this update email campaign
 func (m *UpdateEmailCampaign) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateIncreaseRate(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateRecipients(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateReplyTo(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateScheduledAt(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateSender(formats); err != nil {
-		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateSplitRule(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateWinnerCriteria(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateWinnerDelay(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *UpdateEmailCampaign) validateIncreaseRate(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.IncreaseRate) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("increaseRate", "body", int64(*m.IncreaseRate), 0, false); err != nil {
+		return err
+	}
+
+	if err := validate.MaximumInt("increaseRate", "body", int64(*m.IncreaseRate), 100, false); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -106,7 +178,6 @@ func (m *UpdateEmailCampaign) validateRecipients(formats strfmt.Registry) error 
 	}
 
 	if m.Recipients != nil {
-
 		if err := m.Recipients.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("recipients")
@@ -151,13 +222,89 @@ func (m *UpdateEmailCampaign) validateSender(formats strfmt.Registry) error {
 	}
 
 	if m.Sender != nil {
-
 		if err := m.Sender.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("sender")
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *UpdateEmailCampaign) validateSplitRule(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SplitRule) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("splitRule", "body", int64(m.SplitRule), 1, false); err != nil {
+		return err
+	}
+
+	if err := validate.MaximumInt("splitRule", "body", int64(m.SplitRule), 50, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var updateEmailCampaignTypeWinnerCriteriaPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["open","click"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		updateEmailCampaignTypeWinnerCriteriaPropEnum = append(updateEmailCampaignTypeWinnerCriteriaPropEnum, v)
+	}
+}
+
+const (
+
+	// UpdateEmailCampaignWinnerCriteriaOpen captures enum value "open"
+	UpdateEmailCampaignWinnerCriteriaOpen string = "open"
+
+	// UpdateEmailCampaignWinnerCriteriaClick captures enum value "click"
+	UpdateEmailCampaignWinnerCriteriaClick string = "click"
+)
+
+// prop value enum
+func (m *UpdateEmailCampaign) validateWinnerCriteriaEnum(path, location string, value string) error {
+	if err := validate.Enum(path, location, value, updateEmailCampaignTypeWinnerCriteriaPropEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *UpdateEmailCampaign) validateWinnerCriteria(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.WinnerCriteria) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateWinnerCriteriaEnum("winnerCriteria", "body", m.WinnerCriteria); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *UpdateEmailCampaign) validateWinnerDelay(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.WinnerDelay) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("winnerDelay", "body", int64(m.WinnerDelay), 1, false); err != nil {
+		return err
+	}
+
+	if err := validate.MaximumInt("winnerDelay", "body", int64(m.WinnerDelay), 168, false); err != nil {
+		return err
 	}
 
 	return nil
@@ -174,6 +321,100 @@ func (m *UpdateEmailCampaign) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *UpdateEmailCampaign) UnmarshalBinary(b []byte) error {
 	var res UpdateEmailCampaign
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// UpdateEmailCampaignRecipients List ids to include/exclude from campaign
+// swagger:model UpdateEmailCampaignRecipients
+type UpdateEmailCampaignRecipients struct {
+
+	// List ids which have to be excluded from a campaign
+	ExclusionListIds []int64 `json:"exclusionListIds"`
+
+	// Lists Ids to send the campaign to. REQUIRED if already not present in campaign and scheduledAt is not empty
+	ListIds []int64 `json:"listIds"`
+}
+
+// Validate validates this update email campaign recipients
+func (m *UpdateEmailCampaignRecipients) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *UpdateEmailCampaignRecipients) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *UpdateEmailCampaignRecipients) UnmarshalBinary(b []byte) error {
+	var res UpdateEmailCampaignRecipients
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// UpdateEmailCampaignSender Sender details including id or email and name (optional). Only one of either Sender's email or Sender's ID shall be passed in one request at a time. For example `{"name":"xyz", "email":"example@abc.com"}` , `{"name":"xyz", "id":123}`
+// swagger:model UpdateEmailCampaignSender
+type UpdateEmailCampaignSender struct {
+
+	// Sender email from which the campaign emails are sent
+	// Format: email
+	Email strfmt.Email `json:"email,omitempty"`
+
+	// Select the sender for the campaign on the basis of sender id. In order to select a sender with specific pool of IP’s, dedicated ip users shall pass id (instead of email).
+	ID int64 `json:"id,omitempty"`
+
+	// Sender Name from which the campaign emails are sent
+	Name string `json:"name,omitempty"`
+}
+
+// Validate validates this update email campaign sender
+func (m *UpdateEmailCampaignSender) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateEmail(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *UpdateEmailCampaignSender) validateEmail(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Email) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("sender"+"."+"email", "body", "email", m.Email.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *UpdateEmailCampaignSender) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *UpdateEmailCampaignSender) UnmarshalBinary(b []byte) error {
+	var res UpdateEmailCampaignSender
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

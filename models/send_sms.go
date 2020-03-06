@@ -6,16 +6,15 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
-// SendSMS send Sms
+// SendSms send sms
 // swagger:model sendSms
-type SendSMS struct {
+type SendSms struct {
 
 	// message Id
 	// Required: true
@@ -24,19 +23,26 @@ type SendSMS struct {
 	// reference
 	// Required: true
 	Reference *string `json:"reference"`
+
+	// Remaining SMS credits of the user
+	RemainingCredits float32 `json:"remainingCredits,omitempty"`
+
+	// Count of SMS's to send multiple text messages
+	SmsCount int64 `json:"smsCount,omitempty"`
+
+	// SMS credits used per text message
+	UsedCredits float32 `json:"usedCredits,omitempty"`
 }
 
-// Validate validates this send Sms
-func (m *SendSMS) Validate(formats strfmt.Registry) error {
+// Validate validates this send sms
+func (m *SendSms) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateMessageID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateReference(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -46,7 +52,7 @@ func (m *SendSMS) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *SendSMS) validateMessageID(formats strfmt.Registry) error {
+func (m *SendSms) validateMessageID(formats strfmt.Registry) error {
 
 	if err := validate.Required("messageId", "body", m.MessageID); err != nil {
 		return err
@@ -55,7 +61,7 @@ func (m *SendSMS) validateMessageID(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *SendSMS) validateReference(formats strfmt.Registry) error {
+func (m *SendSms) validateReference(formats strfmt.Registry) error {
 
 	if err := validate.Required("reference", "body", m.Reference); err != nil {
 		return err
@@ -65,7 +71,7 @@ func (m *SendSMS) validateReference(formats strfmt.Registry) error {
 }
 
 // MarshalBinary interface implementation
-func (m *SendSMS) MarshalBinary() ([]byte, error) {
+func (m *SendSms) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -73,8 +79,8 @@ func (m *SendSMS) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *SendSMS) UnmarshalBinary(b []byte) error {
-	var res SendSMS
+func (m *SendSms) UnmarshalBinary(b []byte) error {
+	var res SendSms
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

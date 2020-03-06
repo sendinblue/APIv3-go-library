@@ -6,16 +6,15 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
-// UpdateSMSCampaign update Sms campaign
+// UpdateSmsCampaign update sms campaign
 // swagger:model updateSmsCampaign
-type UpdateSMSCampaign struct {
+type UpdateSmsCampaign struct {
 
 	// Content of the message. The maximum characters used per SMS is 160, if used more than that, it will be counted as more than one SMS
 	Content string `json:"content,omitempty"`
@@ -24,9 +23,10 @@ type UpdateSMSCampaign struct {
 	Name string `json:"name,omitempty"`
 
 	// recipients
-	Recipients *UpdateSMSCampaignRecipients `json:"recipients,omitempty"`
+	Recipients *UpdateSmsCampaignRecipients `json:"recipients,omitempty"`
 
 	// UTC date-time on which the campaign has to run (YYYY-MM-DDTHH:mm:ss.SSSZ). Prefer to pass your timezone in date-time format for accurate result.
+	// Format: date-time
 	ScheduledAt strfmt.DateTime `json:"scheduledAt,omitempty"`
 
 	// Name of the sender. The number of characters is limited to 11
@@ -34,22 +34,19 @@ type UpdateSMSCampaign struct {
 	Sender string `json:"sender,omitempty"`
 }
 
-// Validate validates this update Sms campaign
-func (m *UpdateSMSCampaign) Validate(formats strfmt.Registry) error {
+// Validate validates this update sms campaign
+func (m *UpdateSmsCampaign) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateRecipients(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateScheduledAt(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateSender(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -59,14 +56,13 @@ func (m *UpdateSMSCampaign) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *UpdateSMSCampaign) validateRecipients(formats strfmt.Registry) error {
+func (m *UpdateSmsCampaign) validateRecipients(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Recipients) { // not required
 		return nil
 	}
 
 	if m.Recipients != nil {
-
 		if err := m.Recipients.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("recipients")
@@ -78,7 +74,7 @@ func (m *UpdateSMSCampaign) validateRecipients(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *UpdateSMSCampaign) validateScheduledAt(formats strfmt.Registry) error {
+func (m *UpdateSmsCampaign) validateScheduledAt(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.ScheduledAt) { // not required
 		return nil
@@ -91,7 +87,7 @@ func (m *UpdateSMSCampaign) validateScheduledAt(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *UpdateSMSCampaign) validateSender(formats strfmt.Registry) error {
+func (m *UpdateSmsCampaign) validateSender(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Sender) { // not required
 		return nil
@@ -105,7 +101,7 @@ func (m *UpdateSMSCampaign) validateSender(formats strfmt.Registry) error {
 }
 
 // MarshalBinary interface implementation
-func (m *UpdateSMSCampaign) MarshalBinary() ([]byte, error) {
+func (m *UpdateSmsCampaign) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -113,8 +109,61 @@ func (m *UpdateSMSCampaign) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *UpdateSMSCampaign) UnmarshalBinary(b []byte) error {
-	var res UpdateSMSCampaign
+func (m *UpdateSmsCampaign) UnmarshalBinary(b []byte) error {
+	var res UpdateSmsCampaign
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// UpdateSmsCampaignRecipients update sms campaign recipients
+// swagger:model UpdateSmsCampaignRecipients
+type UpdateSmsCampaignRecipients struct {
+
+	// List ids which have to be excluded from a campaign
+	ExclusionListIds []int64 `json:"exclusionListIds"`
+
+	// Lists Ids to send the campaign to. REQUIRED if scheduledAt is not empty
+	// Required: true
+	ListIds []int64 `json:"listIds"`
+}
+
+// Validate validates this update sms campaign recipients
+func (m *UpdateSmsCampaignRecipients) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateListIds(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *UpdateSmsCampaignRecipients) validateListIds(formats strfmt.Registry) error {
+
+	if err := validate.Required("recipients"+"."+"listIds", "body", m.ListIds); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *UpdateSmsCampaignRecipients) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *UpdateSmsCampaignRecipients) UnmarshalBinary(b []byte) error {
+	var res UpdateSmsCampaignRecipients
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

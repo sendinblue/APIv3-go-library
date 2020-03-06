@@ -6,10 +6,12 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"strconv"
 
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // GetReports get reports
@@ -17,16 +19,45 @@ import (
 type GetReports struct {
 
 	// reports
-	Reports GetReportsReports `json:"reports"`
+	Reports []*GetReportsReportsItems0 `json:"reports"`
 }
 
 // Validate validates this get reports
 func (m *GetReports) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateReports(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *GetReports) validateReports(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Reports) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Reports); i++ {
+		if swag.IsZero(m.Reports[i]) { // not required
+			continue
+		}
+
+		if m.Reports[i] != nil {
+			if err := m.Reports[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("reports" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 
@@ -41,6 +72,265 @@ func (m *GetReports) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *GetReports) UnmarshalBinary(b []byte) error {
 	var res GetReports
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetReportsReportsItems0 get reports reports items0
+// swagger:model GetReportsReportsItems0
+type GetReportsReportsItems0 struct {
+
+	// Number of blocked emails for the date
+	// Required: true
+	Blocked *int64 `json:"blocked"`
+
+	// Number of clicks for the date
+	// Required: true
+	Clicks *int64 `json:"clicks"`
+
+	// Date of the statistics
+	// Required: true
+	// Format: date
+	Date *strfmt.Date `json:"date"`
+
+	// Number of delivered emails for the date
+	// Required: true
+	Delivered *int64 `json:"delivered"`
+
+	// Number of hardbounces for the date
+	// Required: true
+	HardBounces *int64 `json:"hardBounces"`
+
+	// Number of invalid emails for the date
+	// Required: true
+	Invalid *int64 `json:"invalid"`
+
+	// Number of openings for the date
+	// Required: true
+	Opens *int64 `json:"opens"`
+
+	// Number of requests for the date
+	// Required: true
+	Requests *int64 `json:"requests"`
+
+	// Number of softbounces for the date
+	// Required: true
+	SoftBounces *int64 `json:"softBounces"`
+
+	// Number of complaints (spam reports) for the date
+	// Required: true
+	SpamReports *int64 `json:"spamReports"`
+
+	// Number of unique clicks for the date
+	// Required: true
+	UniqueClicks *int64 `json:"uniqueClicks"`
+
+	// Number of unique openings for the date
+	// Required: true
+	UniqueOpens *int64 `json:"uniqueOpens"`
+
+	// Number of unsubscribed emails for the date
+	// Required: true
+	Unsubscribed *int64 `json:"unsubscribed"`
+}
+
+// Validate validates this get reports reports items0
+func (m *GetReportsReportsItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateBlocked(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateClicks(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDate(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDelivered(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHardBounces(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateInvalid(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOpens(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRequests(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSoftBounces(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSpamReports(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUniqueClicks(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUniqueOpens(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUnsubscribed(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetReportsReportsItems0) validateBlocked(formats strfmt.Registry) error {
+
+	if err := validate.Required("blocked", "body", m.Blocked); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetReportsReportsItems0) validateClicks(formats strfmt.Registry) error {
+
+	if err := validate.Required("clicks", "body", m.Clicks); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetReportsReportsItems0) validateDate(formats strfmt.Registry) error {
+
+	if err := validate.Required("date", "body", m.Date); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("date", "body", "date", m.Date.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetReportsReportsItems0) validateDelivered(formats strfmt.Registry) error {
+
+	if err := validate.Required("delivered", "body", m.Delivered); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetReportsReportsItems0) validateHardBounces(formats strfmt.Registry) error {
+
+	if err := validate.Required("hardBounces", "body", m.HardBounces); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetReportsReportsItems0) validateInvalid(formats strfmt.Registry) error {
+
+	if err := validate.Required("invalid", "body", m.Invalid); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetReportsReportsItems0) validateOpens(formats strfmt.Registry) error {
+
+	if err := validate.Required("opens", "body", m.Opens); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetReportsReportsItems0) validateRequests(formats strfmt.Registry) error {
+
+	if err := validate.Required("requests", "body", m.Requests); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetReportsReportsItems0) validateSoftBounces(formats strfmt.Registry) error {
+
+	if err := validate.Required("softBounces", "body", m.SoftBounces); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetReportsReportsItems0) validateSpamReports(formats strfmt.Registry) error {
+
+	if err := validate.Required("spamReports", "body", m.SpamReports); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetReportsReportsItems0) validateUniqueClicks(formats strfmt.Registry) error {
+
+	if err := validate.Required("uniqueClicks", "body", m.UniqueClicks); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetReportsReportsItems0) validateUniqueOpens(formats strfmt.Registry) error {
+
+	if err := validate.Required("uniqueOpens", "body", m.UniqueOpens); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetReportsReportsItems0) validateUnsubscribed(formats strfmt.Registry) error {
+
+	if err := validate.Required("unsubscribed", "body", m.Unsubscribed); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetReportsReportsItems0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetReportsReportsItems0) UnmarshalBinary(b []byte) error {
+	var res GetReportsReportsItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

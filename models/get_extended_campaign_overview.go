@@ -6,10 +6,10 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // GetExtendedCampaignOverview get extended campaign overview
@@ -17,30 +17,147 @@ import (
 type GetExtendedCampaignOverview struct {
 	GetCampaignOverview
 
-	GetExtendedCampaignOverviewAllOf1
+	// Creation UTC date-time of the campaign (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	// Required: true
+	// Format: date-time
+	CreatedAt *strfmt.DateTime `json:"createdAt"`
+
+	// Footer of the campaign
+	// Required: true
+	Footer *string `json:"footer"`
+
+	// Header of the campaign
+	// Required: true
+	Header *string `json:"header"`
+
+	// HTML content of the campaign
+	// Required: true
+	HTMLContent *string `json:"htmlContent"`
+
+	// Status of inline image. inlineImageActivation = false means image can’t be embedded, & inlineImageActivation = true means image can be embedded, in the email.
+	InlineImageActivation bool `json:"inlineImageActivation,omitempty"`
+
+	// Status of mirror links in campaign. mirrorActive = false means mirror links are deactivated, & mirrorActive = true means mirror links are activated, in the campaign
+	MirrorActive bool `json:"mirrorActive,omitempty"`
+
+	// UTC date-time of last modification of the campaign (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	// Required: true
+	// Format: date-time
+	ModifiedAt *strfmt.DateTime `json:"modifiedAt"`
+
+	// FOR TRIGGER ONLY ! Type of trigger campaign.recurring = false means contact can receive the same Trigger campaign only once, & recurring = true means contact can receive the same Trigger campaign several times
+	Recurring bool `json:"recurring,omitempty"`
+
+	// Email defined as the "Reply to" of the campaign
+	// Required: true
+	// Format: email
+	ReplyTo *strfmt.Email `json:"replyTo"`
+
+	// sender
+	// Required: true
+	Sender *GetExtendedCampaignOverviewAO1Sender `json:"sender"`
+
+	// Sent UTC date-time of the campaign (YYYY-MM-DDTHH:mm:ss.SSSZ). Only available if 'status' of the campaign is 'sent'
+	// Format: date-time
+	SentDate strfmt.DateTime `json:"sentDate,omitempty"`
+
+	// Link to share the campaign on social medias
+	ShareLink string `json:"shareLink,omitempty"`
+
+	// Tag of the campaign
+	// Required: true
+	Tag *string `json:"tag"`
+
+	// Retrieved the status of test email sending. (true=Test email has been sent  false=Test email has not been sent)
+	// Required: true
+	TestSent *bool `json:"testSent"`
+
+	// Customisation of the "to" field of the campaign
+	// Required: true
+	ToField *string `json:"toField"`
 }
 
 // UnmarshalJSON unmarshals this object from a JSON structure
 func (m *GetExtendedCampaignOverview) UnmarshalJSON(raw []byte) error {
-
+	// AO0
 	var aO0 GetCampaignOverview
 	if err := swag.ReadJSON(raw, &aO0); err != nil {
 		return err
 	}
 	m.GetCampaignOverview = aO0
 
-	var aO1 GetExtendedCampaignOverviewAllOf1
-	if err := swag.ReadJSON(raw, &aO1); err != nil {
+	// AO1
+	var dataAO1 struct {
+		CreatedAt *strfmt.DateTime `json:"createdAt"`
+
+		Footer *string `json:"footer"`
+
+		Header *string `json:"header"`
+
+		HTMLContent *string `json:"htmlContent"`
+
+		InlineImageActivation bool `json:"inlineImageActivation,omitempty"`
+
+		MirrorActive bool `json:"mirrorActive,omitempty"`
+
+		ModifiedAt *strfmt.DateTime `json:"modifiedAt"`
+
+		Recurring bool `json:"recurring,omitempty"`
+
+		ReplyTo *strfmt.Email `json:"replyTo"`
+
+		Sender *GetExtendedCampaignOverviewAO1Sender `json:"sender"`
+
+		SentDate strfmt.DateTime `json:"sentDate,omitempty"`
+
+		ShareLink string `json:"shareLink,omitempty"`
+
+		Tag *string `json:"tag"`
+
+		TestSent *bool `json:"testSent"`
+
+		ToField *string `json:"toField"`
+	}
+	if err := swag.ReadJSON(raw, &dataAO1); err != nil {
 		return err
 	}
-	m.GetExtendedCampaignOverviewAllOf1 = aO1
+
+	m.CreatedAt = dataAO1.CreatedAt
+
+	m.Footer = dataAO1.Footer
+
+	m.Header = dataAO1.Header
+
+	m.HTMLContent = dataAO1.HTMLContent
+
+	m.InlineImageActivation = dataAO1.InlineImageActivation
+
+	m.MirrorActive = dataAO1.MirrorActive
+
+	m.ModifiedAt = dataAO1.ModifiedAt
+
+	m.Recurring = dataAO1.Recurring
+
+	m.ReplyTo = dataAO1.ReplyTo
+
+	m.Sender = dataAO1.Sender
+
+	m.SentDate = dataAO1.SentDate
+
+	m.ShareLink = dataAO1.ShareLink
+
+	m.Tag = dataAO1.Tag
+
+	m.TestSent = dataAO1.TestSent
+
+	m.ToField = dataAO1.ToField
 
 	return nil
 }
 
 // MarshalJSON marshals this object to a JSON structure
 func (m GetExtendedCampaignOverview) MarshalJSON() ([]byte, error) {
-	var _parts [][]byte
+	_parts := make([][]byte, 0, 2)
 
 	aO0, err := swag.WriteJSON(m.GetCampaignOverview)
 	if err != nil {
@@ -48,11 +165,73 @@ func (m GetExtendedCampaignOverview) MarshalJSON() ([]byte, error) {
 	}
 	_parts = append(_parts, aO0)
 
-	aO1, err := swag.WriteJSON(m.GetExtendedCampaignOverviewAllOf1)
-	if err != nil {
-		return nil, err
+	var dataAO1 struct {
+		CreatedAt *strfmt.DateTime `json:"createdAt"`
+
+		Footer *string `json:"footer"`
+
+		Header *string `json:"header"`
+
+		HTMLContent *string `json:"htmlContent"`
+
+		InlineImageActivation bool `json:"inlineImageActivation,omitempty"`
+
+		MirrorActive bool `json:"mirrorActive,omitempty"`
+
+		ModifiedAt *strfmt.DateTime `json:"modifiedAt"`
+
+		Recurring bool `json:"recurring,omitempty"`
+
+		ReplyTo *strfmt.Email `json:"replyTo"`
+
+		Sender *GetExtendedCampaignOverviewAO1Sender `json:"sender"`
+
+		SentDate strfmt.DateTime `json:"sentDate,omitempty"`
+
+		ShareLink string `json:"shareLink,omitempty"`
+
+		Tag *string `json:"tag"`
+
+		TestSent *bool `json:"testSent"`
+
+		ToField *string `json:"toField"`
 	}
-	_parts = append(_parts, aO1)
+
+	dataAO1.CreatedAt = m.CreatedAt
+
+	dataAO1.Footer = m.Footer
+
+	dataAO1.Header = m.Header
+
+	dataAO1.HTMLContent = m.HTMLContent
+
+	dataAO1.InlineImageActivation = m.InlineImageActivation
+
+	dataAO1.MirrorActive = m.MirrorActive
+
+	dataAO1.ModifiedAt = m.ModifiedAt
+
+	dataAO1.Recurring = m.Recurring
+
+	dataAO1.ReplyTo = m.ReplyTo
+
+	dataAO1.Sender = m.Sender
+
+	dataAO1.SentDate = m.SentDate
+
+	dataAO1.ShareLink = m.ShareLink
+
+	dataAO1.Tag = m.Tag
+
+	dataAO1.TestSent = m.TestSent
+
+	dataAO1.ToField = m.ToField
+
+	jsonDataAO1, errAO1 := swag.WriteJSON(dataAO1)
+	if errAO1 != nil {
+		return nil, errAO1
+	}
+	_parts = append(_parts, jsonDataAO1)
 
 	return swag.ConcatJSON(_parts...), nil
 }
@@ -61,17 +240,182 @@ func (m GetExtendedCampaignOverview) MarshalJSON() ([]byte, error) {
 func (m *GetExtendedCampaignOverview) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	// validation for a type composition with GetCampaignOverview
 	if err := m.GetCampaignOverview.Validate(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.GetExtendedCampaignOverviewAllOf1.Validate(formats); err != nil {
+	if err := m.validateCreatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateFooter(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHeader(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHTMLContent(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateModifiedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateReplyTo(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSender(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSentDate(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTag(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTestSent(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateToField(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *GetExtendedCampaignOverview) validateCreatedAt(formats strfmt.Registry) error {
+
+	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("createdAt", "body", "date-time", m.CreatedAt.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetExtendedCampaignOverview) validateFooter(formats strfmt.Registry) error {
+
+	if err := validate.Required("footer", "body", m.Footer); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetExtendedCampaignOverview) validateHeader(formats strfmt.Registry) error {
+
+	if err := validate.Required("header", "body", m.Header); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetExtendedCampaignOverview) validateHTMLContent(formats strfmt.Registry) error {
+
+	if err := validate.Required("htmlContent", "body", m.HTMLContent); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetExtendedCampaignOverview) validateModifiedAt(formats strfmt.Registry) error {
+
+	if err := validate.Required("modifiedAt", "body", m.ModifiedAt); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("modifiedAt", "body", "date-time", m.ModifiedAt.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetExtendedCampaignOverview) validateReplyTo(formats strfmt.Registry) error {
+
+	if err := validate.Required("replyTo", "body", m.ReplyTo); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("replyTo", "body", "email", m.ReplyTo.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetExtendedCampaignOverview) validateSender(formats strfmt.Registry) error {
+
+	if err := validate.Required("sender", "body", m.Sender); err != nil {
+		return err
+	}
+
+	if m.Sender != nil {
+		if err := m.Sender.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("sender")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GetExtendedCampaignOverview) validateSentDate(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SentDate) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("sentDate", "body", "date-time", m.SentDate.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetExtendedCampaignOverview) validateTag(formats strfmt.Registry) error {
+
+	if err := validate.Required("tag", "body", m.Tag); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetExtendedCampaignOverview) validateTestSent(formats strfmt.Registry) error {
+
+	if err := validate.Required("testSent", "body", m.TestSent); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetExtendedCampaignOverview) validateToField(formats strfmt.Registry) error {
+
+	if err := validate.Required("toField", "body", m.ToField); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -86,6 +430,66 @@ func (m *GetExtendedCampaignOverview) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *GetExtendedCampaignOverview) UnmarshalBinary(b []byte) error {
 	var res GetExtendedCampaignOverview
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetExtendedCampaignOverviewAO1Sender get extended campaign overview a o1 sender
+// swagger:model GetExtendedCampaignOverviewAO1Sender
+type GetExtendedCampaignOverviewAO1Sender struct {
+
+	// Sender email of the campaign
+	// Format: email
+	Email strfmt.Email `json:"email,omitempty"`
+
+	// Sender id of the campaign
+	ID string `json:"id,omitempty"`
+
+	// Sender name of the campaign
+	Name string `json:"name,omitempty"`
+}
+
+// Validate validates this get extended campaign overview a o1 sender
+func (m *GetExtendedCampaignOverviewAO1Sender) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateEmail(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetExtendedCampaignOverviewAO1Sender) validateEmail(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Email) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("sender"+"."+"email", "body", "email", m.Email.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetExtendedCampaignOverviewAO1Sender) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetExtendedCampaignOverviewAO1Sender) UnmarshalBinary(b []byte) error {
+	var res GetExtendedCampaignOverviewAO1Sender
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

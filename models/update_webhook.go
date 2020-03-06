@@ -9,9 +9,8 @@ import (
 	"encoding/json"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -35,7 +34,6 @@ func (m *UpdateWebhook) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateEvents(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -49,7 +47,7 @@ var updateWebhookEventsItemsEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["hardBounce","softBounce","blocked","spam","delivered","request","click","invalid","deferred","opened","uniqueOpened","unsubscribed","listAddition"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["hardBounce","softBounce","blocked","spam","delivered","request","click","invalid","deferred","opened","uniqueOpened","unsubscribed","listAddition","contactUpdated","contactDeleted"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

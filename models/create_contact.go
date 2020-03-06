@@ -6,9 +6,10 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"strconv"
 
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -17,25 +18,26 @@ import (
 // swagger:model createContact
 type CreateContact struct {
 
-	// Values of the attributes to fill. The attributes must exist in you contact database
+	// Pass the set of attributes and their values. These attributes must be present in your SendinBlue account. For eg. {'FNAME':'Elly', 'LNAME':'Roger'}
 	Attributes interface{} `json:"attributes,omitempty"`
 
-	// Email address of the user. Mandatory if `attributes.sms` is not passed
+	// Email address of the user. Mandatory if "SMS" field is not passed in "attributes" parameter. For example {'SMS':'+91xxxxxxxxxx'}
+	// Format: email
 	Email strfmt.Email `json:"email,omitempty"`
 
-	// Blacklist the contact for emails (emailBlacklisted = true)
+	// Set this field to blacklist the contact for emails (emailBlacklisted = true)
 	EmailBlacklisted bool `json:"emailBlacklisted,omitempty"`
 
 	// Ids of the lists to add the contact to
 	ListIds []int64 `json:"listIds"`
 
-	// Blacklist the contact for SMS (smsBlacklisted = true)
-	SMSBlacklisted bool `json:"smsBlacklisted,omitempty"`
+	// Set this field to blacklist the contact for SMS (smsBlacklisted = true)
+	SmsBlacklisted bool `json:"smsBlacklisted,omitempty"`
 
-	// SMTP forbidden sender for contact. Use only for email Contact ( only available if updateEnabled = true )
+	// transactional email forbidden sender for contact. Use only for email Contact ( only available if updateEnabled = true )
 	SMTPBlacklistSender []strfmt.Email `json:"smtpBlacklistSender"`
 
-	// Facilitate to update existing contact in same request (updateEnabled = true)
+	// Facilitate to update the existing contact in the same request (updateEnabled = true)
 	UpdateEnabled *bool `json:"updateEnabled,omitempty"`
 }
 
@@ -44,17 +46,10 @@ func (m *CreateContact) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateEmail(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateListIds(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateSMTPBlacklistSender(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -77,19 +72,18 @@ func (m *CreateContact) validateEmail(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *CreateContact) validateListIds(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.ListIds) { // not required
-		return nil
-	}
-
-	return nil
-}
-
 func (m *CreateContact) validateSMTPBlacklistSender(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.SMTPBlacklistSender) { // not required
 		return nil
+	}
+
+	for i := 0; i < len(m.SMTPBlacklistSender); i++ {
+
+		if err := validate.FormatOf("smtpBlacklistSender"+"."+strconv.Itoa(i), "body", "email", m.SMTPBlacklistSender[i].String(), formats); err != nil {
+			return err
+		}
+
 	}
 
 	return nil

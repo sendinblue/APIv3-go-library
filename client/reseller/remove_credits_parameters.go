@@ -6,19 +6,17 @@ package reseller
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
-	"github.com/go-openapi/swag"
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // NewRemoveCreditsParams creates a new RemoveCreditsParams object
@@ -65,11 +63,11 @@ for the remove credits operation typically these are written to a http.Request
 */
 type RemoveCreditsParams struct {
 
-	/*ChildID
-	  id of reseller's child
+	/*ChildAuthKey
+	  auth key of reseller's child
 
 	*/
-	ChildID int64
+	ChildAuthKey string
 	/*RemoveCredits
 	  Values to post to remove email or SMS credits from a specific child account
 
@@ -114,15 +112,15 @@ func (o *RemoveCreditsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithChildID adds the childID to the remove credits params
-func (o *RemoveCreditsParams) WithChildID(childID int64) *RemoveCreditsParams {
-	o.SetChildID(childID)
+// WithChildAuthKey adds the childAuthKey to the remove credits params
+func (o *RemoveCreditsParams) WithChildAuthKey(childAuthKey string) *RemoveCreditsParams {
+	o.SetChildAuthKey(childAuthKey)
 	return o
 }
 
-// SetChildID adds the childId to the remove credits params
-func (o *RemoveCreditsParams) SetChildID(childID int64) {
-	o.ChildID = childID
+// SetChildAuthKey adds the childAuthKey to the remove credits params
+func (o *RemoveCreditsParams) SetChildAuthKey(childAuthKey string) {
+	o.ChildAuthKey = childAuthKey
 }
 
 // WithRemoveCredits adds the removeCredits to the remove credits params
@@ -144,8 +142,8 @@ func (o *RemoveCreditsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	}
 	var res []error
 
-	// path param childId
-	if err := r.SetPathParam("childId", swag.FormatInt64(o.ChildID)); err != nil {
+	// path param childAuthKey
+	if err := r.SetPathParam("childAuthKey", o.ChildAuthKey); err != nil {
 		return err
 	}
 

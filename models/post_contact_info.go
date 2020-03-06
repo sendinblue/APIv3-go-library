@@ -6,9 +6,10 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"strconv"
 
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -27,7 +28,6 @@ func (m *PostContactInfo) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateContacts(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -44,7 +44,6 @@ func (m *PostContactInfo) validateContacts(formats strfmt.Registry) error {
 	}
 
 	if m.Contacts != nil {
-
 		if err := m.Contacts.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("contacts")
@@ -67,6 +66,90 @@ func (m *PostContactInfo) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *PostContactInfo) UnmarshalBinary(b []byte) error {
 	var res PostContactInfo
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// PostContactInfoContacts post contact info contacts
+// swagger:model PostContactInfoContacts
+type PostContactInfoContacts struct {
+
+	// failure
+	Failure []strfmt.Email `json:"failure"`
+
+	// success
+	Success []strfmt.Email `json:"success"`
+
+	// Displays the count of total number of contacts removed from list when user opts for "all" option.
+	Total int64 `json:"total,omitempty"`
+}
+
+// Validate validates this post contact info contacts
+func (m *PostContactInfoContacts) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateFailure(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSuccess(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *PostContactInfoContacts) validateFailure(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Failure) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Failure); i++ {
+
+		if err := validate.FormatOf("contacts"+"."+"failure"+"."+strconv.Itoa(i), "body", "email", m.Failure[i].String(), formats); err != nil {
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *PostContactInfoContacts) validateSuccess(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Success) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Success); i++ {
+
+		if err := validate.FormatOf("contacts"+"."+"success"+"."+strconv.Itoa(i), "body", "email", m.Success[i].String(), formats); err != nil {
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *PostContactInfoContacts) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *PostContactInfoContacts) UnmarshalBinary(b []byte) error {
+	var res PostContactInfoContacts
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

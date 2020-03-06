@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // GetSendersReader is a Reader for the GetSenders structure.
@@ -24,14 +24,12 @@ type GetSendersReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetSendersReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetSendersOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewGetSendersBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -61,6 +59,10 @@ func (o *GetSendersOK) Error() string {
 	return fmt.Sprintf("[GET /senders][%d] getSendersOK  %+v", 200, o.Payload)
 }
 
+func (o *GetSendersOK) GetPayload() *models.GetSendersList {
+	return o.Payload
+}
+
 func (o *GetSendersOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.GetSendersList)
@@ -88,6 +90,10 @@ type GetSendersBadRequest struct {
 
 func (o *GetSendersBadRequest) Error() string {
 	return fmt.Sprintf("[GET /senders][%d] getSendersBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *GetSendersBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *GetSendersBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

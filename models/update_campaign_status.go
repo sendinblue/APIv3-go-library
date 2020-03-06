@@ -8,9 +8,8 @@ package models
 import (
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -19,7 +18,8 @@ import (
 // swagger:model updateCampaignStatus
 type UpdateCampaignStatus struct {
 
-	// status
+	// Note:- replicateTemplate status will be available only for template type campaigns.
+	// Enum: [suspended archive darchive sent queued replicate replicateTemplate draft]
 	Status string `json:"status,omitempty"`
 }
 
@@ -28,7 +28,6 @@ func (m *UpdateCampaignStatus) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateStatus(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -51,20 +50,28 @@ func init() {
 }
 
 const (
+
 	// UpdateCampaignStatusStatusSuspended captures enum value "suspended"
 	UpdateCampaignStatusStatusSuspended string = "suspended"
+
 	// UpdateCampaignStatusStatusArchive captures enum value "archive"
 	UpdateCampaignStatusStatusArchive string = "archive"
+
 	// UpdateCampaignStatusStatusDarchive captures enum value "darchive"
 	UpdateCampaignStatusStatusDarchive string = "darchive"
+
 	// UpdateCampaignStatusStatusSent captures enum value "sent"
 	UpdateCampaignStatusStatusSent string = "sent"
+
 	// UpdateCampaignStatusStatusQueued captures enum value "queued"
 	UpdateCampaignStatusStatusQueued string = "queued"
+
 	// UpdateCampaignStatusStatusReplicate captures enum value "replicate"
 	UpdateCampaignStatusStatusReplicate string = "replicate"
+
 	// UpdateCampaignStatusStatusReplicateTemplate captures enum value "replicateTemplate"
 	UpdateCampaignStatusStatusReplicateTemplate string = "replicateTemplate"
+
 	// UpdateCampaignStatusStatusDraft captures enum value "draft"
 	UpdateCampaignStatusStatusDraft string = "draft"
 )

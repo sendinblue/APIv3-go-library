@@ -6,9 +6,10 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"strconv"
 
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -17,9 +18,9 @@ import (
 // swagger:model getIpsFromSender
 type GetIpsFromSender struct {
 
-	// ips
+	// Dedicated IP(s) linked to a sender
 	// Required: true
-	Ips GetIpsFromSenderIps `json:"ips"`
+	Ips []*GetIPFromSender `json:"ips"`
 }
 
 // Validate validates this get ips from sender
@@ -27,7 +28,6 @@ func (m *GetIpsFromSender) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateIps(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -43,11 +43,20 @@ func (m *GetIpsFromSender) validateIps(formats strfmt.Registry) error {
 		return err
 	}
 
-	if err := m.Ips.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("ips")
+	for i := 0; i < len(m.Ips); i++ {
+		if swag.IsZero(m.Ips[i]) { // not required
+			continue
 		}
-		return err
+
+		if m.Ips[i] != nil {
+			if err := m.Ips[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("ips" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

@@ -6,9 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -17,7 +16,7 @@ import (
 // swagger:model getCampaignStats
 type GetCampaignStats struct {
 
-	// Number of clicks for the campaign
+	// Number of total clicks for the campaign
 	// Required: true
 	Clickers *int64 `json:"clickers"`
 
@@ -26,8 +25,7 @@ type GetCampaignStats struct {
 	Complaints *int64 `json:"complaints"`
 
 	// Number of deferred emails for the campaign
-	// Required: true
-	Deferred *int64 `json:"deferred"`
+	Deferred int64 `json:"deferred,omitempty"`
 
 	// Number of delivered emails for the campaign
 	// Required: true
@@ -37,7 +35,7 @@ type GetCampaignStats struct {
 	// Required: true
 	HardBounces *int64 `json:"hardBounces"`
 
-	// List Id of email campaign (only in case of get email campaign(s))
+	// List Id of email campaign (only in case of get email campaign(s)(not for global stats))
 	ListID int64 `json:"listId,omitempty"`
 
 	// Number of sent emails for the campaign
@@ -70,57 +68,42 @@ func (m *GetCampaignStats) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateClickers(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateComplaints(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateDeferred(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDelivered(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateHardBounces(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateSent(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateSoftBounces(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateUniqueClicks(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateUniqueViews(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateUnsubscriptions(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateViewed(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -142,15 +125,6 @@ func (m *GetCampaignStats) validateClickers(formats strfmt.Registry) error {
 func (m *GetCampaignStats) validateComplaints(formats strfmt.Registry) error {
 
 	if err := validate.Required("complaints", "body", m.Complaints); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GetCampaignStats) validateDeferred(formats strfmt.Registry) error {
-
-	if err := validate.Required("deferred", "body", m.Deferred); err != nil {
 		return err
 	}
 

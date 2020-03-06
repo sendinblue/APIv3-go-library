@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // GetEmailCampaignReader is a Reader for the GetEmailCampaign structure.
@@ -24,21 +24,18 @@ type GetEmailCampaignReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetEmailCampaignReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetEmailCampaignOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewGetEmailCampaignBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewGetEmailCampaignNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +63,10 @@ type GetEmailCampaignOK struct {
 
 func (o *GetEmailCampaignOK) Error() string {
 	return fmt.Sprintf("[GET /emailCampaigns/{campaignId}][%d] getEmailCampaignOK  %+v", 200, o.Payload)
+}
+
+func (o *GetEmailCampaignOK) GetPayload() *models.GetEmailCampaign {
+	return o.Payload
 }
 
 func (o *GetEmailCampaignOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -97,6 +98,10 @@ func (o *GetEmailCampaignBadRequest) Error() string {
 	return fmt.Sprintf("[GET /emailCampaigns/{campaignId}][%d] getEmailCampaignBadRequest  %+v", 400, o.Payload)
 }
 
+func (o *GetEmailCampaignBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
+}
+
 func (o *GetEmailCampaignBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ErrorModel)
@@ -124,6 +129,10 @@ type GetEmailCampaignNotFound struct {
 
 func (o *GetEmailCampaignNotFound) Error() string {
 	return fmt.Sprintf("[GET /emailCampaigns/{campaignId}][%d] getEmailCampaignNotFound  %+v", 404, o.Payload)
+}
+
+func (o *GetEmailCampaignNotFound) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *GetEmailCampaignNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

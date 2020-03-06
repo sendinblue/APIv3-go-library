@@ -8,9 +8,8 @@ package models
 import (
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -21,6 +20,7 @@ type GetWebhook struct {
 
 	// Creation UTC date-time of the webhook (YYYY-MM-DDTHH:mm:ss.SSSZ)
 	// Required: true
+	// Format: date-time
 	CreatedAt *strfmt.DateTime `json:"createdAt"`
 
 	// Description of the webhook
@@ -37,10 +37,12 @@ type GetWebhook struct {
 
 	// Last modification UTC date-time of the webhook (YYYY-MM-DDTHH:mm:ss.SSSZ)
 	// Required: true
+	// Format: date-time
 	ModifiedAt *strfmt.DateTime `json:"modifiedAt"`
 
 	// Type of webhook (marketing or transac)
 	// Required: true
+	// Enum: [marketing transac]
 	Type *string `json:"type"`
 
 	// URL of the webhook
@@ -53,37 +55,30 @@ func (m *GetWebhook) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCreatedAt(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDescription(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateEvents(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateModifiedAt(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateType(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateURL(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -159,8 +154,10 @@ func init() {
 }
 
 const (
+
 	// GetWebhookTypeMarketing captures enum value "marketing"
 	GetWebhookTypeMarketing string = "marketing"
+
 	// GetWebhookTypeTransac captures enum value "transac"
 	GetWebhookTypeTransac string = "transac"
 )

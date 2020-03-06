@@ -8,31 +8,30 @@ package models
 import (
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
-// RequestSMSRecipientExport request SMS recipient export
-// swagger:model requestSMSRecipientExport
-type RequestSMSRecipientExport struct {
+// RequestSmsRecipientExport request sms recipient export
+// swagger:model requestSmsRecipientExport
+type RequestSmsRecipientExport struct {
 
 	// URL that will be called once the export process is finished
 	NotifyURL string `json:"notifyURL,omitempty"`
 
 	// Filter the recipients based on how they interacted with the campaign
 	// Required: true
+	// Enum: [all delivered answered softBounces hardBounces unsubscribed]
 	RecipientsType *string `json:"recipientsType"`
 }
 
-// Validate validates this request SMS recipient export
-func (m *RequestSMSRecipientExport) Validate(formats strfmt.Registry) error {
+// Validate validates this request sms recipient export
+func (m *RequestSmsRecipientExport) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateRecipientsType(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -55,29 +54,35 @@ func init() {
 }
 
 const (
-	// RequestSMSRecipientExportRecipientsTypeAll captures enum value "all"
-	RequestSMSRecipientExportRecipientsTypeAll string = "all"
-	// RequestSMSRecipientExportRecipientsTypeDelivered captures enum value "delivered"
-	RequestSMSRecipientExportRecipientsTypeDelivered string = "delivered"
-	// RequestSMSRecipientExportRecipientsTypeAnswered captures enum value "answered"
-	RequestSMSRecipientExportRecipientsTypeAnswered string = "answered"
-	// RequestSMSRecipientExportRecipientsTypeSoftBounces captures enum value "softBounces"
-	RequestSMSRecipientExportRecipientsTypeSoftBounces string = "softBounces"
-	// RequestSMSRecipientExportRecipientsTypeHardBounces captures enum value "hardBounces"
-	RequestSMSRecipientExportRecipientsTypeHardBounces string = "hardBounces"
-	// RequestSMSRecipientExportRecipientsTypeUnsubscribed captures enum value "unsubscribed"
-	RequestSMSRecipientExportRecipientsTypeUnsubscribed string = "unsubscribed"
+
+	// RequestSmsRecipientExportRecipientsTypeAll captures enum value "all"
+	RequestSmsRecipientExportRecipientsTypeAll string = "all"
+
+	// RequestSmsRecipientExportRecipientsTypeDelivered captures enum value "delivered"
+	RequestSmsRecipientExportRecipientsTypeDelivered string = "delivered"
+
+	// RequestSmsRecipientExportRecipientsTypeAnswered captures enum value "answered"
+	RequestSmsRecipientExportRecipientsTypeAnswered string = "answered"
+
+	// RequestSmsRecipientExportRecipientsTypeSoftBounces captures enum value "softBounces"
+	RequestSmsRecipientExportRecipientsTypeSoftBounces string = "softBounces"
+
+	// RequestSmsRecipientExportRecipientsTypeHardBounces captures enum value "hardBounces"
+	RequestSmsRecipientExportRecipientsTypeHardBounces string = "hardBounces"
+
+	// RequestSmsRecipientExportRecipientsTypeUnsubscribed captures enum value "unsubscribed"
+	RequestSmsRecipientExportRecipientsTypeUnsubscribed string = "unsubscribed"
 )
 
 // prop value enum
-func (m *RequestSMSRecipientExport) validateRecipientsTypeEnum(path, location string, value string) error {
+func (m *RequestSmsRecipientExport) validateRecipientsTypeEnum(path, location string, value string) error {
 	if err := validate.Enum(path, location, value, requestSmsRecipientExportTypeRecipientsTypePropEnum); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *RequestSMSRecipientExport) validateRecipientsType(formats strfmt.Registry) error {
+func (m *RequestSmsRecipientExport) validateRecipientsType(formats strfmt.Registry) error {
 
 	if err := validate.Required("recipientsType", "body", m.RecipientsType); err != nil {
 		return err
@@ -92,7 +97,7 @@ func (m *RequestSMSRecipientExport) validateRecipientsType(formats strfmt.Regist
 }
 
 // MarshalBinary interface implementation
-func (m *RequestSMSRecipientExport) MarshalBinary() ([]byte, error) {
+func (m *RequestSmsRecipientExport) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -100,8 +105,8 @@ func (m *RequestSMSRecipientExport) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *RequestSMSRecipientExport) UnmarshalBinary(b []byte) error {
-	var res RequestSMSRecipientExport
+func (m *RequestSmsRecipientExport) UnmarshalBinary(b []byte) error {
+	var res RequestSmsRecipientExport
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

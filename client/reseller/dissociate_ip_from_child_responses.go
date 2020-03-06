@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // DissociateIPFromChildReader is a Reader for the DissociateIPFromChild structure.
@@ -24,21 +24,18 @@ type DissociateIPFromChildReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DissociateIPFromChildReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 204:
 		result := NewDissociateIPFromChildNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewDissociateIPFromChildBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewDissociateIPFromChildNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -64,7 +61,7 @@ type DissociateIPFromChildNoContent struct {
 }
 
 func (o *DissociateIPFromChildNoContent) Error() string {
-	return fmt.Sprintf("[POST /reseller/children/{childId}/ips/dissociate][%d] dissociateIpFromChildNoContent ", 204)
+	return fmt.Sprintf("[POST /reseller/children/{childAuthKey}/ips/dissociate][%d] dissociateIpFromChildNoContent ", 204)
 }
 
 func (o *DissociateIPFromChildNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -86,7 +83,11 @@ type DissociateIPFromChildBadRequest struct {
 }
 
 func (o *DissociateIPFromChildBadRequest) Error() string {
-	return fmt.Sprintf("[POST /reseller/children/{childId}/ips/dissociate][%d] dissociateIpFromChildBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /reseller/children/{childAuthKey}/ips/dissociate][%d] dissociateIpFromChildBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *DissociateIPFromChildBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *DissociateIPFromChildBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -108,14 +109,18 @@ func NewDissociateIPFromChildNotFound() *DissociateIPFromChildNotFound {
 
 /*DissociateIPFromChildNotFound handles this case with default header values.
 
-Child ID not found
+Child auth key not found
 */
 type DissociateIPFromChildNotFound struct {
 	Payload *models.ErrorModel
 }
 
 func (o *DissociateIPFromChildNotFound) Error() string {
-	return fmt.Sprintf("[POST /reseller/children/{childId}/ips/dissociate][%d] dissociateIpFromChildNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /reseller/children/{childAuthKey}/ips/dissociate][%d] dissociateIpFromChildNotFound  %+v", 404, o.Payload)
+}
+
+func (o *DissociateIPFromChildNotFound) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *DissociateIPFromChildNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

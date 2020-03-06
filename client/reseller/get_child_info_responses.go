@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // GetChildInfoReader is a Reader for the GetChildInfo structure.
@@ -24,28 +24,24 @@ type GetChildInfoReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetChildInfoReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetChildInfoOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewGetChildInfoBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewGetChildInfoForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewGetChildInfoNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -72,7 +68,11 @@ type GetChildInfoOK struct {
 }
 
 func (o *GetChildInfoOK) Error() string {
-	return fmt.Sprintf("[GET /reseller/children/{childId}][%d] getChildInfoOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /reseller/children/{childAuthKey}][%d] getChildInfoOK  %+v", 200, o.Payload)
+}
+
+func (o *GetChildInfoOK) GetPayload() *models.GetChildInfo {
+	return o.Payload
 }
 
 func (o *GetChildInfoOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -101,7 +101,11 @@ type GetChildInfoBadRequest struct {
 }
 
 func (o *GetChildInfoBadRequest) Error() string {
-	return fmt.Sprintf("[GET /reseller/children/{childId}][%d] getChildInfoBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /reseller/children/{childAuthKey}][%d] getChildInfoBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *GetChildInfoBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *GetChildInfoBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -130,7 +134,11 @@ type GetChildInfoForbidden struct {
 }
 
 func (o *GetChildInfoForbidden) Error() string {
-	return fmt.Sprintf("[GET /reseller/children/{childId}][%d] getChildInfoForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /reseller/children/{childAuthKey}][%d] getChildInfoForbidden  %+v", 403, o.Payload)
+}
+
+func (o *GetChildInfoForbidden) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *GetChildInfoForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,14 +160,18 @@ func NewGetChildInfoNotFound() *GetChildInfoNotFound {
 
 /*GetChildInfoNotFound handles this case with default header values.
 
-Child ID not found
+Child auth key not found
 */
 type GetChildInfoNotFound struct {
 	Payload *models.ErrorModel
 }
 
 func (o *GetChildInfoNotFound) Error() string {
-	return fmt.Sprintf("[GET /reseller/children/{childId}][%d] getChildInfoNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /reseller/children/{childAuthKey}][%d] getChildInfoNotFound  %+v", 404, o.Payload)
+}
+
+func (o *GetChildInfoNotFound) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *GetChildInfoNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

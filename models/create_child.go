@@ -6,9 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -23,6 +22,7 @@ type CreateChild struct {
 
 	// Email address to create the child account
 	// Required: true
+	// Format: email
 	Email *strfmt.Email `json:"email"`
 
 	// First name to use to create the child account
@@ -35,6 +35,7 @@ type CreateChild struct {
 
 	// Password for the child account to login
 	// Required: true
+	// Format: password
 	Password *strfmt.Password `json:"password"`
 }
 
@@ -43,27 +44,22 @@ func (m *CreateChild) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCompanyName(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateEmail(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateFirstName(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateLastName(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePassword(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 

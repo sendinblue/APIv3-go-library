@@ -6,11 +6,9 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // GetEmailCampaign get email campaign
@@ -20,34 +18,76 @@ type GetEmailCampaign struct {
 
 	// recipients
 	// Required: true
-	Recipients *GetEmailCampaignRecipients `json:"recipients"`
+	Recipients struct {
+		GetCampaignRecipients
+	} `json:"recipients"`
 
 	// statistics
 	// Required: true
-	Statistics *GetEmailCampaignStatistics `json:"statistics"`
+	Statistics struct {
+		GetExtendedCampaignStats
+	} `json:"statistics"`
 }
 
 // UnmarshalJSON unmarshals this object from a JSON structure
 func (m *GetEmailCampaign) UnmarshalJSON(raw []byte) error {
-
+	// AO0
 	var aO0 GetExtendedCampaignOverview
 	if err := swag.ReadJSON(raw, &aO0); err != nil {
 		return err
 	}
 	m.GetExtendedCampaignOverview = aO0
 
+	// AO1
+	var dataAO1 struct {
+		Recipients struct {
+			GetCampaignRecipients
+		} `json:"recipients"`
+
+		Statistics struct {
+			GetExtendedCampaignStats
+		} `json:"statistics"`
+	}
+	if err := swag.ReadJSON(raw, &dataAO1); err != nil {
+		return err
+	}
+
+	m.Recipients = dataAO1.Recipients
+
+	m.Statistics = dataAO1.Statistics
+
 	return nil
 }
 
 // MarshalJSON marshals this object to a JSON structure
 func (m GetEmailCampaign) MarshalJSON() ([]byte, error) {
-	var _parts [][]byte
+	_parts := make([][]byte, 0, 2)
 
 	aO0, err := swag.WriteJSON(m.GetExtendedCampaignOverview)
 	if err != nil {
 		return nil, err
 	}
 	_parts = append(_parts, aO0)
+
+	var dataAO1 struct {
+		Recipients struct {
+			GetCampaignRecipients
+		} `json:"recipients"`
+
+		Statistics struct {
+			GetExtendedCampaignStats
+		} `json:"statistics"`
+	}
+
+	dataAO1.Recipients = m.Recipients
+
+	dataAO1.Statistics = m.Statistics
+
+	jsonDataAO1, errAO1 := swag.WriteJSON(dataAO1)
+	if errAO1 != nil {
+		return nil, errAO1
+	}
+	_parts = append(_parts, jsonDataAO1)
 
 	return swag.ConcatJSON(_parts...), nil
 }
@@ -56,17 +96,16 @@ func (m GetEmailCampaign) MarshalJSON() ([]byte, error) {
 func (m *GetEmailCampaign) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	// validation for a type composition with GetExtendedCampaignOverview
 	if err := m.GetExtendedCampaignOverview.Validate(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateRecipients(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateStatistics(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -78,38 +117,10 @@ func (m *GetEmailCampaign) Validate(formats strfmt.Registry) error {
 
 func (m *GetEmailCampaign) validateRecipients(formats strfmt.Registry) error {
 
-	if err := validate.Required("recipients", "body", m.Recipients); err != nil {
-		return err
-	}
-
-	if m.Recipients != nil {
-
-		if err := m.Recipients.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("recipients")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 
 func (m *GetEmailCampaign) validateStatistics(formats strfmt.Registry) error {
-
-	if err := validate.Required("statistics", "body", m.Statistics); err != nil {
-		return err
-	}
-
-	if m.Statistics != nil {
-
-		if err := m.Statistics.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("statistics")
-			}
-			return err
-		}
-	}
 
 	return nil
 }

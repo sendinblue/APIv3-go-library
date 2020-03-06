@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // AddCreditsReader is a Reader for the AddCredits structure.
@@ -24,28 +24,24 @@ type AddCreditsReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AddCreditsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewAddCreditsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewAddCreditsBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewAddCreditsForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewAddCreditsNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -72,7 +68,11 @@ type AddCreditsOK struct {
 }
 
 func (o *AddCreditsOK) Error() string {
-	return fmt.Sprintf("[POST /reseller/children/{childId}/credits/add][%d] addCreditsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /reseller/children/{childAuthKey}/credits/add][%d] addCreditsOK  %+v", 200, o.Payload)
+}
+
+func (o *AddCreditsOK) GetPayload() *models.RemainingCreditModel {
+	return o.Payload
 }
 
 func (o *AddCreditsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -101,7 +101,11 @@ type AddCreditsBadRequest struct {
 }
 
 func (o *AddCreditsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /reseller/children/{childId}/credits/add][%d] addCreditsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /reseller/children/{childAuthKey}/credits/add][%d] addCreditsBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *AddCreditsBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *AddCreditsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -130,7 +134,11 @@ type AddCreditsForbidden struct {
 }
 
 func (o *AddCreditsForbidden) Error() string {
-	return fmt.Sprintf("[POST /reseller/children/{childId}/credits/add][%d] addCreditsForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /reseller/children/{childAuthKey}/credits/add][%d] addCreditsForbidden  %+v", 403, o.Payload)
+}
+
+func (o *AddCreditsForbidden) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *AddCreditsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,14 +160,18 @@ func NewAddCreditsNotFound() *AddCreditsNotFound {
 
 /*AddCreditsNotFound handles this case with default header values.
 
-Child ID not found
+Child auth key not found
 */
 type AddCreditsNotFound struct {
 	Payload *models.ErrorModel
 }
 
 func (o *AddCreditsNotFound) Error() string {
-	return fmt.Sprintf("[POST /reseller/children/{childId}/credits/add][%d] addCreditsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /reseller/children/{childAuthKey}/credits/add][%d] addCreditsNotFound  %+v", 404, o.Payload)
+}
+
+func (o *AddCreditsNotFound) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *AddCreditsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // SendTemplateReader is a Reader for the SendTemplate structure.
@@ -24,21 +24,18 @@ type SendTemplateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *SendTemplateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 201:
 		result := NewSendTemplateCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewSendTemplateBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewSendTemplateNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +63,10 @@ type SendTemplateCreated struct {
 
 func (o *SendTemplateCreated) Error() string {
 	return fmt.Sprintf("[POST /smtp/templates/{templateId}/send][%d] sendTemplateCreated  %+v", 201, o.Payload)
+}
+
+func (o *SendTemplateCreated) GetPayload() *models.SendTemplateEmail {
+	return o.Payload
 }
 
 func (o *SendTemplateCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -97,6 +98,10 @@ func (o *SendTemplateBadRequest) Error() string {
 	return fmt.Sprintf("[POST /smtp/templates/{templateId}/send][%d] sendTemplateBadRequest  %+v", 400, o.Payload)
 }
 
+func (o *SendTemplateBadRequest) GetPayload() *models.PostSendFailed {
+	return o.Payload
+}
+
 func (o *SendTemplateBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.PostSendFailed)
@@ -124,6 +129,10 @@ type SendTemplateNotFound struct {
 
 func (o *SendTemplateNotFound) Error() string {
 	return fmt.Sprintf("[POST /smtp/templates/{templateId}/send][%d] sendTemplateNotFound  %+v", 404, o.Payload)
+}
+
+func (o *SendTemplateNotFound) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *SendTemplateNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

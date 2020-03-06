@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // CreateEmailCampaignReader is a Reader for the CreateEmailCampaign structure.
@@ -24,14 +24,12 @@ type CreateEmailCampaignReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *CreateEmailCampaignReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 201:
 		result := NewCreateEmailCampaignCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewCreateEmailCampaignBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -61,6 +59,10 @@ func (o *CreateEmailCampaignCreated) Error() string {
 	return fmt.Sprintf("[POST /emailCampaigns][%d] createEmailCampaignCreated  %+v", 201, o.Payload)
 }
 
+func (o *CreateEmailCampaignCreated) GetPayload() *models.CreateModel {
+	return o.Payload
+}
+
 func (o *CreateEmailCampaignCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.CreateModel)
@@ -88,6 +90,10 @@ type CreateEmailCampaignBadRequest struct {
 
 func (o *CreateEmailCampaignBadRequest) Error() string {
 	return fmt.Sprintf("[POST /emailCampaigns][%d] createEmailCampaignBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *CreateEmailCampaignBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *CreateEmailCampaignBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

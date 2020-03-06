@@ -6,9 +6,10 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"strconv"
 
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -40,27 +41,22 @@ func (m *PostSendFailed) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateBlackListedEmails(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateCode(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateMessage(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateUnexistingEmails(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateWithoutListEmails(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -74,6 +70,14 @@ func (m *PostSendFailed) validateBlackListedEmails(formats strfmt.Registry) erro
 
 	if swag.IsZero(m.BlackListedEmails) { // not required
 		return nil
+	}
+
+	for i := 0; i < len(m.BlackListedEmails); i++ {
+
+		if err := validate.FormatOf("blackListedEmails"+"."+strconv.Itoa(i), "body", "email", m.BlackListedEmails[i].String(), formats); err != nil {
+			return err
+		}
+
 	}
 
 	return nil
@@ -103,6 +107,14 @@ func (m *PostSendFailed) validateUnexistingEmails(formats strfmt.Registry) error
 		return nil
 	}
 
+	for i := 0; i < len(m.UnexistingEmails); i++ {
+
+		if err := validate.FormatOf("unexistingEmails"+"."+strconv.Itoa(i), "body", "email", m.UnexistingEmails[i].String(), formats); err != nil {
+			return err
+		}
+
+	}
+
 	return nil
 }
 
@@ -110,6 +122,14 @@ func (m *PostSendFailed) validateWithoutListEmails(formats strfmt.Registry) erro
 
 	if swag.IsZero(m.WithoutListEmails) { // not required
 		return nil
+	}
+
+	for i := 0; i < len(m.WithoutListEmails); i++ {
+
+		if err := validate.FormatOf("withoutListEmails"+"."+strconv.Itoa(i), "body", "email", m.WithoutListEmails[i].String(), formats); err != nil {
+			return err
+		}
+
 	}
 
 	return nil

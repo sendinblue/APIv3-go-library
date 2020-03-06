@@ -6,20 +6,22 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"strconv"
 
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // UpdateAttribute update attribute
 // swagger:model updateAttribute
 type UpdateAttribute struct {
 
-	// enumeration
-	Enumeration UpdateAttributeEnumeration `json:"enumeration"`
+	// List of the values and labels that the attribute can take. Use only if the attribute's category is "category". For example, [{'value':1, 'label':'male'}, {'value':2, 'label':'female'}]
+	Enumeration []*UpdateAttributeEnumerationItems0 `json:"enumeration"`
 
-	// Value of the attribute. Use only if the attribute's category is calculated or global
+	// Value of the attribute to update. Use only if the attribute's category is 'calculated' or 'global'
 	Value string `json:"value,omitempty"`
 }
 
@@ -27,9 +29,38 @@ type UpdateAttribute struct {
 func (m *UpdateAttribute) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateEnumeration(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *UpdateAttribute) validateEnumeration(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Enumeration) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Enumeration); i++ {
+		if swag.IsZero(m.Enumeration[i]) { // not required
+			continue
+		}
+
+		if m.Enumeration[i] != nil {
+			if err := m.Enumeration[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("enumeration" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 
@@ -44,6 +75,73 @@ func (m *UpdateAttribute) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *UpdateAttribute) UnmarshalBinary(b []byte) error {
 	var res UpdateAttribute
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// UpdateAttributeEnumerationItems0 update attribute enumeration items0
+// swagger:model UpdateAttributeEnumerationItems0
+type UpdateAttributeEnumerationItems0 struct {
+
+	// Label of the value
+	// Required: true
+	Label *string `json:"label"`
+
+	// Id of the value
+	// Required: true
+	Value *int64 `json:"value"`
+}
+
+// Validate validates this update attribute enumeration items0
+func (m *UpdateAttributeEnumerationItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateLabel(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateValue(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *UpdateAttributeEnumerationItems0) validateLabel(formats strfmt.Registry) error {
+
+	if err := validate.Required("label", "body", m.Label); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *UpdateAttributeEnumerationItems0) validateValue(formats strfmt.Registry) error {
+
+	if err := validate.Required("value", "body", m.Value); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *UpdateAttributeEnumerationItems0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *UpdateAttributeEnumerationItems0) UnmarshalBinary(b []byte) error {
+	var res UpdateAttributeEnumerationItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -6,29 +6,31 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"strconv"
 
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // UpdateContact update contact
 // swagger:model updateContact
 type UpdateContact struct {
 
-	// attributes
-	Attributes map[string]string `json:"attributes,omitempty"`
+	// Pass the set of attributes to be updated. These attributes must be present in your account. To update existing email address of a contact with the new one please pass EMAIL in attribtes. For example, `{ "EMAIL":"newemail@domain.com", "FNAME":"Ellie", "LNAME":"Roger"}`. Keep in mind transactional attributes can be updated the same way as normal attributes.
+	Attributes interface{} `json:"attributes,omitempty"`
 
-	// Blacklist the contact for emails (emailBlacklisted = true)
+	// Set/unset this field to blacklist/allow the contact for emails (emailBlacklisted = true)
 	EmailBlacklisted bool `json:"emailBlacklisted,omitempty"`
 
 	// Ids of the lists to add the contact to
 	ListIds []int64 `json:"listIds"`
 
-	// Blacklist the contact for SMS (smsBlacklisted = true)
-	SMSBlacklisted bool `json:"smsBlacklisted,omitempty"`
+	// Set/unset this field to blacklist/allow the contact for SMS (smsBlacklisted = true)
+	SmsBlacklisted bool `json:"smsBlacklisted,omitempty"`
 
-	// SMTP forbidden sender for contact. Use only for email Contact
+	// transactional email forbidden sender for contact. Use only for email Contact
 	SMTPBlacklistSender []strfmt.Email `json:"smtpBlacklistSender"`
 
 	// Ids of the lists to remove the contact from
@@ -39,18 +41,7 @@ type UpdateContact struct {
 func (m *UpdateContact) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateListIds(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
 	if err := m.validateSMTPBlacklistSender(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateUnlinkListIds(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -60,28 +51,18 @@ func (m *UpdateContact) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *UpdateContact) validateListIds(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.ListIds) { // not required
-		return nil
-	}
-
-	return nil
-}
-
 func (m *UpdateContact) validateSMTPBlacklistSender(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.SMTPBlacklistSender) { // not required
 		return nil
 	}
 
-	return nil
-}
+	for i := 0; i < len(m.SMTPBlacklistSender); i++ {
 
-func (m *UpdateContact) validateUnlinkListIds(formats strfmt.Registry) error {
+		if err := validate.FormatOf("smtpBlacklistSender"+"."+strconv.Itoa(i), "body", "email", m.SMTPBlacklistSender[i].String(), formats); err != nil {
+			return err
+		}
 
-	if swag.IsZero(m.UnlinkListIds) { // not required
-		return nil
 	}
 
 	return nil

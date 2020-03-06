@@ -8,9 +8,8 @@ package models
 import (
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -24,6 +23,7 @@ type EmailExportRecipients struct {
 
 	// Type of recipients to export for a campaign
 	// Required: true
+	// Enum: [all nonClickers nonOpeners clickers openers softBounces hardBounces unsubscribed]
 	RecipientsType *string `json:"recipientsType"`
 }
 
@@ -32,7 +32,6 @@ func (m *EmailExportRecipients) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateRecipientsType(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -55,20 +54,28 @@ func init() {
 }
 
 const (
+
 	// EmailExportRecipientsRecipientsTypeAll captures enum value "all"
 	EmailExportRecipientsRecipientsTypeAll string = "all"
+
 	// EmailExportRecipientsRecipientsTypeNonClickers captures enum value "nonClickers"
 	EmailExportRecipientsRecipientsTypeNonClickers string = "nonClickers"
+
 	// EmailExportRecipientsRecipientsTypeNonOpeners captures enum value "nonOpeners"
 	EmailExportRecipientsRecipientsTypeNonOpeners string = "nonOpeners"
+
 	// EmailExportRecipientsRecipientsTypeClickers captures enum value "clickers"
 	EmailExportRecipientsRecipientsTypeClickers string = "clickers"
+
 	// EmailExportRecipientsRecipientsTypeOpeners captures enum value "openers"
 	EmailExportRecipientsRecipientsTypeOpeners string = "openers"
+
 	// EmailExportRecipientsRecipientsTypeSoftBounces captures enum value "softBounces"
 	EmailExportRecipientsRecipientsTypeSoftBounces string = "softBounces"
+
 	// EmailExportRecipientsRecipientsTypeHardBounces captures enum value "hardBounces"
 	EmailExportRecipientsRecipientsTypeHardBounces string = "hardBounces"
+
 	// EmailExportRecipientsRecipientsTypeUnsubscribed captures enum value "unsubscribed"
 	EmailExportRecipientsRecipientsTypeUnsubscribed string = "unsubscribed"
 )

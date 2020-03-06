@@ -8,9 +8,8 @@ package models
 import (
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -18,6 +17,9 @@ import (
 // GetCampaignOverview get campaign overview
 // swagger:model getCampaignOverview
 type GetCampaignOverview struct {
+
+	// Status of A/B Test for the campaign. abTesting = false means it is disabled, & abTesting = true means it is enabled.
+	AbTesting bool `json:"abTesting,omitempty"`
 
 	// ID of the campaign
 	// Required: true
@@ -28,19 +30,39 @@ type GetCampaignOverview struct {
 	Name *string `json:"name"`
 
 	// UTC date-time on which campaign is scheduled (YYYY-MM-DDTHH:mm:ss.SSSZ)
+	// Format: date-time
 	ScheduledAt strfmt.DateTime `json:"scheduledAt,omitempty"`
+
+	// It is true if you have chosen to send your campaign at best time, otherwise it is false
+	SendAtBestTime bool `json:"sendAtBestTime,omitempty"`
+
+	// The size of your ab-test groups. Only available if `abTesting` flag of the campaign is `true`
+	SplitRule int64 `json:"splitRule,omitempty"`
 
 	// Status of the campaign
 	// Required: true
+	// Enum: [draft sent archive queued suspended in_process]
 	Status *string `json:"status"`
 
-	// Subject of the campaign
-	// Required: true
-	Subject *string `json:"subject"`
+	// Subject of the campaign. Only available if `abTesting` flag of the campaign is `false`
+	Subject string `json:"subject,omitempty"`
+
+	// Subject A of the ab-test campaign. Only available if `abTesting` flag of the campaign is `true`
+	SubjectA string `json:"subjectA,omitempty"`
+
+	// Subject B of the ab-test campaign. Only available if `abTesting` flag of the campaign is `true`
+	SubjectB string `json:"subjectB,omitempty"`
 
 	// Type of campaign
 	// Required: true
+	// Enum: [classic trigger]
 	Type *string `json:"type"`
+
+	// Criteria for the winning version. Only available if `abTesting` flag of the campaign is `true`
+	WinnerCriteria string `json:"winnerCriteria,omitempty"`
+
+	// The duration of the test in hours at the end of which the winning version will be sent. Only available if `abTesting` flag of the campaign is `true`
+	WinnerDelay int64 `json:"winnerDelay,omitempty"`
 }
 
 // Validate validates this get campaign overview
@@ -48,32 +70,22 @@ func (m *GetCampaignOverview) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateName(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateScheduledAt(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateStatus(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateSubject(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateType(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -127,16 +139,22 @@ func init() {
 }
 
 const (
+
 	// GetCampaignOverviewStatusDraft captures enum value "draft"
 	GetCampaignOverviewStatusDraft string = "draft"
+
 	// GetCampaignOverviewStatusSent captures enum value "sent"
 	GetCampaignOverviewStatusSent string = "sent"
+
 	// GetCampaignOverviewStatusArchive captures enum value "archive"
 	GetCampaignOverviewStatusArchive string = "archive"
+
 	// GetCampaignOverviewStatusQueued captures enum value "queued"
 	GetCampaignOverviewStatusQueued string = "queued"
+
 	// GetCampaignOverviewStatusSuspended captures enum value "suspended"
 	GetCampaignOverviewStatusSuspended string = "suspended"
+
 	// GetCampaignOverviewStatusInProcess captures enum value "in_process"
 	GetCampaignOverviewStatusInProcess string = "in_process"
 )
@@ -163,15 +181,6 @@ func (m *GetCampaignOverview) validateStatus(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *GetCampaignOverview) validateSubject(formats strfmt.Registry) error {
-
-	if err := validate.Required("subject", "body", m.Subject); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 var getCampaignOverviewTypeTypePropEnum []interface{}
 
 func init() {
@@ -185,8 +194,10 @@ func init() {
 }
 
 const (
+
 	// GetCampaignOverviewTypeClassic captures enum value "classic"
 	GetCampaignOverviewTypeClassic string = "classic"
+
 	// GetCampaignOverviewTypeTrigger captures enum value "trigger"
 	GetCampaignOverviewTypeTrigger string = "trigger"
 )

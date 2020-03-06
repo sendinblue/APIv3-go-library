@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // SendTestTemplateReader is a Reader for the SendTestTemplate structure.
@@ -24,21 +24,18 @@ type SendTestTemplateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *SendTestTemplateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 204:
 		result := NewSendTestTemplateNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewSendTestTemplateBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewSendTestTemplateNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -89,6 +86,10 @@ func (o *SendTestTemplateBadRequest) Error() string {
 	return fmt.Sprintf("[POST /smtp/templates/{templateId}/sendTest][%d] sendTestTemplateBadRequest  %+v", 400, o.Payload)
 }
 
+func (o *SendTestTemplateBadRequest) GetPayload() *models.PostSendFailed {
+	return o.Payload
+}
+
 func (o *SendTestTemplateBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.PostSendFailed)
@@ -116,6 +117,10 @@ type SendTestTemplateNotFound struct {
 
 func (o *SendTestTemplateNotFound) Error() string {
 	return fmt.Sprintf("[POST /smtp/templates/{templateId}/sendTest][%d] sendTestTemplateNotFound  %+v", 404, o.Payload)
+}
+
+func (o *SendTestTemplateNotFound) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *SendTestTemplateNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

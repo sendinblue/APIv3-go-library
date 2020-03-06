@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // GetContactStatsReader is a Reader for the GetContactStats structure.
@@ -24,21 +24,18 @@ type GetContactStatsReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetContactStatsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetContactStatsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewGetContactStatsBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewGetContactStatsNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +63,10 @@ type GetContactStatsOK struct {
 
 func (o *GetContactStatsOK) Error() string {
 	return fmt.Sprintf("[GET /contacts/{email}/campaignStats][%d] getContactStatsOK  %+v", 200, o.Payload)
+}
+
+func (o *GetContactStatsOK) GetPayload() *models.GetContactCampaignStats {
+	return o.Payload
 }
 
 func (o *GetContactStatsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -97,6 +98,10 @@ func (o *GetContactStatsBadRequest) Error() string {
 	return fmt.Sprintf("[GET /contacts/{email}/campaignStats][%d] getContactStatsBadRequest  %+v", 400, o.Payload)
 }
 
+func (o *GetContactStatsBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
+}
+
 func (o *GetContactStatsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ErrorModel)
@@ -124,6 +129,10 @@ type GetContactStatsNotFound struct {
 
 func (o *GetContactStatsNotFound) Error() string {
 	return fmt.Sprintf("[GET /contacts/{email}/campaignStats][%d] getContactStatsNotFound  %+v", 404, o.Payload)
+}
+
+func (o *GetContactStatsNotFound) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *GetContactStatsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

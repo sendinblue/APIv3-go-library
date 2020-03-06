@@ -7,10 +7,10 @@ package models
 
 import (
 	"encoding/json"
-
-	strfmt "github.com/go-openapi/strfmt"
+	"strconv"
 
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -19,13 +19,14 @@ import (
 // swagger:model createAttribute
 type CreateAttribute struct {
 
-	// enumeration
-	Enumeration CreateAttributeEnumeration `json:"enumeration"`
+	// List of values and labels that the attribute can take. Use only if the attribute's category is "category". For example, [{'value':1, 'label':'male'}, {'value':2, 'label':'female'}]
+	Enumeration []*CreateAttributeEnumerationItems0 `json:"enumeration"`
 
-	// Type of the attribute. Use only if the attribute's category is normal, category or transactional ( type 'id' only available if the category is 'transactional' attribute & type 'category' only available if the category is 'category' attribute )
+	// Type of the attribute. Use only if the attribute's category is 'normal', 'category' or 'transactional' ( type 'boolean' is only available if the category is 'normal' attribute, type 'id' is only available if the category is 'transactional' attribute & type 'category' is only available if the category is 'category' attribute )
+	// Enum: [text date float boolean id category]
 	Type string `json:"type,omitempty"`
 
-	// Value of the attribute. Use only if the attribute's category is calculated or global
+	// Value of the attribute. Use only if the attribute's category is 'calculated' or 'global'
 	Value string `json:"value,omitempty"`
 }
 
@@ -33,8 +34,11 @@ type CreateAttribute struct {
 func (m *CreateAttribute) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateEnumeration(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateType(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -44,11 +48,36 @@ func (m *CreateAttribute) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *CreateAttribute) validateEnumeration(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Enumeration) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Enumeration); i++ {
+		if swag.IsZero(m.Enumeration[i]) { // not required
+			continue
+		}
+
+		if m.Enumeration[i] != nil {
+			if err := m.Enumeration[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("enumeration" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 var createAttributeTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["text","date","float","id","category"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["text","date","float","boolean","id","category"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -57,14 +86,22 @@ func init() {
 }
 
 const (
+
 	// CreateAttributeTypeText captures enum value "text"
 	CreateAttributeTypeText string = "text"
+
 	// CreateAttributeTypeDate captures enum value "date"
 	CreateAttributeTypeDate string = "date"
+
 	// CreateAttributeTypeFloat captures enum value "float"
 	CreateAttributeTypeFloat string = "float"
+
+	// CreateAttributeTypeBoolean captures enum value "boolean"
+	CreateAttributeTypeBoolean string = "boolean"
+
 	// CreateAttributeTypeID captures enum value "id"
 	CreateAttributeTypeID string = "id"
+
 	// CreateAttributeTypeCategory captures enum value "category"
 	CreateAttributeTypeCategory string = "category"
 )
@@ -102,6 +139,73 @@ func (m *CreateAttribute) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *CreateAttribute) UnmarshalBinary(b []byte) error {
 	var res CreateAttribute
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// CreateAttributeEnumerationItems0 create attribute enumeration items0
+// swagger:model CreateAttributeEnumerationItems0
+type CreateAttributeEnumerationItems0 struct {
+
+	// Label of the value
+	// Required: true
+	Label *string `json:"label"`
+
+	// Id of the value
+	// Required: true
+	Value *int64 `json:"value"`
+}
+
+// Validate validates this create attribute enumeration items0
+func (m *CreateAttributeEnumerationItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateLabel(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateValue(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *CreateAttributeEnumerationItems0) validateLabel(formats strfmt.Registry) error {
+
+	if err := validate.Required("label", "body", m.Label); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *CreateAttributeEnumerationItems0) validateValue(formats strfmt.Registry) error {
+
+	if err := validate.Required("value", "body", m.Value); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *CreateAttributeEnumerationItems0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *CreateAttributeEnumerationItems0) UnmarshalBinary(b []byte) error {
+	var res CreateAttributeEnumerationItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

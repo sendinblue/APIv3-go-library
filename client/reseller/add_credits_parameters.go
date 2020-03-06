@@ -6,19 +6,17 @@ package reseller
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
-	"github.com/go-openapi/swag"
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // NewAddCreditsParams creates a new AddCreditsParams object
@@ -70,11 +68,11 @@ type AddCreditsParams struct {
 
 	*/
 	AddCredits *models.AddCredits
-	/*ChildID
-	  id of reseller's child
+	/*ChildAuthKey
+	  auth key of reseller's child
 
 	*/
-	ChildID int64
+	ChildAuthKey string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -125,15 +123,15 @@ func (o *AddCreditsParams) SetAddCredits(addCredits *models.AddCredits) {
 	o.AddCredits = addCredits
 }
 
-// WithChildID adds the childID to the add credits params
-func (o *AddCreditsParams) WithChildID(childID int64) *AddCreditsParams {
-	o.SetChildID(childID)
+// WithChildAuthKey adds the childAuthKey to the add credits params
+func (o *AddCreditsParams) WithChildAuthKey(childAuthKey string) *AddCreditsParams {
+	o.SetChildAuthKey(childAuthKey)
 	return o
 }
 
-// SetChildID adds the childId to the add credits params
-func (o *AddCreditsParams) SetChildID(childID int64) {
-	o.ChildID = childID
+// SetChildAuthKey adds the childAuthKey to the add credits params
+func (o *AddCreditsParams) SetChildAuthKey(childAuthKey string) {
+	o.ChildAuthKey = childAuthKey
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -150,8 +148,8 @@ func (o *AddCreditsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 		}
 	}
 
-	// path param childId
-	if err := r.SetPathParam("childId", swag.FormatInt64(o.ChildID)); err != nil {
+	// path param childAuthKey
+	if err := r.SetPathParam("childAuthKey", o.ChildAuthKey); err != nil {
 		return err
 	}
 

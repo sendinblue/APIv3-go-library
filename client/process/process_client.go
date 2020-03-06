@@ -6,13 +6,14 @@ package process
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-openapi/runtime"
+	"fmt"
 
-	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 )
 
 // New creates a new process API client.
-func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -24,8 +25,17 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientService is the interface for Client methods
+type ClientService interface {
+	GetProcess(params *GetProcessParams, authInfo runtime.ClientAuthInfoWriter) (*GetProcessOK, error)
+
+	GetProcesses(params *GetProcessesParams, authInfo runtime.ClientAuthInfoWriter) (*GetProcessesOK, error)
+
+	SetTransport(transport runtime.ClientTransport)
+}
+
 /*
-GetProcess returns the informations for a process
+  GetProcess returns the informations for a process
 */
 func (a *Client) GetProcess(params *GetProcessParams, authInfo runtime.ClientAuthInfoWriter) (*GetProcessOK, error) {
 	// TODO: Validate the params before sending
@@ -49,12 +59,18 @@ func (a *Client) GetProcess(params *GetProcessParams, authInfo runtime.ClientAut
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetProcessOK), nil
-
+	success, ok := result.(*GetProcessOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getProcess: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetProcesses returns all the processes for your account
+  GetProcesses returns all the processes for your account
 */
 func (a *Client) GetProcesses(params *GetProcessesParams, authInfo runtime.ClientAuthInfoWriter) (*GetProcessesOK, error) {
 	// TODO: Validate the params before sending
@@ -78,8 +94,14 @@ func (a *Client) GetProcesses(params *GetProcessesParams, authInfo runtime.Clien
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetProcessesOK), nil
-
+	success, ok := result.(*GetProcessesOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getProcesses: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 // SetTransport changes the transport on the client

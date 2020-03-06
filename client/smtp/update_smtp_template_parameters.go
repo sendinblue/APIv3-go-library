@@ -6,10 +6,9 @@ package smtp
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -18,7 +17,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // NewUpdateSMTPTemplateParams creates a new UpdateSMTPTemplateParams object
@@ -66,7 +65,7 @@ for the update Smtp template operation typically these are written to a http.Req
 type UpdateSMTPTemplateParams struct {
 
 	/*SMTPTemplate
-	  values to update in smtp template
+	  values to update in transactional email template
 
 	*/
 	SMTPTemplate *models.UpdateSMTPTemplate

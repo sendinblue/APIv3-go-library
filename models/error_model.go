@@ -8,9 +8,8 @@ package models
 import (
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -21,6 +20,7 @@ type ErrorModel struct {
 
 	// Error code displayed in case of a failure
 	// Required: true
+	// Enum: [invalid_parameter missing_parameter out_of_range campaign_processing campaign_sent document_not_found reseller_permission_denied not_enough_credits permission_denied duplicate_parameter duplicate_request method_not_allowed unauthorized account_under_validation not_acceptable]
 	Code *string `json:"code"`
 
 	// Readable message associated to the failure
@@ -33,12 +33,10 @@ func (m *ErrorModel) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCode(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateMessage(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -52,7 +50,7 @@ var errorModelTypeCodePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["invalid_parameter","missing_parameter","out_of_range","campaign_processing","campaign_sent","document_not_found","reseller_permission","not_enough_credits","permission_denied","duplicate_parameter","duplicate_request","method_not_allowed","unauthorized","account_under_validation","not_acceptable"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["invalid_parameter","missing_parameter","out_of_range","campaign_processing","campaign_sent","document_not_found","reseller_permission_denied","not_enough_credits","permission_denied","duplicate_parameter","duplicate_request","method_not_allowed","unauthorized","account_under_validation","not_acceptable"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -61,34 +59,49 @@ func init() {
 }
 
 const (
+
 	// ErrorModelCodeInvalidParameter captures enum value "invalid_parameter"
 	ErrorModelCodeInvalidParameter string = "invalid_parameter"
+
 	// ErrorModelCodeMissingParameter captures enum value "missing_parameter"
 	ErrorModelCodeMissingParameter string = "missing_parameter"
+
 	// ErrorModelCodeOutOfRange captures enum value "out_of_range"
 	ErrorModelCodeOutOfRange string = "out_of_range"
+
 	// ErrorModelCodeCampaignProcessing captures enum value "campaign_processing"
 	ErrorModelCodeCampaignProcessing string = "campaign_processing"
+
 	// ErrorModelCodeCampaignSent captures enum value "campaign_sent"
 	ErrorModelCodeCampaignSent string = "campaign_sent"
+
 	// ErrorModelCodeDocumentNotFound captures enum value "document_not_found"
 	ErrorModelCodeDocumentNotFound string = "document_not_found"
-	// ErrorModelCodeResellerPermission captures enum value "reseller_permission"
-	ErrorModelCodeResellerPermission string = "reseller_permission"
+
+	// ErrorModelCodeResellerPermissionDenied captures enum value "reseller_permission_denied"
+	ErrorModelCodeResellerPermissionDenied string = "reseller_permission_denied"
+
 	// ErrorModelCodeNotEnoughCredits captures enum value "not_enough_credits"
 	ErrorModelCodeNotEnoughCredits string = "not_enough_credits"
+
 	// ErrorModelCodePermissionDenied captures enum value "permission_denied"
 	ErrorModelCodePermissionDenied string = "permission_denied"
+
 	// ErrorModelCodeDuplicateParameter captures enum value "duplicate_parameter"
 	ErrorModelCodeDuplicateParameter string = "duplicate_parameter"
+
 	// ErrorModelCodeDuplicateRequest captures enum value "duplicate_request"
 	ErrorModelCodeDuplicateRequest string = "duplicate_request"
+
 	// ErrorModelCodeMethodNotAllowed captures enum value "method_not_allowed"
 	ErrorModelCodeMethodNotAllowed string = "method_not_allowed"
+
 	// ErrorModelCodeUnauthorized captures enum value "unauthorized"
 	ErrorModelCodeUnauthorized string = "unauthorized"
+
 	// ErrorModelCodeAccountUnderValidation captures enum value "account_under_validation"
 	ErrorModelCodeAccountUnderValidation string = "account_under_validation"
+
 	// ErrorModelCodeNotAcceptable captures enum value "not_acceptable"
 	ErrorModelCodeNotAcceptable string = "not_acceptable"
 )

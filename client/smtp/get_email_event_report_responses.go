@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // GetEmailEventReportReader is a Reader for the GetEmailEventReport structure.
@@ -24,14 +24,12 @@ type GetEmailEventReportReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetEmailEventReportReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetEmailEventReportOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewGetEmailEventReportBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -61,6 +59,10 @@ func (o *GetEmailEventReportOK) Error() string {
 	return fmt.Sprintf("[GET /smtp/statistics/events][%d] getEmailEventReportOK  %+v", 200, o.Payload)
 }
 
+func (o *GetEmailEventReportOK) GetPayload() *models.GetEmailEventReport {
+	return o.Payload
+}
+
 func (o *GetEmailEventReportOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.GetEmailEventReport)
@@ -88,6 +90,10 @@ type GetEmailEventReportBadRequest struct {
 
 func (o *GetEmailEventReportBadRequest) Error() string {
 	return fmt.Sprintf("[GET /smtp/statistics/events][%d] getEmailEventReportBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *GetEmailEventReportBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *GetEmailEventReportBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

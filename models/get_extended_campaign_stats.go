@@ -6,9 +6,10 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"strconv"
 
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -17,13 +18,19 @@ import (
 // swagger:model getExtendedCampaignStats
 type GetExtendedCampaignStats struct {
 
-	// campaign stats
+	// List-wise statistics of the campaign.
 	// Required: true
-	CampaignStats GetExtendedCampaignStatsCampaignStats `json:"campaignStats"`
+	CampaignStats []*GetExtendedCampaignStatsCampaignStatsItems0 `json:"campaignStats"`
 
-	// links stats
+	// Overall statistics of the campaign
 	// Required: true
-	LinksStats GetExtendedCampaignStatsLinksStats `json:"linksStats"`
+	GlobalStats struct {
+		GetCampaignStats
+	} `json:"globalStats"`
+
+	// Statistics about the number of clicks for the links
+	// Required: true
+	LinksStats interface{} `json:"linksStats"`
 
 	// Number of clicks on mirror link
 	// Required: true
@@ -32,6 +39,14 @@ type GetExtendedCampaignStats struct {
 	// Number of remaning emails to send
 	// Required: true
 	Remaining *int64 `json:"remaining"`
+
+	// Statistics about the campaign on the basis of various browsers
+	// Required: true
+	StatsByBrowser GetStatsByBrowser `json:"statsByBrowser"`
+
+	// Statistics about the campaign on the basis of various devices
+	// Required: true
+	StatsByDevice *GetStatsByDevice `json:"statsByDevice"`
 
 	// stats by domain
 	// Required: true
@@ -43,27 +58,34 @@ func (m *GetExtendedCampaignStats) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCampaignStats(formats); err != nil {
-		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateGlobalStats(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateLinksStats(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateMirrorClick(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateRemaining(formats); err != nil {
-		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateStatsByBrowser(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStatsByDevice(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateStatsByDomain(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -79,17 +101,35 @@ func (m *GetExtendedCampaignStats) validateCampaignStats(formats strfmt.Registry
 		return err
 	}
 
-	if err := m.CampaignStats.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("campaignStats")
+	for i := 0; i < len(m.CampaignStats); i++ {
+		if swag.IsZero(m.CampaignStats[i]) { // not required
+			continue
 		}
-		return err
+
+		if m.CampaignStats[i] != nil {
+			if err := m.CampaignStats[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("campaignStats" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
 }
 
+func (m *GetExtendedCampaignStats) validateGlobalStats(formats strfmt.Registry) error {
+
+	return nil
+}
+
 func (m *GetExtendedCampaignStats) validateLinksStats(formats strfmt.Registry) error {
+
+	if err := validate.Required("linksStats", "body", m.LinksStats); err != nil {
+		return err
+	}
 
 	return nil
 }
@@ -112,7 +152,44 @@ func (m *GetExtendedCampaignStats) validateRemaining(formats strfmt.Registry) er
 	return nil
 }
 
+func (m *GetExtendedCampaignStats) validateStatsByBrowser(formats strfmt.Registry) error {
+
+	if err := m.StatsByBrowser.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("statsByBrowser")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetExtendedCampaignStats) validateStatsByDevice(formats strfmt.Registry) error {
+
+	if err := validate.Required("statsByDevice", "body", m.StatsByDevice); err != nil {
+		return err
+	}
+
+	if m.StatsByDevice != nil {
+		if err := m.StatsByDevice.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("statsByDevice")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *GetExtendedCampaignStats) validateStatsByDomain(formats strfmt.Registry) error {
+
+	if err := m.StatsByDomain.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("statsByDomain")
+		}
+		return err
+	}
 
 	return nil
 }
@@ -128,6 +205,70 @@ func (m *GetExtendedCampaignStats) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *GetExtendedCampaignStats) UnmarshalBinary(b []byte) error {
 	var res GetExtendedCampaignStats
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetExtendedCampaignStatsCampaignStatsItems0 get extended campaign stats campaign stats items0
+// swagger:model GetExtendedCampaignStatsCampaignStatsItems0
+type GetExtendedCampaignStatsCampaignStatsItems0 struct {
+	GetCampaignStats
+}
+
+// UnmarshalJSON unmarshals this object from a JSON structure
+func (m *GetExtendedCampaignStatsCampaignStatsItems0) UnmarshalJSON(raw []byte) error {
+	// AO0
+	var aO0 GetCampaignStats
+	if err := swag.ReadJSON(raw, &aO0); err != nil {
+		return err
+	}
+	m.GetCampaignStats = aO0
+
+	return nil
+}
+
+// MarshalJSON marshals this object to a JSON structure
+func (m GetExtendedCampaignStatsCampaignStatsItems0) MarshalJSON() ([]byte, error) {
+	_parts := make([][]byte, 0, 1)
+
+	aO0, err := swag.WriteJSON(m.GetCampaignStats)
+	if err != nil {
+		return nil, err
+	}
+	_parts = append(_parts, aO0)
+
+	return swag.ConcatJSON(_parts...), nil
+}
+
+// Validate validates this get extended campaign stats campaign stats items0
+func (m *GetExtendedCampaignStatsCampaignStatsItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	// validation for a type composition with GetCampaignStats
+	if err := m.GetCampaignStats.Validate(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetExtendedCampaignStatsCampaignStatsItems0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetExtendedCampaignStatsCampaignStatsItems0) UnmarshalBinary(b []byte) error {
+	var res GetExtendedCampaignStatsCampaignStatsItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

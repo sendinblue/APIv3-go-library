@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // RequestContactExportReader is a Reader for the RequestContactExport structure.
@@ -24,14 +24,12 @@ type RequestContactExportReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *RequestContactExportReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 202:
 		result := NewRequestContactExportAccepted()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewRequestContactExportBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -61,6 +59,10 @@ func (o *RequestContactExportAccepted) Error() string {
 	return fmt.Sprintf("[POST /contacts/export][%d] requestContactExportAccepted  %+v", 202, o.Payload)
 }
 
+func (o *RequestContactExportAccepted) GetPayload() *models.CreatedProcessID {
+	return o.Payload
+}
+
 func (o *RequestContactExportAccepted) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.CreatedProcessID)
@@ -88,6 +90,10 @@ type RequestContactExportBadRequest struct {
 
 func (o *RequestContactExportBadRequest) Error() string {
 	return fmt.Sprintf("[POST /contacts/export][%d] requestContactExportBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *RequestContactExportBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *RequestContactExportBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

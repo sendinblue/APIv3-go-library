@@ -6,9 +6,10 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"strconv"
 
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -18,7 +19,7 @@ import (
 type GetEmailCampaigns struct {
 
 	// campaigns
-	Campaigns GetEmailCampaignsCampaigns `json:"campaigns"`
+	Campaigns []*GetEmailCampaignsCampaignsItems0 `json:"campaigns"`
 
 	// Number of Email campaigns retrieved
 	// Required: true
@@ -29,14 +30,42 @@ type GetEmailCampaigns struct {
 func (m *GetEmailCampaigns) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateCampaigns(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateCount(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *GetEmailCampaigns) validateCampaigns(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Campaigns) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Campaigns); i++ {
+		if swag.IsZero(m.Campaigns[i]) { // not required
+			continue
+		}
+
+		if m.Campaigns[i] != nil {
+			if err := m.Campaigns[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("campaigns" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 
@@ -60,6 +89,149 @@ func (m *GetEmailCampaigns) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *GetEmailCampaigns) UnmarshalBinary(b []byte) error {
 	var res GetEmailCampaigns
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetEmailCampaignsCampaignsItems0 get email campaigns campaigns items0
+// swagger:model GetEmailCampaignsCampaignsItems0
+type GetEmailCampaignsCampaignsItems0 struct {
+	GetExtendedCampaignOverview
+
+	// recipients
+	// Required: true
+	Recipients struct {
+		GetCampaignRecipients
+	} `json:"recipients"`
+
+	// Link to share the campaign on social medias
+	ShareLink string `json:"shareLink,omitempty"`
+
+	// statistics
+	// Required: true
+	Statistics struct {
+		GetExtendedCampaignStats
+	} `json:"statistics"`
+}
+
+// UnmarshalJSON unmarshals this object from a JSON structure
+func (m *GetEmailCampaignsCampaignsItems0) UnmarshalJSON(raw []byte) error {
+	// AO0
+	var aO0 GetExtendedCampaignOverview
+	if err := swag.ReadJSON(raw, &aO0); err != nil {
+		return err
+	}
+	m.GetExtendedCampaignOverview = aO0
+
+	// AO1
+	var dataAO1 struct {
+		Recipients struct {
+			GetCampaignRecipients
+		} `json:"recipients"`
+
+		ShareLink string `json:"shareLink,omitempty"`
+
+		Statistics struct {
+			GetExtendedCampaignStats
+		} `json:"statistics"`
+	}
+	if err := swag.ReadJSON(raw, &dataAO1); err != nil {
+		return err
+	}
+
+	m.Recipients = dataAO1.Recipients
+
+	m.ShareLink = dataAO1.ShareLink
+
+	m.Statistics = dataAO1.Statistics
+
+	return nil
+}
+
+// MarshalJSON marshals this object to a JSON structure
+func (m GetEmailCampaignsCampaignsItems0) MarshalJSON() ([]byte, error) {
+	_parts := make([][]byte, 0, 2)
+
+	aO0, err := swag.WriteJSON(m.GetExtendedCampaignOverview)
+	if err != nil {
+		return nil, err
+	}
+	_parts = append(_parts, aO0)
+
+	var dataAO1 struct {
+		Recipients struct {
+			GetCampaignRecipients
+		} `json:"recipients"`
+
+		ShareLink string `json:"shareLink,omitempty"`
+
+		Statistics struct {
+			GetExtendedCampaignStats
+		} `json:"statistics"`
+	}
+
+	dataAO1.Recipients = m.Recipients
+
+	dataAO1.ShareLink = m.ShareLink
+
+	dataAO1.Statistics = m.Statistics
+
+	jsonDataAO1, errAO1 := swag.WriteJSON(dataAO1)
+	if errAO1 != nil {
+		return nil, errAO1
+	}
+	_parts = append(_parts, jsonDataAO1)
+
+	return swag.ConcatJSON(_parts...), nil
+}
+
+// Validate validates this get email campaigns campaigns items0
+func (m *GetEmailCampaignsCampaignsItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	// validation for a type composition with GetExtendedCampaignOverview
+	if err := m.GetExtendedCampaignOverview.Validate(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRecipients(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStatistics(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetEmailCampaignsCampaignsItems0) validateRecipients(formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *GetEmailCampaignsCampaignsItems0) validateStatistics(formats strfmt.Registry) error {
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetEmailCampaignsCampaignsItems0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetEmailCampaignsCampaignsItems0) UnmarshalBinary(b []byte) error {
+	var res GetEmailCampaignsCampaignsItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

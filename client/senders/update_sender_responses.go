@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // UpdateSenderReader is a Reader for the UpdateSender structure.
@@ -24,21 +24,18 @@ type UpdateSenderReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UpdateSenderReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 204:
 		result := NewUpdateSenderNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewUpdateSenderBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewUpdateSenderNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -89,6 +86,10 @@ func (o *UpdateSenderBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /senders/{senderId}][%d] updateSenderBadRequest  %+v", 400, o.Payload)
 }
 
+func (o *UpdateSenderBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
+}
+
 func (o *UpdateSenderBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ErrorModel)
@@ -116,6 +117,10 @@ type UpdateSenderNotFound struct {
 
 func (o *UpdateSenderNotFound) Error() string {
 	return fmt.Sprintf("[PUT /senders/{senderId}][%d] updateSenderNotFound  %+v", 404, o.Payload)
+}
+
+func (o *UpdateSenderNotFound) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *UpdateSenderNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

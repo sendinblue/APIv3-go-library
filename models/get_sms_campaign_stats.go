@@ -6,16 +6,15 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
-// GetSMSCampaignStats get Sms campaign stats
+// GetSmsCampaignStats get sms campaign stats
 // swagger:model getSmsCampaignStats
-type GetSMSCampaignStats struct {
+type GetSmsCampaignStats struct {
 
 	// Number of replies to the SMS
 	// Required: true
@@ -46,42 +45,35 @@ type GetSMSCampaignStats struct {
 	Unsubscriptions *int64 `json:"unsubscriptions"`
 }
 
-// Validate validates this get Sms campaign stats
-func (m *GetSMSCampaignStats) Validate(formats strfmt.Registry) error {
+// Validate validates this get sms campaign stats
+func (m *GetSmsCampaignStats) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAnswered(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDelivered(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateHardBounces(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateProcessing(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateSent(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateSoftBounces(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateUnsubscriptions(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -91,7 +83,7 @@ func (m *GetSMSCampaignStats) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *GetSMSCampaignStats) validateAnswered(formats strfmt.Registry) error {
+func (m *GetSmsCampaignStats) validateAnswered(formats strfmt.Registry) error {
 
 	if err := validate.Required("answered", "body", m.Answered); err != nil {
 		return err
@@ -100,7 +92,7 @@ func (m *GetSMSCampaignStats) validateAnswered(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *GetSMSCampaignStats) validateDelivered(formats strfmt.Registry) error {
+func (m *GetSmsCampaignStats) validateDelivered(formats strfmt.Registry) error {
 
 	if err := validate.Required("delivered", "body", m.Delivered); err != nil {
 		return err
@@ -109,7 +101,7 @@ func (m *GetSMSCampaignStats) validateDelivered(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *GetSMSCampaignStats) validateHardBounces(formats strfmt.Registry) error {
+func (m *GetSmsCampaignStats) validateHardBounces(formats strfmt.Registry) error {
 
 	if err := validate.Required("hardBounces", "body", m.HardBounces); err != nil {
 		return err
@@ -118,7 +110,7 @@ func (m *GetSMSCampaignStats) validateHardBounces(formats strfmt.Registry) error
 	return nil
 }
 
-func (m *GetSMSCampaignStats) validateProcessing(formats strfmt.Registry) error {
+func (m *GetSmsCampaignStats) validateProcessing(formats strfmt.Registry) error {
 
 	if err := validate.Required("processing", "body", m.Processing); err != nil {
 		return err
@@ -127,7 +119,7 @@ func (m *GetSMSCampaignStats) validateProcessing(formats strfmt.Registry) error 
 	return nil
 }
 
-func (m *GetSMSCampaignStats) validateSent(formats strfmt.Registry) error {
+func (m *GetSmsCampaignStats) validateSent(formats strfmt.Registry) error {
 
 	if err := validate.Required("sent", "body", m.Sent); err != nil {
 		return err
@@ -136,7 +128,7 @@ func (m *GetSMSCampaignStats) validateSent(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *GetSMSCampaignStats) validateSoftBounces(formats strfmt.Registry) error {
+func (m *GetSmsCampaignStats) validateSoftBounces(formats strfmt.Registry) error {
 
 	if err := validate.Required("softBounces", "body", m.SoftBounces); err != nil {
 		return err
@@ -145,7 +137,7 @@ func (m *GetSMSCampaignStats) validateSoftBounces(formats strfmt.Registry) error
 	return nil
 }
 
-func (m *GetSMSCampaignStats) validateUnsubscriptions(formats strfmt.Registry) error {
+func (m *GetSmsCampaignStats) validateUnsubscriptions(formats strfmt.Registry) error {
 
 	if err := validate.Required("unsubscriptions", "body", m.Unsubscriptions); err != nil {
 		return err
@@ -155,7 +147,7 @@ func (m *GetSMSCampaignStats) validateUnsubscriptions(formats strfmt.Registry) e
 }
 
 // MarshalBinary interface implementation
-func (m *GetSMSCampaignStats) MarshalBinary() ([]byte, error) {
+func (m *GetSmsCampaignStats) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -163,8 +155,8 @@ func (m *GetSMSCampaignStats) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *GetSMSCampaignStats) UnmarshalBinary(b []byte) error {
-	var res GetSMSCampaignStats
+func (m *GetSmsCampaignStats) UnmarshalBinary(b []byte) error {
+	var res GetSmsCampaignStats
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

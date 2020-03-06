@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // DeleteSenderReader is a Reader for the DeleteSender structure.
@@ -24,21 +24,18 @@ type DeleteSenderReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteSenderReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 204:
 		result := NewDeleteSenderNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewDeleteSenderBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewDeleteSenderNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -89,6 +86,10 @@ func (o *DeleteSenderBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /senders/{senderId}][%d] deleteSenderBadRequest  %+v", 400, o.Payload)
 }
 
+func (o *DeleteSenderBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
+}
+
 func (o *DeleteSenderBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ErrorModel)
@@ -116,6 +117,10 @@ type DeleteSenderNotFound struct {
 
 func (o *DeleteSenderNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /senders/{senderId}][%d] deleteSenderNotFound  %+v", 404, o.Payload)
+}
+
+func (o *DeleteSenderNotFound) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *DeleteSenderNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

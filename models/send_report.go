@@ -7,10 +7,10 @@ package models
 
 import (
 	"encoding/json"
-
-	strfmt "github.com/go-openapi/strfmt"
+	"strconv"
 
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -24,6 +24,7 @@ type SendReport struct {
 	Email *SendReportEmail `json:"email"`
 
 	// Language of email content for campaign report sending.
+	// Enum: [fr es pt it de en]
 	Language *string `json:"language,omitempty"`
 }
 
@@ -32,12 +33,10 @@ func (m *SendReport) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateEmail(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateLanguage(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -54,7 +53,6 @@ func (m *SendReport) validateEmail(formats strfmt.Registry) error {
 	}
 
 	if m.Email != nil {
-
 		if err := m.Email.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("email")
@@ -79,16 +77,22 @@ func init() {
 }
 
 const (
+
 	// SendReportLanguageFr captures enum value "fr"
 	SendReportLanguageFr string = "fr"
+
 	// SendReportLanguageEs captures enum value "es"
 	SendReportLanguageEs string = "es"
+
 	// SendReportLanguagePt captures enum value "pt"
 	SendReportLanguagePt string = "pt"
+
 	// SendReportLanguageIt captures enum value "it"
 	SendReportLanguageIt string = "it"
+
 	// SendReportLanguageDe captures enum value "de"
 	SendReportLanguageDe string = "de"
+
 	// SendReportLanguageEn captures enum value "en"
 	SendReportLanguageEn string = "en"
 )
@@ -126,6 +130,197 @@ func (m *SendReport) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *SendReport) UnmarshalBinary(b []byte) error {
 	var res SendReport
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// SendReportEmail Email sending credentials including subject, body, to, cc etc.
+// swagger:model SendReportEmail
+type SendReportEmail struct {
+
+	// Email addresses of the recipients in bcc
+	Bcc []strfmt.Email `json:"bcc"`
+
+	// Body of the email message
+	// Required: true
+	Body *string `json:"body"`
+
+	// Email addresses of the recipients in cc
+	Cc []strfmt.Email `json:"cc"`
+
+	// Type of the message body
+	// Enum: [text html]
+	ContentType *string `json:"contentType,omitempty"`
+
+	// Subject of the email message
+	// Required: true
+	Subject *string `json:"subject"`
+
+	// Email addresses of the recipients
+	// Required: true
+	To []strfmt.Email `json:"to"`
+}
+
+// Validate validates this send report email
+func (m *SendReportEmail) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateBcc(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBody(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCc(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateContentType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSubject(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTo(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *SendReportEmail) validateBcc(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Bcc) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Bcc); i++ {
+
+		if err := validate.FormatOf("email"+"."+"bcc"+"."+strconv.Itoa(i), "body", "email", m.Bcc[i].String(), formats); err != nil {
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *SendReportEmail) validateBody(formats strfmt.Registry) error {
+
+	if err := validate.Required("email"+"."+"body", "body", m.Body); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *SendReportEmail) validateCc(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Cc) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Cc); i++ {
+
+		if err := validate.FormatOf("email"+"."+"cc"+"."+strconv.Itoa(i), "body", "email", m.Cc[i].String(), formats); err != nil {
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+var sendReportEmailTypeContentTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["text","html"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		sendReportEmailTypeContentTypePropEnum = append(sendReportEmailTypeContentTypePropEnum, v)
+	}
+}
+
+const (
+
+	// SendReportEmailContentTypeText captures enum value "text"
+	SendReportEmailContentTypeText string = "text"
+
+	// SendReportEmailContentTypeHTML captures enum value "html"
+	SendReportEmailContentTypeHTML string = "html"
+)
+
+// prop value enum
+func (m *SendReportEmail) validateContentTypeEnum(path, location string, value string) error {
+	if err := validate.Enum(path, location, value, sendReportEmailTypeContentTypePropEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *SendReportEmail) validateContentType(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ContentType) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateContentTypeEnum("email"+"."+"contentType", "body", *m.ContentType); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *SendReportEmail) validateSubject(formats strfmt.Registry) error {
+
+	if err := validate.Required("email"+"."+"subject", "body", m.Subject); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *SendReportEmail) validateTo(formats strfmt.Registry) error {
+
+	if err := validate.Required("email"+"."+"to", "body", m.To); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.To); i++ {
+
+		if err := validate.FormatOf("email"+"."+"to"+"."+strconv.Itoa(i), "body", "email", m.To[i].String(), formats); err != nil {
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *SendReportEmail) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *SendReportEmail) UnmarshalBinary(b []byte) error {
+	var res SendReportEmail
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -6,10 +6,12 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"strconv"
 
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // GetContactCampaignStats Campaign Statistics for the contact
@@ -17,25 +19,25 @@ import (
 type GetContactCampaignStats struct {
 
 	// clicked
-	Clicked GetContactCampaignStatsClicked `json:"clicked"`
+	Clicked []*GetContactCampaignStatsClickedItems0 `json:"clicked"`
 
 	// complaints
-	Complaints GetContactCampaignStatsComplaints `json:"complaints"`
+	Complaints []*GetContactCampaignStatsComplaintsItems0 `json:"complaints"`
 
 	// hard bounces
-	HardBounces GetContactCampaignStatsHardBounces `json:"hardBounces"`
+	HardBounces []*GetContactCampaignStatsHardBouncesItems0 `json:"hardBounces"`
 
 	// messages sent
-	MessagesSent GetContactCampaignStatsMessagesSent `json:"messagesSent"`
+	MessagesSent []*GetContactCampaignStatsMessagesSentItems0 `json:"messagesSent"`
 
 	// opened
-	Opened GetContactCampaignStatsOpened `json:"opened"`
+	Opened []*GetContactCampaignStatsOpenedItems0 `json:"opened"`
 
 	// soft bounces
-	SoftBounces GetContactCampaignStatsSoftBounces `json:"softBounces"`
+	SoftBounces []*GetContactCampaignStatsSoftBouncesItems0 `json:"softBounces"`
 
 	// transac attributes
-	TransacAttributes GetContactCampaignStatsTransacAttributes `json:"transacAttributes"`
+	TransacAttributes []*GetContactCampaignStatsTransacAttributesItems0 `json:"transacAttributes"`
 
 	// unsubscriptions
 	Unsubscriptions *GetContactCampaignStatsUnsubscriptions `json:"unsubscriptions,omitempty"`
@@ -45,14 +47,216 @@ type GetContactCampaignStats struct {
 func (m *GetContactCampaignStats) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateClicked(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateComplaints(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHardBounces(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMessagesSent(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOpened(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSoftBounces(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTransacAttributes(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateUnsubscriptions(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *GetContactCampaignStats) validateClicked(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Clicked) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Clicked); i++ {
+		if swag.IsZero(m.Clicked[i]) { // not required
+			continue
+		}
+
+		if m.Clicked[i] != nil {
+			if err := m.Clicked[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("clicked" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *GetContactCampaignStats) validateComplaints(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Complaints) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Complaints); i++ {
+		if swag.IsZero(m.Complaints[i]) { // not required
+			continue
+		}
+
+		if m.Complaints[i] != nil {
+			if err := m.Complaints[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("complaints" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *GetContactCampaignStats) validateHardBounces(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.HardBounces) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.HardBounces); i++ {
+		if swag.IsZero(m.HardBounces[i]) { // not required
+			continue
+		}
+
+		if m.HardBounces[i] != nil {
+			if err := m.HardBounces[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("hardBounces" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *GetContactCampaignStats) validateMessagesSent(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.MessagesSent) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.MessagesSent); i++ {
+		if swag.IsZero(m.MessagesSent[i]) { // not required
+			continue
+		}
+
+		if m.MessagesSent[i] != nil {
+			if err := m.MessagesSent[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("messagesSent" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *GetContactCampaignStats) validateOpened(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Opened) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Opened); i++ {
+		if swag.IsZero(m.Opened[i]) { // not required
+			continue
+		}
+
+		if m.Opened[i] != nil {
+			if err := m.Opened[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("opened" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *GetContactCampaignStats) validateSoftBounces(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SoftBounces) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.SoftBounces); i++ {
+		if swag.IsZero(m.SoftBounces[i]) { // not required
+			continue
+		}
+
+		if m.SoftBounces[i] != nil {
+			if err := m.SoftBounces[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("softBounces" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *GetContactCampaignStats) validateTransacAttributes(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.TransacAttributes) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.TransacAttributes); i++ {
+		if swag.IsZero(m.TransacAttributes[i]) { // not required
+			continue
+		}
+
+		if m.TransacAttributes[i] != nil {
+			if err := m.TransacAttributes[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("transacAttributes" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 
@@ -63,7 +267,6 @@ func (m *GetContactCampaignStats) validateUnsubscriptions(formats strfmt.Registr
 	}
 
 	if m.Unsubscriptions != nil {
-
 		if err := m.Unsubscriptions.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("unsubscriptions")
@@ -86,6 +289,938 @@ func (m *GetContactCampaignStats) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *GetContactCampaignStats) UnmarshalBinary(b []byte) error {
 	var res GetContactCampaignStats
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetContactCampaignStatsClickedItems0 get contact campaign stats clicked items0
+// swagger:model GetContactCampaignStatsClickedItems0
+type GetContactCampaignStatsClickedItems0 struct {
+
+	// ID of the campaign which generated the event
+	// Required: true
+	CampaignID *int64 `json:"campaignId"`
+
+	// links
+	// Required: true
+	Links []*GetContactCampaignStatsClickedItems0LinksItems0 `json:"links"`
+}
+
+// Validate validates this get contact campaign stats clicked items0
+func (m *GetContactCampaignStatsClickedItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateCampaignID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLinks(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetContactCampaignStatsClickedItems0) validateCampaignID(formats strfmt.Registry) error {
+
+	if err := validate.Required("campaignId", "body", m.CampaignID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetContactCampaignStatsClickedItems0) validateLinks(formats strfmt.Registry) error {
+
+	if err := validate.Required("links", "body", m.Links); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.Links); i++ {
+		if swag.IsZero(m.Links[i]) { // not required
+			continue
+		}
+
+		if m.Links[i] != nil {
+			if err := m.Links[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("links" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetContactCampaignStatsClickedItems0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetContactCampaignStatsClickedItems0) UnmarshalBinary(b []byte) error {
+	var res GetContactCampaignStatsClickedItems0
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetContactCampaignStatsClickedItems0LinksItems0 get contact campaign stats clicked items0 links items0
+// swagger:model GetContactCampaignStatsClickedItems0LinksItems0
+type GetContactCampaignStatsClickedItems0LinksItems0 struct {
+
+	// Number of clicks on this link for the campaign
+	// Required: true
+	Count *int64 `json:"count"`
+
+	// UTC date-time of the event
+	// Required: true
+	// Format: date-time
+	EventTime *strfmt.DateTime `json:"eventTime"`
+
+	// IP from which the user has clicked on the link
+	// Required: true
+	IP *string `json:"ip"`
+
+	// URL of the clicked link
+	// Required: true
+	URL *string `json:"url"`
+}
+
+// Validate validates this get contact campaign stats clicked items0 links items0
+func (m *GetContactCampaignStatsClickedItems0LinksItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateCount(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEventTime(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIP(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateURL(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetContactCampaignStatsClickedItems0LinksItems0) validateCount(formats strfmt.Registry) error {
+
+	if err := validate.Required("count", "body", m.Count); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetContactCampaignStatsClickedItems0LinksItems0) validateEventTime(formats strfmt.Registry) error {
+
+	if err := validate.Required("eventTime", "body", m.EventTime); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("eventTime", "body", "date-time", m.EventTime.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetContactCampaignStatsClickedItems0LinksItems0) validateIP(formats strfmt.Registry) error {
+
+	if err := validate.Required("ip", "body", m.IP); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetContactCampaignStatsClickedItems0LinksItems0) validateURL(formats strfmt.Registry) error {
+
+	if err := validate.Required("url", "body", m.URL); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetContactCampaignStatsClickedItems0LinksItems0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetContactCampaignStatsClickedItems0LinksItems0) UnmarshalBinary(b []byte) error {
+	var res GetContactCampaignStatsClickedItems0LinksItems0
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetContactCampaignStatsComplaintsItems0 get contact campaign stats complaints items0
+// swagger:model GetContactCampaignStatsComplaintsItems0
+type GetContactCampaignStatsComplaintsItems0 struct {
+
+	// ID of the campaign which generated the event
+	// Required: true
+	CampaignID *int64 `json:"campaignId"`
+
+	// UTC date-time of the event
+	// Required: true
+	// Format: date-time
+	EventTime *strfmt.DateTime `json:"eventTime"`
+}
+
+// Validate validates this get contact campaign stats complaints items0
+func (m *GetContactCampaignStatsComplaintsItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateCampaignID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEventTime(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetContactCampaignStatsComplaintsItems0) validateCampaignID(formats strfmt.Registry) error {
+
+	if err := validate.Required("campaignId", "body", m.CampaignID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetContactCampaignStatsComplaintsItems0) validateEventTime(formats strfmt.Registry) error {
+
+	if err := validate.Required("eventTime", "body", m.EventTime); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("eventTime", "body", "date-time", m.EventTime.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetContactCampaignStatsComplaintsItems0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetContactCampaignStatsComplaintsItems0) UnmarshalBinary(b []byte) error {
+	var res GetContactCampaignStatsComplaintsItems0
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetContactCampaignStatsHardBouncesItems0 get contact campaign stats hard bounces items0
+// swagger:model GetContactCampaignStatsHardBouncesItems0
+type GetContactCampaignStatsHardBouncesItems0 struct {
+
+	// ID of the campaign which generated the event
+	// Required: true
+	CampaignID *int64 `json:"campaignId"`
+
+	// UTC date-time of the event
+	// Required: true
+	// Format: date-time
+	EventTime *strfmt.DateTime `json:"eventTime"`
+}
+
+// Validate validates this get contact campaign stats hard bounces items0
+func (m *GetContactCampaignStatsHardBouncesItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateCampaignID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEventTime(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetContactCampaignStatsHardBouncesItems0) validateCampaignID(formats strfmt.Registry) error {
+
+	if err := validate.Required("campaignId", "body", m.CampaignID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetContactCampaignStatsHardBouncesItems0) validateEventTime(formats strfmt.Registry) error {
+
+	if err := validate.Required("eventTime", "body", m.EventTime); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("eventTime", "body", "date-time", m.EventTime.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetContactCampaignStatsHardBouncesItems0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetContactCampaignStatsHardBouncesItems0) UnmarshalBinary(b []byte) error {
+	var res GetContactCampaignStatsHardBouncesItems0
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetContactCampaignStatsMessagesSentItems0 get contact campaign stats messages sent items0
+// swagger:model GetContactCampaignStatsMessagesSentItems0
+type GetContactCampaignStatsMessagesSentItems0 struct {
+
+	// ID of the campaign which generated the event
+	// Required: true
+	CampaignID *int64 `json:"campaignId"`
+
+	// UTC date-time of the event
+	// Required: true
+	// Format: date-time
+	EventTime *strfmt.DateTime `json:"eventTime"`
+}
+
+// Validate validates this get contact campaign stats messages sent items0
+func (m *GetContactCampaignStatsMessagesSentItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateCampaignID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEventTime(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetContactCampaignStatsMessagesSentItems0) validateCampaignID(formats strfmt.Registry) error {
+
+	if err := validate.Required("campaignId", "body", m.CampaignID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetContactCampaignStatsMessagesSentItems0) validateEventTime(formats strfmt.Registry) error {
+
+	if err := validate.Required("eventTime", "body", m.EventTime); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("eventTime", "body", "date-time", m.EventTime.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetContactCampaignStatsMessagesSentItems0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetContactCampaignStatsMessagesSentItems0) UnmarshalBinary(b []byte) error {
+	var res GetContactCampaignStatsMessagesSentItems0
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetContactCampaignStatsOpenedItems0 get contact campaign stats opened items0
+// swagger:model GetContactCampaignStatsOpenedItems0
+type GetContactCampaignStatsOpenedItems0 struct {
+
+	// ID of the campaign which generated the event
+	// Required: true
+	CampaignID *int64 `json:"campaignId"`
+
+	// Number of openings of the campaign
+	// Required: true
+	Count *int64 `json:"count"`
+
+	// UTC date-time of the event
+	// Required: true
+	// Format: date-time
+	EventTime *strfmt.DateTime `json:"eventTime"`
+
+	// IP from which the user has opened the campaign
+	// Required: true
+	IP *string `json:"ip"`
+}
+
+// Validate validates this get contact campaign stats opened items0
+func (m *GetContactCampaignStatsOpenedItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateCampaignID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCount(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEventTime(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIP(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetContactCampaignStatsOpenedItems0) validateCampaignID(formats strfmt.Registry) error {
+
+	if err := validate.Required("campaignId", "body", m.CampaignID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetContactCampaignStatsOpenedItems0) validateCount(formats strfmt.Registry) error {
+
+	if err := validate.Required("count", "body", m.Count); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetContactCampaignStatsOpenedItems0) validateEventTime(formats strfmt.Registry) error {
+
+	if err := validate.Required("eventTime", "body", m.EventTime); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("eventTime", "body", "date-time", m.EventTime.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetContactCampaignStatsOpenedItems0) validateIP(formats strfmt.Registry) error {
+
+	if err := validate.Required("ip", "body", m.IP); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetContactCampaignStatsOpenedItems0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetContactCampaignStatsOpenedItems0) UnmarshalBinary(b []byte) error {
+	var res GetContactCampaignStatsOpenedItems0
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetContactCampaignStatsSoftBouncesItems0 get contact campaign stats soft bounces items0
+// swagger:model GetContactCampaignStatsSoftBouncesItems0
+type GetContactCampaignStatsSoftBouncesItems0 struct {
+
+	// ID of the campaign which generated the event
+	// Required: true
+	CampaignID *int64 `json:"campaignId"`
+
+	// UTC date-time of the event
+	// Required: true
+	// Format: date-time
+	EventTime *strfmt.DateTime `json:"eventTime"`
+}
+
+// Validate validates this get contact campaign stats soft bounces items0
+func (m *GetContactCampaignStatsSoftBouncesItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateCampaignID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEventTime(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetContactCampaignStatsSoftBouncesItems0) validateCampaignID(formats strfmt.Registry) error {
+
+	if err := validate.Required("campaignId", "body", m.CampaignID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetContactCampaignStatsSoftBouncesItems0) validateEventTime(formats strfmt.Registry) error {
+
+	if err := validate.Required("eventTime", "body", m.EventTime); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("eventTime", "body", "date-time", m.EventTime.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetContactCampaignStatsSoftBouncesItems0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetContactCampaignStatsSoftBouncesItems0) UnmarshalBinary(b []byte) error {
+	var res GetContactCampaignStatsSoftBouncesItems0
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetContactCampaignStatsTransacAttributesItems0 get contact campaign stats transac attributes items0
+// swagger:model GetContactCampaignStatsTransacAttributesItems0
+type GetContactCampaignStatsTransacAttributesItems0 struct {
+
+	// Date of the order
+	// Required: true
+	// Format: date
+	OrderDate *strfmt.Date `json:"orderDate"`
+
+	// ID of the order
+	// Required: true
+	OrderID *int64 `json:"orderId"`
+
+	// Price of the order
+	// Required: true
+	OrderPrice *float32 `json:"orderPrice"`
+}
+
+// Validate validates this get contact campaign stats transac attributes items0
+func (m *GetContactCampaignStatsTransacAttributesItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateOrderDate(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOrderID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOrderPrice(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetContactCampaignStatsTransacAttributesItems0) validateOrderDate(formats strfmt.Registry) error {
+
+	if err := validate.Required("orderDate", "body", m.OrderDate); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("orderDate", "body", "date", m.OrderDate.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetContactCampaignStatsTransacAttributesItems0) validateOrderID(formats strfmt.Registry) error {
+
+	if err := validate.Required("orderId", "body", m.OrderID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetContactCampaignStatsTransacAttributesItems0) validateOrderPrice(formats strfmt.Registry) error {
+
+	if err := validate.Required("orderPrice", "body", m.OrderPrice); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetContactCampaignStatsTransacAttributesItems0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetContactCampaignStatsTransacAttributesItems0) UnmarshalBinary(b []byte) error {
+	var res GetContactCampaignStatsTransacAttributesItems0
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetContactCampaignStatsUnsubscriptions get contact campaign stats unsubscriptions
+// swagger:model GetContactCampaignStatsUnsubscriptions
+type GetContactCampaignStatsUnsubscriptions struct {
+
+	// Contact has been unsubscribed from the administrator
+	// Required: true
+	AdminUnsubscription []*GetContactCampaignStatsUnsubscriptionsAdminUnsubscriptionItems0 `json:"adminUnsubscription"`
+
+	// Contact has unsubscribed via the unsubscription link in the email
+	// Required: true
+	UserUnsubscription []*GetContactCampaignStatsUnsubscriptionsUserUnsubscriptionItems0 `json:"userUnsubscription"`
+}
+
+// Validate validates this get contact campaign stats unsubscriptions
+func (m *GetContactCampaignStatsUnsubscriptions) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateAdminUnsubscription(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUserUnsubscription(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetContactCampaignStatsUnsubscriptions) validateAdminUnsubscription(formats strfmt.Registry) error {
+
+	if err := validate.Required("unsubscriptions"+"."+"adminUnsubscription", "body", m.AdminUnsubscription); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.AdminUnsubscription); i++ {
+		if swag.IsZero(m.AdminUnsubscription[i]) { // not required
+			continue
+		}
+
+		if m.AdminUnsubscription[i] != nil {
+			if err := m.AdminUnsubscription[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("unsubscriptions" + "." + "adminUnsubscription" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *GetContactCampaignStatsUnsubscriptions) validateUserUnsubscription(formats strfmt.Registry) error {
+
+	if err := validate.Required("unsubscriptions"+"."+"userUnsubscription", "body", m.UserUnsubscription); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.UserUnsubscription); i++ {
+		if swag.IsZero(m.UserUnsubscription[i]) { // not required
+			continue
+		}
+
+		if m.UserUnsubscription[i] != nil {
+			if err := m.UserUnsubscription[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("unsubscriptions" + "." + "userUnsubscription" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetContactCampaignStatsUnsubscriptions) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetContactCampaignStatsUnsubscriptions) UnmarshalBinary(b []byte) error {
+	var res GetContactCampaignStatsUnsubscriptions
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetContactCampaignStatsUnsubscriptionsAdminUnsubscriptionItems0 get contact campaign stats unsubscriptions admin unsubscription items0
+// swagger:model GetContactCampaignStatsUnsubscriptionsAdminUnsubscriptionItems0
+type GetContactCampaignStatsUnsubscriptionsAdminUnsubscriptionItems0 struct {
+
+	// UTC date-time of the event
+	// Required: true
+	// Format: date-time
+	EventTime *strfmt.DateTime `json:"eventTime"`
+
+	// IP from which the user has been unsubscribed
+	// Required: true
+	IP *string `json:"ip"`
+}
+
+// Validate validates this get contact campaign stats unsubscriptions admin unsubscription items0
+func (m *GetContactCampaignStatsUnsubscriptionsAdminUnsubscriptionItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateEventTime(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIP(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetContactCampaignStatsUnsubscriptionsAdminUnsubscriptionItems0) validateEventTime(formats strfmt.Registry) error {
+
+	if err := validate.Required("eventTime", "body", m.EventTime); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("eventTime", "body", "date-time", m.EventTime.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetContactCampaignStatsUnsubscriptionsAdminUnsubscriptionItems0) validateIP(formats strfmt.Registry) error {
+
+	if err := validate.Required("ip", "body", m.IP); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetContactCampaignStatsUnsubscriptionsAdminUnsubscriptionItems0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetContactCampaignStatsUnsubscriptionsAdminUnsubscriptionItems0) UnmarshalBinary(b []byte) error {
+	var res GetContactCampaignStatsUnsubscriptionsAdminUnsubscriptionItems0
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetContactCampaignStatsUnsubscriptionsUserUnsubscriptionItems0 get contact campaign stats unsubscriptions user unsubscription items0
+// swagger:model GetContactCampaignStatsUnsubscriptionsUserUnsubscriptionItems0
+type GetContactCampaignStatsUnsubscriptionsUserUnsubscriptionItems0 struct {
+
+	// ID of the campaign which generated the event
+	// Required: true
+	CampaignID *int64 `json:"campaignId"`
+
+	// UTC date-time of the event
+	// Required: true
+	// Format: date-time
+	EventTime *strfmt.DateTime `json:"eventTime"`
+
+	// IP from which the user has unsubscribed
+	// Required: true
+	IP *string `json:"ip"`
+}
+
+// Validate validates this get contact campaign stats unsubscriptions user unsubscription items0
+func (m *GetContactCampaignStatsUnsubscriptionsUserUnsubscriptionItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateCampaignID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEventTime(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIP(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetContactCampaignStatsUnsubscriptionsUserUnsubscriptionItems0) validateCampaignID(formats strfmt.Registry) error {
+
+	if err := validate.Required("campaignId", "body", m.CampaignID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetContactCampaignStatsUnsubscriptionsUserUnsubscriptionItems0) validateEventTime(formats strfmt.Registry) error {
+
+	if err := validate.Required("eventTime", "body", m.EventTime); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("eventTime", "body", "date-time", m.EventTime.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetContactCampaignStatsUnsubscriptionsUserUnsubscriptionItems0) validateIP(formats strfmt.Registry) error {
+
+	if err := validate.Required("ip", "body", m.IP); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetContactCampaignStatsUnsubscriptionsUserUnsubscriptionItems0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetContactCampaignStatsUnsubscriptionsUserUnsubscriptionItems0) UnmarshalBinary(b []byte) error {
+	var res GetContactCampaignStatsUnsubscriptionsUserUnsubscriptionItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

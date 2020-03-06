@@ -6,21 +6,26 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"encoding/json"
 
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // RequestContactExport request contact export
 // swagger:model requestContactExport
 type RequestContactExport struct {
 
-	// Filter to apply to the export
-	// Required: true
-	ContactFilter interface{} `json:"contactFilter"`
+	// This attribute has been deprecated and will be removed by January 1st, 2021. Only one of the two filter options (contactFilter or customContactFilter) can be passed in the request. Set the filter for the contacts to be exported. For example, {'blacklisted':true} will export all the blacklisted contacts.
+	//
+	ContactFilter interface{} `json:"contactFilter,omitempty"`
 
-	// Name of attributes to export. These attributes must be in your contact database
+	// custom contact filter
+	CustomContactFilter *RequestContactExportCustomContactFilter `json:"customContactFilter,omitempty"`
+
+	// List of all the attributes that you want to export. These attributes must be present in your contact database. For example, ['fname', 'lname', 'email'].
 	ExportAttributes []string `json:"exportAttributes"`
 
 	// Webhook that will be called once the export process is finished
@@ -31,13 +36,7 @@ type RequestContactExport struct {
 func (m *RequestContactExport) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateContactFilter(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateExportAttributes(formats); err != nil {
-		// prop
+	if err := m.validateCustomContactFilter(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -47,15 +46,19 @@ func (m *RequestContactExport) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *RequestContactExport) validateContactFilter(formats strfmt.Registry) error {
+func (m *RequestContactExport) validateCustomContactFilter(formats strfmt.Registry) error {
 
-	return nil
-}
-
-func (m *RequestContactExport) validateExportAttributes(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.ExportAttributes) { // not required
+	if swag.IsZero(m.CustomContactFilter) { // not required
 		return nil
+	}
+
+	if m.CustomContactFilter != nil {
+		if err := m.CustomContactFilter.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("customContactFilter")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -72,6 +75,228 @@ func (m *RequestContactExport) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *RequestContactExport) UnmarshalBinary(b []byte) error {
 	var res RequestContactExport
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// RequestContactExportCustomContactFilter Only one of the two filter options (contactFilter or customContactFilter) can be passed in the request. Set the filter for the contacts to be exported.
+// swagger:model RequestContactExportCustomContactFilter
+type RequestContactExportCustomContactFilter struct {
+
+	// Mandatory if neither actionForEmailCampaigns nor actionForSmsCampaigns is passed. This will export the contacts on the basis of provided action applied on contacts as per the list id. * allContacts - Fetch the list of all contacts for a particular list. * subscribed & unsubscribed - Fetch the list of subscribed / unsubscribed (blacklisted via any means) contacts for a particular list. * unsubscribedPerList - Fetch the list of contacts that are unsubscribed from a particular list only.
+	//
+	// Enum: [allContacts subscribed unsubscribed unsubscribedPerList]
+	ActionForContacts string `json:"actionForContacts,omitempty"`
+
+	// Mandatory if neither actionForContacts nor actionForSmsCampaigns is passed. This will export the contacts on the basis of provided action applied on email campaigns. * openers & nonOpeners - emailCampaignId is mandatory. Fetch the list of readers / non-readers for a particular email campaign. * clickers & nonClickers - emailCampaignId is mandatory. Fetch the list of clickers / non-clickers for a particular email campaign. * unsubscribed - emailCampaignId is mandatory. Fetch the list of all unsubscribed (blacklisted via any means) contacts for a particular email campaign. * hardBounces & softBounces - emailCampaignId is optional. Fetch the list of hard bounces / soft bounces for a particular / all email campaign(s).
+	//
+	// Enum: [openers nonOpeners clickers nonClickers unsubscribed hardBounces softBounces]
+	ActionForEmailCampaigns string `json:"actionForEmailCampaigns,omitempty"`
+
+	// Mandatory if neither actionForContacts nor actionForEmailCampaigns is passed. This will export the contacts on the basis of provided action applied on sms campaigns. * unsubscribed - Fetch the list of all unsubscribed (blacklisted via any means) contacts for all / particular sms campaigns. * hardBounces & softBounces - Fetch the list of hard bounces / soft bounces for all / particular sms campaigns.
+	//
+	// Enum: [hardBounces softBounces unsubscribed]
+	ActionForSmsCampaigns string `json:"actionForSmsCampaigns,omitempty"`
+
+	// Considered only if actionForEmailCampaigns is passed, ignored otherwise. Mandatory if action is one of the following - openers, nonOpeners, clickers, nonClickers, unsubscribed. The id of the email campaign for which the corresponding action shall be applied in the filter.
+	EmailCampaignID int64 `json:"emailCampaignId,omitempty"`
+
+	// Mandatory if actionForContacts is passed, ignored otherwise. Id of the list for which the corresponding action shall be applied in the filter.
+	ListID int64 `json:"listId,omitempty"`
+
+	// Considered only if actionForSmsCampaigns is passed, ignored otherwise. The id of sms campaign for which the corresponding action shall be applied in the filter.
+	SmsCampaignID int64 `json:"smsCampaignId,omitempty"`
+}
+
+// Validate validates this request contact export custom contact filter
+func (m *RequestContactExportCustomContactFilter) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateActionForContacts(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateActionForEmailCampaigns(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateActionForSmsCampaigns(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+var requestContactExportCustomContactFilterTypeActionForContactsPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["allContacts","subscribed","unsubscribed","unsubscribedPerList"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		requestContactExportCustomContactFilterTypeActionForContactsPropEnum = append(requestContactExportCustomContactFilterTypeActionForContactsPropEnum, v)
+	}
+}
+
+const (
+
+	// RequestContactExportCustomContactFilterActionForContactsAllContacts captures enum value "allContacts"
+	RequestContactExportCustomContactFilterActionForContactsAllContacts string = "allContacts"
+
+	// RequestContactExportCustomContactFilterActionForContactsSubscribed captures enum value "subscribed"
+	RequestContactExportCustomContactFilterActionForContactsSubscribed string = "subscribed"
+
+	// RequestContactExportCustomContactFilterActionForContactsUnsubscribed captures enum value "unsubscribed"
+	RequestContactExportCustomContactFilterActionForContactsUnsubscribed string = "unsubscribed"
+
+	// RequestContactExportCustomContactFilterActionForContactsUnsubscribedPerList captures enum value "unsubscribedPerList"
+	RequestContactExportCustomContactFilterActionForContactsUnsubscribedPerList string = "unsubscribedPerList"
+)
+
+// prop value enum
+func (m *RequestContactExportCustomContactFilter) validateActionForContactsEnum(path, location string, value string) error {
+	if err := validate.Enum(path, location, value, requestContactExportCustomContactFilterTypeActionForContactsPropEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *RequestContactExportCustomContactFilter) validateActionForContacts(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ActionForContacts) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateActionForContactsEnum("customContactFilter"+"."+"actionForContacts", "body", m.ActionForContacts); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var requestContactExportCustomContactFilterTypeActionForEmailCampaignsPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["openers","nonOpeners","clickers","nonClickers","unsubscribed","hardBounces","softBounces"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		requestContactExportCustomContactFilterTypeActionForEmailCampaignsPropEnum = append(requestContactExportCustomContactFilterTypeActionForEmailCampaignsPropEnum, v)
+	}
+}
+
+const (
+
+	// RequestContactExportCustomContactFilterActionForEmailCampaignsOpeners captures enum value "openers"
+	RequestContactExportCustomContactFilterActionForEmailCampaignsOpeners string = "openers"
+
+	// RequestContactExportCustomContactFilterActionForEmailCampaignsNonOpeners captures enum value "nonOpeners"
+	RequestContactExportCustomContactFilterActionForEmailCampaignsNonOpeners string = "nonOpeners"
+
+	// RequestContactExportCustomContactFilterActionForEmailCampaignsClickers captures enum value "clickers"
+	RequestContactExportCustomContactFilterActionForEmailCampaignsClickers string = "clickers"
+
+	// RequestContactExportCustomContactFilterActionForEmailCampaignsNonClickers captures enum value "nonClickers"
+	RequestContactExportCustomContactFilterActionForEmailCampaignsNonClickers string = "nonClickers"
+
+	// RequestContactExportCustomContactFilterActionForEmailCampaignsUnsubscribed captures enum value "unsubscribed"
+	RequestContactExportCustomContactFilterActionForEmailCampaignsUnsubscribed string = "unsubscribed"
+
+	// RequestContactExportCustomContactFilterActionForEmailCampaignsHardBounces captures enum value "hardBounces"
+	RequestContactExportCustomContactFilterActionForEmailCampaignsHardBounces string = "hardBounces"
+
+	// RequestContactExportCustomContactFilterActionForEmailCampaignsSoftBounces captures enum value "softBounces"
+	RequestContactExportCustomContactFilterActionForEmailCampaignsSoftBounces string = "softBounces"
+)
+
+// prop value enum
+func (m *RequestContactExportCustomContactFilter) validateActionForEmailCampaignsEnum(path, location string, value string) error {
+	if err := validate.Enum(path, location, value, requestContactExportCustomContactFilterTypeActionForEmailCampaignsPropEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *RequestContactExportCustomContactFilter) validateActionForEmailCampaigns(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ActionForEmailCampaigns) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateActionForEmailCampaignsEnum("customContactFilter"+"."+"actionForEmailCampaigns", "body", m.ActionForEmailCampaigns); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var requestContactExportCustomContactFilterTypeActionForSmsCampaignsPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["hardBounces","softBounces","unsubscribed"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		requestContactExportCustomContactFilterTypeActionForSmsCampaignsPropEnum = append(requestContactExportCustomContactFilterTypeActionForSmsCampaignsPropEnum, v)
+	}
+}
+
+const (
+
+	// RequestContactExportCustomContactFilterActionForSmsCampaignsHardBounces captures enum value "hardBounces"
+	RequestContactExportCustomContactFilterActionForSmsCampaignsHardBounces string = "hardBounces"
+
+	// RequestContactExportCustomContactFilterActionForSmsCampaignsSoftBounces captures enum value "softBounces"
+	RequestContactExportCustomContactFilterActionForSmsCampaignsSoftBounces string = "softBounces"
+
+	// RequestContactExportCustomContactFilterActionForSmsCampaignsUnsubscribed captures enum value "unsubscribed"
+	RequestContactExportCustomContactFilterActionForSmsCampaignsUnsubscribed string = "unsubscribed"
+)
+
+// prop value enum
+func (m *RequestContactExportCustomContactFilter) validateActionForSmsCampaignsEnum(path, location string, value string) error {
+	if err := validate.Enum(path, location, value, requestContactExportCustomContactFilterTypeActionForSmsCampaignsPropEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *RequestContactExportCustomContactFilter) validateActionForSmsCampaigns(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ActionForSmsCampaigns) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateActionForSmsCampaignsEnum("customContactFilter"+"."+"actionForSmsCampaigns", "body", m.ActionForSmsCampaigns); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *RequestContactExportCustomContactFilter) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *RequestContactExportCustomContactFilter) UnmarshalBinary(b []byte) error {
+	var res RequestContactExportCustomContactFilter
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

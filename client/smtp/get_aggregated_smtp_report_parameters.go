@@ -6,10 +6,9 @@ package smtp
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -72,12 +71,12 @@ type GetAggregatedSMTPReportParams struct {
 	  Mandatory if startDate is used. Ending date of the report (YYYY-MM-DD). Must be greater than equal to startDate
 
 	*/
-	EndDate *strfmt.Date
+	EndDate *string
 	/*StartDate
 	  Mandatory if endDate is used. Starting date of the report (YYYY-MM-DD). Must be lower than equal to endDate
 
 	*/
-	StartDate *strfmt.Date
+	StartDate *string
 	/*Tag
 	  Tag of the emails
 
@@ -134,24 +133,24 @@ func (o *GetAggregatedSMTPReportParams) SetDays(days *int64) {
 }
 
 // WithEndDate adds the endDate to the get aggregated Smtp report params
-func (o *GetAggregatedSMTPReportParams) WithEndDate(endDate *strfmt.Date) *GetAggregatedSMTPReportParams {
+func (o *GetAggregatedSMTPReportParams) WithEndDate(endDate *string) *GetAggregatedSMTPReportParams {
 	o.SetEndDate(endDate)
 	return o
 }
 
 // SetEndDate adds the endDate to the get aggregated Smtp report params
-func (o *GetAggregatedSMTPReportParams) SetEndDate(endDate *strfmt.Date) {
+func (o *GetAggregatedSMTPReportParams) SetEndDate(endDate *string) {
 	o.EndDate = endDate
 }
 
 // WithStartDate adds the startDate to the get aggregated Smtp report params
-func (o *GetAggregatedSMTPReportParams) WithStartDate(startDate *strfmt.Date) *GetAggregatedSMTPReportParams {
+func (o *GetAggregatedSMTPReportParams) WithStartDate(startDate *string) *GetAggregatedSMTPReportParams {
 	o.SetStartDate(startDate)
 	return o
 }
 
 // SetStartDate adds the startDate to the get aggregated Smtp report params
-func (o *GetAggregatedSMTPReportParams) SetStartDate(startDate *strfmt.Date) {
+func (o *GetAggregatedSMTPReportParams) SetStartDate(startDate *string) {
 	o.StartDate = startDate
 }
 
@@ -193,11 +192,11 @@ func (o *GetAggregatedSMTPReportParams) WriteToRequest(r runtime.ClientRequest, 
 	if o.EndDate != nil {
 
 		// query param endDate
-		var qrEndDate strfmt.Date
+		var qrEndDate string
 		if o.EndDate != nil {
 			qrEndDate = *o.EndDate
 		}
-		qEndDate := qrEndDate.String()
+		qEndDate := qrEndDate
 		if qEndDate != "" {
 			if err := r.SetQueryParam("endDate", qEndDate); err != nil {
 				return err
@@ -209,11 +208,11 @@ func (o *GetAggregatedSMTPReportParams) WriteToRequest(r runtime.ClientRequest, 
 	if o.StartDate != nil {
 
 		// query param startDate
-		var qrStartDate strfmt.Date
+		var qrStartDate string
 		if o.StartDate != nil {
 			qrStartDate = *o.StartDate
 		}
-		qStartDate := qrStartDate.String()
+		qStartDate := qrStartDate
 		if qStartDate != "" {
 			if err := r.SetQueryParam("startDate", qStartDate); err != nil {
 				return err

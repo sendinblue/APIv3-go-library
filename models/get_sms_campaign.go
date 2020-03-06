@@ -6,66 +6,106 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
-// GetSMSCampaign get Sms campaign
+// GetSmsCampaign get sms campaign
 // swagger:model getSmsCampaign
-type GetSMSCampaign struct {
-	GetSMSCampaignOverview
+type GetSmsCampaign struct {
+	GetSmsCampaignOverview
 
-	GetSMSCampaignAllOf1
+	// recipients
+	// Required: true
+	Recipients struct {
+		GetCampaignRecipients
+	} `json:"recipients"`
+
+	// statistics
+	// Required: true
+	Statistics struct {
+		GetSmsCampaignStats
+	} `json:"statistics"`
 }
 
 // UnmarshalJSON unmarshals this object from a JSON structure
-func (m *GetSMSCampaign) UnmarshalJSON(raw []byte) error {
-
-	var aO0 GetSMSCampaignOverview
+func (m *GetSmsCampaign) UnmarshalJSON(raw []byte) error {
+	// AO0
+	var aO0 GetSmsCampaignOverview
 	if err := swag.ReadJSON(raw, &aO0); err != nil {
 		return err
 	}
-	m.GetSMSCampaignOverview = aO0
+	m.GetSmsCampaignOverview = aO0
 
-	var aO1 GetSMSCampaignAllOf1
-	if err := swag.ReadJSON(raw, &aO1); err != nil {
+	// AO1
+	var dataAO1 struct {
+		Recipients struct {
+			GetCampaignRecipients
+		} `json:"recipients"`
+
+		Statistics struct {
+			GetSmsCampaignStats
+		} `json:"statistics"`
+	}
+	if err := swag.ReadJSON(raw, &dataAO1); err != nil {
 		return err
 	}
-	m.GetSMSCampaignAllOf1 = aO1
+
+	m.Recipients = dataAO1.Recipients
+
+	m.Statistics = dataAO1.Statistics
 
 	return nil
 }
 
 // MarshalJSON marshals this object to a JSON structure
-func (m GetSMSCampaign) MarshalJSON() ([]byte, error) {
-	var _parts [][]byte
+func (m GetSmsCampaign) MarshalJSON() ([]byte, error) {
+	_parts := make([][]byte, 0, 2)
 
-	aO0, err := swag.WriteJSON(m.GetSMSCampaignOverview)
+	aO0, err := swag.WriteJSON(m.GetSmsCampaignOverview)
 	if err != nil {
 		return nil, err
 	}
 	_parts = append(_parts, aO0)
 
-	aO1, err := swag.WriteJSON(m.GetSMSCampaignAllOf1)
-	if err != nil {
-		return nil, err
+	var dataAO1 struct {
+		Recipients struct {
+			GetCampaignRecipients
+		} `json:"recipients"`
+
+		Statistics struct {
+			GetSmsCampaignStats
+		} `json:"statistics"`
 	}
-	_parts = append(_parts, aO1)
+
+	dataAO1.Recipients = m.Recipients
+
+	dataAO1.Statistics = m.Statistics
+
+	jsonDataAO1, errAO1 := swag.WriteJSON(dataAO1)
+	if errAO1 != nil {
+		return nil, errAO1
+	}
+	_parts = append(_parts, jsonDataAO1)
 
 	return swag.ConcatJSON(_parts...), nil
 }
 
-// Validate validates this get Sms campaign
-func (m *GetSMSCampaign) Validate(formats strfmt.Registry) error {
+// Validate validates this get sms campaign
+func (m *GetSmsCampaign) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.GetSMSCampaignOverview.Validate(formats); err != nil {
+	// validation for a type composition with GetSmsCampaignOverview
+	if err := m.GetSmsCampaignOverview.Validate(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.GetSMSCampaignAllOf1.Validate(formats); err != nil {
+	if err := m.validateRecipients(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStatistics(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -75,8 +115,18 @@ func (m *GetSMSCampaign) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *GetSmsCampaign) validateRecipients(formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *GetSmsCampaign) validateStatistics(formats strfmt.Registry) error {
+
+	return nil
+}
+
 // MarshalBinary interface implementation
-func (m *GetSMSCampaign) MarshalBinary() ([]byte, error) {
+func (m *GetSmsCampaign) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -84,8 +134,8 @@ func (m *GetSMSCampaign) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *GetSMSCampaign) UnmarshalBinary(b []byte) error {
-	var res GetSMSCampaign
+func (m *GetSmsCampaign) UnmarshalBinary(b []byte) error {
+	var res GetSmsCampaign
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

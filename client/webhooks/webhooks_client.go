@@ -6,13 +6,14 @@ package webhooks
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-openapi/runtime"
+	"fmt"
 
-	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 )
 
 // New creates a new webhooks API client.
-func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -24,8 +25,23 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientService is the interface for Client methods
+type ClientService interface {
+	CreateWebhook(params *CreateWebhookParams, authInfo runtime.ClientAuthInfoWriter) (*CreateWebhookCreated, error)
+
+	DeleteWebhook(params *DeleteWebhookParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteWebhookNoContent, error)
+
+	GetWebhook(params *GetWebhookParams, authInfo runtime.ClientAuthInfoWriter) (*GetWebhookOK, error)
+
+	GetWebhooks(params *GetWebhooksParams, authInfo runtime.ClientAuthInfoWriter) (*GetWebhooksOK, error)
+
+	UpdateWebhook(params *UpdateWebhookParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateWebhookNoContent, error)
+
+	SetTransport(transport runtime.ClientTransport)
+}
+
 /*
-CreateWebhook creates a webhook
+  CreateWebhook creates a webhook
 */
 func (a *Client) CreateWebhook(params *CreateWebhookParams, authInfo runtime.ClientAuthInfoWriter) (*CreateWebhookCreated, error) {
 	// TODO: Validate the params before sending
@@ -49,12 +65,18 @@ func (a *Client) CreateWebhook(params *CreateWebhookParams, authInfo runtime.Cli
 	if err != nil {
 		return nil, err
 	}
-	return result.(*CreateWebhookCreated), nil
-
+	success, ok := result.(*CreateWebhookCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for createWebhook: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-DeleteWebhook deletes a webhook
+  DeleteWebhook deletes a webhook
 */
 func (a *Client) DeleteWebhook(params *DeleteWebhookParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteWebhookNoContent, error) {
 	// TODO: Validate the params before sending
@@ -78,12 +100,18 @@ func (a *Client) DeleteWebhook(params *DeleteWebhookParams, authInfo runtime.Cli
 	if err != nil {
 		return nil, err
 	}
-	return result.(*DeleteWebhookNoContent), nil
-
+	success, ok := result.(*DeleteWebhookNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for deleteWebhook: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetWebhook gets a webhook details
+  GetWebhook gets a webhook details
 */
 func (a *Client) GetWebhook(params *GetWebhookParams, authInfo runtime.ClientAuthInfoWriter) (*GetWebhookOK, error) {
 	// TODO: Validate the params before sending
@@ -107,12 +135,18 @@ func (a *Client) GetWebhook(params *GetWebhookParams, authInfo runtime.ClientAut
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetWebhookOK), nil
-
+	success, ok := result.(*GetWebhookOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getWebhook: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetWebhooks gets all webhooks
+  GetWebhooks gets all webhooks
 */
 func (a *Client) GetWebhooks(params *GetWebhooksParams, authInfo runtime.ClientAuthInfoWriter) (*GetWebhooksOK, error) {
 	// TODO: Validate the params before sending
@@ -136,12 +170,18 @@ func (a *Client) GetWebhooks(params *GetWebhooksParams, authInfo runtime.ClientA
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetWebhooksOK), nil
-
+	success, ok := result.(*GetWebhooksOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getWebhooks: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-UpdateWebhook updates a webhook
+  UpdateWebhook updates a webhook
 */
 func (a *Client) UpdateWebhook(params *UpdateWebhookParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateWebhookNoContent, error) {
 	// TODO: Validate the params before sending
@@ -165,8 +205,14 @@ func (a *Client) UpdateWebhook(params *UpdateWebhookParams, authInfo runtime.Cli
 	if err != nil {
 		return nil, err
 	}
-	return result.(*UpdateWebhookNoContent), nil
-
+	success, ok := result.(*UpdateWebhookNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for updateWebhook: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 // SetTransport changes the transport on the client

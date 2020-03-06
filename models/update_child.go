@@ -6,9 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -21,18 +20,17 @@ type UpdateChild struct {
 	CompanyName string `json:"companyName,omitempty"`
 
 	// New Email address to update the child account
+	// Format: email
 	Email strfmt.Email `json:"email,omitempty"`
 
 	// New First name to use to update the child account
 	FirstName string `json:"firstName,omitempty"`
 
-	// ips
-	Ips []int64 `json:"ips"`
-
 	// New Last name to use to update the child account
 	LastName string `json:"lastName,omitempty"`
 
 	// New password for the child account to login
+	// Format: password
 	Password strfmt.Password `json:"password,omitempty"`
 }
 
@@ -41,17 +39,10 @@ func (m *UpdateChild) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateEmail(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateIps(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePassword(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -69,15 +60,6 @@ func (m *UpdateChild) validateEmail(formats strfmt.Registry) error {
 
 	if err := validate.FormatOf("email", "body", "email", m.Email.String(), formats); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *UpdateChild) validateIps(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Ips) { // not required
-		return nil
 	}
 
 	return nil

@@ -6,9 +6,10 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"strconv"
 
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -19,7 +20,7 @@ type GetWebhooks struct {
 
 	// webhooks
 	// Required: true
-	Webhooks GetWebhooksWebhooks `json:"webhooks"`
+	Webhooks []*GetWebhooksWebhooksItems0 `json:"webhooks"`
 }
 
 // Validate validates this get webhooks
@@ -27,7 +28,6 @@ func (m *GetWebhooks) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateWebhooks(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -43,11 +43,20 @@ func (m *GetWebhooks) validateWebhooks(formats strfmt.Registry) error {
 		return err
 	}
 
-	if err := m.Webhooks.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("webhooks")
+	for i := 0; i < len(m.Webhooks); i++ {
+		if swag.IsZero(m.Webhooks[i]) { // not required
+			continue
 		}
-		return err
+
+		if m.Webhooks[i] != nil {
+			if err := m.Webhooks[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("webhooks" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -64,6 +73,70 @@ func (m *GetWebhooks) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *GetWebhooks) UnmarshalBinary(b []byte) error {
 	var res GetWebhooks
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetWebhooksWebhooksItems0 get webhooks webhooks items0
+// swagger:model GetWebhooksWebhooksItems0
+type GetWebhooksWebhooksItems0 struct {
+	GetWebhook
+}
+
+// UnmarshalJSON unmarshals this object from a JSON structure
+func (m *GetWebhooksWebhooksItems0) UnmarshalJSON(raw []byte) error {
+	// AO0
+	var aO0 GetWebhook
+	if err := swag.ReadJSON(raw, &aO0); err != nil {
+		return err
+	}
+	m.GetWebhook = aO0
+
+	return nil
+}
+
+// MarshalJSON marshals this object to a JSON structure
+func (m GetWebhooksWebhooksItems0) MarshalJSON() ([]byte, error) {
+	_parts := make([][]byte, 0, 1)
+
+	aO0, err := swag.WriteJSON(m.GetWebhook)
+	if err != nil {
+		return nil, err
+	}
+	_parts = append(_parts, aO0)
+
+	return swag.ConcatJSON(_parts...), nil
+}
+
+// Validate validates this get webhooks webhooks items0
+func (m *GetWebhooksWebhooksItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	// validation for a type composition with GetWebhook
+	if err := m.GetWebhook.Validate(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetWebhooksWebhooksItems0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetWebhooksWebhooksItems0) UnmarshalBinary(b []byte) error {
+	var res GetWebhooksWebhooksItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

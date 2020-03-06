@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // UpdateWebhookReader is a Reader for the UpdateWebhook structure.
@@ -24,21 +24,18 @@ type UpdateWebhookReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UpdateWebhookReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 204:
 		result := NewUpdateWebhookNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewUpdateWebhookBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewUpdateWebhookNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -89,6 +86,10 @@ func (o *UpdateWebhookBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /webhooks/{webhookId}][%d] updateWebhookBadRequest  %+v", 400, o.Payload)
 }
 
+func (o *UpdateWebhookBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
+}
+
 func (o *UpdateWebhookBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ErrorModel)
@@ -116,6 +117,10 @@ type UpdateWebhookNotFound struct {
 
 func (o *UpdateWebhookNotFound) Error() string {
 	return fmt.Sprintf("[PUT /webhooks/{webhookId}][%d] updateWebhookNotFound  %+v", 404, o.Payload)
+}
+
+func (o *UpdateWebhookNotFound) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *UpdateWebhookNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

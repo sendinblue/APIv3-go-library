@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // CreateSenderReader is a Reader for the CreateSender structure.
@@ -24,14 +24,12 @@ type CreateSenderReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *CreateSenderReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 201:
 		result := NewCreateSenderCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewCreateSenderBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -61,6 +59,10 @@ func (o *CreateSenderCreated) Error() string {
 	return fmt.Sprintf("[POST /senders][%d] createSenderCreated  %+v", 201, o.Payload)
 }
 
+func (o *CreateSenderCreated) GetPayload() *models.CreateSenderModel {
+	return o.Payload
+}
+
 func (o *CreateSenderCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.CreateSenderModel)
@@ -88,6 +90,10 @@ type CreateSenderBadRequest struct {
 
 func (o *CreateSenderBadRequest) Error() string {
 	return fmt.Sprintf("[POST /senders][%d] createSenderBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *CreateSenderBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *CreateSenderBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

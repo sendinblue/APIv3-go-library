@@ -6,27 +6,58 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"strconv"
 
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // GetSendersList get senders list
 // swagger:model getSendersList
 type GetSendersList struct {
 
-	// senders
-	Senders GetSendersListSenders `json:"senders"`
+	// List of the senders available in your account
+	Senders []*GetSendersListSendersItems0 `json:"senders"`
 }
 
 // Validate validates this get senders list
 func (m *GetSendersList) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateSenders(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *GetSendersList) validateSenders(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Senders) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Senders); i++ {
+		if swag.IsZero(m.Senders[i]) { // not required
+			continue
+		}
+
+		if m.Senders[i] != nil {
+			if err := m.Senders[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("senders" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 
@@ -41,6 +72,223 @@ func (m *GetSendersList) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *GetSendersList) UnmarshalBinary(b []byte) error {
 	var res GetSendersList
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetSendersListSendersItems0 get senders list senders items0
+// swagger:model GetSendersListSendersItems0
+type GetSendersListSendersItems0 struct {
+
+	// Status of sender (true=activated, false=deactivated)
+	// Required: true
+	Active *bool `json:"active"`
+
+	// From Email associated to the sender
+	// Required: true
+	Email *string `json:"email"`
+
+	// Id of the sender
+	// Required: true
+	ID *int64 `json:"id"`
+
+	// List of dedicated IP(s) available in the account. This data is displayed only for dedicated IPs
+	Ips []*GetSendersListSendersItems0IpsItems0 `json:"ips"`
+
+	// From Name associated to the sender
+	// Required: true
+	Name *string `json:"name"`
+}
+
+// Validate validates this get senders list senders items0
+func (m *GetSendersListSendersItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateActive(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEmail(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIps(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetSendersListSendersItems0) validateActive(formats strfmt.Registry) error {
+
+	if err := validate.Required("active", "body", m.Active); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetSendersListSendersItems0) validateEmail(formats strfmt.Registry) error {
+
+	if err := validate.Required("email", "body", m.Email); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetSendersListSendersItems0) validateID(formats strfmt.Registry) error {
+
+	if err := validate.Required("id", "body", m.ID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetSendersListSendersItems0) validateIps(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Ips) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Ips); i++ {
+		if swag.IsZero(m.Ips[i]) { // not required
+			continue
+		}
+
+		if m.Ips[i] != nil {
+			if err := m.Ips[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("ips" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *GetSendersListSendersItems0) validateName(formats strfmt.Registry) error {
+
+	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetSendersListSendersItems0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetSendersListSendersItems0) UnmarshalBinary(b []byte) error {
+	var res GetSendersListSendersItems0
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetSendersListSendersItems0IpsItems0 get senders list senders items0 ips items0
+// swagger:model GetSendersListSendersItems0IpsItems0
+type GetSendersListSendersItems0IpsItems0 struct {
+
+	// Domain of the IP
+	// Required: true
+	Domain *string `json:"domain"`
+
+	// Dedicated IP available in your account
+	// Required: true
+	IP *string `json:"ip"`
+
+	// Weight of the IP for this sender
+	// Required: true
+	Weight *int64 `json:"weight"`
+}
+
+// Validate validates this get senders list senders items0 ips items0
+func (m *GetSendersListSendersItems0IpsItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateDomain(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIP(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateWeight(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetSendersListSendersItems0IpsItems0) validateDomain(formats strfmt.Registry) error {
+
+	if err := validate.Required("domain", "body", m.Domain); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetSendersListSendersItems0IpsItems0) validateIP(formats strfmt.Registry) error {
+
+	if err := validate.Required("ip", "body", m.IP); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetSendersListSendersItems0IpsItems0) validateWeight(formats strfmt.Registry) error {
+
+	if err := validate.Required("weight", "body", m.Weight); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetSendersListSendersItems0IpsItems0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetSendersListSendersItems0IpsItems0) UnmarshalBinary(b []byte) error {
+	var res GetSendersListSendersItems0IpsItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

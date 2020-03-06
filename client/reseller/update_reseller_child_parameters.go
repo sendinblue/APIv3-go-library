@@ -6,19 +6,17 @@ package reseller
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
-	"github.com/go-openapi/swag"
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // NewUpdateResellerChildParams creates a new UpdateResellerChildParams object
@@ -65,11 +63,11 @@ for the update reseller child operation typically these are written to a http.Re
 */
 type UpdateResellerChildParams struct {
 
-	/*ChildID
-	  id of reseller's child
+	/*ChildAuthKey
+	  auth key of reseller's child
 
 	*/
-	ChildID int64
+	ChildAuthKey string
 	/*ResellerChild
 	  values to update in child profile
 
@@ -114,15 +112,15 @@ func (o *UpdateResellerChildParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithChildID adds the childID to the update reseller child params
-func (o *UpdateResellerChildParams) WithChildID(childID int64) *UpdateResellerChildParams {
-	o.SetChildID(childID)
+// WithChildAuthKey adds the childAuthKey to the update reseller child params
+func (o *UpdateResellerChildParams) WithChildAuthKey(childAuthKey string) *UpdateResellerChildParams {
+	o.SetChildAuthKey(childAuthKey)
 	return o
 }
 
-// SetChildID adds the childId to the update reseller child params
-func (o *UpdateResellerChildParams) SetChildID(childID int64) {
-	o.ChildID = childID
+// SetChildAuthKey adds the childAuthKey to the update reseller child params
+func (o *UpdateResellerChildParams) SetChildAuthKey(childAuthKey string) {
+	o.ChildAuthKey = childAuthKey
 }
 
 // WithResellerChild adds the resellerChild to the update reseller child params
@@ -144,8 +142,8 @@ func (o *UpdateResellerChildParams) WriteToRequest(r runtime.ClientRequest, reg 
 	}
 	var res []error
 
-	// path param childId
-	if err := r.SetPathParam("childId", swag.FormatInt64(o.ChildID)); err != nil {
+	// path param childAuthKey
+	if err := r.SetPathParam("childAuthKey", o.ChildAuthKey); err != nil {
 		return err
 	}
 

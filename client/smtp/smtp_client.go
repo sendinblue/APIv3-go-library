@@ -6,13 +6,14 @@ package smtp
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-openapi/runtime"
+	"fmt"
 
-	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 )
 
 // New creates a new smtp API client.
-func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -24,8 +25,117 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientService is the interface for Client methods
+type ClientService interface {
+	DeleteSMTPBlockedContactsEmail(params *DeleteSMTPBlockedContactsEmailParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSMTPBlockedContactsEmailNoContent, error)
+
+	DeleteSMTPLogMessageID(params *DeleteSMTPLogMessageIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSMTPLogMessageIDNoContent, error)
+
+	CreateSMTPTemplate(params *CreateSMTPTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSMTPTemplateCreated, error)
+
+	DeleteHardbounces(params *DeleteHardbouncesParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteHardbouncesNoContent, error)
+
+	DeleteSMTPTemplate(params *DeleteSMTPTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSMTPTemplateNoContent, error)
+
+	GetAggregatedSMTPReport(params *GetAggregatedSMTPReportParams, authInfo runtime.ClientAuthInfoWriter) (*GetAggregatedSMTPReportOK, error)
+
+	GetEmailEventReport(params *GetEmailEventReportParams, authInfo runtime.ClientAuthInfoWriter) (*GetEmailEventReportOK, error)
+
+	GetSMTPReport(params *GetSMTPReportParams, authInfo runtime.ClientAuthInfoWriter) (*GetSMTPReportOK, error)
+
+	GetSMTPTemplate(params *GetSMTPTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*GetSMTPTemplateOK, error)
+
+	GetSMTPTemplates(params *GetSMTPTemplatesParams, authInfo runtime.ClientAuthInfoWriter) (*GetSMTPTemplatesOK, error)
+
+	GetTransacBlockedContacts(params *GetTransacBlockedContactsParams, authInfo runtime.ClientAuthInfoWriter) (*GetTransacBlockedContactsOK, error)
+
+	GetTransacEmailContent(params *GetTransacEmailContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetTransacEmailContentOK, error)
+
+	GetTransacEmailsList(params *GetTransacEmailsListParams, authInfo runtime.ClientAuthInfoWriter) (*GetTransacEmailsListOK, error)
+
+	SendTemplate(params *SendTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*SendTemplateCreated, error)
+
+	SendTestTemplate(params *SendTestTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*SendTestTemplateNoContent, error)
+
+	SendTransacEmail(params *SendTransacEmailParams, authInfo runtime.ClientAuthInfoWriter) (*SendTransacEmailCreated, error)
+
+	UpdateSMTPTemplate(params *UpdateSMTPTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSMTPTemplateNoContent, error)
+
+	SetTransport(transport runtime.ClientTransport)
+}
+
 /*
-CreateSMTPTemplate creates an smtp template
+  DeleteSMTPBlockedContactsEmail unblocks or resubscribe a transactional contact
+*/
+func (a *Client) DeleteSMTPBlockedContactsEmail(params *DeleteSMTPBlockedContactsEmailParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSMTPBlockedContactsEmailNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteSMTPBlockedContactsEmailParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteSMTPBlockedContactsEmail",
+		Method:             "DELETE",
+		PathPattern:        "/smtp/blockedContacts/{email}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteSMTPBlockedContactsEmailReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeleteSMTPBlockedContactsEmailNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteSMTPBlockedContactsEmail: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  DeleteSMTPLogMessageID deletes an SMTP transactional log
+*/
+func (a *Client) DeleteSMTPLogMessageID(params *DeleteSMTPLogMessageIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSMTPLogMessageIDNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteSMTPLogMessageIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteSMTPLogMessageID",
+		Method:             "DELETE",
+		PathPattern:        "/smtp/log/{messageId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteSMTPLogMessageIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeleteSMTPLogMessageIDNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteSMTPLogMessageID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  CreateSMTPTemplate creates a transactional email template
 */
 func (a *Client) CreateSMTPTemplate(params *CreateSMTPTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSMTPTemplateCreated, error) {
 	// TODO: Validate the params before sending
@@ -49,14 +159,20 @@ func (a *Client) CreateSMTPTemplate(params *CreateSMTPTemplateParams, authInfo r
 	if err != nil {
 		return nil, err
 	}
-	return result.(*CreateSMTPTemplateCreated), nil
-
+	success, ok := result.(*CreateSMTPTemplateCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for createSmtpTemplate: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-DeleteHardbounces deletes hardbounces
+  DeleteHardbounces deletes hardbounces
 
-Delete hardbounces. To use carefully (e.g. in case of temporary ISP failures)
+  Delete hardbounces. To use carefully (e.g. in case of temporary ISP failures)
 */
 func (a *Client) DeleteHardbounces(params *DeleteHardbouncesParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteHardbouncesNoContent, error) {
 	// TODO: Validate the params before sending
@@ -80,12 +196,18 @@ func (a *Client) DeleteHardbounces(params *DeleteHardbouncesParams, authInfo run
 	if err != nil {
 		return nil, err
 	}
-	return result.(*DeleteHardbouncesNoContent), nil
-
+	success, ok := result.(*DeleteHardbouncesNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for deleteHardbounces: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-DeleteSMTPTemplate deletes an inactive smtp template
+  DeleteSMTPTemplate deletes an inactive transactional email template
 */
 func (a *Client) DeleteSMTPTemplate(params *DeleteSMTPTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSMTPTemplateNoContent, error) {
 	// TODO: Validate the params before sending
@@ -109,12 +231,18 @@ func (a *Client) DeleteSMTPTemplate(params *DeleteSMTPTemplateParams, authInfo r
 	if err != nil {
 		return nil, err
 	}
-	return result.(*DeleteSMTPTemplateNoContent), nil
-
+	success, ok := result.(*DeleteSMTPTemplateNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for deleteSmtpTemplate: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetAggregatedSMTPReport gets your SMTP activity aggregated over a period of time
+  GetAggregatedSMTPReport gets your transactional email activity aggregated over a period of time
 */
 func (a *Client) GetAggregatedSMTPReport(params *GetAggregatedSMTPReportParams, authInfo runtime.ClientAuthInfoWriter) (*GetAggregatedSMTPReportOK, error) {
 	// TODO: Validate the params before sending
@@ -138,12 +266,18 @@ func (a *Client) GetAggregatedSMTPReport(params *GetAggregatedSMTPReportParams, 
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetAggregatedSMTPReportOK), nil
-
+	success, ok := result.(*GetAggregatedSMTPReportOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getAggregatedSmtpReport: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetEmailEventReport gets all your SMTP activity unaggregated events
+  GetEmailEventReport gets all your transactional email activity unaggregated events
 */
 func (a *Client) GetEmailEventReport(params *GetEmailEventReportParams, authInfo runtime.ClientAuthInfoWriter) (*GetEmailEventReportOK, error) {
 	// TODO: Validate the params before sending
@@ -167,12 +301,18 @@ func (a *Client) GetEmailEventReport(params *GetEmailEventReportParams, authInfo
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetEmailEventReportOK), nil
-
+	success, ok := result.(*GetEmailEventReportOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getEmailEventReport: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetSMTPReport gets your SMTP activity aggregated per day
+  GetSMTPReport gets your transactional email activity aggregated per day
 */
 func (a *Client) GetSMTPReport(params *GetSMTPReportParams, authInfo runtime.ClientAuthInfoWriter) (*GetSMTPReportOK, error) {
 	// TODO: Validate the params before sending
@@ -196,12 +336,18 @@ func (a *Client) GetSMTPReport(params *GetSMTPReportParams, authInfo runtime.Cli
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetSMTPReportOK), nil
-
+	success, ok := result.(*GetSMTPReportOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getSmtpReport: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetSMTPTemplate returns the template informations
+  GetSMTPTemplate returns the template informations
 */
 func (a *Client) GetSMTPTemplate(params *GetSMTPTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*GetSMTPTemplateOK, error) {
 	// TODO: Validate the params before sending
@@ -225,12 +371,18 @@ func (a *Client) GetSMTPTemplate(params *GetSMTPTemplateParams, authInfo runtime
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetSMTPTemplateOK), nil
-
+	success, ok := result.(*GetSMTPTemplateOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getSmtpTemplate: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetSMTPTemplates gets the list of SMTP templates
+  GetSMTPTemplates gets the list of transactional email templates
 */
 func (a *Client) GetSMTPTemplates(params *GetSMTPTemplatesParams, authInfo runtime.ClientAuthInfoWriter) (*GetSMTPTemplatesOK, error) {
 	// TODO: Validate the params before sending
@@ -254,12 +406,127 @@ func (a *Client) GetSMTPTemplates(params *GetSMTPTemplatesParams, authInfo runti
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetSMTPTemplatesOK), nil
-
+	success, ok := result.(*GetSMTPTemplatesOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getSmtpTemplates: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-SendTemplate sends a template
+  GetTransacBlockedContacts gets the list of blocked or unsubscribed transactional contacts
+*/
+func (a *Client) GetTransacBlockedContacts(params *GetTransacBlockedContactsParams, authInfo runtime.ClientAuthInfoWriter) (*GetTransacBlockedContactsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetTransacBlockedContactsParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getTransacBlockedContacts",
+		Method:             "GET",
+		PathPattern:        "/smtp/blockedContacts",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetTransacBlockedContactsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetTransacBlockedContactsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getTransacBlockedContacts: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetTransacEmailContent gets the personalized content of a sent transactional email
+*/
+func (a *Client) GetTransacEmailContent(params *GetTransacEmailContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetTransacEmailContentOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetTransacEmailContentParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getTransacEmailContent",
+		Method:             "GET",
+		PathPattern:        "/smtp/emails/{uuid}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetTransacEmailContentReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetTransacEmailContentOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getTransacEmailContent: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetTransacEmailsList gets the list of transactional emails on the basis of allowed filters
+
+  This endpoint will show the list of emails for past 30 days by default. To retrieve emails before that time, please pass startDate and endDate in query filters.
+*/
+func (a *Client) GetTransacEmailsList(params *GetTransacEmailsListParams, authInfo runtime.ClientAuthInfoWriter) (*GetTransacEmailsListOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetTransacEmailsListParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getTransacEmailsList",
+		Method:             "GET",
+		PathPattern:        "/smtp/emails",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetTransacEmailsListReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetTransacEmailsListOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getTransacEmailsList: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  SendTemplate sends a template
+
+  This endpoint is deprecated. Prefer v3/smtp/email instead.
 */
 func (a *Client) SendTemplate(params *SendTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*SendTemplateCreated, error) {
 	// TODO: Validate the params before sending
@@ -283,12 +550,18 @@ func (a *Client) SendTemplate(params *SendTemplateParams, authInfo runtime.Clien
 	if err != nil {
 		return nil, err
 	}
-	return result.(*SendTemplateCreated), nil
-
+	success, ok := result.(*SendTemplateCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for sendTemplate: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-SendTestTemplate sends a template to your test list
+  SendTestTemplate sends a template to your test list
 */
 func (a *Client) SendTestTemplate(params *SendTestTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*SendTestTemplateNoContent, error) {
 	// TODO: Validate the params before sending
@@ -312,12 +585,18 @@ func (a *Client) SendTestTemplate(params *SendTestTemplateParams, authInfo runti
 	if err != nil {
 		return nil, err
 	}
-	return result.(*SendTestTemplateNoContent), nil
-
+	success, ok := result.(*SendTestTemplateNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for sendTestTemplate: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-SendTransacEmail sends a transactional email
+  SendTransacEmail sends a transactional email
 */
 func (a *Client) SendTransacEmail(params *SendTransacEmailParams, authInfo runtime.ClientAuthInfoWriter) (*SendTransacEmailCreated, error) {
 	// TODO: Validate the params before sending
@@ -341,12 +620,18 @@ func (a *Client) SendTransacEmail(params *SendTransacEmailParams, authInfo runti
 	if err != nil {
 		return nil, err
 	}
-	return result.(*SendTransacEmailCreated), nil
-
+	success, ok := result.(*SendTransacEmailCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for sendTransacEmail: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-UpdateSMTPTemplate updates an smtp templates
+  UpdateSMTPTemplate updates a transactional email templates
 */
 func (a *Client) UpdateSMTPTemplate(params *UpdateSMTPTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSMTPTemplateNoContent, error) {
 	// TODO: Validate the params before sending
@@ -370,8 +655,14 @@ func (a *Client) UpdateSMTPTemplate(params *UpdateSMTPTemplateParams, authInfo r
 	if err != nil {
 		return nil, err
 	}
-	return result.(*UpdateSMTPTemplateNoContent), nil
-
+	success, ok := result.(*UpdateSMTPTemplateNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for updateSmtpTemplate: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 // SetTransport changes the transport on the client

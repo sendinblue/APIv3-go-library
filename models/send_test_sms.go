@@ -7,45 +7,24 @@ package models
 
 import (
 	strfmt "github.com/go-openapi/strfmt"
-
-	"github.com/go-openapi/errors"
 	"github.com/go-openapi/swag"
 )
 
-// SendTestSMS send test Sms
+// SendTestSms send test sms
 // swagger:model sendTestSms
-type SendTestSMS struct {
+type SendTestSms struct {
 
-	// Mobile number with the country code to send test SMS. The mobile number defined here must belong to one of your contacts in SendinBlue account and must not be blacklisted
-	PhoneNumbers []string `json:"phoneNumbers"`
+	// Mobile number of the recipient with the country code. This number must belong to one of your contacts in SendinBlue account and must not be blacklisted
+	PhoneNumber string `json:"phoneNumber,omitempty"`
 }
 
-// Validate validates this send test Sms
-func (m *SendTestSMS) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validatePhoneNumbers(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *SendTestSMS) validatePhoneNumbers(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.PhoneNumbers) { // not required
-		return nil
-	}
-
+// Validate validates this send test sms
+func (m *SendTestSms) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
 // MarshalBinary interface implementation
-func (m *SendTestSMS) MarshalBinary() ([]byte, error) {
+func (m *SendTestSms) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -53,8 +32,8 @@ func (m *SendTestSMS) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *SendTestSMS) UnmarshalBinary(b []byte) error {
-	var res SendTestSMS
+func (m *SendTestSms) UnmarshalBinary(b []byte) error {
+	var res SendTestSms
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

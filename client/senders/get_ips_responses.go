@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // GetIpsReader is a Reader for the GetIps structure.
@@ -24,7 +24,6 @@ type GetIpsReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetIpsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetIpsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -52,6 +51,10 @@ type GetIpsOK struct {
 
 func (o *GetIpsOK) Error() string {
 	return fmt.Sprintf("[GET /senders/ips][%d] getIpsOK  %+v", 200, o.Payload)
+}
+
+func (o *GetIpsOK) GetPayload() *models.GetIps {
+	return o.Payload
 }
 
 func (o *GetIpsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -6,13 +6,14 @@ package reseller
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-openapi/runtime"
+	"fmt"
 
-	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 )
 
 // New creates a new reseller API client.
-func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -24,8 +25,45 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientService is the interface for Client methods
+type ClientService interface {
+	AddCredits(params *AddCreditsParams, authInfo runtime.ClientAuthInfoWriter) (*AddCreditsOK, error)
+
+	AssociateIPToChild(params *AssociateIPToChildParams, authInfo runtime.ClientAuthInfoWriter) (*AssociateIPToChildNoContent, error)
+
+	CreateChildDomain(params *CreateChildDomainParams, authInfo runtime.ClientAuthInfoWriter) (*CreateChildDomainCreated, error)
+
+	CreateResellerChild(params *CreateResellerChildParams, authInfo runtime.ClientAuthInfoWriter) (*CreateResellerChildCreated, error)
+
+	DeleteChildDomain(params *DeleteChildDomainParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteChildDomainNoContent, error)
+
+	DeleteResellerChild(params *DeleteResellerChildParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteResellerChildNoContent, error)
+
+	DissociateIPFromChild(params *DissociateIPFromChildParams, authInfo runtime.ClientAuthInfoWriter) (*DissociateIPFromChildNoContent, error)
+
+	GetChildAccountCreationStatus(params *GetChildAccountCreationStatusParams, authInfo runtime.ClientAuthInfoWriter) (*GetChildAccountCreationStatusOK, error)
+
+	GetChildDomains(params *GetChildDomainsParams, authInfo runtime.ClientAuthInfoWriter) (*GetChildDomainsOK, error)
+
+	GetChildInfo(params *GetChildInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetChildInfoOK, error)
+
+	GetResellerChilds(params *GetResellerChildsParams, authInfo runtime.ClientAuthInfoWriter) (*GetResellerChildsOK, error)
+
+	GetSsoToken(params *GetSsoTokenParams, authInfo runtime.ClientAuthInfoWriter) (*GetSsoTokenOK, error)
+
+	RemoveCredits(params *RemoveCreditsParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveCreditsOK, error)
+
+	UpdateChildAccountStatus(params *UpdateChildAccountStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateChildAccountStatusNoContent, error)
+
+	UpdateChildDomain(params *UpdateChildDomainParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateChildDomainNoContent, error)
+
+	UpdateResellerChild(params *UpdateResellerChildParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateResellerChildNoContent, error)
+
+	SetTransport(transport runtime.ClientTransport)
+}
+
 /*
-AddCredits adds email and or SMS credits to a specific child account
+  AddCredits adds email and or s m s credits to a specific child account
 */
 func (a *Client) AddCredits(params *AddCreditsParams, authInfo runtime.ClientAuthInfoWriter) (*AddCreditsOK, error) {
 	// TODO: Validate the params before sending
@@ -36,7 +74,7 @@ func (a *Client) AddCredits(params *AddCreditsParams, authInfo runtime.ClientAut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addCredits",
 		Method:             "POST",
-		PathPattern:        "/reseller/children/{childId}/credits/add",
+		PathPattern:        "/reseller/children/{childAuthKey}/credits/add",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -49,12 +87,18 @@ func (a *Client) AddCredits(params *AddCreditsParams, authInfo runtime.ClientAut
 	if err != nil {
 		return nil, err
 	}
-	return result.(*AddCreditsOK), nil
-
+	success, ok := result.(*AddCreditsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for addCredits: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-AssociateIPToChild associates a dedicated IP to the child
+  AssociateIPToChild associates a dedicated IP to the child
 */
 func (a *Client) AssociateIPToChild(params *AssociateIPToChildParams, authInfo runtime.ClientAuthInfoWriter) (*AssociateIPToChildNoContent, error) {
 	// TODO: Validate the params before sending
@@ -65,7 +109,7 @@ func (a *Client) AssociateIPToChild(params *AssociateIPToChildParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "associateIpToChild",
 		Method:             "POST",
-		PathPattern:        "/reseller/children/{childId}/ips/associate",
+		PathPattern:        "/reseller/children/{childAuthKey}/ips/associate",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -78,12 +122,53 @@ func (a *Client) AssociateIPToChild(params *AssociateIPToChildParams, authInfo r
 	if err != nil {
 		return nil, err
 	}
-	return result.(*AssociateIPToChildNoContent), nil
-
+	success, ok := result.(*AssociateIPToChildNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for associateIpToChild: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-CreateResellerChild creates a reseller child
+  CreateChildDomain creates a domain for a child account
+*/
+func (a *Client) CreateChildDomain(params *CreateChildDomainParams, authInfo runtime.ClientAuthInfoWriter) (*CreateChildDomainCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateChildDomainParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "createChildDomain",
+		Method:             "POST",
+		PathPattern:        "/reseller/children/{childAuthKey}/domains",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateChildDomainReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CreateChildDomainCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for createChildDomain: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  CreateResellerChild creates a reseller child
 */
 func (a *Client) CreateResellerChild(params *CreateResellerChildParams, authInfo runtime.ClientAuthInfoWriter) (*CreateResellerChildCreated, error) {
 	// TODO: Validate the params before sending
@@ -107,12 +192,53 @@ func (a *Client) CreateResellerChild(params *CreateResellerChildParams, authInfo
 	if err != nil {
 		return nil, err
 	}
-	return result.(*CreateResellerChildCreated), nil
-
+	success, ok := result.(*CreateResellerChildCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for createResellerChild: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-DeleteResellerChild deletes a single reseller child based on the child Id supplied
+  DeleteChildDomain deletes the sender domain of the reseller child based on the child auth key and domain name passed
+*/
+func (a *Client) DeleteChildDomain(params *DeleteChildDomainParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteChildDomainNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteChildDomainParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteChildDomain",
+		Method:             "DELETE",
+		PathPattern:        "/reseller/children/{childAuthKey}/domains/{domainName}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteChildDomainReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeleteChildDomainNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for deleteChildDomain: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  DeleteResellerChild deletes a single reseller child based on the child auth key supplied
 */
 func (a *Client) DeleteResellerChild(params *DeleteResellerChildParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteResellerChildNoContent, error) {
 	// TODO: Validate the params before sending
@@ -123,7 +249,7 @@ func (a *Client) DeleteResellerChild(params *DeleteResellerChildParams, authInfo
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteResellerChild",
 		Method:             "DELETE",
-		PathPattern:        "/reseller/children/{childId}",
+		PathPattern:        "/reseller/children/{childAuthKey}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -136,12 +262,18 @@ func (a *Client) DeleteResellerChild(params *DeleteResellerChildParams, authInfo
 	if err != nil {
 		return nil, err
 	}
-	return result.(*DeleteResellerChildNoContent), nil
-
+	success, ok := result.(*DeleteResellerChildNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for deleteResellerChild: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-DissociateIPFromChild dissociates a dedicated IP to the child
+  DissociateIPFromChild dissociates a dedicated IP to the child
 */
 func (a *Client) DissociateIPFromChild(params *DissociateIPFromChildParams, authInfo runtime.ClientAuthInfoWriter) (*DissociateIPFromChildNoContent, error) {
 	// TODO: Validate the params before sending
@@ -152,7 +284,7 @@ func (a *Client) DissociateIPFromChild(params *DissociateIPFromChildParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "dissociateIpFromChild",
 		Method:             "POST",
-		PathPattern:        "/reseller/children/{childId}/ips/dissociate",
+		PathPattern:        "/reseller/children/{childAuthKey}/ips/dissociate",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -165,12 +297,88 @@ func (a *Client) DissociateIPFromChild(params *DissociateIPFromChildParams, auth
 	if err != nil {
 		return nil, err
 	}
-	return result.(*DissociateIPFromChildNoContent), nil
-
+	success, ok := result.(*DissociateIPFromChildNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for dissociateIpFromChild: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetChildInfo gets the info about a specific child account
+  GetChildAccountCreationStatus returns the status of reseller s child account creation whether it is successfully created exists or not based on the child auth key supplied
+*/
+func (a *Client) GetChildAccountCreationStatus(params *GetChildAccountCreationStatusParams, authInfo runtime.ClientAuthInfoWriter) (*GetChildAccountCreationStatusOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetChildAccountCreationStatusParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getChildAccountCreationStatus",
+		Method:             "GET",
+		PathPattern:        "/reseller/children/{childAuthKey}/accountCreationStatus",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetChildAccountCreationStatusReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetChildAccountCreationStatusOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getChildAccountCreationStatus: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetChildDomains gets all the sender domains of a specific child account
+*/
+func (a *Client) GetChildDomains(params *GetChildDomainsParams, authInfo runtime.ClientAuthInfoWriter) (*GetChildDomainsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetChildDomainsParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getChildDomains",
+		Method:             "GET",
+		PathPattern:        "/reseller/children/{childAuthKey}/domains",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetChildDomainsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetChildDomainsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getChildDomains: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetChildInfo gets the info about a specific child account
 */
 func (a *Client) GetChildInfo(params *GetChildInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetChildInfoOK, error) {
 	// TODO: Validate the params before sending
@@ -181,7 +389,7 @@ func (a *Client) GetChildInfo(params *GetChildInfoParams, authInfo runtime.Clien
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getChildInfo",
 		Method:             "GET",
-		PathPattern:        "/reseller/children/{childId}",
+		PathPattern:        "/reseller/children/{childAuthKey}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -194,12 +402,18 @@ func (a *Client) GetChildInfo(params *GetChildInfoParams, authInfo runtime.Clien
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetChildInfoOK), nil
-
+	success, ok := result.(*GetChildInfoOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getChildInfo: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetResellerChilds gets the list of all reseller s children accounts
+  GetResellerChilds gets the list of all reseller s children accounts
 */
 func (a *Client) GetResellerChilds(params *GetResellerChildsParams, authInfo runtime.ClientAuthInfoWriter) (*GetResellerChildsOK, error) {
 	// TODO: Validate the params before sending
@@ -223,12 +437,55 @@ func (a *Client) GetResellerChilds(params *GetResellerChildsParams, authInfo run
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetResellerChildsOK), nil
-
+	success, ok := result.(*GetResellerChildsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getResellerChilds: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-RemoveCredits removes email and or SMS credits from a specific child account
+  GetSsoToken gets session token to access sendinblue s s o
+
+  It returns a session [token] which will remain valid for a short period of time. A child account will be able to access a white-labeled section by using the following url pattern => https:/email.mydomain.com/login/sso?token=[token]
+*/
+func (a *Client) GetSsoToken(params *GetSsoTokenParams, authInfo runtime.ClientAuthInfoWriter) (*GetSsoTokenOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetSsoTokenParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getSsoToken",
+		Method:             "GET",
+		PathPattern:        "/reseller/children/{childAuthKey}/auth",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetSsoTokenReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetSsoTokenOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getSsoToken: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  RemoveCredits removes email and or s m s credits from a specific child account
 */
 func (a *Client) RemoveCredits(params *RemoveCreditsParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveCreditsOK, error) {
 	// TODO: Validate the params before sending
@@ -239,7 +496,7 @@ func (a *Client) RemoveCredits(params *RemoveCreditsParams, authInfo runtime.Cli
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "removeCredits",
 		Method:             "POST",
-		PathPattern:        "/reseller/children/{childId}/credits/remove",
+		PathPattern:        "/reseller/children/{childAuthKey}/credits/remove",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -252,12 +509,88 @@ func (a *Client) RemoveCredits(params *RemoveCreditsParams, authInfo runtime.Cli
 	if err != nil {
 		return nil, err
 	}
-	return result.(*RemoveCreditsOK), nil
-
+	success, ok := result.(*RemoveCreditsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for removeCredits: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-UpdateResellerChild updates infos of reseller s child based on the child Id supplied
+  UpdateChildAccountStatus updates infos of reseller s child account status based on the child auth key supplied
+*/
+func (a *Client) UpdateChildAccountStatus(params *UpdateChildAccountStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateChildAccountStatusNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateChildAccountStatusParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateChildAccountStatus",
+		Method:             "PUT",
+		PathPattern:        "/reseller/children/{childAuthKey}/accountStatus",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateChildAccountStatusReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*UpdateChildAccountStatusNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for updateChildAccountStatus: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  UpdateChildDomain updates the sender domain of reseller s child based on the child auth key and domain name passed
+*/
+func (a *Client) UpdateChildDomain(params *UpdateChildDomainParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateChildDomainNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateChildDomainParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateChildDomain",
+		Method:             "PUT",
+		PathPattern:        "/reseller/children/{childAuthKey}/domains/{domainName}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateChildDomainReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*UpdateChildDomainNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for updateChildDomain: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  UpdateResellerChild updates infos of reseller s child based on the child auth key supplied
 */
 func (a *Client) UpdateResellerChild(params *UpdateResellerChildParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateResellerChildNoContent, error) {
 	// TODO: Validate the params before sending
@@ -268,7 +601,7 @@ func (a *Client) UpdateResellerChild(params *UpdateResellerChildParams, authInfo
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateResellerChild",
 		Method:             "PUT",
-		PathPattern:        "/reseller/children/{childId}",
+		PathPattern:        "/reseller/children/{childAuthKey}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -281,8 +614,14 @@ func (a *Client) UpdateResellerChild(params *UpdateResellerChildParams, authInfo
 	if err != nil {
 		return nil, err
 	}
-	return result.(*UpdateResellerChildNoContent), nil
-
+	success, ok := result.(*UpdateResellerChildNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for updateResellerChild: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 // SetTransport changes the transport on the client

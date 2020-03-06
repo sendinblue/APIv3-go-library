@@ -6,10 +6,13 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"encoding/json"
+	"strconv"
 
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // GetAccount get account
@@ -17,30 +20,51 @@ import (
 type GetAccount struct {
 	GetExtendedClient
 
-	GetAccountAllOf1
+	// marketing automation
+	MarketingAutomation *GetAccountAO1MarketingAutomation `json:"marketingAutomation,omitempty"`
+
+	// Information about your plans and credits
+	// Required: true
+	Plan []*GetAccountPlanItems0 `json:"plan"`
+
+	// relay
+	// Required: true
+	Relay *GetAccountAO1Relay `json:"relay"`
 }
 
 // UnmarshalJSON unmarshals this object from a JSON structure
 func (m *GetAccount) UnmarshalJSON(raw []byte) error {
-
+	// AO0
 	var aO0 GetExtendedClient
 	if err := swag.ReadJSON(raw, &aO0); err != nil {
 		return err
 	}
 	m.GetExtendedClient = aO0
 
-	var aO1 GetAccountAllOf1
-	if err := swag.ReadJSON(raw, &aO1); err != nil {
+	// AO1
+	var dataAO1 struct {
+		MarketingAutomation *GetAccountAO1MarketingAutomation `json:"marketingAutomation,omitempty"`
+
+		Plan []*GetAccountPlanItems0 `json:"plan"`
+
+		Relay *GetAccountAO1Relay `json:"relay"`
+	}
+	if err := swag.ReadJSON(raw, &dataAO1); err != nil {
 		return err
 	}
-	m.GetAccountAllOf1 = aO1
+
+	m.MarketingAutomation = dataAO1.MarketingAutomation
+
+	m.Plan = dataAO1.Plan
+
+	m.Relay = dataAO1.Relay
 
 	return nil
 }
 
 // MarshalJSON marshals this object to a JSON structure
 func (m GetAccount) MarshalJSON() ([]byte, error) {
-	var _parts [][]byte
+	_parts := make([][]byte, 0, 2)
 
 	aO0, err := swag.WriteJSON(m.GetExtendedClient)
 	if err != nil {
@@ -48,11 +72,25 @@ func (m GetAccount) MarshalJSON() ([]byte, error) {
 	}
 	_parts = append(_parts, aO0)
 
-	aO1, err := swag.WriteJSON(m.GetAccountAllOf1)
-	if err != nil {
-		return nil, err
+	var dataAO1 struct {
+		MarketingAutomation *GetAccountAO1MarketingAutomation `json:"marketingAutomation,omitempty"`
+
+		Plan []*GetAccountPlanItems0 `json:"plan"`
+
+		Relay *GetAccountAO1Relay `json:"relay"`
 	}
-	_parts = append(_parts, aO1)
+
+	dataAO1.MarketingAutomation = m.MarketingAutomation
+
+	dataAO1.Plan = m.Plan
+
+	dataAO1.Relay = m.Relay
+
+	jsonDataAO1, errAO1 := swag.WriteJSON(dataAO1)
+	if errAO1 != nil {
+		return nil, errAO1
+	}
+	_parts = append(_parts, jsonDataAO1)
 
 	return swag.ConcatJSON(_parts...), nil
 }
@@ -61,17 +99,87 @@ func (m GetAccount) MarshalJSON() ([]byte, error) {
 func (m *GetAccount) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	// validation for a type composition with GetExtendedClient
 	if err := m.GetExtendedClient.Validate(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.GetAccountAllOf1.Validate(formats); err != nil {
+	if err := m.validateMarketingAutomation(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePlan(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRelay(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *GetAccount) validateMarketingAutomation(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.MarketingAutomation) { // not required
+		return nil
+	}
+
+	if m.MarketingAutomation != nil {
+		if err := m.MarketingAutomation.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("marketingAutomation")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GetAccount) validatePlan(formats strfmt.Registry) error {
+
+	if err := validate.Required("plan", "body", m.Plan); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.Plan); i++ {
+		if swag.IsZero(m.Plan[i]) { // not required
+			continue
+		}
+
+		if m.Plan[i] != nil {
+			if err := m.Plan[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("plan" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *GetAccount) validateRelay(formats strfmt.Registry) error {
+
+	if err := validate.Required("relay", "body", m.Relay); err != nil {
+		return err
+	}
+
+	if m.Relay != nil {
+		if err := m.Relay.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("relay")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -86,6 +194,429 @@ func (m *GetAccount) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *GetAccount) UnmarshalBinary(b []byte) error {
 	var res GetAccount
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetAccountAO1MarketingAutomation get account a o1 marketing automation
+// swagger:model GetAccountAO1MarketingAutomation
+type GetAccountAO1MarketingAutomation struct {
+
+	// Status of Marketing Automation Plateform activation for your account (true=enabled, false=disabled)
+	// Required: true
+	Enabled *bool `json:"enabled"`
+
+	// Marketing Automation Tracker ID
+	Key string `json:"key,omitempty"`
+}
+
+// Validate validates this get account a o1 marketing automation
+func (m *GetAccountAO1MarketingAutomation) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateEnabled(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetAccountAO1MarketingAutomation) validateEnabled(formats strfmt.Registry) error {
+
+	if err := validate.Required("marketingAutomation"+"."+"enabled", "body", m.Enabled); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetAccountAO1MarketingAutomation) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetAccountAO1MarketingAutomation) UnmarshalBinary(b []byte) error {
+	var res GetAccountAO1MarketingAutomation
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetAccountAO1Relay Information about your transactional email account
+// swagger:model GetAccountAO1Relay
+type GetAccountAO1Relay struct {
+
+	// data
+	// Required: true
+	Data *GetAccountAO1RelayData `json:"data"`
+
+	// Status of your transactional email Account (true=Enabled, false=Disabled)
+	// Required: true
+	Enabled *bool `json:"enabled"`
+}
+
+// Validate validates this get account a o1 relay
+func (m *GetAccountAO1Relay) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateData(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEnabled(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetAccountAO1Relay) validateData(formats strfmt.Registry) error {
+
+	if err := validate.Required("relay"+"."+"data", "body", m.Data); err != nil {
+		return err
+	}
+
+	if m.Data != nil {
+		if err := m.Data.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("relay" + "." + "data")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GetAccountAO1Relay) validateEnabled(formats strfmt.Registry) error {
+
+	if err := validate.Required("relay"+"."+"enabled", "body", m.Enabled); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetAccountAO1Relay) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetAccountAO1Relay) UnmarshalBinary(b []byte) error {
+	var res GetAccountAO1Relay
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetAccountAO1RelayData Data regarding the transactional email account
+// swagger:model GetAccountAO1RelayData
+type GetAccountAO1RelayData struct {
+
+	// Port used for SMTP Relay
+	// Required: true
+	Port *int64 `json:"port"`
+
+	// URL of the SMTP Relay
+	// Required: true
+	Relay *string `json:"relay"`
+
+	// Email to use as login on transactional platform
+	// Required: true
+	// Format: email
+	UserName *strfmt.Email `json:"userName"`
+}
+
+// Validate validates this get account a o1 relay data
+func (m *GetAccountAO1RelayData) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validatePort(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRelay(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUserName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetAccountAO1RelayData) validatePort(formats strfmt.Registry) error {
+
+	if err := validate.Required("relay"+"."+"data"+"."+"port", "body", m.Port); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetAccountAO1RelayData) validateRelay(formats strfmt.Registry) error {
+
+	if err := validate.Required("relay"+"."+"data"+"."+"relay", "body", m.Relay); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetAccountAO1RelayData) validateUserName(formats strfmt.Registry) error {
+
+	if err := validate.Required("relay"+"."+"data"+"."+"userName", "body", m.UserName); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("relay"+"."+"data"+"."+"userName", "body", "email", m.UserName.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetAccountAO1RelayData) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetAccountAO1RelayData) UnmarshalBinary(b []byte) error {
+	var res GetAccountAO1RelayData
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetAccountPlanItems0 get account plan items0
+// swagger:model GetAccountPlanItems0
+type GetAccountPlanItems0 struct {
+
+	// Remaining credits of the user
+	// Required: true
+	Credits *float32 `json:"credits"`
+
+	// This is the type of the credit, "Send Limit" is one of the possible types of credit of a user. "Send Limit" implies the total number of emails you can send to the subscribers in your account.
+	// Required: true
+	// Enum: [sendLimit]
+	CreditsType *string `json:"creditsType"`
+
+	// Date of the period from which the plan will end (only available for "subscription" and "reseller" plan type)
+	// Format: date
+	EndDate strfmt.Date `json:"endDate,omitempty"`
+
+	// Date of the period from which the plan will start (only available for "subscription" and "reseller" plan type)
+	// Format: date
+	StartDate strfmt.Date `json:"startDate,omitempty"`
+
+	// Displays the plan type of the user
+	// Required: true
+	// Enum: [payAsYouGo free subscription sms reseller]
+	Type *string `json:"type"`
+
+	// Only in case of reseller account. It implies the total number of child accounts you can add to your account.
+	UserLimit int64 `json:"userLimit,omitempty"`
+}
+
+// Validate validates this get account plan items0
+func (m *GetAccountPlanItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateCredits(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCreditsType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEndDate(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStartDate(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetAccountPlanItems0) validateCredits(formats strfmt.Registry) error {
+
+	if err := validate.Required("credits", "body", m.Credits); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var getAccountPlanItems0TypeCreditsTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["sendLimit"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		getAccountPlanItems0TypeCreditsTypePropEnum = append(getAccountPlanItems0TypeCreditsTypePropEnum, v)
+	}
+}
+
+const (
+
+	// GetAccountPlanItems0CreditsTypeSendLimit captures enum value "sendLimit"
+	GetAccountPlanItems0CreditsTypeSendLimit string = "sendLimit"
+)
+
+// prop value enum
+func (m *GetAccountPlanItems0) validateCreditsTypeEnum(path, location string, value string) error {
+	if err := validate.Enum(path, location, value, getAccountPlanItems0TypeCreditsTypePropEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *GetAccountPlanItems0) validateCreditsType(formats strfmt.Registry) error {
+
+	if err := validate.Required("creditsType", "body", m.CreditsType); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateCreditsTypeEnum("creditsType", "body", *m.CreditsType); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetAccountPlanItems0) validateEndDate(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.EndDate) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("endDate", "body", "date", m.EndDate.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetAccountPlanItems0) validateStartDate(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.StartDate) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("startDate", "body", "date", m.StartDate.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var getAccountPlanItems0TypeTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["payAsYouGo","free","subscription","sms","reseller"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		getAccountPlanItems0TypeTypePropEnum = append(getAccountPlanItems0TypeTypePropEnum, v)
+	}
+}
+
+const (
+
+	// GetAccountPlanItems0TypePayAsYouGo captures enum value "payAsYouGo"
+	GetAccountPlanItems0TypePayAsYouGo string = "payAsYouGo"
+
+	// GetAccountPlanItems0TypeFree captures enum value "free"
+	GetAccountPlanItems0TypeFree string = "free"
+
+	// GetAccountPlanItems0TypeSubscription captures enum value "subscription"
+	GetAccountPlanItems0TypeSubscription string = "subscription"
+
+	// GetAccountPlanItems0TypeSms captures enum value "sms"
+	GetAccountPlanItems0TypeSms string = "sms"
+
+	// GetAccountPlanItems0TypeReseller captures enum value "reseller"
+	GetAccountPlanItems0TypeReseller string = "reseller"
+)
+
+// prop value enum
+func (m *GetAccountPlanItems0) validateTypeEnum(path, location string, value string) error {
+	if err := validate.Enum(path, location, value, getAccountPlanItems0TypeTypePropEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *GetAccountPlanItems0) validateType(formats strfmt.Registry) error {
+
+	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateTypeEnum("type", "body", *m.Type); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetAccountPlanItems0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetAccountPlanItems0) UnmarshalBinary(b []byte) error {
+	var res GetAccountPlanItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

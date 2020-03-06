@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // GetProcessesReader is a Reader for the GetProcesses structure.
@@ -24,14 +24,12 @@ type GetProcessesReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetProcessesReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetProcessesOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewGetProcessesBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -61,6 +59,10 @@ func (o *GetProcessesOK) Error() string {
 	return fmt.Sprintf("[GET /processes][%d] getProcessesOK  %+v", 200, o.Payload)
 }
 
+func (o *GetProcessesOK) GetPayload() *models.GetProcesses {
+	return o.Payload
+}
+
 func (o *GetProcessesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.GetProcesses)
@@ -88,6 +90,10 @@ type GetProcessesBadRequest struct {
 
 func (o *GetProcessesBadRequest) Error() string {
 	return fmt.Sprintf("[GET /processes][%d] getProcessesBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *GetProcessesBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *GetProcessesBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

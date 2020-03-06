@@ -6,9 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -23,6 +22,7 @@ type GetClient struct {
 
 	// Login Email
 	// Required: true
+	// Format: email
 	Email *strfmt.Email `json:"email"`
 
 	// First Name
@@ -39,22 +39,18 @@ func (m *GetClient) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCompanyName(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateEmail(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateFirstName(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateLastName(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 

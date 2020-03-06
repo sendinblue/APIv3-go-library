@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // EmailExportRecipientsReader is a Reader for the EmailExportRecipients structure.
@@ -24,21 +24,18 @@ type EmailExportRecipientsReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *EmailExportRecipientsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 202:
 		result := NewEmailExportRecipientsAccepted()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewEmailExportRecipientsBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewEmailExportRecipientsNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +63,10 @@ type EmailExportRecipientsAccepted struct {
 
 func (o *EmailExportRecipientsAccepted) Error() string {
 	return fmt.Sprintf("[POST /emailCampaigns/{campaignId}/exportRecipients][%d] emailExportRecipientsAccepted  %+v", 202, o.Payload)
+}
+
+func (o *EmailExportRecipientsAccepted) GetPayload() *models.CreatedProcessID {
+	return o.Payload
 }
 
 func (o *EmailExportRecipientsAccepted) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -97,6 +98,10 @@ func (o *EmailExportRecipientsBadRequest) Error() string {
 	return fmt.Sprintf("[POST /emailCampaigns/{campaignId}/exportRecipients][%d] emailExportRecipientsBadRequest  %+v", 400, o.Payload)
 }
 
+func (o *EmailExportRecipientsBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
+}
+
 func (o *EmailExportRecipientsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ErrorModel)
@@ -124,6 +129,10 @@ type EmailExportRecipientsNotFound struct {
 
 func (o *EmailExportRecipientsNotFound) Error() string {
 	return fmt.Sprintf("[POST /emailCampaigns/{campaignId}/exportRecipients][%d] emailExportRecipientsNotFound  %+v", 404, o.Payload)
+}
+
+func (o *EmailExportRecipientsNotFound) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *EmailExportRecipientsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

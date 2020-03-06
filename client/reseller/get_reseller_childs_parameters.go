@@ -6,14 +6,14 @@ package reseller
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/swag"
 
 	strfmt "github.com/go-openapi/strfmt"
 )
@@ -21,8 +21,13 @@ import (
 // NewGetResellerChildsParams creates a new GetResellerChildsParams object
 // with the default values initialized.
 func NewGetResellerChildsParams() *GetResellerChildsParams {
-
+	var (
+		limitDefault  = int64(10)
+		offsetDefault = int64(0)
+	)
 	return &GetResellerChildsParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -31,8 +36,13 @@ func NewGetResellerChildsParams() *GetResellerChildsParams {
 // NewGetResellerChildsParamsWithTimeout creates a new GetResellerChildsParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetResellerChildsParamsWithTimeout(timeout time.Duration) *GetResellerChildsParams {
-
+	var (
+		limitDefault  = int64(10)
+		offsetDefault = int64(0)
+	)
 	return &GetResellerChildsParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: timeout,
 	}
@@ -41,8 +51,13 @@ func NewGetResellerChildsParamsWithTimeout(timeout time.Duration) *GetResellerCh
 // NewGetResellerChildsParamsWithContext creates a new GetResellerChildsParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewGetResellerChildsParamsWithContext(ctx context.Context) *GetResellerChildsParams {
-
+	var (
+		limitDefault  = int64(10)
+		offsetDefault = int64(0)
+	)
 	return &GetResellerChildsParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		Context: ctx,
 	}
@@ -51,8 +66,13 @@ func NewGetResellerChildsParamsWithContext(ctx context.Context) *GetResellerChil
 // NewGetResellerChildsParamsWithHTTPClient creates a new GetResellerChildsParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetResellerChildsParamsWithHTTPClient(client *http.Client) *GetResellerChildsParams {
-
+	var (
+		limitDefault  = int64(10)
+		offsetDefault = int64(0)
+	)
 	return &GetResellerChildsParams{
+		Limit:      &limitDefault,
+		Offset:     &offsetDefault,
 		HTTPClient: client,
 	}
 }
@@ -61,6 +81,18 @@ func NewGetResellerChildsParamsWithHTTPClient(client *http.Client) *GetResellerC
 for the get reseller childs operation typically these are written to a http.Request
 */
 type GetResellerChildsParams struct {
+
+	/*Limit
+	  Number of documents for child accounts information per page
+
+	*/
+	Limit *int64
+	/*Offset
+	  Index of the first document in the page
+
+	*/
+	Offset *int64
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -99,6 +131,28 @@ func (o *GetResellerChildsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithLimit adds the limit to the get reseller childs params
+func (o *GetResellerChildsParams) WithLimit(limit *int64) *GetResellerChildsParams {
+	o.SetLimit(limit)
+	return o
+}
+
+// SetLimit adds the limit to the get reseller childs params
+func (o *GetResellerChildsParams) SetLimit(limit *int64) {
+	o.Limit = limit
+}
+
+// WithOffset adds the offset to the get reseller childs params
+func (o *GetResellerChildsParams) WithOffset(offset *int64) *GetResellerChildsParams {
+	o.SetOffset(offset)
+	return o
+}
+
+// SetOffset adds the offset to the get reseller childs params
+func (o *GetResellerChildsParams) SetOffset(offset *int64) {
+	o.Offset = offset
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetResellerChildsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -106,6 +160,38 @@ func (o *GetResellerChildsParams) WriteToRequest(r runtime.ClientRequest, reg st
 		return err
 	}
 	var res []error
+
+	if o.Limit != nil {
+
+		// query param limit
+		var qrLimit int64
+		if o.Limit != nil {
+			qrLimit = *o.Limit
+		}
+		qLimit := swag.FormatInt64(qrLimit)
+		if qLimit != "" {
+			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Offset != nil {
+
+		// query param offset
+		var qrOffset int64
+		if o.Offset != nil {
+			qrOffset = *o.Offset
+		}
+		qOffset := swag.FormatInt64(qrOffset)
+		if qOffset != "" {
+			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)

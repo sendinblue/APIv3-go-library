@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // SendTransacEmailReader is a Reader for the SendTransacEmail structure.
@@ -24,14 +24,12 @@ type SendTransacEmailReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *SendTransacEmailReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 201:
 		result := NewSendTransacEmailCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewSendTransacEmailBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -51,7 +49,7 @@ func NewSendTransacEmailCreated() *SendTransacEmailCreated {
 
 /*SendTransacEmailCreated handles this case with default header values.
 
-SMTP email sent
+transactional email sent
 */
 type SendTransacEmailCreated struct {
 	Payload *models.CreateSMTPEmail
@@ -59,6 +57,10 @@ type SendTransacEmailCreated struct {
 
 func (o *SendTransacEmailCreated) Error() string {
 	return fmt.Sprintf("[POST /smtp/email][%d] sendTransacEmailCreated  %+v", 201, o.Payload)
+}
+
+func (o *SendTransacEmailCreated) GetPayload() *models.CreateSMTPEmail {
+	return o.Payload
 }
 
 func (o *SendTransacEmailCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -88,6 +90,10 @@ type SendTransacEmailBadRequest struct {
 
 func (o *SendTransacEmailBadRequest) Error() string {
 	return fmt.Sprintf("[POST /smtp/email][%d] sendTransacEmailBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *SendTransacEmailBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *SendTransacEmailBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

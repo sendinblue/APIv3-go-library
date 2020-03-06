@@ -6,19 +6,17 @@ package reseller
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
-	"github.com/go-openapi/swag"
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // NewAssociateIPToChildParams creates a new AssociateIPToChildParams object
@@ -65,16 +63,16 @@ for the associate Ip to child operation typically these are written to a http.Re
 */
 type AssociateIPToChildParams struct {
 
-	/*ChildID
-	  id of reseller's child
+	/*ChildAuthKey
+	  auth key of reseller's child
 
 	*/
-	ChildID int64
-	/*IPID
-	  IP's id
+	ChildAuthKey string
+	/*IP
+	  IP to associate
 
 	*/
-	IPID *models.ManageIP
+	IP *models.ManageIP
 
 	timeout    time.Duration
 	Context    context.Context
@@ -114,26 +112,26 @@ func (o *AssociateIPToChildParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithChildID adds the childID to the associate Ip to child params
-func (o *AssociateIPToChildParams) WithChildID(childID int64) *AssociateIPToChildParams {
-	o.SetChildID(childID)
+// WithChildAuthKey adds the childAuthKey to the associate Ip to child params
+func (o *AssociateIPToChildParams) WithChildAuthKey(childAuthKey string) *AssociateIPToChildParams {
+	o.SetChildAuthKey(childAuthKey)
 	return o
 }
 
-// SetChildID adds the childId to the associate Ip to child params
-func (o *AssociateIPToChildParams) SetChildID(childID int64) {
-	o.ChildID = childID
+// SetChildAuthKey adds the childAuthKey to the associate Ip to child params
+func (o *AssociateIPToChildParams) SetChildAuthKey(childAuthKey string) {
+	o.ChildAuthKey = childAuthKey
 }
 
-// WithIPID adds the iPID to the associate Ip to child params
-func (o *AssociateIPToChildParams) WithIPID(iPID *models.ManageIP) *AssociateIPToChildParams {
-	o.SetIPID(iPID)
+// WithIP adds the ip to the associate Ip to child params
+func (o *AssociateIPToChildParams) WithIP(ip *models.ManageIP) *AssociateIPToChildParams {
+	o.SetIP(ip)
 	return o
 }
 
-// SetIPID adds the ipId to the associate Ip to child params
-func (o *AssociateIPToChildParams) SetIPID(iPID *models.ManageIP) {
-	o.IPID = iPID
+// SetIP adds the ip to the associate Ip to child params
+func (o *AssociateIPToChildParams) SetIP(ip *models.ManageIP) {
+	o.IP = ip
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -144,13 +142,13 @@ func (o *AssociateIPToChildParams) WriteToRequest(r runtime.ClientRequest, reg s
 	}
 	var res []error
 
-	// path param childId
-	if err := r.SetPathParam("childId", swag.FormatInt64(o.ChildID)); err != nil {
+	// path param childAuthKey
+	if err := r.SetPathParam("childAuthKey", o.ChildAuthKey); err != nil {
 		return err
 	}
 
-	if o.IPID != nil {
-		if err := r.SetBodyParam(o.IPID); err != nil {
+	if o.IP != nil {
+		if err := r.SetBodyParam(o.IP); err != nil {
 			return err
 		}
 	}

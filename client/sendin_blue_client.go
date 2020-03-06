@@ -6,21 +6,20 @@ package client
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-openapi/runtime"
 	httptransport "github.com/go-openapi/runtime/client"
 
-	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
 	"github.com/sendinblue/APIv3-go-library/client/account"
 	"github.com/sendinblue/APIv3-go-library/client/contacts"
 	"github.com/sendinblue/APIv3-go-library/client/email_campaigns"
-	"github.com/sendinblue/APIv3-go-library/client/operations"
 	"github.com/sendinblue/APIv3-go-library/client/process"
 	"github.com/sendinblue/APIv3-go-library/client/reseller"
+	"github.com/sendinblue/APIv3-go-library/client/s_m_s_campaigns"
 	"github.com/sendinblue/APIv3-go-library/client/senders"
-	"github.com/sendinblue/APIv3-go-library/client/sms_campaigns"
 	"github.com/sendinblue/APIv3-go-library/client/smtp"
-	"github.com/sendinblue/APIv3-go-library/client/transactional_sms"
+	"github.com/sendinblue/APIv3-go-library/client/transactional_s_m_s"
 	"github.com/sendinblue/APIv3-go-library/client/webhooks"
 )
 
@@ -48,9 +47,6 @@ func NewHTTPClient(formats strfmt.Registry) *SendinBlue {
 // using a customizable transport config.
 func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *SendinBlue {
 	// ensure nullable parameters have default
-	if formats == nil {
-		formats = strfmt.Default
-	}
 	if cfg == nil {
 		cfg = DefaultTransportConfig()
 	}
@@ -62,31 +58,23 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *Sen
 
 // New creates a new sendin blue client
 func New(transport runtime.ClientTransport, formats strfmt.Registry) *SendinBlue {
+	// ensure nullable parameters have default
+	if formats == nil {
+		formats = strfmt.Default
+	}
+
 	cli := new(SendinBlue)
 	cli.Transport = transport
-
 	cli.Account = account.New(transport, formats)
-
 	cli.Contacts = contacts.New(transport, formats)
-
 	cli.EmailCampaigns = email_campaigns.New(transport, formats)
-
-	cli.Operations = operations.New(transport, formats)
-
 	cli.Process = process.New(transport, formats)
-
 	cli.Reseller = reseller.New(transport, formats)
-
+	cli.SmsCampaigns = s_m_s_campaigns.New(transport, formats)
 	cli.Senders = senders.New(transport, formats)
-
-	cli.SMSCampaigns = sms_campaigns.New(transport, formats)
-
 	cli.SMTP = smtp.New(transport, formats)
-
-	cli.TransactionalSMS = transactional_sms.New(transport, formats)
-
+	cli.Transactionalsms = transactional_s_m_s.New(transport, formats)
 	cli.Webhooks = webhooks.New(transport, formats)
-
 	return cli
 }
 
@@ -131,27 +119,25 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 
 // SendinBlue is a client for sendin blue
 type SendinBlue struct {
-	Account *account.Client
+	Account account.ClientService
 
-	Contacts *contacts.Client
+	Contacts contacts.ClientService
 
-	EmailCampaigns *email_campaigns.Client
+	EmailCampaigns email_campaigns.ClientService
 
-	Operations *operations.Client
+	Process process.ClientService
 
-	Process *process.Client
+	Reseller reseller.ClientService
 
-	Reseller *reseller.Client
+	SmsCampaigns s_m_s_campaigns.ClientService
 
-	Senders *senders.Client
+	Senders senders.ClientService
 
-	SMSCampaigns *sms_campaigns.Client
+	SMTP smtp.ClientService
 
-	SMTP *smtp.Client
+	Transactionalsms transactional_s_m_s.ClientService
 
-	TransactionalSMS *transactional_sms.Client
-
-	Webhooks *webhooks.Client
+	Webhooks webhooks.ClientService
 
 	Transport runtime.ClientTransport
 }
@@ -159,27 +145,14 @@ type SendinBlue struct {
 // SetTransport changes the transport on the client and all its subresources
 func (c *SendinBlue) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
-
 	c.Account.SetTransport(transport)
-
 	c.Contacts.SetTransport(transport)
-
 	c.EmailCampaigns.SetTransport(transport)
-
-	c.Operations.SetTransport(transport)
-
 	c.Process.SetTransport(transport)
-
 	c.Reseller.SetTransport(transport)
-
+	c.SmsCampaigns.SetTransport(transport)
 	c.Senders.SetTransport(transport)
-
-	c.SMSCampaigns.SetTransport(transport)
-
 	c.SMTP.SetTransport(transport)
-
-	c.TransactionalSMS.SetTransport(transport)
-
+	c.Transactionalsms.SetTransport(transport)
 	c.Webhooks.SetTransport(transport)
-
 }

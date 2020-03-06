@@ -6,13 +6,14 @@ package senders
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-openapi/runtime"
+	"fmt"
 
-	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 )
 
 // New creates a new senders API client.
-func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -24,8 +25,25 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientService is the interface for Client methods
+type ClientService interface {
+	CreateSender(params *CreateSenderParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSenderCreated, error)
+
+	DeleteSender(params *DeleteSenderParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSenderNoContent, error)
+
+	GetIps(params *GetIpsParams, authInfo runtime.ClientAuthInfoWriter) (*GetIpsOK, error)
+
+	GetIpsFromSender(params *GetIpsFromSenderParams, authInfo runtime.ClientAuthInfoWriter) (*GetIpsFromSenderOK, error)
+
+	GetSenders(params *GetSendersParams, authInfo runtime.ClientAuthInfoWriter) (*GetSendersOK, error)
+
+	UpdateSender(params *UpdateSenderParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSenderNoContent, error)
+
+	SetTransport(transport runtime.ClientTransport)
+}
+
 /*
-CreateSender creates a new sender
+  CreateSender creates a new sender
 */
 func (a *Client) CreateSender(params *CreateSenderParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSenderCreated, error) {
 	// TODO: Validate the params before sending
@@ -49,12 +67,18 @@ func (a *Client) CreateSender(params *CreateSenderParams, authInfo runtime.Clien
 	if err != nil {
 		return nil, err
 	}
-	return result.(*CreateSenderCreated), nil
-
+	success, ok := result.(*CreateSenderCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for createSender: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-DeleteSender deletes a sender
+  DeleteSender deletes a sender
 */
 func (a *Client) DeleteSender(params *DeleteSenderParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSenderNoContent, error) {
 	// TODO: Validate the params before sending
@@ -78,12 +102,18 @@ func (a *Client) DeleteSender(params *DeleteSenderParams, authInfo runtime.Clien
 	if err != nil {
 		return nil, err
 	}
-	return result.(*DeleteSenderNoContent), nil
-
+	success, ok := result.(*DeleteSenderNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for deleteSender: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetIps returns all the dedicated ips for your account
+  GetIps returns all the dedicated i ps for your account
 */
 func (a *Client) GetIps(params *GetIpsParams, authInfo runtime.ClientAuthInfoWriter) (*GetIpsOK, error) {
 	// TODO: Validate the params before sending
@@ -107,12 +137,18 @@ func (a *Client) GetIps(params *GetIpsParams, authInfo runtime.ClientAuthInfoWri
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetIpsOK), nil
-
+	success, ok := result.(*GetIpsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getIps: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetIpsFromSender returns all the dedicated ips for a sender
+  GetIpsFromSender returns all the dedicated i ps for a sender
 */
 func (a *Client) GetIpsFromSender(params *GetIpsFromSenderParams, authInfo runtime.ClientAuthInfoWriter) (*GetIpsFromSenderOK, error) {
 	// TODO: Validate the params before sending
@@ -136,12 +172,18 @@ func (a *Client) GetIpsFromSender(params *GetIpsFromSenderParams, authInfo runti
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetIpsFromSenderOK), nil
-
+	success, ok := result.(*GetIpsFromSenderOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getIpsFromSender: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetSenders gets the list of all your senders
+  GetSenders gets the list of all your senders
 */
 func (a *Client) GetSenders(params *GetSendersParams, authInfo runtime.ClientAuthInfoWriter) (*GetSendersOK, error) {
 	// TODO: Validate the params before sending
@@ -165,12 +207,18 @@ func (a *Client) GetSenders(params *GetSendersParams, authInfo runtime.ClientAut
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetSendersOK), nil
-
+	success, ok := result.(*GetSendersOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getSenders: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-UpdateSender updates a sender
+  UpdateSender updates a sender
 */
 func (a *Client) UpdateSender(params *UpdateSenderParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSenderNoContent, error) {
 	// TODO: Validate the params before sending
@@ -194,8 +242,14 @@ func (a *Client) UpdateSender(params *UpdateSenderParams, authInfo runtime.Clien
 	if err != nil {
 		return nil, err
 	}
-	return result.(*UpdateSenderNoContent), nil
-
+	success, ok := result.(*UpdateSenderNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for updateSender: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 // SetTransport changes the transport on the client

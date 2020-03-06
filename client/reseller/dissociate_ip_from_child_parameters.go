@@ -6,19 +6,17 @@ package reseller
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
-	"github.com/go-openapi/swag"
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // NewDissociateIPFromChildParams creates a new DissociateIPFromChildParams object
@@ -65,16 +63,16 @@ for the dissociate Ip from child operation typically these are written to a http
 */
 type DissociateIPFromChildParams struct {
 
-	/*ChildID
-	  id of reseller's child
+	/*ChildAuthKey
+	  auth key of reseller's child
 
 	*/
-	ChildID int64
-	/*IPID
-	  IP's id
+	ChildAuthKey string
+	/*IP
+	  IP to dissociate
 
 	*/
-	IPID *models.ManageIP
+	IP *models.ManageIP
 
 	timeout    time.Duration
 	Context    context.Context
@@ -114,26 +112,26 @@ func (o *DissociateIPFromChildParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithChildID adds the childID to the dissociate Ip from child params
-func (o *DissociateIPFromChildParams) WithChildID(childID int64) *DissociateIPFromChildParams {
-	o.SetChildID(childID)
+// WithChildAuthKey adds the childAuthKey to the dissociate Ip from child params
+func (o *DissociateIPFromChildParams) WithChildAuthKey(childAuthKey string) *DissociateIPFromChildParams {
+	o.SetChildAuthKey(childAuthKey)
 	return o
 }
 
-// SetChildID adds the childId to the dissociate Ip from child params
-func (o *DissociateIPFromChildParams) SetChildID(childID int64) {
-	o.ChildID = childID
+// SetChildAuthKey adds the childAuthKey to the dissociate Ip from child params
+func (o *DissociateIPFromChildParams) SetChildAuthKey(childAuthKey string) {
+	o.ChildAuthKey = childAuthKey
 }
 
-// WithIPID adds the iPID to the dissociate Ip from child params
-func (o *DissociateIPFromChildParams) WithIPID(iPID *models.ManageIP) *DissociateIPFromChildParams {
-	o.SetIPID(iPID)
+// WithIP adds the ip to the dissociate Ip from child params
+func (o *DissociateIPFromChildParams) WithIP(ip *models.ManageIP) *DissociateIPFromChildParams {
+	o.SetIP(ip)
 	return o
 }
 
-// SetIPID adds the ipId to the dissociate Ip from child params
-func (o *DissociateIPFromChildParams) SetIPID(iPID *models.ManageIP) {
-	o.IPID = iPID
+// SetIP adds the ip to the dissociate Ip from child params
+func (o *DissociateIPFromChildParams) SetIP(ip *models.ManageIP) {
+	o.IP = ip
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -144,13 +142,13 @@ func (o *DissociateIPFromChildParams) WriteToRequest(r runtime.ClientRequest, re
 	}
 	var res []error
 
-	// path param childId
-	if err := r.SetPathParam("childId", swag.FormatInt64(o.ChildID)); err != nil {
+	// path param childAuthKey
+	if err := r.SetPathParam("childAuthKey", o.ChildAuthKey); err != nil {
 		return err
 	}
 
-	if o.IPID != nil {
-		if err := r.SetBodyParam(o.IPID); err != nil {
+	if o.IP != nil {
+		if err := r.SetBodyParam(o.IP); err != nil {
 			return err
 		}
 	}

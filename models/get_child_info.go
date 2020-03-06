@@ -6,10 +6,12 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"strconv"
 
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // GetChildInfo get child info
@@ -17,30 +19,65 @@ import (
 type GetChildInfo struct {
 	GetClient
 
-	GetChildInfoAllOf1
+	// api keys
+	APIKeys *GetChildInfoAO1APIKeys `json:"apiKeys,omitempty"`
+
+	// credits
+	Credits *GetChildInfoAO1Credits `json:"credits,omitempty"`
+
+	// IP(s) associated to a child account user
+	Ips []string `json:"ips"`
+
+	// The encrypted password of child account
+	// Required: true
+	// Format: password
+	Password *strfmt.Password `json:"password"`
+
+	// statistics
+	Statistics *GetChildInfoAO1Statistics `json:"statistics,omitempty"`
 }
 
 // UnmarshalJSON unmarshals this object from a JSON structure
 func (m *GetChildInfo) UnmarshalJSON(raw []byte) error {
-
+	// AO0
 	var aO0 GetClient
 	if err := swag.ReadJSON(raw, &aO0); err != nil {
 		return err
 	}
 	m.GetClient = aO0
 
-	var aO1 GetChildInfoAllOf1
-	if err := swag.ReadJSON(raw, &aO1); err != nil {
+	// AO1
+	var dataAO1 struct {
+		APIKeys *GetChildInfoAO1APIKeys `json:"apiKeys,omitempty"`
+
+		Credits *GetChildInfoAO1Credits `json:"credits,omitempty"`
+
+		Ips []string `json:"ips"`
+
+		Password *strfmt.Password `json:"password"`
+
+		Statistics *GetChildInfoAO1Statistics `json:"statistics,omitempty"`
+	}
+	if err := swag.ReadJSON(raw, &dataAO1); err != nil {
 		return err
 	}
-	m.GetChildInfoAllOf1 = aO1
+
+	m.APIKeys = dataAO1.APIKeys
+
+	m.Credits = dataAO1.Credits
+
+	m.Ips = dataAO1.Ips
+
+	m.Password = dataAO1.Password
+
+	m.Statistics = dataAO1.Statistics
 
 	return nil
 }
 
 // MarshalJSON marshals this object to a JSON structure
 func (m GetChildInfo) MarshalJSON() ([]byte, error) {
-	var _parts [][]byte
+	_parts := make([][]byte, 0, 2)
 
 	aO0, err := swag.WriteJSON(m.GetClient)
 	if err != nil {
@@ -48,11 +85,33 @@ func (m GetChildInfo) MarshalJSON() ([]byte, error) {
 	}
 	_parts = append(_parts, aO0)
 
-	aO1, err := swag.WriteJSON(m.GetChildInfoAllOf1)
-	if err != nil {
-		return nil, err
+	var dataAO1 struct {
+		APIKeys *GetChildInfoAO1APIKeys `json:"apiKeys,omitempty"`
+
+		Credits *GetChildInfoAO1Credits `json:"credits,omitempty"`
+
+		Ips []string `json:"ips"`
+
+		Password *strfmt.Password `json:"password"`
+
+		Statistics *GetChildInfoAO1Statistics `json:"statistics,omitempty"`
 	}
-	_parts = append(_parts, aO1)
+
+	dataAO1.APIKeys = m.APIKeys
+
+	dataAO1.Credits = m.Credits
+
+	dataAO1.Ips = m.Ips
+
+	dataAO1.Password = m.Password
+
+	dataAO1.Statistics = m.Statistics
+
+	jsonDataAO1, errAO1 := swag.WriteJSON(dataAO1)
+	if errAO1 != nil {
+		return nil, errAO1
+	}
+	_parts = append(_parts, jsonDataAO1)
 
 	return swag.ConcatJSON(_parts...), nil
 }
@@ -61,17 +120,97 @@ func (m GetChildInfo) MarshalJSON() ([]byte, error) {
 func (m *GetChildInfo) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	// validation for a type composition with GetClient
 	if err := m.GetClient.Validate(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.GetChildInfoAllOf1.Validate(formats); err != nil {
+	if err := m.validateAPIKeys(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCredits(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePassword(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStatistics(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *GetChildInfo) validateAPIKeys(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.APIKeys) { // not required
+		return nil
+	}
+
+	if m.APIKeys != nil {
+		if err := m.APIKeys.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("apiKeys")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GetChildInfo) validateCredits(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Credits) { // not required
+		return nil
+	}
+
+	if m.Credits != nil {
+		if err := m.Credits.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("credits")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GetChildInfo) validatePassword(formats strfmt.Registry) error {
+
+	if err := validate.Required("password", "body", m.Password); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("password", "body", "password", m.Password.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetChildInfo) validateStatistics(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Statistics) { // not required
+		return nil
+	}
+
+	if m.Statistics != nil {
+		if err := m.Statistics.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("statistics")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -86,6 +225,309 @@ func (m *GetChildInfo) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *GetChildInfo) UnmarshalBinary(b []byte) error {
 	var res GetChildInfo
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetChildInfoAO1APIKeys API Keys associated to child account
+// swagger:model GetChildInfoAO1APIKeys
+type GetChildInfoAO1APIKeys struct {
+
+	// v2
+	// Required: true
+	V2 []*GetChildInfoAO1APIKeysV2Items0 `json:"v2"`
+
+	// v3
+	V3 []*GetChildInfoAO1APIKeysV3Items0 `json:"v3"`
+}
+
+// Validate validates this get child info a o1 API keys
+func (m *GetChildInfoAO1APIKeys) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateV2(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateV3(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetChildInfoAO1APIKeys) validateV2(formats strfmt.Registry) error {
+
+	if err := validate.Required("apiKeys"+"."+"v2", "body", m.V2); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.V2); i++ {
+		if swag.IsZero(m.V2[i]) { // not required
+			continue
+		}
+
+		if m.V2[i] != nil {
+			if err := m.V2[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("apiKeys" + "." + "v2" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *GetChildInfoAO1APIKeys) validateV3(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.V3) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.V3); i++ {
+		if swag.IsZero(m.V3[i]) { // not required
+			continue
+		}
+
+		if m.V3[i] != nil {
+			if err := m.V3[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("apiKeys" + "." + "v3" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetChildInfoAO1APIKeys) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetChildInfoAO1APIKeys) UnmarshalBinary(b []byte) error {
+	var res GetChildInfoAO1APIKeys
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetChildInfoAO1APIKeysV2Items0 get child info a o1 API keys v2 items0
+// swagger:model GetChildInfoAO1APIKeysV2Items0
+type GetChildInfoAO1APIKeysV2Items0 struct {
+
+	// API Key for version 2
+	// Required: true
+	Key *string `json:"key"`
+
+	// Name of the key for version 2
+	// Required: true
+	Name *string `json:"name"`
+}
+
+// Validate validates this get child info a o1 API keys v2 items0
+func (m *GetChildInfoAO1APIKeysV2Items0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateKey(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetChildInfoAO1APIKeysV2Items0) validateKey(formats strfmt.Registry) error {
+
+	if err := validate.Required("key", "body", m.Key); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetChildInfoAO1APIKeysV2Items0) validateName(formats strfmt.Registry) error {
+
+	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetChildInfoAO1APIKeysV2Items0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetChildInfoAO1APIKeysV2Items0) UnmarshalBinary(b []byte) error {
+	var res GetChildInfoAO1APIKeysV2Items0
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetChildInfoAO1APIKeysV3Items0 get child info a o1 API keys v3 items0
+// swagger:model GetChildInfoAO1APIKeysV3Items0
+type GetChildInfoAO1APIKeysV3Items0 struct {
+
+	// API Key for version 3
+	// Required: true
+	Key *string `json:"key"`
+
+	// Name of the key for version 3
+	// Required: true
+	Name *string `json:"name"`
+}
+
+// Validate validates this get child info a o1 API keys v3 items0
+func (m *GetChildInfoAO1APIKeysV3Items0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateKey(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetChildInfoAO1APIKeysV3Items0) validateKey(formats strfmt.Registry) error {
+
+	if err := validate.Required("key", "body", m.Key); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetChildInfoAO1APIKeysV3Items0) validateName(formats strfmt.Registry) error {
+
+	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetChildInfoAO1APIKeysV3Items0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetChildInfoAO1APIKeysV3Items0) UnmarshalBinary(b []byte) error {
+	var res GetChildInfoAO1APIKeysV3Items0
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetChildInfoAO1Credits Credits available for your child
+// swagger:model GetChildInfoAO1Credits
+type GetChildInfoAO1Credits struct {
+
+	// Email credits available for your child
+	EmailCredits int64 `json:"emailCredits,omitempty"`
+
+	// SMS credits available for your child
+	SmsCredits int64 `json:"smsCredits,omitempty"`
+}
+
+// Validate validates this get child info a o1 credits
+func (m *GetChildInfoAO1Credits) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetChildInfoAO1Credits) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetChildInfoAO1Credits) UnmarshalBinary(b []byte) error {
+	var res GetChildInfoAO1Credits
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetChildInfoAO1Statistics Statistics about your child account activity
+// swagger:model GetChildInfoAO1Statistics
+type GetChildInfoAO1Statistics struct {
+
+	// Overall emails sent for current month
+	CurrentMonthTotalSent int64 `json:"currentMonthTotalSent,omitempty"`
+
+	// Overall emails sent for the previous month
+	PreviousMonthTotalSent int64 `json:"previousMonthTotalSent,omitempty"`
+
+	// Overall emails sent for since the account exists
+	TotalSent int64 `json:"totalSent,omitempty"`
+}
+
+// Validate validates this get child info a o1 statistics
+func (m *GetChildInfoAO1Statistics) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetChildInfoAO1Statistics) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetChildInfoAO1Statistics) UnmarshalBinary(b []byte) error {
+	var res GetChildInfoAO1Statistics
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

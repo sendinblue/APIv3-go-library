@@ -6,10 +6,9 @@ package smtp
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -97,7 +96,7 @@ type GetEmailEventReportParams struct {
 	  Mandatory if startDate is used. Ending date of the report (YYYY-MM-DD). Must be greater than equal to startDate
 
 	*/
-	EndDate *strfmt.Date
+	EndDate *string
 	/*Event
 	  Filter the report for a specific event type
 
@@ -122,7 +121,7 @@ type GetEmailEventReportParams struct {
 	  Mandatory if endDate is used. Starting date of the report (YYYY-MM-DD). Must be lower than equal to endDate
 
 	*/
-	StartDate *strfmt.Date
+	StartDate *string
 	/*Tags
 	  Filter the report for tags (serialized and urlencoded array)
 
@@ -195,13 +194,13 @@ func (o *GetEmailEventReportParams) SetEmail(email *strfmt.Email) {
 }
 
 // WithEndDate adds the endDate to the get email event report params
-func (o *GetEmailEventReportParams) WithEndDate(endDate *strfmt.Date) *GetEmailEventReportParams {
+func (o *GetEmailEventReportParams) WithEndDate(endDate *string) *GetEmailEventReportParams {
 	o.SetEndDate(endDate)
 	return o
 }
 
 // SetEndDate adds the endDate to the get email event report params
-func (o *GetEmailEventReportParams) SetEndDate(endDate *strfmt.Date) {
+func (o *GetEmailEventReportParams) SetEndDate(endDate *string) {
 	o.EndDate = endDate
 }
 
@@ -250,13 +249,13 @@ func (o *GetEmailEventReportParams) SetOffset(offset *int64) {
 }
 
 // WithStartDate adds the startDate to the get email event report params
-func (o *GetEmailEventReportParams) WithStartDate(startDate *strfmt.Date) *GetEmailEventReportParams {
+func (o *GetEmailEventReportParams) WithStartDate(startDate *string) *GetEmailEventReportParams {
 	o.SetStartDate(startDate)
 	return o
 }
 
 // SetStartDate adds the startDate to the get email event report params
-func (o *GetEmailEventReportParams) SetStartDate(startDate *strfmt.Date) {
+func (o *GetEmailEventReportParams) SetStartDate(startDate *string) {
 	o.StartDate = startDate
 }
 
@@ -325,11 +324,11 @@ func (o *GetEmailEventReportParams) WriteToRequest(r runtime.ClientRequest, reg 
 	if o.EndDate != nil {
 
 		// query param endDate
-		var qrEndDate strfmt.Date
+		var qrEndDate string
 		if o.EndDate != nil {
 			qrEndDate = *o.EndDate
 		}
-		qEndDate := qrEndDate.String()
+		qEndDate := qrEndDate
 		if qEndDate != "" {
 			if err := r.SetQueryParam("endDate", qEndDate); err != nil {
 				return err
@@ -405,11 +404,11 @@ func (o *GetEmailEventReportParams) WriteToRequest(r runtime.ClientRequest, reg 
 	if o.StartDate != nil {
 
 		// query param startDate
-		var qrStartDate strfmt.Date
+		var qrStartDate string
 		if o.StartDate != nil {
 			qrStartDate = *o.StartDate
 		}
-		qStartDate := qrStartDate.String()
+		qStartDate := qrStartDate
 		if qStartDate != "" {
 			if err := r.SetQueryParam("startDate", qStartDate); err != nil {
 				return err

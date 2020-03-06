@@ -6,9 +6,10 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"strconv"
 
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -17,53 +18,57 @@ import (
 // swagger:model sendEmail
 type SendEmail struct {
 
-	// attachment
-	Attachment SendEmailAttachment `json:"attachment"`
+	// Pass the list of content (base64 encoded) and name of the attachment. For example, [{'content':'base64 encoded content 1', 'name':'attcahment1'}, {'content':'base64 encoded content 2', 'name':'attcahment2'}].
+	Attachment []*SendEmailAttachmentItems0 `json:"attachment"`
 
 	// Absolute url of the attachment (no local file). Extension allowed: xlsx, xls, ods, docx, docm, doc, csv, pdf, txt, gif, jpg, jpeg, png, tif, tiff, rtf, bmp, cgm, css, shtml, html, htm, zip, xml, ppt, pptx, tar, ez, ics, mobi, msg, pub and eps
 	AttachmentURL string `json:"attachmentUrl,omitempty"`
 
-	// attributes
-	Attributes map[string]string `json:"attributes,omitempty"`
+	// Pass the set of attributes to customize the template. For example, {'FNAME':'Joe', 'LNAME':'Doe'}
+	Attributes interface{} `json:"attributes,omitempty"`
 
-	// Email addresses of the recipients in bcc
+	// List of the email addresses of the recipients in bcc
 	EmailBcc []strfmt.Email `json:"emailBcc"`
 
-	// Email addresses of the recipients in cc
+	// List of the email addresses of the recipients in cc
 	EmailCc []strfmt.Email `json:"emailCc"`
 
-	// Email addresses of the recipients
+	// List of the email addresses of the recipients. For example, ['abc@example.com', 'asd@example.com'].
 	// Required: true
 	EmailTo []strfmt.Email `json:"emailTo"`
 
-	// headers
-	Headers map[string]string `json:"headers,omitempty"`
+	// Pass the set of headers that shall be sent along the mail headers in the original email. 'sender.ip' header can be set (only for dedicated ip users) to mention the IP to be used for sending transactional emails. For example, {'Content-Type':'text/html', 'charset':'iso-8859-1', 'sender.ip':'1.2.3.4'}
+	Headers interface{} `json:"headers,omitempty"`
 
-	// Email on which campaign recipients will be able to reply to
+	// Email address which shall be used by campaign recipients to reply back
+	// Format: email
 	ReplyTo strfmt.Email `json:"replyTo,omitempty"`
+
+	// Tag your emails to find them more easily
+	Tags []string `json:"tags"`
 }
 
 // Validate validates this send email
 func (m *SendEmail) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAttachment(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateEmailBcc(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateEmailCc(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateEmailTo(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateReplyTo(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -73,10 +78,43 @@ func (m *SendEmail) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *SendEmail) validateAttachment(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Attachment) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Attachment); i++ {
+		if swag.IsZero(m.Attachment[i]) { // not required
+			continue
+		}
+
+		if m.Attachment[i] != nil {
+			if err := m.Attachment[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("attachment" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *SendEmail) validateEmailBcc(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.EmailBcc) { // not required
 		return nil
+	}
+
+	for i := 0; i < len(m.EmailBcc); i++ {
+
+		if err := validate.FormatOf("emailBcc"+"."+strconv.Itoa(i), "body", "email", m.EmailBcc[i].String(), formats); err != nil {
+			return err
+		}
+
 	}
 
 	return nil
@@ -88,6 +126,14 @@ func (m *SendEmail) validateEmailCc(formats strfmt.Registry) error {
 		return nil
 	}
 
+	for i := 0; i < len(m.EmailCc); i++ {
+
+		if err := validate.FormatOf("emailCc"+"."+strconv.Itoa(i), "body", "email", m.EmailCc[i].String(), formats); err != nil {
+			return err
+		}
+
+	}
+
 	return nil
 }
 
@@ -95,6 +141,14 @@ func (m *SendEmail) validateEmailTo(formats strfmt.Registry) error {
 
 	if err := validate.Required("emailTo", "body", m.EmailTo); err != nil {
 		return err
+	}
+
+	for i := 0; i < len(m.EmailTo); i++ {
+
+		if err := validate.FormatOf("emailTo"+"."+strconv.Itoa(i), "body", "email", m.EmailTo[i].String(), formats); err != nil {
+			return err
+		}
+
 	}
 
 	return nil
@@ -124,6 +178,74 @@ func (m *SendEmail) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *SendEmail) UnmarshalBinary(b []byte) error {
 	var res SendEmail
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// SendEmailAttachmentItems0 send email attachment items0
+// swagger:model SendEmailAttachmentItems0
+type SendEmailAttachmentItems0 struct {
+
+	// Base64 encoded chunk data of the attachment generated on the fly
+	// Required: true
+	// Format: byte
+	Content *strfmt.Base64 `json:"content"`
+
+	// Required for content. Name of the attachment
+	// Required: true
+	Name *string `json:"name"`
+}
+
+// Validate validates this send email attachment items0
+func (m *SendEmailAttachmentItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateContent(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *SendEmailAttachmentItems0) validateContent(formats strfmt.Registry) error {
+
+	if err := validate.Required("content", "body", m.Content); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *SendEmailAttachmentItems0) validateName(formats strfmt.Registry) error {
+
+	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *SendEmailAttachmentItems0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *SendEmailAttachmentItems0) UnmarshalBinary(b []byte) error {
+	var res SendEmailAttachmentItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

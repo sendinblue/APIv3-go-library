@@ -6,10 +6,10 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // GetExtendedClient get extended client
@@ -17,30 +17,36 @@ import (
 type GetExtendedClient struct {
 	GetClient
 
-	GetExtendedClientAllOf1
+	// address
+	// Required: true
+	Address *GetExtendedClientAO1Address `json:"address"`
 }
 
 // UnmarshalJSON unmarshals this object from a JSON structure
 func (m *GetExtendedClient) UnmarshalJSON(raw []byte) error {
-
+	// AO0
 	var aO0 GetClient
 	if err := swag.ReadJSON(raw, &aO0); err != nil {
 		return err
 	}
 	m.GetClient = aO0
 
-	var aO1 GetExtendedClientAllOf1
-	if err := swag.ReadJSON(raw, &aO1); err != nil {
+	// AO1
+	var dataAO1 struct {
+		Address *GetExtendedClientAO1Address `json:"address"`
+	}
+	if err := swag.ReadJSON(raw, &dataAO1); err != nil {
 		return err
 	}
-	m.GetExtendedClientAllOf1 = aO1
+
+	m.Address = dataAO1.Address
 
 	return nil
 }
 
 // MarshalJSON marshals this object to a JSON structure
 func (m GetExtendedClient) MarshalJSON() ([]byte, error) {
-	var _parts [][]byte
+	_parts := make([][]byte, 0, 2)
 
 	aO0, err := swag.WriteJSON(m.GetClient)
 	if err != nil {
@@ -48,11 +54,17 @@ func (m GetExtendedClient) MarshalJSON() ([]byte, error) {
 	}
 	_parts = append(_parts, aO0)
 
-	aO1, err := swag.WriteJSON(m.GetExtendedClientAllOf1)
-	if err != nil {
-		return nil, err
+	var dataAO1 struct {
+		Address *GetExtendedClientAO1Address `json:"address"`
 	}
-	_parts = append(_parts, aO1)
+
+	dataAO1.Address = m.Address
+
+	jsonDataAO1, errAO1 := swag.WriteJSON(dataAO1)
+	if errAO1 != nil {
+		return nil, errAO1
+	}
+	_parts = append(_parts, jsonDataAO1)
 
 	return swag.ConcatJSON(_parts...), nil
 }
@@ -61,17 +73,36 @@ func (m GetExtendedClient) MarshalJSON() ([]byte, error) {
 func (m *GetExtendedClient) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	// validation for a type composition with GetClient
 	if err := m.GetClient.Validate(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.GetExtendedClientAllOf1.Validate(formats); err != nil {
+	if err := m.validateAddress(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *GetExtendedClient) validateAddress(formats strfmt.Registry) error {
+
+	if err := validate.Required("address", "body", m.Address); err != nil {
+		return err
+	}
+
+	if m.Address != nil {
+		if err := m.Address.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("address")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -86,6 +117,107 @@ func (m *GetExtendedClient) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *GetExtendedClient) UnmarshalBinary(b []byte) error {
 	var res GetExtendedClient
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetExtendedClientAO1Address Address informations
+// swagger:model GetExtendedClientAO1Address
+type GetExtendedClientAO1Address struct {
+
+	// City information
+	// Required: true
+	City *string `json:"city"`
+
+	// Country information
+	// Required: true
+	Country *string `json:"country"`
+
+	// Street information
+	// Required: true
+	Street *string `json:"street"`
+
+	// Zip Code information
+	// Required: true
+	ZipCode *string `json:"zipCode"`
+}
+
+// Validate validates this get extended client a o1 address
+func (m *GetExtendedClientAO1Address) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateCity(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCountry(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStreet(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateZipCode(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetExtendedClientAO1Address) validateCity(formats strfmt.Registry) error {
+
+	if err := validate.Required("address"+"."+"city", "body", m.City); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetExtendedClientAO1Address) validateCountry(formats strfmt.Registry) error {
+
+	if err := validate.Required("address"+"."+"country", "body", m.Country); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetExtendedClientAO1Address) validateStreet(formats strfmt.Registry) error {
+
+	if err := validate.Required("address"+"."+"street", "body", m.Street); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetExtendedClientAO1Address) validateZipCode(formats strfmt.Registry) error {
+
+	if err := validate.Required("address"+"."+"zipCode", "body", m.ZipCode); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetExtendedClientAO1Address) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetExtendedClientAO1Address) UnmarshalBinary(b []byte) error {
+	var res GetExtendedClientAO1Address
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

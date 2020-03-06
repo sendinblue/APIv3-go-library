@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // GetSMTPTemplatesReader is a Reader for the GetSMTPTemplates structure.
@@ -24,14 +24,12 @@ type GetSMTPTemplatesReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetSMTPTemplatesReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetSMTPTemplatesOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewGetSMTPTemplatesBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -51,7 +49,7 @@ func NewGetSMTPTemplatesOK() *GetSMTPTemplatesOK {
 
 /*GetSMTPTemplatesOK handles this case with default header values.
 
-SMTP templates informations
+transactional email templates informations
 */
 type GetSMTPTemplatesOK struct {
 	Payload *models.GetSMTPTemplates
@@ -59,6 +57,10 @@ type GetSMTPTemplatesOK struct {
 
 func (o *GetSMTPTemplatesOK) Error() string {
 	return fmt.Sprintf("[GET /smtp/templates][%d] getSmtpTemplatesOK  %+v", 200, o.Payload)
+}
+
+func (o *GetSMTPTemplatesOK) GetPayload() *models.GetSMTPTemplates {
+	return o.Payload
 }
 
 func (o *GetSMTPTemplatesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -88,6 +90,10 @@ type GetSMTPTemplatesBadRequest struct {
 
 func (o *GetSMTPTemplatesBadRequest) Error() string {
 	return fmt.Sprintf("[GET /smtp/templates][%d] getSmtpTemplatesBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *GetSMTPTemplatesBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *GetSMTPTemplatesBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // DeleteSMTPTemplateReader is a Reader for the DeleteSMTPTemplate structure.
@@ -24,21 +24,18 @@ type DeleteSMTPTemplateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteSMTPTemplateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 204:
 		result := NewDeleteSMTPTemplateNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewDeleteSMTPTemplateBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewDeleteSMTPTemplateNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -58,7 +55,7 @@ func NewDeleteSMTPTemplateNoContent() *DeleteSMTPTemplateNoContent {
 
 /*DeleteSMTPTemplateNoContent handles this case with default header values.
 
-Inactive smtp template has been deleted
+Inactive transactional email template has been deleted
 */
 type DeleteSMTPTemplateNoContent struct {
 }
@@ -89,6 +86,10 @@ func (o *DeleteSMTPTemplateBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /smtp/templates/{templateId}][%d] deleteSmtpTemplateBadRequest  %+v", 400, o.Payload)
 }
 
+func (o *DeleteSMTPTemplateBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
+}
+
 func (o *DeleteSMTPTemplateBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ErrorModel)
@@ -116,6 +117,10 @@ type DeleteSMTPTemplateNotFound struct {
 
 func (o *DeleteSMTPTemplateNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /smtp/templates/{templateId}][%d] deleteSmtpTemplateNotFound  %+v", 404, o.Payload)
+}
+
+func (o *DeleteSMTPTemplateNotFound) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *DeleteSMTPTemplateNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -6,15 +6,13 @@ package reseller
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
-	"github.com/go-openapi/swag"
 
 	strfmt "github.com/go-openapi/strfmt"
 )
@@ -63,11 +61,11 @@ for the delete reseller child operation typically these are written to a http.Re
 */
 type DeleteResellerChildParams struct {
 
-	/*ChildID
-	  id of reseller's child
+	/*ChildAuthKey
+	  auth key of reseller's child
 
 	*/
-	ChildID int64
+	ChildAuthKey string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -107,15 +105,15 @@ func (o *DeleteResellerChildParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithChildID adds the childID to the delete reseller child params
-func (o *DeleteResellerChildParams) WithChildID(childID int64) *DeleteResellerChildParams {
-	o.SetChildID(childID)
+// WithChildAuthKey adds the childAuthKey to the delete reseller child params
+func (o *DeleteResellerChildParams) WithChildAuthKey(childAuthKey string) *DeleteResellerChildParams {
+	o.SetChildAuthKey(childAuthKey)
 	return o
 }
 
-// SetChildID adds the childId to the delete reseller child params
-func (o *DeleteResellerChildParams) SetChildID(childID int64) {
-	o.ChildID = childID
+// SetChildAuthKey adds the childAuthKey to the delete reseller child params
+func (o *DeleteResellerChildParams) SetChildAuthKey(childAuthKey string) {
+	o.ChildAuthKey = childAuthKey
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -126,8 +124,8 @@ func (o *DeleteResellerChildParams) WriteToRequest(r runtime.ClientRequest, reg 
 	}
 	var res []error
 
-	// path param childId
-	if err := r.SetPathParam("childId", swag.FormatInt64(o.ChildID)); err != nil {
+	// path param childAuthKey
+	if err := r.SetPathParam("childAuthKey", o.ChildAuthKey); err != nil {
 		return err
 	}
 

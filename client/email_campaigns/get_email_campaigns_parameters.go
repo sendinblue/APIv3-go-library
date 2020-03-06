@@ -6,10 +6,9 @@ package email_campaigns
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -83,6 +82,11 @@ for the get email campaigns operation typically these are written to a http.Requ
 */
 type GetEmailCampaignsParams struct {
 
+	/*EndDate
+	  Mandatory if startDate is used. Ending (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to filter the sent email campaigns. Prefer to pass your timezone in date-time format for accurate result ( only available if either 'status' not passed and if passed is set to 'sent' )
+
+	*/
+	EndDate *strfmt.DateTime
 	/*Limit
 	  Number of documents per page
 
@@ -93,6 +97,11 @@ type GetEmailCampaignsParams struct {
 
 	*/
 	Offset *int64
+	/*StartDate
+	  Mandatory if endDate is used. Starting (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to filter the sent email campaigns. Prefer to pass your timezone in date-time format for accurate result ( only available if either 'status' not passed and if passed is set to 'sent' )
+
+	*/
+	StartDate *strfmt.DateTime
 	/*Status
 	  Filter on the status of the campaign
 
@@ -142,6 +151,17 @@ func (o *GetEmailCampaignsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithEndDate adds the endDate to the get email campaigns params
+func (o *GetEmailCampaignsParams) WithEndDate(endDate *strfmt.DateTime) *GetEmailCampaignsParams {
+	o.SetEndDate(endDate)
+	return o
+}
+
+// SetEndDate adds the endDate to the get email campaigns params
+func (o *GetEmailCampaignsParams) SetEndDate(endDate *strfmt.DateTime) {
+	o.EndDate = endDate
+}
+
 // WithLimit adds the limit to the get email campaigns params
 func (o *GetEmailCampaignsParams) WithLimit(limit *int64) *GetEmailCampaignsParams {
 	o.SetLimit(limit)
@@ -162,6 +182,17 @@ func (o *GetEmailCampaignsParams) WithOffset(offset *int64) *GetEmailCampaignsPa
 // SetOffset adds the offset to the get email campaigns params
 func (o *GetEmailCampaignsParams) SetOffset(offset *int64) {
 	o.Offset = offset
+}
+
+// WithStartDate adds the startDate to the get email campaigns params
+func (o *GetEmailCampaignsParams) WithStartDate(startDate *strfmt.DateTime) *GetEmailCampaignsParams {
+	o.SetStartDate(startDate)
+	return o
+}
+
+// SetStartDate adds the startDate to the get email campaigns params
+func (o *GetEmailCampaignsParams) SetStartDate(startDate *strfmt.DateTime) {
+	o.StartDate = startDate
 }
 
 // WithStatus adds the status to the get email campaigns params
@@ -194,6 +225,22 @@ func (o *GetEmailCampaignsParams) WriteToRequest(r runtime.ClientRequest, reg st
 	}
 	var res []error
 
+	if o.EndDate != nil {
+
+		// query param endDate
+		var qrEndDate strfmt.DateTime
+		if o.EndDate != nil {
+			qrEndDate = *o.EndDate
+		}
+		qEndDate := qrEndDate.String()
+		if qEndDate != "" {
+			if err := r.SetQueryParam("endDate", qEndDate); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	if o.Limit != nil {
 
 		// query param limit
@@ -220,6 +267,22 @@ func (o *GetEmailCampaignsParams) WriteToRequest(r runtime.ClientRequest, reg st
 		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.StartDate != nil {
+
+		// query param startDate
+		var qrStartDate strfmt.DateTime
+		if o.StartDate != nil {
+			qrStartDate = *o.StartDate
+		}
+		qStartDate := qrStartDate.String()
+		if qStartDate != "" {
+			if err := r.SetQueryParam("startDate", qStartDate); err != nil {
 				return err
 			}
 		}

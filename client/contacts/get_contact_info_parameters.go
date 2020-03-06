@@ -6,10 +6,9 @@ package contacts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -63,7 +62,7 @@ for the get contact info operation typically these are written to a http.Request
 type GetContactInfoParams struct {
 
 	/*Email
-	  Email (urlencoded) of the contact
+	  Email (urlencoded) of the contact OR its SMS attribute value
 
 	*/
 	Email string

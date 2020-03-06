@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // UpdateContactReader is a Reader for the UpdateContact structure.
@@ -24,21 +24,18 @@ type UpdateContactReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UpdateContactReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 204:
 		result := NewUpdateContactNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewUpdateContactBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewUpdateContactNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -89,6 +86,10 @@ func (o *UpdateContactBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /contacts/{email}][%d] updateContactBadRequest  %+v", 400, o.Payload)
 }
 
+func (o *UpdateContactBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
+}
+
 func (o *UpdateContactBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ErrorModel)
@@ -116,6 +117,10 @@ type UpdateContactNotFound struct {
 
 func (o *UpdateContactNotFound) Error() string {
 	return fmt.Sprintf("[PUT /contacts/{email}][%d] updateContactNotFound  %+v", 404, o.Payload)
+}
+
+func (o *UpdateContactNotFound) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *UpdateContactNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

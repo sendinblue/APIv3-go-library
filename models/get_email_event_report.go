@@ -6,10 +6,13 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"encoding/json"
+	"strconv"
 
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // GetEmailEventReport get email event report
@@ -17,16 +20,45 @@ import (
 type GetEmailEventReport struct {
 
 	// events
-	Events GetEmailEventReportEvents `json:"events"`
+	Events []*GetEmailEventReportEventsItems0 `json:"events"`
 }
 
 // Validate validates this get email event report
 func (m *GetEmailEventReport) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateEvents(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *GetEmailEventReport) validateEvents(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Events) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Events); i++ {
+		if swag.IsZero(m.Events[i]) { // not required
+			continue
+		}
+
+		if m.Events[i] != nil {
+			if err := m.Events[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("events" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 
@@ -41,6 +73,218 @@ func (m *GetEmailEventReport) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *GetEmailEventReport) UnmarshalBinary(b []byte) error {
 	var res GetEmailEventReport
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetEmailEventReportEventsItems0 get email event report events items0
+// swagger:model GetEmailEventReportEventsItems0
+type GetEmailEventReportEventsItems0 struct {
+
+	// UTC date-time on which the event has been generated
+	// Required: true
+	// Format: date-time
+	Date *strfmt.DateTime `json:"date"`
+
+	// Email address which generates the event
+	// Required: true
+	// Format: email
+	Email *strfmt.Email `json:"email"`
+
+	// Event which occurred
+	// Required: true
+	// Enum: [bounces hardBounces softBounces delivered spam requests opened clicks invalid deferred blocked unsubscribed]
+	Event *string `json:"event"`
+
+	// Sender email from which the emails are sent
+	// Format: email
+	From strfmt.Email `json:"from,omitempty"`
+
+	// IP from which the user has opened the email or clicked on the link (only available if the event is opened or clicks)
+	IP string `json:"ip,omitempty"`
+
+	// The link which is sent to the user (only available if the event is requests or opened or clicks)
+	Link string `json:"link,omitempty"`
+
+	// Message ID which generated the event
+	// Required: true
+	MessageID *string `json:"messageId"`
+
+	// Reason of bounce (only available if the event is hardbounce or softbounce)
+	Reason string `json:"reason,omitempty"`
+
+	// Subject of the event
+	Subject string `json:"subject,omitempty"`
+
+	// Tag of the email which generated the event
+	Tag string `json:"tag,omitempty"`
+}
+
+// Validate validates this get email event report events items0
+func (m *GetEmailEventReportEventsItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateDate(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEmail(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEvent(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateFrom(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMessageID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetEmailEventReportEventsItems0) validateDate(formats strfmt.Registry) error {
+
+	if err := validate.Required("date", "body", m.Date); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("date", "body", "date-time", m.Date.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetEmailEventReportEventsItems0) validateEmail(formats strfmt.Registry) error {
+
+	if err := validate.Required("email", "body", m.Email); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("email", "body", "email", m.Email.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var getEmailEventReportEventsItems0TypeEventPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["bounces","hardBounces","softBounces","delivered","spam","requests","opened","clicks","invalid","deferred","blocked","unsubscribed"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		getEmailEventReportEventsItems0TypeEventPropEnum = append(getEmailEventReportEventsItems0TypeEventPropEnum, v)
+	}
+}
+
+const (
+
+	// GetEmailEventReportEventsItems0EventBounces captures enum value "bounces"
+	GetEmailEventReportEventsItems0EventBounces string = "bounces"
+
+	// GetEmailEventReportEventsItems0EventHardBounces captures enum value "hardBounces"
+	GetEmailEventReportEventsItems0EventHardBounces string = "hardBounces"
+
+	// GetEmailEventReportEventsItems0EventSoftBounces captures enum value "softBounces"
+	GetEmailEventReportEventsItems0EventSoftBounces string = "softBounces"
+
+	// GetEmailEventReportEventsItems0EventDelivered captures enum value "delivered"
+	GetEmailEventReportEventsItems0EventDelivered string = "delivered"
+
+	// GetEmailEventReportEventsItems0EventSpam captures enum value "spam"
+	GetEmailEventReportEventsItems0EventSpam string = "spam"
+
+	// GetEmailEventReportEventsItems0EventRequests captures enum value "requests"
+	GetEmailEventReportEventsItems0EventRequests string = "requests"
+
+	// GetEmailEventReportEventsItems0EventOpened captures enum value "opened"
+	GetEmailEventReportEventsItems0EventOpened string = "opened"
+
+	// GetEmailEventReportEventsItems0EventClicks captures enum value "clicks"
+	GetEmailEventReportEventsItems0EventClicks string = "clicks"
+
+	// GetEmailEventReportEventsItems0EventInvalid captures enum value "invalid"
+	GetEmailEventReportEventsItems0EventInvalid string = "invalid"
+
+	// GetEmailEventReportEventsItems0EventDeferred captures enum value "deferred"
+	GetEmailEventReportEventsItems0EventDeferred string = "deferred"
+
+	// GetEmailEventReportEventsItems0EventBlocked captures enum value "blocked"
+	GetEmailEventReportEventsItems0EventBlocked string = "blocked"
+
+	// GetEmailEventReportEventsItems0EventUnsubscribed captures enum value "unsubscribed"
+	GetEmailEventReportEventsItems0EventUnsubscribed string = "unsubscribed"
+)
+
+// prop value enum
+func (m *GetEmailEventReportEventsItems0) validateEventEnum(path, location string, value string) error {
+	if err := validate.Enum(path, location, value, getEmailEventReportEventsItems0TypeEventPropEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *GetEmailEventReportEventsItems0) validateEvent(formats strfmt.Registry) error {
+
+	if err := validate.Required("event", "body", m.Event); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateEventEnum("event", "body", *m.Event); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetEmailEventReportEventsItems0) validateFrom(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.From) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("from", "body", "email", m.From.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetEmailEventReportEventsItems0) validateMessageID(formats strfmt.Registry) error {
+
+	if err := validate.Required("messageId", "body", m.MessageID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetEmailEventReportEventsItems0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetEmailEventReportEventsItems0) UnmarshalBinary(b []byte) error {
+	var res GetEmailEventReportEventsItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

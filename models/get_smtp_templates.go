@@ -6,9 +6,10 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"strconv"
 
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
@@ -16,20 +17,49 @@ import (
 // swagger:model getSmtpTemplates
 type GetSMTPTemplates struct {
 
-	// Count of smtp templates
+	// Count of transactional email templates
 	Count int64 `json:"count,omitempty"`
 
 	// templates
-	Templates GetSMTPTemplatesTemplates `json:"templates"`
+	Templates []*GetSMTPTemplateOverview `json:"templates"`
 }
 
 // Validate validates this get Smtp templates
 func (m *GetSMTPTemplates) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateTemplates(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *GetSMTPTemplates) validateTemplates(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Templates) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Templates); i++ {
+		if swag.IsZero(m.Templates[i]) { // not required
+			continue
+		}
+
+		if m.Templates[i] != nil {
+			if err := m.Templates[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("templates" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 

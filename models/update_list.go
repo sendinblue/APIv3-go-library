@@ -7,8 +7,6 @@ package models
 
 import (
 	strfmt "github.com/go-openapi/strfmt"
-
-	"github.com/go-openapi/errors"
 	"github.com/go-openapi/swag"
 )
 
@@ -16,20 +14,15 @@ import (
 // swagger:model updateList
 type UpdateList struct {
 
-	// Id of the folder in which to move the list. Only one parameter can updated at once
+	// Id of the folder in which the list is to be moved. Either of the two parameters (name, folderId) can be updated at a time.
 	FolderID int64 `json:"folderId,omitempty"`
 
-	// Name of the list. Only one parameter can be update at once
+	// Name of the list. Either of the two parameters (name, folderId) can be updated at a time.
 	Name string `json:"name,omitempty"`
 }
 
 // Validate validates this update list
 func (m *UpdateList) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
 	return nil
 }
 

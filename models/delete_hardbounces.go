@@ -6,9 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -18,13 +17,14 @@ import (
 type DeleteHardbounces struct {
 
 	// Target a specific email address
+	// Format: email
 	ContactEmail strfmt.Email `json:"contactEmail,omitempty"`
 
-	// Ending date (YYYY-MM-DD) of the period from which the hardbounces will be deleted. Must be greater than equal to startDate
-	EndDate strfmt.Date `json:"endDate,omitempty"`
+	// Ending date (YYYY-MM-DD) of the time period for deletion. The hardbounces until this date will be deleted. Must be greater than or equal to the startDate
+	EndDate string `json:"endDate,omitempty"`
 
-	// Starting date (YYYY-MM-DD) of the period from which the hardbounces will be deleted. Must be lower than equal to endDate
-	StartDate strfmt.Date `json:"startDate,omitempty"`
+	// Starting date (YYYY-MM-DD) of the time period for deletion. The hardbounces occurred after this date will be deleted. Must be less than or equal to the endDate
+	StartDate string `json:"startDate,omitempty"`
 }
 
 // Validate validates this delete hardbounces
@@ -32,17 +32,6 @@ func (m *DeleteHardbounces) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateContactEmail(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateEndDate(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateStartDate(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -59,32 +48,6 @@ func (m *DeleteHardbounces) validateContactEmail(formats strfmt.Registry) error 
 	}
 
 	if err := validate.FormatOf("contactEmail", "body", "email", m.ContactEmail.String(), formats); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DeleteHardbounces) validateEndDate(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.EndDate) { // not required
-		return nil
-	}
-
-	if err := validate.FormatOf("endDate", "body", "date", m.EndDate.String(), formats); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DeleteHardbounces) validateStartDate(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.StartDate) { // not required
-		return nil
-	}
-
-	if err := validate.FormatOf("startDate", "body", "date", m.StartDate.String(), formats); err != nil {
 		return err
 	}
 

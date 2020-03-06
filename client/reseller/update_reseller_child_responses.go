@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // UpdateResellerChildReader is a Reader for the UpdateResellerChild structure.
@@ -24,28 +24,24 @@ type UpdateResellerChildReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UpdateResellerChildReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 204:
 		result := NewUpdateResellerChildNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewUpdateResellerChildBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewUpdateResellerChildForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewUpdateResellerChildNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -71,7 +67,7 @@ type UpdateResellerChildNoContent struct {
 }
 
 func (o *UpdateResellerChildNoContent) Error() string {
-	return fmt.Sprintf("[PUT /reseller/children/{childId}][%d] updateResellerChildNoContent ", 204)
+	return fmt.Sprintf("[PUT /reseller/children/{childAuthKey}][%d] updateResellerChildNoContent ", 204)
 }
 
 func (o *UpdateResellerChildNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -93,7 +89,11 @@ type UpdateResellerChildBadRequest struct {
 }
 
 func (o *UpdateResellerChildBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /reseller/children/{childId}][%d] updateResellerChildBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /reseller/children/{childAuthKey}][%d] updateResellerChildBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *UpdateResellerChildBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *UpdateResellerChildBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -122,7 +122,11 @@ type UpdateResellerChildForbidden struct {
 }
 
 func (o *UpdateResellerChildForbidden) Error() string {
-	return fmt.Sprintf("[PUT /reseller/children/{childId}][%d] updateResellerChildForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /reseller/children/{childAuthKey}][%d] updateResellerChildForbidden  %+v", 403, o.Payload)
+}
+
+func (o *UpdateResellerChildForbidden) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *UpdateResellerChildForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -144,14 +148,18 @@ func NewUpdateResellerChildNotFound() *UpdateResellerChildNotFound {
 
 /*UpdateResellerChildNotFound handles this case with default header values.
 
-Child ID not found
+Child auth key not found
 */
 type UpdateResellerChildNotFound struct {
 	Payload *models.ErrorModel
 }
 
 func (o *UpdateResellerChildNotFound) Error() string {
-	return fmt.Sprintf("[PUT /reseller/children/{childId}][%d] updateResellerChildNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /reseller/children/{childAuthKey}][%d] updateResellerChildNotFound  %+v", 404, o.Payload)
+}
+
+func (o *UpdateResellerChildNotFound) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *UpdateResellerChildNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

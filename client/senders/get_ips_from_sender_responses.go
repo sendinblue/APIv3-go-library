@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // GetIpsFromSenderReader is a Reader for the GetIpsFromSender structure.
@@ -24,21 +24,18 @@ type GetIpsFromSenderReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetIpsFromSenderReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetIpsFromSenderOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewGetIpsFromSenderBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewGetIpsFromSenderNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +63,10 @@ type GetIpsFromSenderOK struct {
 
 func (o *GetIpsFromSenderOK) Error() string {
 	return fmt.Sprintf("[GET /senders/{senderId}/ips][%d] getIpsFromSenderOK  %+v", 200, o.Payload)
+}
+
+func (o *GetIpsFromSenderOK) GetPayload() *models.GetIpsFromSender {
+	return o.Payload
 }
 
 func (o *GetIpsFromSenderOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -97,6 +98,10 @@ func (o *GetIpsFromSenderBadRequest) Error() string {
 	return fmt.Sprintf("[GET /senders/{senderId}/ips][%d] getIpsFromSenderBadRequest  %+v", 400, o.Payload)
 }
 
+func (o *GetIpsFromSenderBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
+}
+
 func (o *GetIpsFromSenderBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ErrorModel)
@@ -124,6 +129,10 @@ type GetIpsFromSenderNotFound struct {
 
 func (o *GetIpsFromSenderNotFound) Error() string {
 	return fmt.Sprintf("[GET /senders/{senderId}/ips][%d] getIpsFromSenderNotFound  %+v", 404, o.Payload)
+}
+
+func (o *GetIpsFromSenderNotFound) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *GetIpsFromSenderNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

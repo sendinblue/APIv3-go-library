@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // UpdateSMTPTemplateReader is a Reader for the UpdateSMTPTemplate structure.
@@ -24,21 +24,18 @@ type UpdateSMTPTemplateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UpdateSMTPTemplateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 204:
 		result := NewUpdateSMTPTemplateNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewUpdateSMTPTemplateBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewUpdateSMTPTemplateNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -58,7 +55,7 @@ func NewUpdateSMTPTemplateNoContent() *UpdateSMTPTemplateNoContent {
 
 /*UpdateSMTPTemplateNoContent handles this case with default header values.
 
-SMTP template updated
+transactional email template updated
 */
 type UpdateSMTPTemplateNoContent struct {
 }
@@ -89,6 +86,10 @@ func (o *UpdateSMTPTemplateBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /smtp/templates/{templateId}][%d] updateSmtpTemplateBadRequest  %+v", 400, o.Payload)
 }
 
+func (o *UpdateSMTPTemplateBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
+}
+
 func (o *UpdateSMTPTemplateBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ErrorModel)
@@ -116,6 +117,10 @@ type UpdateSMTPTemplateNotFound struct {
 
 func (o *UpdateSMTPTemplateNotFound) Error() string {
 	return fmt.Sprintf("[PUT /smtp/templates/{templateId}][%d] updateSmtpTemplateNotFound  %+v", 404, o.Payload)
+}
+
+func (o *UpdateSMTPTemplateNotFound) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *UpdateSMTPTemplateNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // GetProcessReader is a Reader for the GetProcess structure.
@@ -24,21 +24,18 @@ type GetProcessReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetProcessReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetProcessOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewGetProcessBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewGetProcessNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +63,10 @@ type GetProcessOK struct {
 
 func (o *GetProcessOK) Error() string {
 	return fmt.Sprintf("[GET /processes/{processId}][%d] getProcessOK  %+v", 200, o.Payload)
+}
+
+func (o *GetProcessOK) GetPayload() *models.GetProcess {
+	return o.Payload
 }
 
 func (o *GetProcessOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -97,6 +98,10 @@ func (o *GetProcessBadRequest) Error() string {
 	return fmt.Sprintf("[GET /processes/{processId}][%d] getProcessBadRequest  %+v", 400, o.Payload)
 }
 
+func (o *GetProcessBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
+}
+
 func (o *GetProcessBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ErrorModel)
@@ -124,6 +129,10 @@ type GetProcessNotFound struct {
 
 func (o *GetProcessNotFound) Error() string {
 	return fmt.Sprintf("[GET /processes/{processId}][%d] getProcessNotFound  %+v", 404, o.Payload)
+}
+
+func (o *GetProcessNotFound) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *GetProcessNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

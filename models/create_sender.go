@@ -6,9 +6,10 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"strconv"
 
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -19,10 +20,11 @@ type CreateSender struct {
 
 	// From Email to use for the sender
 	// Required: true
+	// Format: email
 	Email *strfmt.Email `json:"email"`
 
-	// ips
-	Ips CreateSenderIps `json:"ips"`
+	// Mandatory in case of dedicated IP, IPs to associate to the sender
+	Ips []*CreateSenderIpsItems0 `json:"ips"`
 
 	// From Name to use for the sender
 	// Required: true
@@ -34,12 +36,14 @@ func (m *CreateSender) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateEmail(formats); err != nil {
-		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateIps(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateName(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -57,6 +61,31 @@ func (m *CreateSender) validateEmail(formats strfmt.Registry) error {
 
 	if err := validate.FormatOf("email", "body", "email", m.Email.String(), formats); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *CreateSender) validateIps(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Ips) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Ips); i++ {
+		if swag.IsZero(m.Ips[i]) { // not required
+			continue
+		}
+
+		if m.Ips[i] != nil {
+			if err := m.Ips[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("ips" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -82,6 +111,99 @@ func (m *CreateSender) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *CreateSender) UnmarshalBinary(b []byte) error {
 	var res CreateSender
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// CreateSenderIpsItems0 create sender ips items0
+// swagger:model CreateSenderIpsItems0
+type CreateSenderIpsItems0 struct {
+
+	// Domain of the IP
+	// Required: true
+	Domain *string `json:"domain"`
+
+	// Dedicated IP available in your account
+	// Required: true
+	IP *string `json:"ip"`
+
+	// Weight to apply to the IP. Sum of all IP weights must be 100. Should be passed for either ALL or NONE of the IPs. If it's not passed, the sending will be equally balanced on all IPs.
+	// Maximum: 100
+	// Minimum: 1
+	Weight int64 `json:"weight,omitempty"`
+}
+
+// Validate validates this create sender ips items0
+func (m *CreateSenderIpsItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateDomain(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIP(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateWeight(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *CreateSenderIpsItems0) validateDomain(formats strfmt.Registry) error {
+
+	if err := validate.Required("domain", "body", m.Domain); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *CreateSenderIpsItems0) validateIP(formats strfmt.Registry) error {
+
+	if err := validate.Required("ip", "body", m.IP); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *CreateSenderIpsItems0) validateWeight(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Weight) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("weight", "body", int64(m.Weight), 1, false); err != nil {
+		return err
+	}
+
+	if err := validate.MaximumInt("weight", "body", int64(m.Weight), 100, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *CreateSenderIpsItems0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *CreateSenderIpsItems0) UnmarshalBinary(b []byte) error {
+	var res CreateSenderIpsItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

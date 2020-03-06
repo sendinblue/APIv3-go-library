@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // DeleteResellerChildReader is a Reader for the DeleteResellerChild structure.
@@ -24,28 +24,24 @@ type DeleteResellerChildReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteResellerChildReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 204:
 		result := NewDeleteResellerChildNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewDeleteResellerChildBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewDeleteResellerChildForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewDeleteResellerChildNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -71,7 +67,7 @@ type DeleteResellerChildNoContent struct {
 }
 
 func (o *DeleteResellerChildNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /reseller/children/{childId}][%d] deleteResellerChildNoContent ", 204)
+	return fmt.Sprintf("[DELETE /reseller/children/{childAuthKey}][%d] deleteResellerChildNoContent ", 204)
 }
 
 func (o *DeleteResellerChildNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -93,7 +89,11 @@ type DeleteResellerChildBadRequest struct {
 }
 
 func (o *DeleteResellerChildBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /reseller/children/{childId}][%d] deleteResellerChildBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /reseller/children/{childAuthKey}][%d] deleteResellerChildBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *DeleteResellerChildBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *DeleteResellerChildBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -122,7 +122,11 @@ type DeleteResellerChildForbidden struct {
 }
 
 func (o *DeleteResellerChildForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /reseller/children/{childId}][%d] deleteResellerChildForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /reseller/children/{childAuthKey}][%d] deleteResellerChildForbidden  %+v", 403, o.Payload)
+}
+
+func (o *DeleteResellerChildForbidden) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *DeleteResellerChildForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -144,14 +148,18 @@ func NewDeleteResellerChildNotFound() *DeleteResellerChildNotFound {
 
 /*DeleteResellerChildNotFound handles this case with default header values.
 
-Child ID not found
+Child auth key not found
 */
 type DeleteResellerChildNotFound struct {
 	Payload *models.ErrorModel
 }
 
 func (o *DeleteResellerChildNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /reseller/children/{childId}][%d] deleteResellerChildNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /reseller/children/{childAuthKey}][%d] deleteResellerChildNotFound  %+v", 404, o.Payload)
+}
+
+func (o *DeleteResellerChildNotFound) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *DeleteResellerChildNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

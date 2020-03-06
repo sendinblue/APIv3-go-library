@@ -6,31 +6,35 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"strconv"
 
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
-// GetSMSCampaigns get Sms campaigns
+// GetSmsCampaigns get sms campaigns
 // swagger:model getSmsCampaigns
-type GetSMSCampaigns struct {
+type GetSmsCampaigns struct {
 
 	// campaigns
-	Campaigns GetSMSCampaignsCampaigns `json:"campaigns"`
+	Campaigns []*GetSmsCampaignsCampaignsItems0 `json:"campaigns"`
 
 	// Number of SMS campaigns retrieved
 	// Required: true
 	Count *int64 `json:"count"`
 }
 
-// Validate validates this get Sms campaigns
-func (m *GetSMSCampaigns) Validate(formats strfmt.Registry) error {
+// Validate validates this get sms campaigns
+func (m *GetSmsCampaigns) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateCampaigns(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateCount(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -40,7 +44,32 @@ func (m *GetSMSCampaigns) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *GetSMSCampaigns) validateCount(formats strfmt.Registry) error {
+func (m *GetSmsCampaigns) validateCampaigns(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Campaigns) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Campaigns); i++ {
+		if swag.IsZero(m.Campaigns[i]) { // not required
+			continue
+		}
+
+		if m.Campaigns[i] != nil {
+			if err := m.Campaigns[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("campaigns" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *GetSmsCampaigns) validateCount(formats strfmt.Registry) error {
 
 	if err := validate.Required("count", "body", m.Count); err != nil {
 		return err
@@ -50,7 +79,7 @@ func (m *GetSMSCampaigns) validateCount(formats strfmt.Registry) error {
 }
 
 // MarshalBinary interface implementation
-func (m *GetSMSCampaigns) MarshalBinary() ([]byte, error) {
+func (m *GetSmsCampaigns) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -58,8 +87,140 @@ func (m *GetSMSCampaigns) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *GetSMSCampaigns) UnmarshalBinary(b []byte) error {
-	var res GetSMSCampaigns
+func (m *GetSmsCampaigns) UnmarshalBinary(b []byte) error {
+	var res GetSmsCampaigns
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetSmsCampaignsCampaignsItems0 get sms campaigns campaigns items0
+// swagger:model GetSmsCampaignsCampaignsItems0
+type GetSmsCampaignsCampaignsItems0 struct {
+	GetSmsCampaignOverview
+
+	// recipients
+	// Required: true
+	Recipients struct {
+		GetCampaignRecipients
+	} `json:"recipients"`
+
+	// statistics
+	// Required: true
+	Statistics struct {
+		GetSmsCampaignStats
+	} `json:"statistics"`
+}
+
+// UnmarshalJSON unmarshals this object from a JSON structure
+func (m *GetSmsCampaignsCampaignsItems0) UnmarshalJSON(raw []byte) error {
+	// AO0
+	var aO0 GetSmsCampaignOverview
+	if err := swag.ReadJSON(raw, &aO0); err != nil {
+		return err
+	}
+	m.GetSmsCampaignOverview = aO0
+
+	// AO1
+	var dataAO1 struct {
+		Recipients struct {
+			GetCampaignRecipients
+		} `json:"recipients"`
+
+		Statistics struct {
+			GetSmsCampaignStats
+		} `json:"statistics"`
+	}
+	if err := swag.ReadJSON(raw, &dataAO1); err != nil {
+		return err
+	}
+
+	m.Recipients = dataAO1.Recipients
+
+	m.Statistics = dataAO1.Statistics
+
+	return nil
+}
+
+// MarshalJSON marshals this object to a JSON structure
+func (m GetSmsCampaignsCampaignsItems0) MarshalJSON() ([]byte, error) {
+	_parts := make([][]byte, 0, 2)
+
+	aO0, err := swag.WriteJSON(m.GetSmsCampaignOverview)
+	if err != nil {
+		return nil, err
+	}
+	_parts = append(_parts, aO0)
+
+	var dataAO1 struct {
+		Recipients struct {
+			GetCampaignRecipients
+		} `json:"recipients"`
+
+		Statistics struct {
+			GetSmsCampaignStats
+		} `json:"statistics"`
+	}
+
+	dataAO1.Recipients = m.Recipients
+
+	dataAO1.Statistics = m.Statistics
+
+	jsonDataAO1, errAO1 := swag.WriteJSON(dataAO1)
+	if errAO1 != nil {
+		return nil, errAO1
+	}
+	_parts = append(_parts, jsonDataAO1)
+
+	return swag.ConcatJSON(_parts...), nil
+}
+
+// Validate validates this get sms campaigns campaigns items0
+func (m *GetSmsCampaignsCampaignsItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	// validation for a type composition with GetSmsCampaignOverview
+	if err := m.GetSmsCampaignOverview.Validate(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRecipients(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStatistics(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetSmsCampaignsCampaignsItems0) validateRecipients(formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *GetSmsCampaignsCampaignsItems0) validateStatistics(formats strfmt.Registry) error {
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetSmsCampaignsCampaignsItems0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetSmsCampaignsCampaignsItems0) UnmarshalBinary(b []byte) error {
+	var res GetSmsCampaignsCampaignsItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -6,9 +6,11 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"encoding/json"
+	"strconv"
 
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -17,9 +19,9 @@ import (
 // swagger:model getAttributes
 type GetAttributes struct {
 
-	// attributes
+	// Listing of available contact attributes in your account
 	// Required: true
-	Attributes GetAttributesAttributes `json:"attributes"`
+	Attributes []*GetAttributesAttributesItems0 `json:"attributes"`
 }
 
 // Validate validates this get attributes
@@ -27,7 +29,6 @@ func (m *GetAttributes) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAttributes(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -43,11 +44,20 @@ func (m *GetAttributes) validateAttributes(formats strfmt.Registry) error {
 		return err
 	}
 
-	if err := m.Attributes.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("attributes")
+	for i := 0; i < len(m.Attributes); i++ {
+		if swag.IsZero(m.Attributes[i]) { // not required
+			continue
 		}
-		return err
+
+		if m.Attributes[i] != nil {
+			if err := m.Attributes[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("attributes" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -64,6 +74,279 @@ func (m *GetAttributes) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *GetAttributes) UnmarshalBinary(b []byte) error {
 	var res GetAttributes
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetAttributesAttributesItems0 get attributes attributes items0
+// swagger:model GetAttributesAttributesItems0
+type GetAttributesAttributesItems0 struct {
+
+	// Calculated value formula
+	CalculatedValue string `json:"calculatedValue,omitempty"`
+
+	// Category of the attribute
+	// Required: true
+	// Enum: [normal transactional category calculated global]
+	Category *string `json:"category"`
+
+	// Parameter only available for "category" type attributes.
+	Enumeration []*GetAttributesAttributesItems0EnumerationItems0 `json:"enumeration"`
+
+	// Name of the attribute
+	// Required: true
+	Name *string `json:"name"`
+
+	// Type of the attribute
+	// Enum: [text date float id boolean]
+	Type string `json:"type,omitempty"`
+}
+
+// Validate validates this get attributes attributes items0
+func (m *GetAttributesAttributesItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateCategory(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEnumeration(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+var getAttributesAttributesItems0TypeCategoryPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["normal","transactional","category","calculated","global"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		getAttributesAttributesItems0TypeCategoryPropEnum = append(getAttributesAttributesItems0TypeCategoryPropEnum, v)
+	}
+}
+
+const (
+
+	// GetAttributesAttributesItems0CategoryNormal captures enum value "normal"
+	GetAttributesAttributesItems0CategoryNormal string = "normal"
+
+	// GetAttributesAttributesItems0CategoryTransactional captures enum value "transactional"
+	GetAttributesAttributesItems0CategoryTransactional string = "transactional"
+
+	// GetAttributesAttributesItems0CategoryCategory captures enum value "category"
+	GetAttributesAttributesItems0CategoryCategory string = "category"
+
+	// GetAttributesAttributesItems0CategoryCalculated captures enum value "calculated"
+	GetAttributesAttributesItems0CategoryCalculated string = "calculated"
+
+	// GetAttributesAttributesItems0CategoryGlobal captures enum value "global"
+	GetAttributesAttributesItems0CategoryGlobal string = "global"
+)
+
+// prop value enum
+func (m *GetAttributesAttributesItems0) validateCategoryEnum(path, location string, value string) error {
+	if err := validate.Enum(path, location, value, getAttributesAttributesItems0TypeCategoryPropEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *GetAttributesAttributesItems0) validateCategory(formats strfmt.Registry) error {
+
+	if err := validate.Required("category", "body", m.Category); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateCategoryEnum("category", "body", *m.Category); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetAttributesAttributesItems0) validateEnumeration(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Enumeration) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Enumeration); i++ {
+		if swag.IsZero(m.Enumeration[i]) { // not required
+			continue
+		}
+
+		if m.Enumeration[i] != nil {
+			if err := m.Enumeration[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("enumeration" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *GetAttributesAttributesItems0) validateName(formats strfmt.Registry) error {
+
+	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var getAttributesAttributesItems0TypeTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["text","date","float","id","boolean"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		getAttributesAttributesItems0TypeTypePropEnum = append(getAttributesAttributesItems0TypeTypePropEnum, v)
+	}
+}
+
+const (
+
+	// GetAttributesAttributesItems0TypeText captures enum value "text"
+	GetAttributesAttributesItems0TypeText string = "text"
+
+	// GetAttributesAttributesItems0TypeDate captures enum value "date"
+	GetAttributesAttributesItems0TypeDate string = "date"
+
+	// GetAttributesAttributesItems0TypeFloat captures enum value "float"
+	GetAttributesAttributesItems0TypeFloat string = "float"
+
+	// GetAttributesAttributesItems0TypeID captures enum value "id"
+	GetAttributesAttributesItems0TypeID string = "id"
+
+	// GetAttributesAttributesItems0TypeBoolean captures enum value "boolean"
+	GetAttributesAttributesItems0TypeBoolean string = "boolean"
+)
+
+// prop value enum
+func (m *GetAttributesAttributesItems0) validateTypeEnum(path, location string, value string) error {
+	if err := validate.Enum(path, location, value, getAttributesAttributesItems0TypeTypePropEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *GetAttributesAttributesItems0) validateType(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateTypeEnum("type", "body", m.Type); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetAttributesAttributesItems0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetAttributesAttributesItems0) UnmarshalBinary(b []byte) error {
+	var res GetAttributesAttributesItems0
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetAttributesAttributesItems0EnumerationItems0 get attributes attributes items0 enumeration items0
+// swagger:model GetAttributesAttributesItems0EnumerationItems0
+type GetAttributesAttributesItems0EnumerationItems0 struct {
+
+	// Label of the "category" type attribute
+	// Required: true
+	Label *string `json:"label"`
+
+	// ID of Value of the "category" type attribute
+	// Required: true
+	Value *int64 `json:"value"`
+}
+
+// Validate validates this get attributes attributes items0 enumeration items0
+func (m *GetAttributesAttributesItems0EnumerationItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateLabel(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateValue(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetAttributesAttributesItems0EnumerationItems0) validateLabel(formats strfmt.Registry) error {
+
+	if err := validate.Required("label", "body", m.Label); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetAttributesAttributesItems0EnumerationItems0) validateValue(formats strfmt.Registry) error {
+
+	if err := validate.Required("value", "body", m.Value); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetAttributesAttributesItems0EnumerationItems0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetAttributesAttributesItems0EnumerationItems0) UnmarshalBinary(b []byte) error {
+	var res GetAttributesAttributesItems0EnumerationItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

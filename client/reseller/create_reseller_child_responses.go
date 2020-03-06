@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // CreateResellerChildReader is a Reader for the CreateResellerChild structure.
@@ -24,21 +24,18 @@ type CreateResellerChildReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *CreateResellerChildReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 201:
 		result := NewCreateResellerChildCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewCreateResellerChildBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewCreateResellerChildForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -61,16 +58,20 @@ func NewCreateResellerChildCreated() *CreateResellerChildCreated {
 child created
 */
 type CreateResellerChildCreated struct {
-	Payload *models.CreateModel
+	Payload *models.CreateReseller
 }
 
 func (o *CreateResellerChildCreated) Error() string {
 	return fmt.Sprintf("[POST /reseller/children][%d] createResellerChildCreated  %+v", 201, o.Payload)
 }
 
+func (o *CreateResellerChildCreated) GetPayload() *models.CreateReseller {
+	return o.Payload
+}
+
 func (o *CreateResellerChildCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.CreateModel)
+	o.Payload = new(models.CreateReseller)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -95,6 +96,10 @@ type CreateResellerChildBadRequest struct {
 
 func (o *CreateResellerChildBadRequest) Error() string {
 	return fmt.Sprintf("[POST /reseller/children][%d] createResellerChildBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *CreateResellerChildBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *CreateResellerChildBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -124,6 +129,10 @@ type CreateResellerChildForbidden struct {
 
 func (o *CreateResellerChildForbidden) Error() string {
 	return fmt.Sprintf("[POST /reseller/children][%d] createResellerChildForbidden  %+v", 403, o.Payload)
+}
+
+func (o *CreateResellerChildForbidden) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *CreateResellerChildForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -6,9 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -31,12 +30,10 @@ func (m *RemainingCreditModel) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateChild(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateReseller(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -53,7 +50,6 @@ func (m *RemainingCreditModel) validateChild(formats strfmt.Registry) error {
 	}
 
 	if m.Child != nil {
-
 		if err := m.Child.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("child")
@@ -72,7 +68,6 @@ func (m *RemainingCreditModel) validateReseller(formats strfmt.Registry) error {
 	}
 
 	if m.Reseller != nil {
-
 		if err := m.Reseller.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("reseller")
@@ -95,6 +90,140 @@ func (m *RemainingCreditModel) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *RemainingCreditModel) UnmarshalBinary(b []byte) error {
 	var res RemainingCreditModel
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// RemainingCreditModelChild Credits remaining for child account
+// swagger:model RemainingCreditModelChild
+type RemainingCreditModelChild struct {
+
+	// Email Credits remaining for child account
+	// Required: true
+	Email *int64 `json:"email"`
+
+	// SMS Credits remaining for child account
+	// Required: true
+	Sms *int64 `json:"sms"`
+}
+
+// Validate validates this remaining credit model child
+func (m *RemainingCreditModelChild) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateEmail(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSms(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *RemainingCreditModelChild) validateEmail(formats strfmt.Registry) error {
+
+	if err := validate.Required("child"+"."+"email", "body", m.Email); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *RemainingCreditModelChild) validateSms(formats strfmt.Registry) error {
+
+	if err := validate.Required("child"+"."+"sms", "body", m.Sms); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *RemainingCreditModelChild) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *RemainingCreditModelChild) UnmarshalBinary(b []byte) error {
+	var res RemainingCreditModelChild
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// RemainingCreditModelReseller remaining credit model reseller
+// swagger:model RemainingCreditModelReseller
+type RemainingCreditModelReseller struct {
+
+	// Email Credits remaining for reseller account
+	// Required: true
+	Email *int64 `json:"email"`
+
+	// SMS Credits remaining for reseller account
+	// Required: true
+	Sms *int64 `json:"sms"`
+}
+
+// Validate validates this remaining credit model reseller
+func (m *RemainingCreditModelReseller) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateEmail(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSms(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *RemainingCreditModelReseller) validateEmail(formats strfmt.Registry) error {
+
+	if err := validate.Required("reseller"+"."+"email", "body", m.Email); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *RemainingCreditModelReseller) validateSms(formats strfmt.Registry) error {
+
+	if err := validate.Required("reseller"+"."+"sms", "body", m.Sms); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *RemainingCreditModelReseller) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *RemainingCreditModelReseller) UnmarshalBinary(b []byte) error {
+	var res RemainingCreditModelReseller
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

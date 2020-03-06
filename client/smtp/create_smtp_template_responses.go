@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // CreateSMTPTemplateReader is a Reader for the CreateSMTPTemplate structure.
@@ -24,14 +24,12 @@ type CreateSMTPTemplateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *CreateSMTPTemplateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 201:
 		result := NewCreateSMTPTemplateCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewCreateSMTPTemplateBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -51,7 +49,7 @@ func NewCreateSMTPTemplateCreated() *CreateSMTPTemplateCreated {
 
 /*CreateSMTPTemplateCreated handles this case with default header values.
 
-SMTP template created
+transactional email template created
 */
 type CreateSMTPTemplateCreated struct {
 	Payload *models.CreateModel
@@ -59,6 +57,10 @@ type CreateSMTPTemplateCreated struct {
 
 func (o *CreateSMTPTemplateCreated) Error() string {
 	return fmt.Sprintf("[POST /smtp/templates][%d] createSmtpTemplateCreated  %+v", 201, o.Payload)
+}
+
+func (o *CreateSMTPTemplateCreated) GetPayload() *models.CreateModel {
+	return o.Payload
 }
 
 func (o *CreateSMTPTemplateCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -88,6 +90,10 @@ type CreateSMTPTemplateBadRequest struct {
 
 func (o *CreateSMTPTemplateBadRequest) Error() string {
 	return fmt.Sprintf("[POST /smtp/templates][%d] createSmtpTemplateBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *CreateSMTPTemplateBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *CreateSMTPTemplateBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

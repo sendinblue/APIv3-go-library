@@ -6,13 +6,14 @@ package email_campaigns
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-openapi/runtime"
+	"fmt"
 
-	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 )
 
 // New creates a new email campaigns API client.
-func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -24,8 +25,37 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientService is the interface for Client methods
+type ClientService interface {
+	CreateEmailCampaign(params *CreateEmailCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*CreateEmailCampaignCreated, error)
+
+	DeleteEmailCampaign(params *DeleteEmailCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteEmailCampaignNoContent, error)
+
+	EmailExportRecipients(params *EmailExportRecipientsParams, authInfo runtime.ClientAuthInfoWriter) (*EmailExportRecipientsAccepted, error)
+
+	GetAbTestCampaignResult(params *GetAbTestCampaignResultParams, authInfo runtime.ClientAuthInfoWriter) (*GetAbTestCampaignResultOK, error)
+
+	GetEmailCampaign(params *GetEmailCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*GetEmailCampaignOK, error)
+
+	GetEmailCampaigns(params *GetEmailCampaignsParams, authInfo runtime.ClientAuthInfoWriter) (*GetEmailCampaignsOK, error)
+
+	GetSharedTemplateURL(params *GetSharedTemplateURLParams, authInfo runtime.ClientAuthInfoWriter) (*GetSharedTemplateURLOK, error)
+
+	SendEmailCampaignNow(params *SendEmailCampaignNowParams, authInfo runtime.ClientAuthInfoWriter) (*SendEmailCampaignNowNoContent, error)
+
+	SendReport(params *SendReportParams, authInfo runtime.ClientAuthInfoWriter) (*SendReportNoContent, error)
+
+	SendTestEmail(params *SendTestEmailParams, authInfo runtime.ClientAuthInfoWriter) (*SendTestEmailNoContent, error)
+
+	UpdateCampaignStatus(params *UpdateCampaignStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCampaignStatusNoContent, error)
+
+	UpdateEmailCampaign(params *UpdateEmailCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateEmailCampaignNoContent, error)
+
+	SetTransport(transport runtime.ClientTransport)
+}
+
 /*
-CreateEmailCampaign creates an email campaign
+  CreateEmailCampaign creates an email campaign
 */
 func (a *Client) CreateEmailCampaign(params *CreateEmailCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*CreateEmailCampaignCreated, error) {
 	// TODO: Validate the params before sending
@@ -49,28 +79,34 @@ func (a *Client) CreateEmailCampaign(params *CreateEmailCampaignParams, authInfo
 	if err != nil {
 		return nil, err
 	}
-	return result.(*CreateEmailCampaignCreated), nil
-
+	success, ok := result.(*CreateEmailCampaignCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for createEmailCampaign: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-DeleteEmailCampaigns deletes an email campaign
+  DeleteEmailCampaign deletes an email campaign
 */
-func (a *Client) DeleteEmailCampaigns(params *DeleteEmailCampaignsParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteEmailCampaignsNoContent, error) {
+func (a *Client) DeleteEmailCampaign(params *DeleteEmailCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteEmailCampaignNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewDeleteEmailCampaignsParams()
+		params = NewDeleteEmailCampaignParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "deleteEmailCampaigns",
+		ID:                 "deleteEmailCampaign",
 		Method:             "DELETE",
 		PathPattern:        "/emailCampaigns/{campaignId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &DeleteEmailCampaignsReader{formats: a.formats},
+		Reader:             &DeleteEmailCampaignReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -78,12 +114,18 @@ func (a *Client) DeleteEmailCampaigns(params *DeleteEmailCampaignsParams, authIn
 	if err != nil {
 		return nil, err
 	}
-	return result.(*DeleteEmailCampaignsNoContent), nil
-
+	success, ok := result.(*DeleteEmailCampaignNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for deleteEmailCampaign: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-EmailExportRecipients exports the recipients of a campaign
+  EmailExportRecipients exports the recipients of a campaign
 */
 func (a *Client) EmailExportRecipients(params *EmailExportRecipientsParams, authInfo runtime.ClientAuthInfoWriter) (*EmailExportRecipientsAccepted, error) {
 	// TODO: Validate the params before sending
@@ -107,12 +149,55 @@ func (a *Client) EmailExportRecipients(params *EmailExportRecipientsParams, auth
 	if err != nil {
 		return nil, err
 	}
-	return result.(*EmailExportRecipientsAccepted), nil
-
+	success, ok := result.(*EmailExportRecipientsAccepted)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for emailExportRecipients: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetEmailCampaign gets campaign informations
+  GetAbTestCampaignResult gets a b test email campaign result
+
+  Obtain winning version of an A/B test email campaign
+*/
+func (a *Client) GetAbTestCampaignResult(params *GetAbTestCampaignResultParams, authInfo runtime.ClientAuthInfoWriter) (*GetAbTestCampaignResultOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAbTestCampaignResultParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getAbTestCampaignResult",
+		Method:             "GET",
+		PathPattern:        "/emailCampaigns/{campaignId}/abTestCampaignResult",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAbTestCampaignResultReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetAbTestCampaignResultOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getAbTestCampaignResult: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetEmailCampaign gets campaign informations
 */
 func (a *Client) GetEmailCampaign(params *GetEmailCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*GetEmailCampaignOK, error) {
 	// TODO: Validate the params before sending
@@ -136,12 +221,18 @@ func (a *Client) GetEmailCampaign(params *GetEmailCampaignParams, authInfo runti
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetEmailCampaignOK), nil
-
+	success, ok := result.(*GetEmailCampaignOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getEmailCampaign: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetEmailCampaigns returns all your created campaigns
+  GetEmailCampaigns returns all your created campaigns
 */
 func (a *Client) GetEmailCampaigns(params *GetEmailCampaignsParams, authInfo runtime.ClientAuthInfoWriter) (*GetEmailCampaignsOK, error) {
 	// TODO: Validate the params before sending
@@ -165,12 +256,55 @@ func (a *Client) GetEmailCampaigns(params *GetEmailCampaignsParams, authInfo run
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetEmailCampaignsOK), nil
-
+	success, ok := result.(*GetEmailCampaignsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getEmailCampaigns: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-SendEmailCampaignNow sends an email campaign id of the campaign immediately
+  GetSharedTemplateURL gets a shared template url
+
+  Get a unique URL to share & import an email template from one Sendinblue account to another.
+*/
+func (a *Client) GetSharedTemplateURL(params *GetSharedTemplateURLParams, authInfo runtime.ClientAuthInfoWriter) (*GetSharedTemplateURLOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetSharedTemplateURLParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getSharedTemplateUrl",
+		Method:             "GET",
+		PathPattern:        "/emailCampaigns/{campaignId}/sharedUrl",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetSharedTemplateURLReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetSharedTemplateURLOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getSharedTemplateUrl: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  SendEmailCampaignNow sends an email campaign immediately based on campaign Id
 */
 func (a *Client) SendEmailCampaignNow(params *SendEmailCampaignNowParams, authInfo runtime.ClientAuthInfoWriter) (*SendEmailCampaignNowNoContent, error) {
 	// TODO: Validate the params before sending
@@ -194,14 +328,20 @@ func (a *Client) SendEmailCampaignNow(params *SendEmailCampaignNowParams, authIn
 	if err != nil {
 		return nil, err
 	}
-	return result.(*SendEmailCampaignNowNoContent), nil
-
+	success, ok := result.(*SendEmailCampaignNowNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for sendEmailCampaignNow: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-SendReport sends the report of a campaigns
+  SendReport sends the report of a campaigns
 
-A PDF will be sent to the specified email addresses
+  A PDF will be sent to the specified email addresses
 */
 func (a *Client) SendReport(params *SendReportParams, authInfo runtime.ClientAuthInfoWriter) (*SendReportNoContent, error) {
 	// TODO: Validate the params before sending
@@ -225,12 +365,18 @@ func (a *Client) SendReport(params *SendReportParams, authInfo runtime.ClientAut
 	if err != nil {
 		return nil, err
 	}
-	return result.(*SendReportNoContent), nil
-
+	success, ok := result.(*SendReportNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for sendReport: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-SendTestEmail sends an email campaign to your test list
+  SendTestEmail sends an email campaign to your test list
 */
 func (a *Client) SendTestEmail(params *SendTestEmailParams, authInfo runtime.ClientAuthInfoWriter) (*SendTestEmailNoContent, error) {
 	// TODO: Validate the params before sending
@@ -254,12 +400,18 @@ func (a *Client) SendTestEmail(params *SendTestEmailParams, authInfo runtime.Cli
 	if err != nil {
 		return nil, err
 	}
-	return result.(*SendTestEmailNoContent), nil
-
+	success, ok := result.(*SendTestEmailNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for sendTestEmail: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-UpdateCampaignStatus updates a campaign status
+  UpdateCampaignStatus updates a campaign status
 */
 func (a *Client) UpdateCampaignStatus(params *UpdateCampaignStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCampaignStatusNoContent, error) {
 	// TODO: Validate the params before sending
@@ -283,28 +435,34 @@ func (a *Client) UpdateCampaignStatus(params *UpdateCampaignStatusParams, authIn
 	if err != nil {
 		return nil, err
 	}
-	return result.(*UpdateCampaignStatusNoContent), nil
-
+	success, ok := result.(*UpdateCampaignStatusNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for updateCampaignStatus: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-UpdateEmailCampaigns updates a campaign
+  UpdateEmailCampaign updates a campaign
 */
-func (a *Client) UpdateEmailCampaigns(params *UpdateEmailCampaignsParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateEmailCampaignsNoContent, error) {
+func (a *Client) UpdateEmailCampaign(params *UpdateEmailCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateEmailCampaignNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewUpdateEmailCampaignsParams()
+		params = NewUpdateEmailCampaignParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "updateEmailCampaigns",
+		ID:                 "updateEmailCampaign",
 		Method:             "PUT",
 		PathPattern:        "/emailCampaigns/{campaignId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &UpdateEmailCampaignsReader{formats: a.formats},
+		Reader:             &UpdateEmailCampaignReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -312,8 +470,14 @@ func (a *Client) UpdateEmailCampaigns(params *UpdateEmailCampaignsParams, authIn
 	if err != nil {
 		return nil, err
 	}
-	return result.(*UpdateEmailCampaignsNoContent), nil
-
+	success, ok := result.(*UpdateEmailCampaignNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for updateEmailCampaign: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 // SetTransport changes the transport on the client

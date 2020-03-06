@@ -6,9 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -19,6 +18,7 @@ type GetSMTPTemplateOverview struct {
 
 	// Creation UTC date-time of the template (YYYY-MM-DDTHH:mm:ss.SSSZ)
 	// Required: true
+	// Format: date-time
 	CreatedAt *strfmt.DateTime `json:"createdAt"`
 
 	// HTML content of the template
@@ -35,6 +35,7 @@ type GetSMTPTemplateOverview struct {
 
 	// Last modification UTC date-time of the template (YYYY-MM-DDTHH:mm:ss.SSSZ)
 	// Required: true
+	// Format: date-time
 	ModifiedAt *strfmt.DateTime `json:"modifiedAt"`
 
 	// Name of the template
@@ -43,6 +44,7 @@ type GetSMTPTemplateOverview struct {
 
 	// Email defined as the "Reply to" for the template
 	// Required: true
+	// Format: email
 	ReplyTo *strfmt.Email `json:"replyTo"`
 
 	// sender
@@ -71,62 +73,50 @@ func (m *GetSMTPTemplateOverview) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCreatedAt(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateHTMLContent(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateIsActive(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateModifiedAt(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateName(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateReplyTo(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateSender(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateSubject(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateTag(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateTestSent(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateToField(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -218,7 +208,6 @@ func (m *GetSMTPTemplateOverview) validateSender(formats strfmt.Registry) error 
 	}
 
 	if m.Sender != nil {
-
 		if err := m.Sender.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("sender")
@@ -277,6 +266,66 @@ func (m *GetSMTPTemplateOverview) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *GetSMTPTemplateOverview) UnmarshalBinary(b []byte) error {
 	var res GetSMTPTemplateOverview
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetSMTPTemplateOverviewSender get SMTP template overview sender
+// swagger:model GetSMTPTemplateOverviewSender
+type GetSMTPTemplateOverviewSender struct {
+
+	// From email for the template
+	// Format: email
+	Email strfmt.Email `json:"email,omitempty"`
+
+	// Sender id of the template
+	ID string `json:"id,omitempty"`
+
+	// From email for the template
+	Name string `json:"name,omitempty"`
+}
+
+// Validate validates this get SMTP template overview sender
+func (m *GetSMTPTemplateOverviewSender) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateEmail(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetSMTPTemplateOverviewSender) validateEmail(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Email) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("sender"+"."+"email", "body", "email", m.Email.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetSMTPTemplateOverviewSender) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetSMTPTemplateOverviewSender) UnmarshalBinary(b []byte) error {
+	var res GetSMTPTemplateOverviewSender
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

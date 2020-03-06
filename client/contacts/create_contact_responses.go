@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // CreateContactReader is a Reader for the CreateContact structure.
@@ -24,14 +24,18 @@ type CreateContactReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *CreateContactReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 201:
 		result := NewCreateContactCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
+	case 204:
+		result := NewCreateContactNoContent()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 400:
 		result := NewCreateContactBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -54,16 +58,53 @@ func NewCreateContactCreated() *CreateContactCreated {
 Contact created
 */
 type CreateContactCreated struct {
-	Payload *models.CreateModel
+	Payload *models.CreateUpdateContactModel
 }
 
 func (o *CreateContactCreated) Error() string {
 	return fmt.Sprintf("[POST /contacts][%d] createContactCreated  %+v", 201, o.Payload)
 }
 
+func (o *CreateContactCreated) GetPayload() *models.CreateUpdateContactModel {
+	return o.Payload
+}
+
 func (o *CreateContactCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.CreateModel)
+	o.Payload = new(models.CreateUpdateContactModel)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewCreateContactNoContent creates a CreateContactNoContent with default headers values
+func NewCreateContactNoContent() *CreateContactNoContent {
+	return &CreateContactNoContent{}
+}
+
+/*CreateContactNoContent handles this case with default header values.
+
+Contact updated
+*/
+type CreateContactNoContent struct {
+	Payload *models.CreateUpdateContactModel
+}
+
+func (o *CreateContactNoContent) Error() string {
+	return fmt.Sprintf("[POST /contacts][%d] createContactNoContent  %+v", 204, o.Payload)
+}
+
+func (o *CreateContactNoContent) GetPayload() *models.CreateUpdateContactModel {
+	return o.Payload
+}
+
+func (o *CreateContactNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.CreateUpdateContactModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -88,6 +129,10 @@ type CreateContactBadRequest struct {
 
 func (o *CreateContactBadRequest) Error() string {
 	return fmt.Sprintf("[POST /contacts][%d] createContactBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *CreateContactBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *CreateContactBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

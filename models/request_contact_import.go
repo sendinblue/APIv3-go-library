@@ -6,9 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
@@ -16,13 +15,19 @@ import (
 // swagger:model requestContactImport
 type RequestContactImport struct {
 
+	// To blacklist all the contacts for email
+	EmailBlacklist *bool `json:"emailBlacklist,omitempty"`
+
+	// To facilitate the choice to erase any attribute of the existing contacts with empty value. emptyContactsAttributes = true means the empty fields in your import will erase any attribute that currently contain data in SendinBlue, & emptyContactsAttributes = false means the empty fields will not affect your existing data ( only available if `updateExistingContacts` set to true )
+	EmptyContactsAttributes *bool `json:"emptyContactsAttributes,omitempty"`
+
 	// Mandatory if fileUrl is not defined. CSV content to be imported. Use semicolon to separate multiple attributes
 	FileBody string `json:"fileBody,omitempty"`
 
-	// Mandatory if fileBody not defined. URL of the file to be imported (no local file). Possible file types: .txt, .csv
+	// Mandatory if fileBody is not defined. URL of the file to be imported (no local file). Possible file formats: .txt, .csv
 	FileURL string `json:"fileUrl,omitempty"`
 
-	// Manadatory if newList is not defined. Ids of the lists in which to add the contacts
+	// Mandatory if newList is not defined. Ids of the lists in which the contacts shall be imported. For example, [2, 4, 7].
 	ListIds []int64 `json:"listIds"`
 
 	// new list
@@ -30,34 +35,25 @@ type RequestContactImport struct {
 
 	// URL that will be called once the export process is finished
 	NotifyURL string `json:"notifyUrl,omitempty"`
+
+	// To blacklist all the contacts for sms
+	SmsBlacklist *bool `json:"smsBlacklist,omitempty"`
+
+	// To facilitate the choice to update the existing contacts
+	UpdateExistingContacts *bool `json:"updateExistingContacts,omitempty"`
 }
 
 // Validate validates this request contact import
 func (m *RequestContactImport) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateListIds(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
 	if err := m.validateNewList(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *RequestContactImport) validateListIds(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.ListIds) { // not required
-		return nil
-	}
-
 	return nil
 }
 
@@ -68,7 +64,6 @@ func (m *RequestContactImport) validateNewList(formats strfmt.Registry) error {
 	}
 
 	if m.NewList != nil {
-
 		if err := m.NewList.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("newList")
@@ -91,6 +86,40 @@ func (m *RequestContactImport) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *RequestContactImport) UnmarshalBinary(b []byte) error {
 	var res RequestContactImport
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// RequestContactImportNewList To create a new list and import the contacts into it, pass the listName and an optional folderId.
+// swagger:model RequestContactImportNewList
+type RequestContactImportNewList struct {
+
+	// Id of the folder where this new list shall be created (Mandatory if listName is not empty).
+	FolderID int64 `json:"folderId,omitempty"`
+
+	// List with listName will be created first and users will be imported in it (Mandatory if listIds is empty).
+	ListName string `json:"listName,omitempty"`
+}
+
+// Validate validates this request contact import new list
+func (m *RequestContactImportNewList) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *RequestContactImportNewList) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *RequestContactImportNewList) UnmarshalBinary(b []byte) error {
+	var res RequestContactImportNewList
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

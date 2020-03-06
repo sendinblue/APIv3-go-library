@@ -6,9 +6,10 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"strconv"
 
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
@@ -20,16 +21,45 @@ type GetFolders struct {
 	Count int64 `json:"count,omitempty"`
 
 	// folders
-	Folders GetFoldersFolders `json:"folders"`
+	Folders []*GetFoldersFoldersItems0 `json:"folders"`
 }
 
 // Validate validates this get folders
 func (m *GetFolders) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateFolders(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *GetFolders) validateFolders(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Folders) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Folders); i++ {
+		if swag.IsZero(m.Folders[i]) { // not required
+			continue
+		}
+
+		if m.Folders[i] != nil {
+			if err := m.Folders[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("folders" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 
@@ -44,6 +74,70 @@ func (m *GetFolders) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *GetFolders) UnmarshalBinary(b []byte) error {
 	var res GetFolders
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetFoldersFoldersItems0 get folders folders items0
+// swagger:model GetFoldersFoldersItems0
+type GetFoldersFoldersItems0 struct {
+	GetFolder
+}
+
+// UnmarshalJSON unmarshals this object from a JSON structure
+func (m *GetFoldersFoldersItems0) UnmarshalJSON(raw []byte) error {
+	// AO0
+	var aO0 GetFolder
+	if err := swag.ReadJSON(raw, &aO0); err != nil {
+		return err
+	}
+	m.GetFolder = aO0
+
+	return nil
+}
+
+// MarshalJSON marshals this object to a JSON structure
+func (m GetFoldersFoldersItems0) MarshalJSON() ([]byte, error) {
+	_parts := make([][]byte, 0, 1)
+
+	aO0, err := swag.WriteJSON(m.GetFolder)
+	if err != nil {
+		return nil, err
+	}
+	_parts = append(_parts, aO0)
+
+	return swag.ConcatJSON(_parts...), nil
+}
+
+// Validate validates this get folders folders items0
+func (m *GetFoldersFoldersItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	// validation for a type composition with GetFolder
+	if err := m.GetFolder.Validate(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetFoldersFoldersItems0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetFoldersFoldersItems0) UnmarshalBinary(b []byte) error {
+	var res GetFoldersFoldersItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

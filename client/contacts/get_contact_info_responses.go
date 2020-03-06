@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // GetContactInfoReader is a Reader for the GetContactInfo structure.
@@ -24,21 +24,18 @@ type GetContactInfoReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetContactInfoReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetContactInfoOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewGetContactInfoBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewGetContactInfoNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +63,10 @@ type GetContactInfoOK struct {
 
 func (o *GetContactInfoOK) Error() string {
 	return fmt.Sprintf("[GET /contacts/{email}][%d] getContactInfoOK  %+v", 200, o.Payload)
+}
+
+func (o *GetContactInfoOK) GetPayload() *models.GetExtendedContactDetails {
+	return o.Payload
 }
 
 func (o *GetContactInfoOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -97,6 +98,10 @@ func (o *GetContactInfoBadRequest) Error() string {
 	return fmt.Sprintf("[GET /contacts/{email}][%d] getContactInfoBadRequest  %+v", 400, o.Payload)
 }
 
+func (o *GetContactInfoBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
+}
+
 func (o *GetContactInfoBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ErrorModel)
@@ -124,6 +129,10 @@ type GetContactInfoNotFound struct {
 
 func (o *GetContactInfoNotFound) Error() string {
 	return fmt.Sprintf("[GET /contacts/{email}][%d] getContactInfoNotFound  %+v", 404, o.Payload)
+}
+
+func (o *GetContactInfoNotFound) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *GetContactInfoNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

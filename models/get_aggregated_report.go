@@ -6,9 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -64,6 +63,10 @@ type GetAggregatedReport struct {
 	// Number of unique openings for the timeframe
 	// Required: true
 	UniqueOpens *int64 `json:"uniqueOpens"`
+
+	// Number of unsubscribed emails for the timeframe
+	// Required: true
+	Unsubscribed *int64 `json:"unsubscribed"`
 }
 
 // Validate validates this get aggregated report
@@ -71,62 +74,54 @@ func (m *GetAggregatedReport) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateBlocked(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateClicks(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDelivered(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateHardBounces(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateInvalid(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateOpens(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateRange(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateRequests(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateSoftBounces(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateSpamReports(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateUniqueClicks(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateUniqueOpens(formats); err != nil {
-		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateUnsubscribed(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -238,6 +233,15 @@ func (m *GetAggregatedReport) validateUniqueClicks(formats strfmt.Registry) erro
 func (m *GetAggregatedReport) validateUniqueOpens(formats strfmt.Registry) error {
 
 	if err := validate.Required("uniqueOpens", "body", m.UniqueOpens); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GetAggregatedReport) validateUnsubscribed(formats strfmt.Registry) error {
+
+	if err := validate.Required("unsubscribed", "body", m.Unsubscribed); err != nil {
 		return err
 	}
 

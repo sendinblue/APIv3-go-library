@@ -6,17 +6,19 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"strconv"
 
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // SendTestEmail send test email
 // swagger:model sendTestEmail
 type SendTestEmail struct {
 
-	// If empty the test email will be sent to your entire test list. Use this field to send it to specific addresses in your list.
+	// List of the email addresses of the recipients whom you wish to send the test mail. If left empty, the test mail will be sent to your entire test list.
 	EmailTo []strfmt.Email `json:"emailTo"`
 }
 
@@ -25,7 +27,6 @@ func (m *SendTestEmail) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateEmailTo(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -39,6 +40,14 @@ func (m *SendTestEmail) validateEmailTo(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.EmailTo) { // not required
 		return nil
+	}
+
+	for i := 0; i < len(m.EmailTo); i++ {
+
+		if err := validate.FormatOf("emailTo"+"."+strconv.Itoa(i), "body", "email", m.EmailTo[i].String(), formats); err != nil {
+			return err
+		}
+
 	}
 
 	return nil

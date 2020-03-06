@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // GetWebhooksReader is a Reader for the GetWebhooks structure.
@@ -24,14 +24,12 @@ type GetWebhooksReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetWebhooksReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetWebhooksOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewGetWebhooksBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -61,6 +59,10 @@ func (o *GetWebhooksOK) Error() string {
 	return fmt.Sprintf("[GET /webhooks][%d] getWebhooksOK  %+v", 200, o.Payload)
 }
 
+func (o *GetWebhooksOK) GetPayload() *models.GetWebhooks {
+	return o.Payload
+}
+
 func (o *GetWebhooksOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.GetWebhooks)
@@ -88,6 +90,10 @@ type GetWebhooksBadRequest struct {
 
 func (o *GetWebhooksBadRequest) Error() string {
 	return fmt.Sprintf("[GET /webhooks][%d] getWebhooksBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *GetWebhooksBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *GetWebhooksBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sendinblue/APIv3-go-library/models"
+	"github.com/sendinblue/APIv3-go-library/models"
 )
 
 // AssociateIPToChildReader is a Reader for the AssociateIPToChild structure.
@@ -24,21 +24,18 @@ type AssociateIPToChildReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AssociateIPToChildReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 204:
 		result := NewAssociateIPToChildNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewAssociateIPToChildBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewAssociateIPToChildNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -64,7 +61,7 @@ type AssociateIPToChildNoContent struct {
 }
 
 func (o *AssociateIPToChildNoContent) Error() string {
-	return fmt.Sprintf("[POST /reseller/children/{childId}/ips/associate][%d] associateIpToChildNoContent ", 204)
+	return fmt.Sprintf("[POST /reseller/children/{childAuthKey}/ips/associate][%d] associateIpToChildNoContent ", 204)
 }
 
 func (o *AssociateIPToChildNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -79,14 +76,18 @@ func NewAssociateIPToChildBadRequest() *AssociateIPToChildBadRequest {
 
 /*AssociateIPToChildBadRequest handles this case with default header values.
 
-Dedicated IP is not associated to this child
+bad request
 */
 type AssociateIPToChildBadRequest struct {
 	Payload *models.ErrorModel
 }
 
 func (o *AssociateIPToChildBadRequest) Error() string {
-	return fmt.Sprintf("[POST /reseller/children/{childId}/ips/associate][%d] associateIpToChildBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /reseller/children/{childAuthKey}/ips/associate][%d] associateIpToChildBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *AssociateIPToChildBadRequest) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *AssociateIPToChildBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -108,14 +109,18 @@ func NewAssociateIPToChildNotFound() *AssociateIPToChildNotFound {
 
 /*AssociateIPToChildNotFound handles this case with default header values.
 
-Child ID not found
+Child auth key not found
 */
 type AssociateIPToChildNotFound struct {
 	Payload *models.ErrorModel
 }
 
 func (o *AssociateIPToChildNotFound) Error() string {
-	return fmt.Sprintf("[POST /reseller/children/{childId}/ips/associate][%d] associateIpToChildNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /reseller/children/{childAuthKey}/ips/associate][%d] associateIpToChildNotFound  %+v", 404, o.Payload)
+}
+
+func (o *AssociateIPToChildNotFound) GetPayload() *models.ErrorModel {
+	return o.Payload
 }
 
 func (o *AssociateIPToChildNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

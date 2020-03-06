@@ -6,10 +6,9 @@ package smtp
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -23,7 +22,7 @@ import (
 // with the default values initialized.
 func NewGetSMTPReportParams() *GetSMTPReportParams {
 	var (
-		limitDefault  = int64(50)
+		limitDefault  = int64(10)
 		offsetDefault = int64(0)
 	)
 	return &GetSMTPReportParams{
@@ -38,7 +37,7 @@ func NewGetSMTPReportParams() *GetSMTPReportParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetSMTPReportParamsWithTimeout(timeout time.Duration) *GetSMTPReportParams {
 	var (
-		limitDefault  = int64(50)
+		limitDefault  = int64(10)
 		offsetDefault = int64(0)
 	)
 	return &GetSMTPReportParams{
@@ -53,7 +52,7 @@ func NewGetSMTPReportParamsWithTimeout(timeout time.Duration) *GetSMTPReportPara
 // with the default values initialized, and the ability to set a context for a request
 func NewGetSMTPReportParamsWithContext(ctx context.Context) *GetSMTPReportParams {
 	var (
-		limitDefault  = int64(50)
+		limitDefault  = int64(10)
 		offsetDefault = int64(0)
 	)
 	return &GetSMTPReportParams{
@@ -68,7 +67,7 @@ func NewGetSMTPReportParamsWithContext(ctx context.Context) *GetSMTPReportParams
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetSMTPReportParamsWithHTTPClient(client *http.Client) *GetSMTPReportParams {
 	var (
-		limitDefault  = int64(50)
+		limitDefault  = int64(10)
 		offsetDefault = int64(0)
 	)
 	return &GetSMTPReportParams{
@@ -92,7 +91,7 @@ type GetSMTPReportParams struct {
 	  Mandatory if startDate is used. Ending date of the report (YYYY-MM-DD)
 
 	*/
-	EndDate *strfmt.Date
+	EndDate *string
 	/*Limit
 	  Number of documents returned per page
 
@@ -107,7 +106,7 @@ type GetSMTPReportParams struct {
 	  Mandatory if endDate is used. Starting date of the report (YYYY-MM-DD)
 
 	*/
-	StartDate *strfmt.Date
+	StartDate *string
 	/*Tag
 	  Tag of the emails
 
@@ -164,13 +163,13 @@ func (o *GetSMTPReportParams) SetDays(days *int64) {
 }
 
 // WithEndDate adds the endDate to the get Smtp report params
-func (o *GetSMTPReportParams) WithEndDate(endDate *strfmt.Date) *GetSMTPReportParams {
+func (o *GetSMTPReportParams) WithEndDate(endDate *string) *GetSMTPReportParams {
 	o.SetEndDate(endDate)
 	return o
 }
 
 // SetEndDate adds the endDate to the get Smtp report params
-func (o *GetSMTPReportParams) SetEndDate(endDate *strfmt.Date) {
+func (o *GetSMTPReportParams) SetEndDate(endDate *string) {
 	o.EndDate = endDate
 }
 
@@ -197,13 +196,13 @@ func (o *GetSMTPReportParams) SetOffset(offset *int64) {
 }
 
 // WithStartDate adds the startDate to the get Smtp report params
-func (o *GetSMTPReportParams) WithStartDate(startDate *strfmt.Date) *GetSMTPReportParams {
+func (o *GetSMTPReportParams) WithStartDate(startDate *string) *GetSMTPReportParams {
 	o.SetStartDate(startDate)
 	return o
 }
 
 // SetStartDate adds the startDate to the get Smtp report params
-func (o *GetSMTPReportParams) SetStartDate(startDate *strfmt.Date) {
+func (o *GetSMTPReportParams) SetStartDate(startDate *string) {
 	o.StartDate = startDate
 }
 
@@ -245,11 +244,11 @@ func (o *GetSMTPReportParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	if o.EndDate != nil {
 
 		// query param endDate
-		var qrEndDate strfmt.Date
+		var qrEndDate string
 		if o.EndDate != nil {
 			qrEndDate = *o.EndDate
 		}
-		qEndDate := qrEndDate.String()
+		qEndDate := qrEndDate
 		if qEndDate != "" {
 			if err := r.SetQueryParam("endDate", qEndDate); err != nil {
 				return err
@@ -293,11 +292,11 @@ func (o *GetSMTPReportParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	if o.StartDate != nil {
 
 		// query param startDate
-		var qrStartDate strfmt.Date
+		var qrStartDate string
 		if o.StartDate != nil {
 			qrStartDate = *o.StartDate
 		}
-		qStartDate := qrStartDate.String()
+		qStartDate := qrStartDate
 		if qStartDate != "" {
 			if err := r.SetQueryParam("startDate", qStartDate); err != nil {
 				return err

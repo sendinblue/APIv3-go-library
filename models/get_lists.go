@@ -6,9 +6,10 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"strconv"
 
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -21,9 +22,9 @@ type GetLists struct {
 	// Required: true
 	Count *int64 `json:"count"`
 
-	// lists
+	// Listing of all the lists available in your account
 	// Required: true
-	Lists GetListsLists `json:"lists"`
+	Lists []*GetListsListsItems0 `json:"lists"`
 }
 
 // Validate validates this get lists
@@ -31,12 +32,10 @@ func (m *GetLists) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCount(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateLists(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -61,11 +60,20 @@ func (m *GetLists) validateLists(formats strfmt.Registry) error {
 		return err
 	}
 
-	if err := m.Lists.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("lists")
+	for i := 0; i < len(m.Lists); i++ {
+		if swag.IsZero(m.Lists[i]) { // not required
+			continue
 		}
-		return err
+
+		if m.Lists[i] != nil {
+			if err := m.Lists[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("lists" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -82,6 +90,109 @@ func (m *GetLists) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *GetLists) UnmarshalBinary(b []byte) error {
 	var res GetLists
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GetListsListsItems0 get lists lists items0
+// swagger:model GetListsListsItems0
+type GetListsListsItems0 struct {
+	GetList
+
+	// ID of the folder
+	// Required: true
+	FolderID *int64 `json:"folderId"`
+}
+
+// UnmarshalJSON unmarshals this object from a JSON structure
+func (m *GetListsListsItems0) UnmarshalJSON(raw []byte) error {
+	// AO0
+	var aO0 GetList
+	if err := swag.ReadJSON(raw, &aO0); err != nil {
+		return err
+	}
+	m.GetList = aO0
+
+	// AO1
+	var dataAO1 struct {
+		FolderID *int64 `json:"folderId"`
+	}
+	if err := swag.ReadJSON(raw, &dataAO1); err != nil {
+		return err
+	}
+
+	m.FolderID = dataAO1.FolderID
+
+	return nil
+}
+
+// MarshalJSON marshals this object to a JSON structure
+func (m GetListsListsItems0) MarshalJSON() ([]byte, error) {
+	_parts := make([][]byte, 0, 2)
+
+	aO0, err := swag.WriteJSON(m.GetList)
+	if err != nil {
+		return nil, err
+	}
+	_parts = append(_parts, aO0)
+
+	var dataAO1 struct {
+		FolderID *int64 `json:"folderId"`
+	}
+
+	dataAO1.FolderID = m.FolderID
+
+	jsonDataAO1, errAO1 := swag.WriteJSON(dataAO1)
+	if errAO1 != nil {
+		return nil, errAO1
+	}
+	_parts = append(_parts, jsonDataAO1)
+
+	return swag.ConcatJSON(_parts...), nil
+}
+
+// Validate validates this get lists lists items0
+func (m *GetListsListsItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	// validation for a type composition with GetList
+	if err := m.GetList.Validate(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateFolderID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetListsListsItems0) validateFolderID(formats strfmt.Registry) error {
+
+	if err := validate.Required("folderId", "body", m.FolderID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GetListsListsItems0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GetListsListsItems0) UnmarshalBinary(b []byte) error {
+	var res GetListsListsItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}
