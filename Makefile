@@ -14,17 +14,22 @@ build/swagger_definition.yml: Makefile
 install-go-swagger:
 	go get -v -u $(GO_SWAGGER_PACKAGE)
 
-install-dependencies:
-	go get -v -u github.com/golang/dep/cmd/dep
-	dep ensure -v
-	dep prune -v
-
 test:
-	go build -v -i ./client
+	go build -v ./client
 	go test -v ./test
 
 clean:
-	go clean -i ./... ./vendor/...
-	rm -rf build vendor
+	go clean -i ./...
+	rm -rf build
 
-.PHONY: generate install-go-swagger install-dependencies test clean
+.PHONY: generate install-go-swagger mod-update test clean
+
+mod-update:
+	go get -v -u -d all
+	$(MOD_TIDY)
+
+MOD_TIDY=rm -f go.sum && go mod tidy -v
+.PHONY: mod-tidy
+mod-tidy:
+	$(MOD_TIDY)
+
