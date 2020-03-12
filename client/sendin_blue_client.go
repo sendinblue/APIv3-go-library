@@ -11,16 +11,16 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/sendinblue/APIv3-go-library/client/account"
-	"github.com/sendinblue/APIv3-go-library/client/contacts"
-	"github.com/sendinblue/APIv3-go-library/client/email_campaigns"
-	"github.com/sendinblue/APIv3-go-library/client/process"
-	"github.com/sendinblue/APIv3-go-library/client/reseller"
-	"github.com/sendinblue/APIv3-go-library/client/s_m_s_campaigns"
-	"github.com/sendinblue/APIv3-go-library/client/senders"
-	"github.com/sendinblue/APIv3-go-library/client/smtp"
-	"github.com/sendinblue/APIv3-go-library/client/transactional_s_m_s"
-	"github.com/sendinblue/APIv3-go-library/client/webhooks"
+	"APIv3_go_wrapper/client/account"
+	"APIv3_go_wrapper/client/contacts"
+	"APIv3_go_wrapper/client/email_campaigns"
+	"APIv3_go_wrapper/client/process"
+	"APIv3_go_wrapper/client/reseller"
+	"APIv3_go_wrapper/client/s_m_s_campaigns"
+	"APIv3_go_wrapper/client/senders"
+	"APIv3_go_wrapper/client/smtp"
+	"APIv3_go_wrapper/client/transactional_s_m_s"
+	"APIv3_go_wrapper/client/webhooks"
 )
 
 // Default sendin blue HTTP client.

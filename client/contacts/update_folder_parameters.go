@@ -17,7 +17,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	"github.com/sendinblue/APIv3-go-library/models"
+	"APIv3_go_wrapper/models"
 )
 
 // NewUpdateFolderParams creates a new UpdateFolderParams object

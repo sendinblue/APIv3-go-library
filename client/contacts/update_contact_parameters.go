@@ -16,7 +16,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	"github.com/sendinblue/APIv3-go-library/models"
+	"APIv3_go_wrapper/models"
 )
 
 // NewUpdateContactParams creates a new UpdateContactParams object

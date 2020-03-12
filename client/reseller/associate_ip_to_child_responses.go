@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	"github.com/sendinblue/APIv3-go-library/models"
+	"APIv3_go_wrapper/models"
 )
 
 // AssociateIPToChildReader is a Reader for the AssociateIPToChild structure.
