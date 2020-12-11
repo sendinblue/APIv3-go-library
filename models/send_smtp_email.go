@@ -21,10 +21,10 @@ type SendSMTPEmail struct {
 	Attachment SendSMTPEmailAttachment `json:"attachment"`
 
 	// bcc
-	Bcc SendSMTPEmailBcc `json:"bcc"`
+	Bcc SendSMTPEmailBcc `json:"bcc,omitempty"`
 
 	// cc
-	Cc SendSMTPEmailCc `json:"cc"`
+	Cc SendSMTPEmailCc `json:"cc,omitempty"`
 
 	// headers
 	Headers map[string]string `json:"headers,omitempty"`
