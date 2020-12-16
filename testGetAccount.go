@@ -1,17 +1,16 @@
-package test
+package main
 
 import (
-	"fmt"
 	"testing"
+	"fmt"
 )
 
 func TestGetAccount(t *testing.T) {
 	sib := getAPIClient(t)
 	res, err := sib.Account.GetAccount(nil, nil)
 	if err != nil {
-		fmt.Println("*** Error ***")
-		fmt.Println(err)
 		t.Fatal(err)
 	}
-	t.Log(spewConfig.Sdump(res.Payload))
+	fmt.Println(res)
 }
+

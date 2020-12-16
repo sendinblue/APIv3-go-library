@@ -29,7 +29,7 @@ type CreateContact struct {
 	EmailBlacklisted bool `json:"emailBlacklisted,omitempty"`
 
 	// Ids of the lists to add the contact to
-	ListIds []int64 `json:"listIds"`
+	ListIds []int64 `json:"listIds,omitempty"`
 
 	// Set this field to blacklist the contact for SMS (smsBlacklisted = true)
 	SmsBlacklisted bool `json:"smsBlacklisted,omitempty"`

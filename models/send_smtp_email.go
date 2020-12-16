@@ -22,10 +22,10 @@ type SendSMTPEmail struct {
 	Attachment []*SendSMTPEmailAttachmentItems0 `json:"attachment"`
 
 	// List of email addresses and names (optional) of the recipients in bcc
-	Bcc []*SendSMTPEmailBccItems0 `json:"bcc"`
+	Bcc []*SendSMTPEmailBccItems0 `json:"bcc,omitempty"`
 
 	// List of email addresses and names (optional) of the recipients in cc
-	Cc []*SendSMTPEmailCcItems0 `json:"cc"`
+	Cc []*SendSMTPEmailCcItems0 `json:"cc,omitempty"`
 
 	// Pass the set of custom headers (not the standard headers) that shall be sent along the mail headers in the original email. 'sender.ip' header can be set (only for dedicated ip users) to mention the IP to be used for sending transactional emails. For example, `{"sender.ip":"1.2.3.4", "X-Mailin-custom":"some_custom_header"}`.
 	Headers interface{} `json:"headers,omitempty"`

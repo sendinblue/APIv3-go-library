@@ -30,7 +30,7 @@ func getAPIKey(tb testing.TB) string {
 	if apiKey == "" {
 		tb.Skipf("environment variable %q is not defined", apiKeyEnvVariable)
 	}
-	return apiKey
+	return "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"
 }
 
 const (
