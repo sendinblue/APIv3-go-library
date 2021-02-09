@@ -19,10 +19,6 @@ install-dependencies:
 	dep ensure -v
 	dep prune -v
 
-test:
-	go build -v -i ./client
-	go test -v ./test
-
 clean:
 	go clean -i ./... ./vendor/...
 	rm -rf build vendor
