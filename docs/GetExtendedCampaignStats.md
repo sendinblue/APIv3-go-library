@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Remaining** | **int64** | Number of remaning emails to send | [default to null]
 **LinksStats** | [***interface{}**](interface{}.md) | Statistics about the number of clicks for the links | [default to null]
 **StatsByDomain** | [***map[string]GetCampaignStats**](map.md) |  | [default to null]
-**StatsByDevice** | [***GetStatsByDevice**](getStatsByDevice.md) |  | [default to null]
+**StatsByDevice** | [***GetStatsByDevice**](GetStatsByDevice.md) |  | [default to null]
 **StatsByBrowser** | [***map[string]GetDeviceBrowserStats**](map.md) |  | [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -15,7 +15,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**GetAccount**](getAccount.md)
+[**GetAccount**](GetAccount.md)
 
 ### Authorization
 

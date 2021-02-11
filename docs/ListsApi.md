@@ -28,7 +28,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PostContactInfo**](postContactInfo.md)
+[**PostContactInfo**](PostContactInfo.md)
 
 ### Authorization
 
@@ -54,7 +54,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateModel**](createModel.md)
+[**CreateModel**](CreateModel.md)
 
 ### Authorization
 
@@ -117,7 +117,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetContacts**](getContacts.md)
+[**GetContacts**](GetContacts.md)
 
 ### Authorization
 
@@ -153,7 +153,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetFolderLists**](getFolderLists.md)
+[**GetFolderLists**](GetFolderLists.md)
 
 ### Authorization
 
@@ -179,7 +179,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetExtendedList**](getExtendedList.md)
+[**GetExtendedList**](GetExtendedList.md)
 
 ### Authorization
 
@@ -213,7 +213,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetLists**](getLists.md)
+[**GetLists**](GetLists.md)
 
 ### Authorization
 
@@ -240,7 +240,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PostContactInfo**](postContactInfo.md)
+[**PostContactInfo**](PostContactInfo.md)
 
 ### Authorization
 

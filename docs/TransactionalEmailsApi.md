@@ -66,7 +66,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateModel**](createModel.md)
+[**CreateModel**](CreateModel.md)
 
 ### Authorization
 
@@ -189,7 +189,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetAggregatedReport**](getAggregatedReport.md)
+[**GetAggregatedReport**](GetAggregatedReport.md)
 
 ### Authorization
 
@@ -213,7 +213,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**GetBlockedDomains**](getBlockedDomains.md)
+[**GetBlockedDomains**](GetBlockedDomains.md)
 
 ### Authorization
 
@@ -255,7 +255,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetEmailEventReport**](getEmailEventReport.md)
+[**GetEmailEventReport**](GetEmailEventReport.md)
 
 ### Authorization
 
@@ -319,7 +319,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetSmtpTemplateOverview**](getSmtpTemplateOverview.md)
+[**GetSmtpTemplateOverview**](GetSmtpTemplateOverview.md)
 
 ### Authorization
 
@@ -354,7 +354,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetSmtpTemplates**](getSmtpTemplates.md)
+[**GetSmtpTemplates**](GetSmtpTemplates.md)
 
 ### Authorization
 
@@ -391,7 +391,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetTransacBlockedContacts**](getTransacBlockedContacts.md)
+[**GetTransacBlockedContacts**](GetTransacBlockedContacts.md)
 
 ### Authorization
 
@@ -417,7 +417,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetTransacEmailContent**](getTransacEmailContent.md)
+[**GetTransacEmailContent**](GetTransacEmailContent.md)
 
 ### Authorization
 
@@ -456,7 +456,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetTransacEmailsList**](getTransacEmailsList.md)
+[**GetTransacEmailsList**](GetTransacEmailsList.md)
 
 ### Authorization
 
@@ -485,7 +485,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SendTemplateEmail**](sendTemplateEmail.md)
+[**SendTemplateEmail**](SendTemplateEmail.md)
 
 ### Authorization
 
@@ -538,7 +538,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateSmtpEmail**](createSmtpEmail.md)
+[**CreateSmtpEmail**](CreateSmtpEmail.md)
 
 ### Authorization
 

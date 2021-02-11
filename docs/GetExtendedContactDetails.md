@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **ListIds** | **[]int64** |  | [default to null]
 **ListUnsubscribed** | **[]int64** |  | [optional] [default to null]
 **Attributes** | [***interface{}**](interface{}.md) | Set of attributes of the contact | [default to null]
-**Statistics** | [***GetExtendedContactDetailsStatistics**](getExtendedContactDetails_statistics.md) |  | [default to null]
+**Statistics** | [***GetExtendedContactDetailsStatistics**](GetExtendedContactDetailsStatistics.md) |  | [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -28,7 +28,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateModel**](createModel.md)
+[**CreateModel**](CreateModel.md)
 
 ### Authorization
 
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetSmsCampaign**](getSmsCampaign.md)
+[**GetSmsCampaign**](GetSmsCampaign.md)
 
 ### Authorization
 
@@ -117,7 +117,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetSmsCampaigns**](getSmsCampaigns.md)
+[**GetSmsCampaigns**](GetSmsCampaigns.md)
 
 ### Authorization
 
@@ -153,7 +153,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreatedProcessId**](createdProcessId.md)
+[**CreatedProcessId**](CreatedProcessId.md)
 
 ### Authorization
 

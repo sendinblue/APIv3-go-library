@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TransactionalEmails** | [**[]GetTransacEmailsListTransactionalEmails**](getTransacEmailsList_transactionalEmails.md) |  | [optional] [default to null]
+**TransactionalEmails** | [**[]GetTransacEmailsListTransactionalEmails**](GetTransacEmailsListTransactionalEmails.md) |  | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
