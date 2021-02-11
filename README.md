@@ -1,4 +1,4 @@
-# SendinBlue's API v3 Python Library
+# SendinBlue's API v3 Go Library
 
 SendinBlue's API exposes the entire SendinBlue features via a standardized programmatic interface. Please refer to the full [documentation](https://developers.sendinblue.com) to learn more.
 
