@@ -1,4 +1,4 @@
-# {{classname}}
+# sib_api_v3_sdk.ContactsApi
 
 All URIs are relative to *https://api.sendinblue.com/v3*
 
@@ -46,7 +46,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PostContactInfo**](postContactInfo.md)
+[**PostContactInfo**](PostContactInfo.md)
 
 ### Authorization
 

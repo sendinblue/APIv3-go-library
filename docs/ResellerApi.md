@@ -1,4 +1,4 @@
-# {{classname}}
+# sib_api_v3_sdk.ResellerApi
 
 All URIs are relative to *https://api.sendinblue.com/v3*
 
