@@ -145,7 +145,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetEmailCampaign**](getEmailCampaign.md)
+[**GetEmailCampaign**](GetEmailCampaign.md)
 
 ### Authorization
 

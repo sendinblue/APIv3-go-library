@@ -331,7 +331,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetExtendedContactDetails**](getExtendedContactDetails.md)
+[**GetExtendedContactDetails**](GetExtendedContactDetails.md)
 
 ### Authorization
 
