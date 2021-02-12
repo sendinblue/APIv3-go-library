@@ -1,0 +1,36 @@
+# CreateEmailCampaign
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Tag** | **string** | Tag of the campaign | [optional] [default to null]
+**Sender** | [***CreateEmailCampaignSender**](CreateEmailCampaignSender.md) |  | [default to null]
+**Name** | **string** | Name of the campaign | [default to null]
+**HtmlContent** | **string** | Mandatory if htmlUrl and templateId are empty. Body of the message (HTML) | [optional] [default to null]
+**HtmlUrl** | **string** | Mandatory if htmlContent and templateId are empty. Url to the message (HTML) | [optional] [default to null]
+**TemplateId** | **int64** | Mandatory if htmlContent and htmlUrl are empty. Id of the transactional email template with status &#x27;active&#x27;. Used to copy only its content fetched from htmlContent/htmlUrl to an email campaign for RSS feature. | [optional] [default to null]
+**ScheduledAt** | **string** | Sending UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). Prefer to pass your timezone in date-time format for accurate result. If sendAtBestTime is set to true, your campaign will be sent according to the date passed (ignoring the time part). | [optional] [default to null]
+**Subject** | **string** | Subject of the campaign. Mandatory if abTesting is false. Ignored if abTesting is true. | [optional] [default to null]
+**ReplyTo** | **string** | Email on which the campaign recipients will be able to reply to | [optional] [default to null]
+**ToField** | **string** | To personalize the «To» Field. If you want to include the first name and last name of your recipient, add {FNAME} {LNAME}. These contact attributes must already exist in your SendinBlue account. If input parameter &#x27;params&#x27; used please use {{contact.FNAME}} {{contact.LNAME}} for personalization | [optional] [default to null]
+**Recipients** | [***CreateEmailCampaignRecipients**](CreateEmailCampaignRecipients.md) |  | [optional] [default to null]
+**AttachmentUrl** | **string** | Absolute url of the attachment (no local file). Extension allowed: xlsx, xls, ods, docx, docm, doc, csv, pdf, txt, gif, jpg, jpeg, png, tif, tiff, rtf, bmp, cgm, css, shtml, html, htm, zip, xml, ppt, pptx, tar, ez, ics, mobi, msg, pub and eps | [optional] [default to null]
+**InlineImageActivation** | **bool** | Use true to embedded the images in your email. Final size of the email should be less than 4MB. Campaigns with embedded images can not be sent to more than 5000 contacts | [optional] [default to false]
+**MirrorActive** | **bool** | Use true to enable the mirror link | [optional] [default to null]
+**Footer** | **string** | Footer of the email campaign | [optional] [default to null]
+**Header** | **string** | Header of the email campaign | [optional] [default to null]
+**UtmCampaign** | **string** | Customize the utm_campaign value. If this field is empty, the campaign name will be used. Only alphanumeric characters and spaces are allowed | [optional] [default to null]
+**Params** | [***interface{}**](interface{}.md) | Pass the set of attributes to customize the type classic campaign. For example, {\&quot;FNAME\&quot;:\&quot;Joe\&quot;, \&quot;LNAME\&quot;:\&quot;Doe\&quot;}. Only available if &#x27;type&#x27; is &#x27;classic&#x27;. It&#x27;s considered only if campaign is in New Template Language format. The New Template Language is dependent on the values of &#x27;subject&#x27;, &#x27;htmlContent/htmlUrl&#x27;, &#x27;sender.name&#x27; &amp; &#x27;toField&#x27; | [optional] [default to null]
+**SendAtBestTime** | **bool** | Set this to true if you want to send your campaign at best time. | [optional] [default to false]
+**AbTesting** | **bool** | Status of A/B Test. abTesting &#x3D; false means it is disabled, &amp; abTesting &#x3D; true means it is enabled. &#x27;subjectA&#x27;, &#x27;subjectB&#x27;, &#x27;splitRule&#x27;, &#x27;winnerCriteria&#x27; &amp; &#x27;winnerDelay&#x27; will be considered when abTesting is set to true. &#x27;subjectA&#x27; &amp; &#x27;subjectB&#x27; are mandatory together &amp; &#x27;subject&#x27; if passed is ignored. Can be set to true only if &#x27;sendAtBestTime&#x27; is &#x27;false&#x27;. You will be able to set up two subject lines for your campaign and send them to a random sample of your total recipients. Half of the test group will receive version A, and the other half will receive version B | [optional] [default to false]
+**SubjectA** | **string** | Subject A of the campaign. Mandatory if abTesting &#x3D; true. subjectA &amp; subjectB should have unique value | [optional] [default to null]
+**SubjectB** | **string** | Subject B of the campaign. Mandatory if abTesting &#x3D; true. subjectA &amp; subjectB should have unique value | [optional] [default to null]
+**SplitRule** | **int64** | Add the size of your test groups. Mandatory if abTesting &#x3D; true &amp; &#x27;recipients&#x27; is passed. We&#x27;ll send version A and B to a random sample of recipients, and then the winning version to everyone else | [optional] [default to null]
+**WinnerCriteria** | **string** | Choose the metrics that will determinate the winning version. Mandatory if &#x27;splitRule&#x27; &gt;&#x3D; 1 and &lt; 50. If splitRule &#x3D; 50, &#x27;winnerCriteria&#x27; is ignored if passed | [optional] [default to null]
+**WinnerDelay** | **int64** | Choose the duration of the test in hours. Maximum is 7 days, pass 24*7 &#x3D; 168 hours. The winning version will be sent at the end of the test. Mandatory if &#x27;splitRule&#x27; &gt;&#x3D; 1 and &lt; 50. If splitRule &#x3D; 50, &#x27;winnerDelay&#x27; is ignored if passed | [optional] [default to null]
+**IpWarmupEnable** | **bool** | Available for dedicated ip clients. Set this to true if you wish to warm up your ip. | [optional] [default to false]
+**InitialQuota** | **int64** | Mandatory if ipWarmupEnable is set to true. Set an initial quota greater than 1 for warming up your ip. We recommend you set a value of 3000. | [optional] [default to null]
+**IncreaseRate** | **int64** | Mandatory if ipWarmupEnable is set to true. Set a percentage increase rate for warming up your ip. We recommend you set the increase rate to 30% per day. If you want to send the same number of emails every day, set the daily increase value to 0%. | [optional] [default to null]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
