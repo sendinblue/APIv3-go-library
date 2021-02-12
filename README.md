@@ -43,7 +43,7 @@ func main() {
 	cli.cfg.AddDefaultHeader("api-key", "YOUR_API_KEY")
 	//Configure API key authorization: partner-key
 	cli.cfg.AddDefaultHeader("partner-key","YOUR_API_KEY")
-	
+
 	sib := sib_api_v3_sdk.NewAPIClient(cli.cfg)
 	result, resp, err := sib.AccountApi.GetAccount(ctx)
 	if err != nil {
@@ -388,7 +388,7 @@ Class | Method | HTTP request | Description
 - **Type**: API key
 - **API key parameter name**: partner-key
 - **Location**: HTTP header
-```
+
 
 ## Support and Feedback
 
