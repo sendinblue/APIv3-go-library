@@ -39,6 +39,11 @@ func main() {
 	var cli = sib_api_v3_sdk.APIClient{
 		cfg: sib_api_v3_sdk.NewConfiguration(),
 	}
+	//Configure API key authorization: api-key
+	cli.cfg.AddDefaultHeader("api-key", "YOUR_API_KEY")
+	//Configure API key authorization: partner-key
+	cli.cfg.AddDefaultHeader("partner-key","YOUR_API_KEY")
+	
 	sib := sib_api_v3_sdk.NewAPIClient(cli.cfg)
 	result, resp, err := sib.AccountApi.GetAccount(ctx)
 	if err != nil {
@@ -373,26 +378,16 @@ Class | Method | HTTP request | Description
 ## Documentation For Authorization
 
 ## api-key
-- **Type**: API key 
 
-Example
-```golang
-auth := context.WithValue(context.Background(), sw.ContextAPIKey, sw.APIKey{
-	Key: "APIKEY",
-	Prefix: "Bearer", // Omit if not necessary.
-})
-r, err := client.Service.Operation(auth, args)
-```
+- **Type**: API key
+- **API key parameter name**: api-key
+- **Location**: HTTP header
+
 ## partner-key
-- **Type**: API key 
 
-Example
-```golang
-auth := context.WithValue(context.Background(), sw.ContextAPIKey, sw.APIKey{
-	Key: "APIKEY",
-	Prefix: "Bearer", // Omit if not necessary.
-})
-r, err := client.Service.Operation(auth, args)
+- **Type**: API key
+- **API key parameter name**: partner-key
+- **Location**: HTTP header
 ```
 
 ## Support and Feedback
