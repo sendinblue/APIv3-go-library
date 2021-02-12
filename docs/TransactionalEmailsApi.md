@@ -293,7 +293,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetReports**](getReports.md)
+[**GetReports**](GetReports.md)
 
 ### Authorization
 

@@ -227,7 +227,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetChildAccountCreationStatus**](getChildAccountCreationStatus.md)
+[**GetChildAccountCreationStatus**](GetChildAccountCreationStatus.md)
 
 ### Authorization
 

@@ -22,6 +22,33 @@ Put the package under your project folder and add the following in import:
 ```golang
 import "./lib"
 ```
+## Getting Started
+
+Please follow the [installation procedure](#installation--usage) and then run the following:
+
+```golang
+package main
+import (
+	"fmt"
+	"context"
+     sib_api_v3_sdk "./lib"
+)
+
+func main() {
+	var ctx context.Context
+	var cli = APIClient{
+		cfg: NewConfiguration(),
+	}
+	sib := NewAPIClient(cli.cfg)
+	result, resp, err := sib.AccountApi.GetAccount(ctx)
+	if err != nil {
+		fmt.Println("Error when calling AccountApi->get_account: ",err.Error())
+		return
+	}
+	fmt.Println("GetAccount Object:",result," GetAccount Response: ",resp)
+	return 
+}
+```
 
 ## Documentation for API Endpoints
 
