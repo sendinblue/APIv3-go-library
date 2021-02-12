@@ -36,10 +36,10 @@ import (
 
 func main() {
 	var ctx context.Context
-	var cli = APIClient{
-		cfg: NewConfiguration(),
+	var cli = sib_api_v3_sdk.APIClient{
+		cfg: sib_api_v3_sdk.NewConfiguration(),
 	}
-	sib := NewAPIClient(cli.cfg)
+	sib := sib_api_v3_sdk.NewAPIClient(cli.cfg)
 	result, resp, err := sib.AccountApi.GetAccount(ctx)
 	if err != nil {
 		fmt.Println("Error when calling AccountApi->get_account: ",err.Error())
