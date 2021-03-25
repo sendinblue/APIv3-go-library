@@ -4,8 +4,6 @@ import (
 	"context"
 	"fmt"
 	"testing"
-
-	"github.com/antihax/optional"
 )
 
 func TestCreateEmailCampaign(t *testing.T) {
@@ -19,10 +17,19 @@ func TestCreateEmailCampaign(t *testing.T) {
 		Email: "shubham.upadhyay@sendinblue.com",
 	}
 	params := CreateEmailCampaign{
-		Sender:      s,
-		Name:        "TestCampaign",
-		HtmlContent: "Hi There! welcome to SIB",
-		Subject:     "Welcome!",
+		Sender:                s,
+		Name:                  "TestCampaign",
+		HtmlContent:           "Hi There! welcome to SIB",
+		Subject:               "Welcome!",
+		AttachmentUrl:         "https://attachment.domain.com/myAttachmentFromUrl.jpg",
+		InlineImageActivation: false,
+		ReplyTo:               "replyto@domain.com",
+		TemplateId:            int64(10),
+		ToField:               "John Doe",
+		Recipients: &CreateEmailCampaignRecipients{
+			ListIds:          []int64{2},
+			ExclusionListIds: []int64{1, 3},
+		},
 	}
 	result, resp, err := sib.EmailCampaignsApi.CreateEmailCampaign(ctx, params)
 	if err != nil {
@@ -39,13 +46,14 @@ func TestGetEmailCampaigns(t *testing.T) {
 	}
 	sib := NewAPIClient(cli.cfg)
 
-	params := &EmailCampaignsApiGetEmailCampaignsOpts{
-		Limit: optional.NewInt64(10),
+	body := UploadImageToGallery{
+		ImageUrl: "https://example.net/upload-file.jpg",
+		Name:     "Example Image",
 	}
-	result, resp, err := sib.EmailCampaignsApi.GetEmailCampaigns(ctx, params)
+	resp, err := sib.EmailCampaignsApi.UploadImageToGallery(ctx, body)
 	if err != nil {
 		fmt.Println("===in Get All EmailCampaign error===")
 		t.Fatal(err)
 	}
-	fmt.Println("====GetEmailCampaigns Result:", result, "     ====    resp:", resp)
+	fmt.Println("====GetEmailCampaigns Result:", "     ====    resp:", resp)
 }
