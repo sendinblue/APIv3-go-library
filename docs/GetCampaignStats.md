@@ -12,10 +12,14 @@ Name | Type | Description | Notes
 **SoftBounces** | **int64** | Number of softbounce for the campaign | [default to null]
 **HardBounces** | **int64** | Number of harbounce for the campaign | [default to null]
 **UniqueViews** | **int64** | Number of unique openings for the campaign | [default to null]
+**TrackableViews** | **int64** | Recipients without any privacy protection option enabled in their email client | [default to null]
+**TrackableViewsRate** | **float32** | Rate of recipients without any privacy protection option enabled in their email client | [optional] [default to null]
+**EstimatedViews** | **int64** | Rate of recipients without any privacy protection option enabled in their email client, applied to all delivered emails | [optional] [default to null]
 **Unsubscriptions** | **int64** | Number of unsubscription for the campaign | [default to null]
 **Viewed** | **int64** | Number of openings for the campaign | [default to null]
 **Deferred** | **int64** | Number of deferred emails for the campaign | [optional] [default to null]
 **ReturnBounce** | **int64** | Total number of non-delivered campaigns for a particular campaign id. | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 

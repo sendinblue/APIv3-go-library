@@ -1,4 +1,4 @@
-# sib_api_v3_sdk.ProcessApi
+# \ProcessApi
 
 All URIs are relative to *https://api.sendinblue.com/v3*
 
@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetProcess**](ProcessApi.md#GetProcess) | **Get** /processes/{processId} | Return the informations for a process
 [**GetProcesses**](ProcessApi.md#GetProcesses) | **Get** /processes | Return all the processes for your account
+
 
 # **GetProcess**
 > GetProcess GetProcess(ctx, processId)
@@ -20,7 +21,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetProcess**](GetProcess.md)
+[**GetProcess**](getProcess.md)
 
 ### Authorization
 
@@ -28,7 +29,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -42,10 +43,11 @@ Return all the processes for your account
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***ProcessApiGetProcessesOpts** | optional parameters | nil if no parameters
+ **optional** | ***GetProcessesOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a ProcessApiGetProcessesOpts struct
+Optional parameters are passed through a pointer to a GetProcessesOpts struct
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **limit** | **optional.Int64**| Number limitation for the result returned | [default to 10]
@@ -54,7 +56,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetProcesses**](GetProcesses.md)
+[**GetProcesses**](getProcesses.md)
 
 ### Authorization
 
@@ -62,7 +64,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
