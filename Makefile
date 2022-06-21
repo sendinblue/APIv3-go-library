@@ -14,11 +14,6 @@ build/swagger_definition.yml: Makefile
 install-go-swagger:
 	go get -v -u $(GO_SWAGGER_PACKAGE)
 
-install-dependencies:
-	go get -v -u github.com/golang/dep/cmd/dep
-	dep ensure -v
-	dep prune -v
-
 clean:
 	go clean -i ./... ./vendor/...
 	rm -rf build vendor
