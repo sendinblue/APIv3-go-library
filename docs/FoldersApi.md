@@ -25,7 +25,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateModel**](createModel.md)
+[**CreateModel**](CreateModel.md)
 
 ### Authorization
 
@@ -77,7 +77,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetFolder**](getFolder.md)
+[**GetFolder**](GetFolder.md)
 
 ### Authorization
 
@@ -114,7 +114,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetFolderLists**](getFolderLists.md)
+[**GetFolderLists**](GetFolderLists.md)
 
 ### Authorization
 
@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetFolders**](getFolders.md)
+[**GetFolders**](GetFolders.md)
 
 ### Authorization
 

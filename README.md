@@ -45,7 +45,7 @@ All URIs are relative to *https://api.sendinblue.com/v3*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AccountApi* | [**GetAccount**](docs/AccountApi.md#getaccount) | **Get** /account | Get your account information, plan and credits details
+*AccountApi* | [**GetAccount**](docs/AccountApi.md#Getaccount) | **Get** /account | Get your account information, plan and credits details
 *AttributesApi* | [**CreateAttribute**](docs/AttributesApi.md#createattribute) | **Post** /contacts/attributes/{attributeCategory}/{attributeName} | Create contact attribute
 *AttributesApi* | [**DeleteAttribute**](docs/AttributesApi.md#deleteattribute) | **Delete** /contacts/attributes/{attributeCategory}/{attributeName} | Delete an attribute
 *AttributesApi* | [**GetAttributes**](docs/AttributesApi.md#getattributes) | **Get** /contacts/attributes | List all attributes

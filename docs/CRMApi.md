@@ -298,7 +298,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2011**](inline_response_201_1.md)
+[**InlineResponse2011**](InlineResponse2011.md)
 
 ### Authorization
 

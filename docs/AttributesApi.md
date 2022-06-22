@@ -74,7 +74,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**GetAttributes**](getAttributes.md)
+[**GetAttributes**](GetAttributes.md)
 
 ### Authorization
 

@@ -35,7 +35,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetInboundEmailEvents**](getInboundEmailEvents.md)
+[**GetInboundEmailEvents**](GetInboundEmailEvents.md)
 
 ### Authorization
 
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetInboundEmailEventsByUuid**](getInboundEmailEventsByUuid.md)
+[**GetInboundEmailEventsByUuid**](GetInboundEmailEventsByUuid.md)
 
 ### Authorization
 
