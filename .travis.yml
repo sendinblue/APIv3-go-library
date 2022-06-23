@@ -1,4 +1,7 @@
 language: go
-go: 1.9
 
-script: make test
+install:
+  - go get -d -v .
+
+script:
+  - go build -v ./
