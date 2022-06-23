@@ -17,7 +17,7 @@ package main
 import (
 	"fmt"
 	"context"
-    sendinblue "github.com/sendinblue/APIv3-go-library/v3"
+    sendinblue "github.com/sendinblue/APIv3-go-library/lib"
 )
 
 func main() {
@@ -455,27 +455,25 @@ Class | Method | HTTP request | Description
 ## Documentation For Authorization
 
 ## api-key
-- **Type**: API key 
 
-Example
-```golang
-auth := context.WithValue(context.Background(), sw.ContextAPIKey, sw.APIKey{
-	Key: "APIKEY",
-	Prefix: "Bearer", // Omit if not necessary.
-})
-r, err := client.Service.Operation(auth, args)
-```
+- **Type**: API key
+- **API key parameter name**: api-key
+- **Location**: HTTP header
+
 ## partner-key
-- **Type**: API key 
 
-Example
-```golang
-auth := context.WithValue(context.Background(), sw.ContextAPIKey, sw.APIKey{
-	Key: "APIKEY",
-	Prefix: "Bearer", // Omit if not necessary.
-})
-r, err := client.Service.Operation(auth, args)
-```
+- **Type**: API key
+- **API key parameter name**: partner-key
+- **Location**: HTTP header
+
+
+## Support and Feedback
+
+Be sure to visit the SendinBlue official [documentation website](https://sendinblue.readme.io/docs ) for additional information about our API.
+
+If you find a bug, please post the issue on [Github](https://github.com/sendinblue/APIv3-go-library/issues).
+
+As always, if you need additional assistance, drop us a note [here](https://account.sendinblue.com/support).
 
 ## Author
 
