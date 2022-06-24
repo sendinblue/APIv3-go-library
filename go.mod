@@ -1,4 +1,4 @@
-module v3
+module github.com/sendinblue/APIv3-go-library/lib
 
 go 1.17
 
