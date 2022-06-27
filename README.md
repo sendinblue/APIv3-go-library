@@ -15,7 +15,7 @@ For more information, please visit [https://account.sendinblue.com/support](http
 ## Installation & Usage
 Install the package to your GoLang project.
 ```golang
-go get github.com/sendinblue/APIv3-go-library/lib
+go get github.com/sendinblue/APIv3-go-library/v2
 ```
 
 ## Getting Started
@@ -26,7 +26,7 @@ package main
 import (
 	"fmt"
 	"context"
-    sendinblue "github.com/sendinblue/APIv3-go-library/lib"
+    sendinblue "github.com/sendinblue/APIv3-go-library/v2/lib"
 )
 
 func main() {
