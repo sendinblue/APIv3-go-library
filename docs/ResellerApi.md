@@ -1,4 +1,4 @@
-# sib_api_v3_sdk.ResellerApi
+# \ResellerApi
 
 All URIs are relative to *https://api.sendinblue.com/v3*
 
@@ -11,18 +11,19 @@ Method | HTTP request | Description
 [**DeleteChildDomain**](ResellerApi.md#DeleteChildDomain) | **Delete** /reseller/children/{childIdentifier}/domains/{domainName} | Delete the sender domain of the reseller child based on the childIdentifier and domainName passed
 [**DeleteResellerChild**](ResellerApi.md#DeleteResellerChild) | **Delete** /reseller/children/{childIdentifier} | Delete a single reseller child based on the child identifier supplied
 [**DissociateIpFromChild**](ResellerApi.md#DissociateIpFromChild) | **Post** /reseller/children/{childIdentifier}/ips/dissociate | Dissociate a dedicated IP to the child
-[**GetChildAccountCreationStatus**](ResellerApi.md#GetChildAccountCreationStatus) | **Get** /reseller/children/{childIdentifier}/accountCreationStatus | Get the status of a reseller&#x27;s child account creation, whether it is successfully created (exists) or not based on the identifier supplied
+[**GetChildAccountCreationStatus**](ResellerApi.md#GetChildAccountCreationStatus) | **Get** /reseller/children/{childIdentifier}/accountCreationStatus | Get the status of a reseller&#39;s child account creation, whether it is successfully created (exists) or not based on the identifier supplied
 [**GetChildDomains**](ResellerApi.md#GetChildDomains) | **Get** /reseller/children/{childIdentifier}/domains | Get all sender domains for a specific child account
-[**GetChildInfo**](ResellerApi.md#GetChildInfo) | **Get** /reseller/children/{childIdentifier} | Get a child account&#x27;s details
+[**GetChildInfo**](ResellerApi.md#GetChildInfo) | **Get** /reseller/children/{childIdentifier} | Get a child account&#39;s details
 [**GetResellerChilds**](ResellerApi.md#GetResellerChilds) | **Get** /reseller/children | Get the list of all children accounts
 [**GetSsoToken**](ResellerApi.md#GetSsoToken) | **Get** /reseller/children/{childIdentifier}/auth | Get session token to access Sendinblue (SSO)
 [**RemoveCredits**](ResellerApi.md#RemoveCredits) | **Post** /reseller/children/{childIdentifier}/credits/remove | Remove Email and/or SMS credits from a specific child account
-[**UpdateChildAccountStatus**](ResellerApi.md#UpdateChildAccountStatus) | **Put** /reseller/children/{childIdentifier}/accountStatus | Update info of reseller&#x27;s child account status based on the childIdentifier supplied
-[**UpdateChildDomain**](ResellerApi.md#UpdateChildDomain) | **Put** /reseller/children/{childIdentifier}/domains/{domainName} | Update the sender domain of reseller&#x27;s child based on the childIdentifier and domainName passed
-[**UpdateResellerChild**](ResellerApi.md#UpdateResellerChild) | **Put** /reseller/children/{childIdentifier} | Update info of reseller&#x27;s child based on the child identifier supplied
+[**UpdateChildAccountStatus**](ResellerApi.md#UpdateChildAccountStatus) | **Put** /reseller/children/{childIdentifier}/accountStatus | Update info of reseller&#39;s child account status based on the childIdentifier supplied
+[**UpdateChildDomain**](ResellerApi.md#UpdateChildDomain) | **Put** /reseller/children/{childIdentifier}/domains/{domainName} | Update the sender domain of reseller&#39;s child based on the childIdentifier and domainName passed
+[**UpdateResellerChild**](ResellerApi.md#UpdateResellerChild) | **Put** /reseller/children/{childIdentifier} | Update info of reseller&#39;s child based on the child identifier supplied
+
 
 # **AddCredits**
-> RemainingCreditModel AddCredits(ctx, body, childIdentifier)
+> RemainingCreditModel AddCredits(ctx, childIdentifier, addCredits)
 Add Email and/or SMS credits to a specific child account
 
 ### Required Parameters
@@ -30,8 +31,8 @@ Add Email and/or SMS credits to a specific child account
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**AddCredits**](AddCredits.md)| Values to post to add credit to a specific child account | 
-  **childIdentifier** | **string**| Either auth key or id of reseller&#x27;s child | 
+  **childIdentifier** | **string**| Either auth key or id of reseller&#39;s child | 
+  **addCredits** | [**AddCredits**](AddCredits.md)| Values to post to add credit to a specific child account | 
 
 ### Return type
 
@@ -49,7 +50,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **AssociateIpToChild**
-> AssociateIpToChild(ctx, body, childIdentifier)
+> AssociateIpToChild(ctx, childIdentifier, ip)
 Associate a dedicated IP to the child
 
 ### Required Parameters
@@ -57,8 +58,8 @@ Associate a dedicated IP to the child
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**ManageIp**](ManageIp.md)| IP to associate | 
-  **childIdentifier** | **string**| Either auth key or id of reseller&#x27;s child | 
+  **childIdentifier** | **string**| Either auth key or id of reseller&#39;s child | 
+  **ip** | [**ManageIp**](ManageIp.md)| IP to associate | 
 
 ### Return type
 
@@ -76,7 +77,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **CreateChildDomain**
-> CreateChildDomain(ctx, body, childIdentifier)
+> CreateChildDomain(ctx, childIdentifier, addChildDomain)
 Create a domain for a child account
 
 ### Required Parameters
@@ -84,8 +85,8 @@ Create a domain for a child account
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**AddChildDomain**](AddChildDomain.md)| Sender domain to add for a specific child account. This will not be displayed to the parent account. | 
-  **childIdentifier** | **string**| Either auth key or id of reseller&#x27;s child | 
+  **childIdentifier** | **string**| Either auth key or id of reseller&#39;s child | 
+  **addChildDomain** | [**AddChildDomain**](AddChildDomain.md)| Sender domain to add for a specific child account. This will not be displayed to the parent account. | 
 
 ### Return type
 
@@ -111,13 +112,14 @@ Creates a reseller child
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***ResellerApiCreateResellerChildOpts** | optional parameters | nil if no parameters
+ **optional** | ***CreateResellerChildOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a ResellerApiCreateResellerChildOpts struct
+Optional parameters are passed through a pointer to a CreateResellerChildOpts struct
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**optional.Interface of CreateChild**](CreateChild.md)| reseller child to add | 
+ **resellerChild** | [**optional.Interface of CreateChild**](CreateChild.md)| reseller child to add | 
 
 ### Return type
 
@@ -143,7 +145,7 @@ Delete the sender domain of the reseller child based on the childIdentifier and 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **childIdentifier** | **string**| Either auth key or id of reseller&#x27;s child | 
+  **childIdentifier** | **string**| Either auth key or id of reseller&#39;s child | 
   **domainName** | **string**| Pass the existing domain that needs to be deleted | 
 
 ### Return type
@@ -156,7 +158,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -170,7 +172,7 @@ Delete a single reseller child based on the child identifier supplied
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **childIdentifier** | **string**| Either auth key or child id of reseller&#x27;s child | 
+  **childIdentifier** | **string**| Either auth key or child id of reseller&#39;s child | 
 
 ### Return type
 
@@ -182,13 +184,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **DissociateIpFromChild**
-> DissociateIpFromChild(ctx, body, childIdentifier)
+> DissociateIpFromChild(ctx, childIdentifier, ip)
 Dissociate a dedicated IP to the child
 
 ### Required Parameters
@@ -196,8 +198,8 @@ Dissociate a dedicated IP to the child
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**ManageIp**](ManageIp.md)| IP to dissociate | 
-  **childIdentifier** | **string**| Either auth key or id of reseller&#x27;s child | 
+  **childIdentifier** | **string**| Either auth key or id of reseller&#39;s child | 
+  **ip** | [**ManageIp**](ManageIp.md)| IP to dissociate | 
 
 ### Return type
 
@@ -223,7 +225,7 @@ Get the status of a reseller's child account creation, whether it is successfull
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **childIdentifier** | **string**| Either auth key or id of reseller&#x27;s child | 
+  **childIdentifier** | **string**| Either auth key or id of reseller&#39;s child | 
 
 ### Return type
 
@@ -235,13 +237,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetChildDomains**
-> []AllOfgetChildDomainsItems GetChildDomains(ctx, childIdentifier)
+> GetChildDomains GetChildDomains(ctx, childIdentifier)
 Get all sender domains for a specific child account
 
 ### Required Parameters
@@ -249,11 +251,11 @@ Get all sender domains for a specific child account
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **childIdentifier** | **string**| Either auth key or id of reseller&#x27;s child | 
+  **childIdentifier** | **string**| Either auth key or id of reseller&#39;s child | 
 
 ### Return type
 
-[**[]AllOfgetChildDomainsItems**](array.md)
+[**GetChildDomains**](GetChildDomains.md)
 
 ### Authorization
 
@@ -261,7 +263,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -275,11 +277,11 @@ Get a child account's details
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **childIdentifier** | **string**| Either auth key or id of reseller&#x27;s child | 
+  **childIdentifier** | **string**| Either auth key or id of reseller&#39;s child | 
 
 ### Return type
 
-[**GetChildInfo**](getChildInfo.md)
+[**GetChildInfo**](GetChildInfo.md)
 
 ### Authorization
 
@@ -287,7 +289,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -301,10 +303,11 @@ Get the list of all children accounts
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***ResellerApiGetResellerChildsOpts** | optional parameters | nil if no parameters
+ **optional** | ***GetResellerChildsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a ResellerApiGetResellerChildsOpts struct
+Optional parameters are passed through a pointer to a GetResellerChildsOpts struct
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **limit** | **optional.Int64**| Number of documents for child accounts information per page | [default to 10]
@@ -320,7 +323,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -336,7 +339,7 @@ It returns a session [token] which will remain valid for a short period of time.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **childIdentifier** | **string**| Either auth key or id of reseller&#x27;s child | 
+  **childIdentifier** | **string**| Either auth key or id of reseller&#39;s child | 
 
 ### Return type
 
@@ -348,13 +351,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **RemoveCredits**
-> RemainingCreditModel RemoveCredits(ctx, body, childIdentifier)
+> RemainingCreditModel RemoveCredits(ctx, childIdentifier, removeCredits)
 Remove Email and/or SMS credits from a specific child account
 
 ### Required Parameters
@@ -362,8 +365,8 @@ Remove Email and/or SMS credits from a specific child account
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**RemoveCredits**](RemoveCredits.md)| Values to post to remove email or SMS credits from a specific child account | 
-  **childIdentifier** | **string**| Either auth key or id of reseller&#x27;s child | 
+  **childIdentifier** | **string**| Either auth key or id of reseller&#39;s child | 
+  **removeCredits** | [**RemoveCredits**](RemoveCredits.md)| Values to post to remove email or SMS credits from a specific child account | 
 
 ### Return type
 
@@ -381,7 +384,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UpdateChildAccountStatus**
-> UpdateChildAccountStatus(ctx, body, childIdentifier)
+> UpdateChildAccountStatus(ctx, childIdentifier, updateChildAccountStatus)
 Update info of reseller's child account status based on the childIdentifier supplied
 
 ### Required Parameters
@@ -389,8 +392,8 @@ Update info of reseller's child account status based on the childIdentifier supp
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**UpdateChildAccountStatus**](UpdateChildAccountStatus.md)| values to update in child account status | 
-  **childIdentifier** | **string**| Either auth key or id of reseller&#x27;s child | 
+  **childIdentifier** | **string**| Either auth key or id of reseller&#39;s child | 
+  **updateChildAccountStatus** | [**UpdateChildAccountStatus**](UpdateChildAccountStatus.md)| values to update in child account status | 
 
 ### Return type
 
@@ -408,7 +411,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UpdateChildDomain**
-> UpdateChildDomain(ctx, body, childIdentifier, domainName)
+> UpdateChildDomain(ctx, childIdentifier, domainName, updateChildDomain)
 Update the sender domain of reseller's child based on the childIdentifier and domainName passed
 
 ### Required Parameters
@@ -416,9 +419,9 @@ Update the sender domain of reseller's child based on the childIdentifier and do
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**UpdateChildDomain**](UpdateChildDomain.md)| value to update for sender domain | 
-  **childIdentifier** | **string**| Either auth key or id of reseller&#x27;s child | 
+  **childIdentifier** | **string**| Either auth key or id of reseller&#39;s child | 
   **domainName** | **string**| Pass the existing domain that needs to be updated | 
+  **updateChildDomain** | [**UpdateChildDomain**](UpdateChildDomain.md)| value to update for sender domain | 
 
 ### Return type
 
@@ -436,7 +439,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UpdateResellerChild**
-> UpdateResellerChild(ctx, body, childIdentifier)
+> UpdateResellerChild(ctx, childIdentifier, resellerChild)
 Update info of reseller's child based on the child identifier supplied
 
 ### Required Parameters
@@ -444,8 +447,8 @@ Update info of reseller's child based on the child identifier supplied
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**UpdateChild**](UpdateChild.md)| values to update in child profile | 
-  **childIdentifier** | **string**| Either auth key or id of reseller&#x27;s child | 
+  **childIdentifier** | **string**| Either auth key or id of reseller&#39;s child | 
+  **resellerChild** | [**UpdateChild**](UpdateChild.md)| values to update in child profile | 
 
 ### Return type
 

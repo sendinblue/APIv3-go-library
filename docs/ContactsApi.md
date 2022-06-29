@@ -1,4 +1,4 @@
-# sib_api_v3_sdk.ContactsApi
+# \ContactsApi
 
 All URIs are relative to *https://api.sendinblue.com/v3*
 
@@ -15,25 +15,27 @@ Method | HTTP request | Description
 [**DeleteFolder**](ContactsApi.md#DeleteFolder) | **Delete** /contacts/folders/{folderId} | Delete a folder (and all its lists)
 [**DeleteList**](ContactsApi.md#DeleteList) | **Delete** /contacts/lists/{listId} | Delete a list
 [**GetAttributes**](ContactsApi.md#GetAttributes) | **Get** /contacts/attributes | List all attributes
-[**GetContactInfo**](ContactsApi.md#GetContactInfo) | **Get** /contacts/{identifier} | Get a contact&#x27;s details
-[**GetContactStats**](ContactsApi.md#GetContactStats) | **Get** /contacts/{identifier}/campaignStats | Get email campaigns&#x27; statistics for a contact
+[**GetContactInfo**](ContactsApi.md#GetContactInfo) | **Get** /contacts/{identifier} | Get a contact&#39;s details
+[**GetContactStats**](ContactsApi.md#GetContactStats) | **Get** /contacts/{identifier}/campaignStats | Get email campaigns&#39; statistics for a contact
 [**GetContacts**](ContactsApi.md#GetContacts) | **Get** /contacts | Get all the contacts
 [**GetContactsFromList**](ContactsApi.md#GetContactsFromList) | **Get** /contacts/lists/{listId}/contacts | Get contacts in a list
-[**GetFolder**](ContactsApi.md#GetFolder) | **Get** /contacts/folders/{folderId} | Returns a folder&#x27;s details
+[**GetFolder**](ContactsApi.md#GetFolder) | **Get** /contacts/folders/{folderId} | Returns a folder&#39;s details
 [**GetFolderLists**](ContactsApi.md#GetFolderLists) | **Get** /contacts/folders/{folderId}/lists | Get lists in a folder
 [**GetFolders**](ContactsApi.md#GetFolders) | **Get** /contacts/folders | Get all folders
-[**GetList**](ContactsApi.md#GetList) | **Get** /contacts/lists/{listId} | Get a list&#x27;s details
+[**GetList**](ContactsApi.md#GetList) | **Get** /contacts/lists/{listId} | Get a list&#39;s details
 [**GetLists**](ContactsApi.md#GetLists) | **Get** /contacts/lists | Get all the lists
 [**ImportContacts**](ContactsApi.md#ImportContacts) | **Post** /contacts/import | Import contacts
 [**RemoveContactFromList**](ContactsApi.md#RemoveContactFromList) | **Post** /contacts/lists/{listId}/contacts/remove | Delete a contact from a list
 [**RequestContactExport**](ContactsApi.md#RequestContactExport) | **Post** /contacts/export | Export contacts
 [**UpdateAttribute**](ContactsApi.md#UpdateAttribute) | **Put** /contacts/attributes/{attributeCategory}/{attributeName} | Update contact attribute
+[**UpdateBatchContacts**](ContactsApi.md#UpdateBatchContacts) | **Post** /contacts/batch | Update multiple contacts
 [**UpdateContact**](ContactsApi.md#UpdateContact) | **Put** /contacts/{identifier} | Update a contact
 [**UpdateFolder**](ContactsApi.md#UpdateFolder) | **Put** /contacts/folders/{folderId} | Update a folder
 [**UpdateList**](ContactsApi.md#UpdateList) | **Put** /contacts/lists/{listId} | Update a list
 
+
 # **AddContactToList**
-> PostContactInfo AddContactToList(ctx, body, listId)
+> PostContactInfo AddContactToList(ctx, listId, contactEmails)
 Add existing contacts to a list
 
 ### Required Parameters
@@ -41,8 +43,8 @@ Add existing contacts to a list
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**AddContactToList**](AddContactToList.md)| Emails addresses OR IDs of the contacts | 
   **listId** | **int64**| Id of the list | 
+  **contactEmails** | [**AddContactToList**](AddContactToList.md)| Emails addresses OR IDs of the contacts | 
 
 ### Return type
 
@@ -60,7 +62,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **CreateAttribute**
-> CreateAttribute(ctx, body, attributeCategory, attributeName)
+> CreateAttribute(ctx, attributeCategory, attributeName, createAttribute)
 Create contact attribute
 
 ### Required Parameters
@@ -68,9 +70,9 @@ Create contact attribute
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**CreateAttribute**](CreateAttribute.md)| Values to create an attribute | 
   **attributeCategory** | **string**| Category of the attribute | 
   **attributeName** | **string**| Name of the attribute | 
+  **createAttribute** | [**CreateAttribute**](CreateAttribute.md)| Values to create an attribute | 
 
 ### Return type
 
@@ -88,7 +90,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **CreateContact**
-> CreateUpdateContactModel CreateContact(ctx, body)
+> CreateUpdateContactModel CreateContact(ctx, createContact)
 Create a contact
 
 ### Required Parameters
@@ -96,7 +98,7 @@ Create a contact
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**CreateContact**](CreateContact.md)| Values to create a contact | 
+  **createContact** | [**CreateContact**](CreateContact.md)| Values to create a contact | 
 
 ### Return type
 
@@ -114,7 +116,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **CreateDoiContact**
-> CreateDoiContact(ctx, body)
+> CreateDoiContact(ctx, createDoiContact)
 Create Contact via DOI (Double-Opt-In) Flow
 
 ### Required Parameters
@@ -122,7 +124,7 @@ Create Contact via DOI (Double-Opt-In) Flow
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**CreateDoiContact**](CreateDoiContact.md)| Values to create the Double opt-in (DOI) contact | 
+  **createDoiContact** | [**CreateDoiContact**](CreateDoiContact.md)| Values to create the Double opt-in (DOI) contact | 
 
 ### Return type
 
@@ -140,7 +142,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **CreateFolder**
-> CreateModel CreateFolder(ctx, body)
+> CreateModel CreateFolder(ctx, createFolder)
 Create a folder
 
 ### Required Parameters
@@ -148,7 +150,7 @@ Create a folder
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**CreateUpdateFolder**](CreateUpdateFolder.md)| Name of the folder | 
+  **createFolder** | [**CreateUpdateFolder**](CreateUpdateFolder.md)| Name of the folder | 
 
 ### Return type
 
@@ -166,7 +168,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **CreateList**
-> CreateModel CreateList(ctx, body)
+> CreateModel CreateList(ctx, createList)
 Create a list
 
 ### Required Parameters
@@ -174,7 +176,7 @@ Create a list
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**CreateList**](CreateList.md)| Values to create a list | 
+  **createList** | [**CreateList**](CreateList.md)| Values to create a list | 
 
 ### Return type
 
@@ -213,7 +215,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -239,7 +241,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -265,7 +267,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -291,7 +293,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -305,7 +307,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**GetAttributes**](getAttributes.md)
+[**GetAttributes**](GetAttributes.md)
 
 ### Authorization
 
@@ -313,14 +315,16 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetContactInfo**
-> GetExtendedContactDetails GetContactInfo(ctx, identifier)
+> GetExtendedContactDetails GetContactInfo(ctx, identifier, optional)
 Get a contact's details
+
+Along with the contact details, this endpoint will show the statistics of contact for the recent 90 days by default. To fetch the earlier statistics, please use Get contact campaign stats (https://developers.sendinblue.com/reference/contacts-7#getcontactstats) endpoint with the appropriate date ranges.
 
 ### Required Parameters
 
@@ -328,6 +332,16 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **identifier** | **string**| Email (urlencoded) OR ID of the contact OR its SMS attribute value | 
+ **optional** | ***GetContactInfoOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a GetContactInfoOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **startDate** | [**optional.Interface of interface{}**](.md)| **Mandatory if endDate is used.** Starting date (YYYY-MM-DD) of the statistic events specific to campaigns. Must be lower than equal to endDate  | 
+ **endDate** | [**optional.Interface of interface{}**](.md)| **Mandatory if startDate is used.** Ending date (YYYY-MM-DD) of the statistic events specific to campaigns. Must be greater than equal to startDate.  | 
 
 ### Return type
 
@@ -339,7 +353,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -354,15 +368,16 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **identifier** | **string**| Email (urlencoded) OR ID of the contact | 
- **optional** | ***ContactsApiGetContactStatsOpts** | optional parameters | nil if no parameters
+ **optional** | ***GetContactStatsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a ContactsApiGetContactStatsOpts struct
+Optional parameters are passed through a pointer to a GetContactStatsOpts struct
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **startDate** | **optional.String**| Mandatory if endDate is used. Starting date (YYYY-MM-DD) of the statistic events specific to campaigns. Must be lower than equal to endDate | 
- **endDate** | **optional.String**| Mandatory if startDate is used. Ending date (YYYY-MM-DD) of the statistic events specific to campaigns. Must be greater than equal to startDate | 
+ **endDate** | **optional.String**| Mandatory if startDate is used. Ending date (YYYY-MM-DD) of the statistic events specific to campaigns. Must be greater than equal to startDate. Maximum difference between startDate and endDate should not be greater than 90 days | 
 
 ### Return type
 
@@ -374,7 +389,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -388,10 +403,11 @@ Get all the contacts
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***ContactsApiGetContactsOpts** | optional parameters | nil if no parameters
+ **optional** | ***GetContactsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a ContactsApiGetContactsOpts struct
+Optional parameters are passed through a pointer to a GetContactsOpts struct
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **limit** | **optional.Int64**| Number of documents per page | [default to 50]
@@ -409,7 +425,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -424,10 +440,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **listId** | **int64**| Id of the list | 
- **optional** | ***ContactsApiGetContactsFromListOpts** | optional parameters | nil if no parameters
+ **optional** | ***GetContactsFromListOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a ContactsApiGetContactsFromListOpts struct
+Optional parameters are passed through a pointer to a GetContactsFromListOpts struct
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
@@ -438,7 +455,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetContacts**](getContacts.md)
+[**GetContacts**](GetContacts.md)
 
 ### Authorization
 
@@ -446,7 +463,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -472,7 +489,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -487,10 +504,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **folderId** | **int64**| Id of the folder | 
- **optional** | ***ContactsApiGetFolderListsOpts** | optional parameters | nil if no parameters
+ **optional** | ***GetFolderListsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a ContactsApiGetFolderListsOpts struct
+Optional parameters are passed through a pointer to a GetFolderListsOpts struct
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
@@ -508,7 +526,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -524,10 +542,11 @@ Name | Type | Description  | Notes
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **limit** | **int64**| Number of documents per page | [default to 10]
   **offset** | **int64**| Index of the first document of the page | [default to 0]
- **optional** | ***ContactsApiGetFoldersOpts** | optional parameters | nil if no parameters
+ **optional** | ***GetFoldersOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a ContactsApiGetFoldersOpts struct
+Optional parameters are passed through a pointer to a GetFoldersOpts struct
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
@@ -544,7 +563,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -570,7 +589,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -584,10 +603,11 @@ Get all the lists
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***ContactsApiGetListsOpts** | optional parameters | nil if no parameters
+ **optional** | ***GetListsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a ContactsApiGetListsOpts struct
+Optional parameters are passed through a pointer to a GetListsOpts struct
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **limit** | **optional.Int64**| Number of documents per page | [default to 10]
@@ -604,13 +624,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ImportContacts**
-> CreatedProcessId ImportContacts(ctx, body)
+> CreatedProcessId ImportContacts(ctx, requestContactImport)
 Import contacts
 
 It returns the background process ID which on completion calls the notify URL that you have set in the input.
@@ -620,7 +640,7 @@ It returns the background process ID which on completion calls the notify URL th
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**RequestContactImport**](RequestContactImport.md)| Values to import contacts in Sendinblue. To know more about the expected format, please have a look at &#x60;&#x60;https://help.sendinblue.com/hc/en-us/articles/209499265-Build-contacts-lists-for-your-email-marketing-campaigns&#x60;&#x60; | 
+  **requestContactImport** | [**RequestContactImport**](RequestContactImport.md)| Values to import contacts in Sendinblue. To know more about the expected format, please have a look at &#x60;&#x60;https://help.sendinblue.com/hc/en-us/articles/209499265-Build-contacts-lists-for-your-email-marketing-campaigns&#x60;&#x60; | 
 
 ### Return type
 
@@ -638,7 +658,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **RemoveContactFromList**
-> PostContactInfo RemoveContactFromList(ctx, body, listId)
+> PostContactInfo RemoveContactFromList(ctx, listId, contactEmails)
 Delete a contact from a list
 
 ### Required Parameters
@@ -646,8 +666,8 @@ Delete a contact from a list
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**RemoveContactFromList**](RemoveContactFromList.md)| Emails addresses OR IDs of the contacts | 
   **listId** | **int64**| Id of the list | 
+  **contactEmails** | [**RemoveContactFromList**](RemoveContactFromList.md)| Emails addresses OR IDs of the contacts | 
 
 ### Return type
 
@@ -665,7 +685,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **RequestContactExport**
-> CreatedProcessId RequestContactExport(ctx, body)
+> CreatedProcessId RequestContactExport(ctx, requestContactExport)
 Export contacts
 
 It returns the background process ID which on completion calls the notify URL that you have set in the input. File will be available in csv.
@@ -675,7 +695,7 @@ It returns the background process ID which on completion calls the notify URL th
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**RequestContactExport**](RequestContactExport.md)| Values to request a contact export | 
+  **requestContactExport** | [**RequestContactExport**](RequestContactExport.md)| Values to request a contact export | 
 
 ### Return type
 
@@ -693,7 +713,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UpdateAttribute**
-> UpdateAttribute(ctx, body, attributeCategory, attributeName)
+> UpdateAttribute(ctx, attributeCategory, attributeName, updateAttribute)
 Update contact attribute
 
 ### Required Parameters
@@ -701,9 +721,35 @@ Update contact attribute
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**UpdateAttribute**](UpdateAttribute.md)| Values to update an attribute | 
   **attributeCategory** | **string**| Category of the attribute | 
   **attributeName** | **string**| Name of the existing attribute | 
+  **updateAttribute** | [**UpdateAttribute**](UpdateAttribute.md)| Values to update an attribute | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[api-key](../README.md#api-key), [partner-key](../README.md#partner-key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **UpdateBatchContacts**
+> UpdateBatchContacts(ctx, updateBatchContacts)
+Update multiple contacts
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **updateBatchContacts** | [**UpdateBatchContacts**](UpdateBatchContacts.md)| Values to update multiple contacts | 
 
 ### Return type
 
@@ -721,7 +767,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UpdateContact**
-> UpdateContact(ctx, body, identifier)
+> UpdateContact(ctx, identifier, updateContact)
 Update a contact
 
 ### Required Parameters
@@ -729,8 +775,8 @@ Update a contact
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**UpdateContact**](UpdateContact.md)| Values to update a contact | 
   **identifier** | **string**| Email (urlencoded) OR ID of the contact | 
+  **updateContact** | [**UpdateContact**](UpdateContact.md)| Values to update a contact | 
 
 ### Return type
 
@@ -748,7 +794,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UpdateFolder**
-> UpdateFolder(ctx, body, folderId)
+> UpdateFolder(ctx, folderId, updateFolder)
 Update a folder
 
 ### Required Parameters
@@ -756,8 +802,8 @@ Update a folder
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**CreateUpdateFolder**](CreateUpdateFolder.md)| Name of the folder | 
   **folderId** | **int64**| Id of the folder | 
+  **updateFolder** | [**CreateUpdateFolder**](CreateUpdateFolder.md)| Name of the folder | 
 
 ### Return type
 
@@ -775,7 +821,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UpdateList**
-> UpdateList(ctx, body, listId)
+> UpdateList(ctx, listId, updateList)
 Update a list
 
 ### Required Parameters
@@ -783,8 +829,8 @@ Update a list
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**UpdateList**](UpdateList.md)| Values to update a list | 
   **listId** | **int64**| Id of the list | 
+  **updateList** | [**UpdateList**](UpdateList.md)| Values to update a list | 
 
 ### Return type
 

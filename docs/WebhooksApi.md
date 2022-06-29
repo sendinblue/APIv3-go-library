@@ -1,4 +1,4 @@
-# sib_api_v3_sdk.WebhooksApi
+# \WebhooksApi
 
 All URIs are relative to *https://api.sendinblue.com/v3*
 
@@ -10,8 +10,9 @@ Method | HTTP request | Description
 [**GetWebhooks**](WebhooksApi.md#GetWebhooks) | **Get** /webhooks | Get all webhooks
 [**UpdateWebhook**](WebhooksApi.md#UpdateWebhook) | **Put** /webhooks/{webhookId} | Update a webhook
 
+
 # **CreateWebhook**
-> CreateModel CreateWebhook(ctx, body)
+> CreateModel CreateWebhook(ctx, createWebhook)
 Create a webhook
 
 ### Required Parameters
@@ -19,7 +20,7 @@ Create a webhook
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**CreateWebhook**](CreateWebhook.md)| Values to create a webhook | 
+  **createWebhook** | [**CreateWebhook**](CreateWebhook.md)| Values to create a webhook | 
 
 ### Return type
 
@@ -57,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -83,7 +84,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -97,13 +98,15 @@ Get all webhooks
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***WebhooksApiGetWebhooksOpts** | optional parameters | nil if no parameters
+ **optional** | ***GetWebhooksOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a WebhooksApiGetWebhooksOpts struct
+Optional parameters are passed through a pointer to a GetWebhooksOpts struct
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **type_** | **optional.String**| Filter on webhook type | [default to transactional]
+ **sort** | **optional.String**| Sort the results in the ascending/descending order of webhook creation | [default to desc]
 
 ### Return type
 
@@ -115,13 +118,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UpdateWebhook**
-> UpdateWebhook(ctx, body, webhookId)
+> UpdateWebhook(ctx, webhookId, updateWebhook)
 Update a webhook
 
 ### Required Parameters
@@ -129,8 +132,8 @@ Update a webhook
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**UpdateWebhook**](UpdateWebhook.md)| Values to update a webhook | 
   **webhookId** | **int64**| Id of the webhook | 
+  **updateWebhook** | [**UpdateWebhook**](UpdateWebhook.md)| Values to update a webhook | 
 
 ### Return type
 

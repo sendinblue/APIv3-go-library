@@ -1,4 +1,4 @@
-# sib_api_v3_sdk.SendersApi
+# \SendersApi
 
 All URIs are relative to *https://api.sendinblue.com/v3*
 
@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**GetSenders**](SendersApi.md#GetSenders) | **Get** /senders | Get the list of all your senders
 [**UpdateSender**](SendersApi.md#UpdateSender) | **Put** /senders/{senderId} | Update a sender
 
+
 # **CreateSender**
 > CreateSenderModel CreateSender(ctx, optional)
 Create a new sender
@@ -20,13 +21,14 @@ Create a new sender
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***SendersApiCreateSenderOpts** | optional parameters | nil if no parameters
+ **optional** | ***CreateSenderOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a SendersApiCreateSenderOpts struct
+Optional parameters are passed through a pointer to a CreateSenderOpts struct
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**optional.Interface of CreateSender**](CreateSender.md)| sender&#x27;s name | 
+ **sender** | [**optional.Interface of CreateSender**](CreateSender.md)| sender&#39;s name | 
 
 ### Return type
 
@@ -64,7 +66,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -86,7 +88,7 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -112,7 +114,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -126,10 +128,11 @@ Get the list of all your senders
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***SendersApiGetSendersOpts** | optional parameters | nil if no parameters
+ **optional** | ***GetSendersOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a SendersApiGetSendersOpts struct
+Optional parameters are passed through a pointer to a GetSendersOpts struct
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ip** | **optional.String**| Filter your senders for a specific ip (available for dedicated IP usage only) | 
@@ -145,7 +148,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -160,14 +163,15 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **senderId** | **int64**| Id of the sender | 
- **optional** | ***SendersApiUpdateSenderOpts** | optional parameters | nil if no parameters
+ **optional** | ***UpdateSenderOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a SendersApiUpdateSenderOpts struct
+Optional parameters are passed through a pointer to a UpdateSenderOpts struct
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**optional.Interface of UpdateSender**](UpdateSender.md)| sender&#x27;s name | 
+ **sender** | [**optional.Interface of UpdateSender**](UpdateSender.md)| sender&#39;s name | 
 
 ### Return type
 

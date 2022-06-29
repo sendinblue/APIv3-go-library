@@ -1,4 +1,4 @@
-# sib_api_v3_sdk.FoldersApi
+# \FoldersApi
 
 All URIs are relative to *https://api.sendinblue.com/v3*
 
@@ -6,13 +6,14 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateFolder**](FoldersApi.md#CreateFolder) | **Post** /contacts/folders | Create a folder
 [**DeleteFolder**](FoldersApi.md#DeleteFolder) | **Delete** /contacts/folders/{folderId} | Delete a folder (and all its lists)
-[**GetFolder**](FoldersApi.md#GetFolder) | **Get** /contacts/folders/{folderId} | Returns a folder&#x27;s details
+[**GetFolder**](FoldersApi.md#GetFolder) | **Get** /contacts/folders/{folderId} | Returns a folder&#39;s details
 [**GetFolderLists**](FoldersApi.md#GetFolderLists) | **Get** /contacts/folders/{folderId}/lists | Get lists in a folder
 [**GetFolders**](FoldersApi.md#GetFolders) | **Get** /contacts/folders | Get all folders
 [**UpdateFolder**](FoldersApi.md#UpdateFolder) | **Put** /contacts/folders/{folderId} | Update a folder
 
+
 # **CreateFolder**
-> CreateModel CreateFolder(ctx, body)
+> CreateModel CreateFolder(ctx, createFolder)
 Create a folder
 
 ### Required Parameters
@@ -20,7 +21,7 @@ Create a folder
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**CreateUpdateFolder**](CreateUpdateFolder.md)| Name of the folder | 
+  **createFolder** | [**CreateUpdateFolder**](CreateUpdateFolder.md)| Name of the folder | 
 
 ### Return type
 
@@ -58,7 +59,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -84,7 +85,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -99,10 +100,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **folderId** | **int64**| Id of the folder | 
- **optional** | ***FoldersApiGetFolderListsOpts** | optional parameters | nil if no parameters
+ **optional** | ***GetFolderListsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a FoldersApiGetFolderListsOpts struct
+Optional parameters are passed through a pointer to a GetFolderListsOpts struct
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
@@ -120,7 +122,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -136,10 +138,11 @@ Name | Type | Description  | Notes
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **limit** | **int64**| Number of documents per page | [default to 10]
   **offset** | **int64**| Index of the first document of the page | [default to 0]
- **optional** | ***FoldersApiGetFoldersOpts** | optional parameters | nil if no parameters
+ **optional** | ***GetFoldersOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a FoldersApiGetFoldersOpts struct
+Optional parameters are passed through a pointer to a GetFoldersOpts struct
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
@@ -156,13 +159,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UpdateFolder**
-> UpdateFolder(ctx, body, folderId)
+> UpdateFolder(ctx, folderId, updateFolder)
 Update a folder
 
 ### Required Parameters
@@ -170,8 +173,8 @@ Update a folder
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**CreateUpdateFolder**](CreateUpdateFolder.md)| Name of the folder | 
   **folderId** | **int64**| Id of the folder | 
+  **updateFolder** | [**CreateUpdateFolder**](CreateUpdateFolder.md)| Name of the folder | 
 
 ### Return type
 

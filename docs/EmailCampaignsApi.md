@@ -1,4 +1,4 @@
-# sib_api_v3_sdk.EmailCampaignsApi
+# \EmailCampaignsApi
 
 All URIs are relative to *https://api.sendinblue.com/v3*
 
@@ -16,10 +16,11 @@ Method | HTTP request | Description
 [**SendTestEmail**](EmailCampaignsApi.md#SendTestEmail) | **Post** /emailCampaigns/{campaignId}/sendTest | Send an email campaign to your test list
 [**UpdateCampaignStatus**](EmailCampaignsApi.md#UpdateCampaignStatus) | **Put** /emailCampaigns/{campaignId}/status | Update an email campaign status
 [**UpdateEmailCampaign**](EmailCampaignsApi.md#UpdateEmailCampaign) | **Put** /emailCampaigns/{campaignId} | Update an email campaign
-[**UploadImageToGallery**](EmailCampaignsApi.md#UploadImageToGallery) | **Post** /emailCampaigns/images | Upload an image to your account&#x27;s image gallery
+[**UploadImageToGallery**](EmailCampaignsApi.md#UploadImageToGallery) | **Post** /emailCampaigns/images | Upload an image to your account&#39;s image gallery
+
 
 # **CreateEmailCampaign**
-> CreateModel CreateEmailCampaign(ctx, body)
+> CreateModel CreateEmailCampaign(ctx, emailCampaigns)
 Create an email campaign
 
 ### Required Parameters
@@ -27,11 +28,11 @@ Create an email campaign
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**CreateEmailCampaign**](CreateEmailCampaign.md)| Values to create a campaign | 
+  **emailCampaigns** | [**CreateEmailCampaign**](CreateEmailCampaign.md)| Values to create a campaign | 
 
 ### Return type
 
-[**CreateModel**](createModel.md)
+[**CreateModel**](CreateModel.md)
 
 ### Authorization
 
@@ -65,7 +66,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -80,14 +81,15 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **campaignId** | **int64**| Id of the campaign | 
- **optional** | ***EmailCampaignsApiEmailExportRecipientsOpts** | optional parameters | nil if no parameters
+ **optional** | ***EmailExportRecipientsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a EmailCampaignsApiEmailExportRecipientsOpts struct
+Optional parameters are passed through a pointer to a EmailExportRecipientsOpts struct
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**optional.Interface of EmailExportRecipients**](EmailExportRecipients.md)| Values to send for a recipient export request | 
+ **recipientExport** | [**optional.Interface of EmailExportRecipients**](EmailExportRecipients.md)| Values to send for a recipient export request | 
 
 ### Return type
 
@@ -127,7 +129,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -153,7 +155,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -167,17 +169,18 @@ Return all your created email campaigns
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***EmailCampaignsApiGetEmailCampaignsOpts** | optional parameters | nil if no parameters
+ **optional** | ***GetEmailCampaignsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a EmailCampaignsApiGetEmailCampaignsOpts struct
+Optional parameters are passed through a pointer to a GetEmailCampaignsOpts struct
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **type_** | **optional.String**| Filter on the type of the campaigns | 
  **status** | **optional.String**| Filter on the status of the campaign | 
- **startDate** | **optional.String**| Mandatory if endDate is used. Starting (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to filter the sent email campaigns. Prefer to pass your timezone in date-time format for accurate result ( only available if either &#x27;status&#x27; not passed and if passed is set to &#x27;sent&#x27; ) | 
- **endDate** | **optional.String**| Mandatory if startDate is used. Ending (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to filter the sent email campaigns. Prefer to pass your timezone in date-time format for accurate result ( only available if either &#x27;status&#x27; not passed and if passed is set to &#x27;sent&#x27; ) | 
- **limit** | **optional.Int64**| Number of documents per page | [default to 500]
+ **startDate** | **optional.String**| Mandatory if endDate is used. Starting (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to filter the sent email campaigns. Prefer to pass your timezone in date-time format for accurate result ( only available if either &#39;status&#39; not passed and if passed is set to &#39;sent&#39; ) | 
+ **endDate** | **optional.String**| Mandatory if startDate is used. Ending (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to filter the sent email campaigns. Prefer to pass your timezone in date-time format for accurate result ( only available if either &#39;status&#39; not passed and if passed is set to &#39;sent&#39; ) | 
+ **limit** | **optional.Int64**| Number of documents per page | [default to 50]
  **offset** | **optional.Int64**| Index of the first document in the page | [default to 0]
  **sort** | **optional.String**| Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed | [default to desc]
 
@@ -191,8 +194,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json, applications/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -219,7 +222,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -245,13 +248,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **SendReport**
-> SendReport(ctx, body, campaignId)
+> SendReport(ctx, campaignId, sendReport)
 Send the report of a campaign
 
 A PDF will be sent to the specified email addresses
@@ -261,8 +264,8 @@ A PDF will be sent to the specified email addresses
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**SendReport**](SendReport.md)| Values for send a report | 
   **campaignId** | **int64**| Id of the campaign | 
+  **sendReport** | [**SendReport**](SendReport.md)| Values for send a report | 
 
 ### Return type
 
@@ -280,7 +283,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **SendTestEmail**
-> SendTestEmail(ctx, body, campaignId)
+> SendTestEmail(ctx, campaignId, emailTo)
 Send an email campaign to your test list
 
 ### Required Parameters
@@ -288,8 +291,8 @@ Send an email campaign to your test list
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**SendTestEmail**](SendTestEmail.md)|  | 
   **campaignId** | **int64**| Id of the campaign | 
+  **emailTo** | [**SendTestEmail**](SendTestEmail.md)|  | 
 
 ### Return type
 
@@ -307,7 +310,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UpdateCampaignStatus**
-> UpdateCampaignStatus(ctx, body, campaignId)
+> UpdateCampaignStatus(ctx, campaignId, status)
 Update an email campaign status
 
 ### Required Parameters
@@ -315,8 +318,8 @@ Update an email campaign status
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**UpdateCampaignStatus**](UpdateCampaignStatus.md)| Status of the campaign | 
   **campaignId** | **int64**| Id of the campaign | 
+  **status** | [**UpdateCampaignStatus**](UpdateCampaignStatus.md)| Status of the campaign | 
 
 ### Return type
 
@@ -334,7 +337,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UpdateEmailCampaign**
-> UpdateEmailCampaign(ctx, body, campaignId)
+> UpdateEmailCampaign(ctx, campaignId, emailCampaign)
 Update an email campaign
 
 ### Required Parameters
@@ -342,8 +345,8 @@ Update an email campaign
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**UpdateEmailCampaign**](UpdateEmailCampaign.md)| Values to update a campaign | 
   **campaignId** | **int64**| Id of the campaign | 
+  **emailCampaign** | [**UpdateEmailCampaign**](UpdateEmailCampaign.md)| Values to update a campaign | 
 
 ### Return type
 
@@ -361,7 +364,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UploadImageToGallery**
-> UploadImageToGallery(ctx, body)
+> UploadImageToGallery(ctx, uploadImage)
 Upload an image to your account's image gallery
 
 ### Required Parameters
@@ -369,7 +372,7 @@ Upload an image to your account's image gallery
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**UploadImageToGallery**](UploadImageToGallery.md)| Parameters to upload an image | 
+  **uploadImage** | [**UploadImageToGallery**](UploadImageToGallery.md)| Parameters to upload an image | 
 
 ### Return type
 
