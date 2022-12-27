@@ -28,9 +28,9 @@ type ListsApiService service
 
 /*
 ListsApiService Add existing contacts to a list
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param listId Id of the list
- * @param contactEmails Emails addresses OR IDs of the contacts
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param listId Id of the list
+  - @param contactEmails Emails addresses OR IDs of the contacts
 
 @return PostContactInfo
 */
@@ -167,8 +167,8 @@ func (a *ListsApiService) AddContactToList(ctx context.Context, listId int64, co
 
 /*
 ListsApiService Create a list
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param createList Values to create a list
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param createList Values to create a list
 
 @return CreateModel
 */
@@ -293,10 +293,8 @@ func (a *ListsApiService) CreateList(ctx context.Context, createList CreateList)
 
 /*
 ListsApiService Delete a list
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param listId Id of the list
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param listId Id of the list
 */
 func (a *ListsApiService) DeleteList(ctx context.Context, listId int64) (*http.Response, error) {
 	var (
@@ -713,8 +711,8 @@ func (a *ListsApiService) GetFolderLists(ctx context.Context, folderId int64, lo
 
 /*
 ListsApiService Get a list&#39;s details
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param listId Id of the list
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param listId Id of the list
 
 @return GetExtendedList
 */
@@ -986,9 +984,9 @@ func (a *ListsApiService) GetLists(ctx context.Context, localVarOptionals *GetLi
 
 /*
 ListsApiService Delete a contact from a list
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param listId Id of the list
- * @param contactEmails Emails addresses OR IDs of the contacts
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param listId Id of the list
+  - @param contactEmails Emails addresses OR IDs of the contacts
 
 @return PostContactInfo
 */
@@ -1125,11 +1123,9 @@ func (a *ListsApiService) RemoveContactFromList(ctx context.Context, listId int6
 
 /*
 ListsApiService Update a list
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param listId Id of the list
- * @param updateList Values to update a list
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param listId Id of the list
+  - @param updateList Values to update a list
 */
 func (a *ListsApiService) UpdateList(ctx context.Context, listId int64, updateList UpdateList) (*http.Response, error) {
 	var (
