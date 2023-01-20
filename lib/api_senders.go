@@ -169,10 +169,8 @@ func (a *SendersApiService) CreateSender(ctx context.Context, localVarOptionals 
 
 /*
 SendersApiService Delete a sender
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param senderId Id of the sender
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param senderId Id of the sender
 */
 func (a *SendersApiService) DeleteSender(ctx context.Context, senderId int64) (*http.Response, error) {
 	var (
@@ -285,7 +283,7 @@ func (a *SendersApiService) DeleteSender(ctx context.Context, senderId int64) (*
 
 /*
 SendersApiService Get all the dedicated IPs for your account
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 
 @return GetIps
 */
@@ -397,8 +395,8 @@ func (a *SendersApiService) GetIps(ctx context.Context) (GetIps, *http.Response,
 
 /*
 SendersApiService Get all the dedicated IPs for a sender
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param senderId Id of the sender
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param senderId Id of the sender
 
 @return GetIpsFromSender
 */

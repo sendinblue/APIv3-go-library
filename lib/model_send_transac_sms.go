@@ -25,4 +25,6 @@ type SendTransacSms struct {
 	WebUrl string `json:"webUrl,omitempty"`
 	// Format of the message. It indicates whether the content should be treated as unicode or not.
 	UnicodeEnabled bool `json:"unicodeEnabled,omitempty"`
+	// A recognizable prefix will ensure your audience knows who you are. Recommended by U.S. carriers. This will be added as your Brand Name before the message content. **Prefer verifying maximum length of 160 characters including this prefix in message content to avoid multiple sending of same sms.**
+	OrganisationPrefix string `json:"organisationPrefix,omitempty"`
 }

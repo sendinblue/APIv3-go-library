@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Tag** | **string** | Tag of the campaign | [optional] [default to null]
-**Sender** | [***CreateEmailCampaignSender**](CreateEmailCampaignSender.md) |  | [default to null]
+**Sender** | [***CreateEmailCampaignSender**](createEmailCampaign_sender.md) |  | [default to null]
 **Name** | **string** | Name of the campaign | [default to null]
 **HtmlContent** | **string** | Mandatory if htmlUrl and templateId are empty. Body of the message (HTML) | [optional] [default to null]
 **HtmlUrl** | **string** | Mandatory if htmlContent and templateId are empty. Url to the message (HTML) | [optional] [default to null]
@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 **Footer** | **string** | Footer of the email campaign | [optional] [default to null]
 **Header** | **string** | Header of the email campaign | [optional] [default to null]
 **UtmCampaign** | **string** | Customize the utm_campaign value. If this field is empty, the campaign name will be used. Only alphanumeric characters and spaces are allowed | [optional] [default to null]
-**Params** | [**map[string]interface{}**](interface{}.md) | Pass the set of attributes to customize the type classic campaign. For example, {\&quot;FNAME\&quot;:\&quot;Joe\&quot;, \&quot;LNAME\&quot;:\&quot;Doe\&quot;}. Only available if &#39;type&#39; is &#39;classic&#39;. It&#39;s considered only if campaign is in New Template Language format. The New Template Language is dependent on the values of &#39;subject&#39;, &#39;htmlContent/htmlUrl&#39;, &#39;sender.name&#39; &amp; &#39;toField&#39; | [optional] [default to null]
+**Params** | [***interface{}**](interface{}.md) | Pass the set of attributes to customize the type classic campaign. For example, {\&quot;FNAME\&quot;:\&quot;Joe\&quot;, \&quot;LNAME\&quot;:\&quot;Doe\&quot;}. Only available if &#39;type&#39; is &#39;classic&#39;. It&#39;s considered only if campaign is in New Template Language format. The New Template Language is dependent on the values of &#39;subject&#39;, &#39;htmlContent/htmlUrl&#39;, &#39;sender.name&#39; &amp; &#39;toField&#39; | [optional] [default to null]
 **SendAtBestTime** | **bool** | Set this to true if you want to send your campaign at best time. | [optional] [default to null]
 **AbTesting** | **bool** | Status of A/B Test. abTesting &#x3D; false means it is disabled, &amp; abTesting &#x3D; true means it is enabled. &#39;subjectA&#39;, &#39;subjectB&#39;, &#39;splitRule&#39;, &#39;winnerCriteria&#39; &amp; &#39;winnerDelay&#39; will be considered when abTesting is set to true. &#39;subjectA&#39; &amp; &#39;subjectB&#39; are mandatory together &amp; &#39;subject&#39; if passed is ignored. Can be set to true only if &#39;sendAtBestTime&#39; is &#39;false&#39;. You will be able to set up two subject lines for your campaign and send them to a random sample of your total recipients. Half of the test group will receive version A, and the other half will receive version B | [optional] [default to null]
 **SubjectA** | **string** | Subject A of the campaign. Mandatory if abTesting &#x3D; true. subjectA &amp; subjectB should have unique value | [optional] [default to null]
@@ -31,6 +31,8 @@ Name | Type | Description | Notes
 **IpWarmupEnable** | **bool** | Available for dedicated ip clients. Set this to true if you wish to warm up your ip. | [optional] [default to null]
 **InitialQuota** | **int64** | Mandatory if ipWarmupEnable is set to true. Set an initial quota greater than 1 for warming up your ip. We recommend you set a value of 3000. | [optional] [default to null]
 **IncreaseRate** | **int64** | Mandatory if ipWarmupEnable is set to true. Set a percentage increase rate for warming up your ip. We recommend you set the increase rate to 30% per day. If you want to send the same number of emails every day, set the daily increase value to 0%. | [optional] [default to null]
+**UnsubscriptionPageId** | **string** | Enter an unsubscription page id. The page id is a 24 digit alphanumeric id that can be found in the URL when editing the page. If not entered, then the default unsubscription page will be used. | [optional] [default to null]
+**UpdateFormId** | **string** | Mandatory if templateId is used containing the {{ update_profile }} tag. Enter an update profile form id. The form id is a 24 digit alphanumeric id that can be found in the URL when editing the form. If not entered, then the default update profile form will be used. | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

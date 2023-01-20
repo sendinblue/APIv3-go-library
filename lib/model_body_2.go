@@ -11,8 +11,12 @@
 package lib
 
 type Body2 struct {
-	// Name of company
-	Name string `json:"name"`
-	// Attributes for company creation
-	Attributes map[string]interface{} `json:"attributes,omitempty"`
+	// Contact ids for contacts to be linked with company
+	LinkContactIds []int64 `json:"linkContactIds,omitempty"`
+	// Contact ids for contacts to be unlinked from company
+	UnlinkContactIds []int64 `json:"unlinkContactIds,omitempty"`
+	// Deals ids for deals to be linked with company
+	LinkDealsIds []string `json:"linkDealsIds,omitempty"`
+	// Deals ids for deals to be unlinked from company
+	UnlinkDealsIds []string `json:"unlinkDealsIds,omitempty"`
 }

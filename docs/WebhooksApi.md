@@ -24,7 +24,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateModel**](CreateModel.md)
+[**CreateModel**](createModel.md)
 
 ### Authorization
 
@@ -76,7 +76,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetWebhook**](GetWebhook.md)
+[**GetWebhook**](getWebhook.md)
 
 ### Authorization
 
@@ -110,7 +110,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetWebhooks**](GetWebhooks.md)
+[**GetWebhooks**](getWebhooks.md)
 
 ### Authorization
 

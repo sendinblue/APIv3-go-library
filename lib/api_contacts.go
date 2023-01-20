@@ -30,9 +30,9 @@ type ContactsApiService service
 
 /*
 ContactsApiService Add existing contacts to a list
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param listId Id of the list
- * @param contactEmails Emails addresses OR IDs of the contacts
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param listId Id of the list
+  - @param contactEmails Emails addresses OR IDs of the contacts
 
 @return PostContactInfo
 */
@@ -169,12 +169,10 @@ func (a *ContactsApiService) AddContactToList(ctx context.Context, listId int64,
 
 /*
 ContactsApiService Create contact attribute
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param attributeCategory Category of the attribute
- * @param attributeName Name of the attribute
- * @param createAttribute Values to create an attribute
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param attributeCategory Category of the attribute
+  - @param attributeName Name of the attribute
+  - @param createAttribute Values to create an attribute
 */
 func (a *ContactsApiService) CreateAttribute(ctx context.Context, attributeCategory string, attributeName string, createAttribute CreateAttribute) (*http.Response, error) {
 	var (
@@ -279,8 +277,8 @@ func (a *ContactsApiService) CreateAttribute(ctx context.Context, attributeCateg
 
 /*
 ContactsApiService Create a contact
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param createContact Values to create a contact
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param createContact Values to create a contact
 
 @return CreateUpdateContactModel
 */
@@ -416,10 +414,8 @@ func (a *ContactsApiService) CreateContact(ctx context.Context, createContact Cr
 
 /*
 ContactsApiService Create Contact via DOI (Double-Opt-In) Flow
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param createDoiContact Values to create the Double opt-in (DOI) contact
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param createDoiContact Values to create the Double opt-in (DOI) contact
 */
 func (a *ContactsApiService) CreateDoiContact(ctx context.Context, createDoiContact CreateDoiContact) (*http.Response, error) {
 	var (
@@ -522,8 +518,8 @@ func (a *ContactsApiService) CreateDoiContact(ctx context.Context, createDoiCont
 
 /*
 ContactsApiService Create a folder
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param createFolder Name of the folder
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param createFolder Name of the folder
 
 @return CreateModel
 */
@@ -648,8 +644,8 @@ func (a *ContactsApiService) CreateFolder(ctx context.Context, createFolder Crea
 
 /*
 ContactsApiService Create a list
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param createList Values to create a list
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param createList Values to create a list
 
 @return CreateModel
 */
@@ -774,11 +770,9 @@ func (a *ContactsApiService) CreateList(ctx context.Context, createList CreateLi
 
 /*
 ContactsApiService Delete an attribute
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param attributeCategory Category of the attribute
- * @param attributeName Name of the existing attribute
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param attributeCategory Category of the attribute
+  - @param attributeName Name of the existing attribute
 */
 func (a *ContactsApiService) DeleteAttribute(ctx context.Context, attributeCategory string, attributeName string) (*http.Response, error) {
 	var (
@@ -892,10 +886,8 @@ func (a *ContactsApiService) DeleteAttribute(ctx context.Context, attributeCateg
 
 /*
 ContactsApiService Delete a contact
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param identifier Email (urlencoded) OR ID of the contact
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param identifier Email (urlencoded) OR ID of the contact
 */
 func (a *ContactsApiService) DeleteContact(ctx context.Context, identifier string) (*http.Response, error) {
 	var (
@@ -1019,10 +1011,8 @@ func (a *ContactsApiService) DeleteContact(ctx context.Context, identifier strin
 
 /*
 ContactsApiService Delete a folder (and all its lists)
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param folderId Id of the folder
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param folderId Id of the folder
 */
 func (a *ContactsApiService) DeleteFolder(ctx context.Context, folderId int64) (*http.Response, error) {
 	var (
@@ -1135,10 +1125,8 @@ func (a *ContactsApiService) DeleteFolder(ctx context.Context, folderId int64) (
 
 /*
 ContactsApiService Delete a list
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param listId Id of the list
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param listId Id of the list
 */
 func (a *ContactsApiService) DeleteList(ctx context.Context, listId int64) (*http.Response, error) {
 	var (
@@ -1251,7 +1239,7 @@ func (a *ContactsApiService) DeleteList(ctx context.Context, listId int64) (*htt
 
 /*
 ContactsApiService List all attributes
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 
 @return GetAttributes
 */
@@ -1975,8 +1963,8 @@ func (a *ContactsApiService) GetContactsFromList(ctx context.Context, listId int
 
 /*
 ContactsApiService Returns a folder&#39;s details
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param folderId id of the folder
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param folderId id of the folder
 
 @return GetFolder
 */
@@ -2295,6 +2283,9 @@ func (a *ContactsApiService) GetFolders(ctx context.Context, limit int64, offset
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if limit < 0 {
+		return localVarReturnValue, nil, reportError("limit must be greater than 0")
+	}
 	if limit > 50 {
 		return localVarReturnValue, nil, reportError("limit must be less than 50")
 	}
@@ -2407,8 +2398,8 @@ func (a *ContactsApiService) GetFolders(ctx context.Context, limit int64, offset
 
 /*
 ContactsApiService Get a list&#39;s details
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param listId Id of the list
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param listId Id of the list
 
 @return GetExtendedList
 */
@@ -2687,8 +2678,8 @@ func (a *ContactsApiService) GetLists(ctx context.Context, localVarOptionals *Ge
 /*
 ContactsApiService Import contacts
 It returns the background process ID which on completion calls the notify URL that you have set in the input.
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param requestContactImport Values to import contacts in Sendinblue. To know more about the expected format, please have a look at &#x60;&#x60;https://help.sendinblue.com/hc/en-us/articles/209499265-Build-contacts-lists-for-your-email-marketing-campaigns&#x60;&#x60;
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param requestContactImport Values to import contacts in Sendinblue. To know more about the expected format, please have a look at &#x60;&#x60;https://help.sendinblue.com/hc/en-us/articles/209499265-Build-contacts-lists-for-your-email-marketing-campaigns&#x60;&#x60;
 
 @return CreatedProcessId
 */
@@ -2813,9 +2804,9 @@ func (a *ContactsApiService) ImportContacts(ctx context.Context, requestContactI
 
 /*
 ContactsApiService Delete a contact from a list
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param listId Id of the list
- * @param contactEmails Emails addresses OR IDs of the contacts
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param listId Id of the list
+  - @param contactEmails Emails addresses OR IDs of the contacts
 
 @return PostContactInfo
 */
@@ -2953,8 +2944,8 @@ func (a *ContactsApiService) RemoveContactFromList(ctx context.Context, listId i
 /*
 ContactsApiService Export contacts
 It returns the background process ID which on completion calls the notify URL that you have set in the input. File will be available in csv.
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param requestContactExport Values to request a contact export
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param requestContactExport Values to request a contact export
 
 @return CreatedProcessId
 */
@@ -3079,12 +3070,10 @@ func (a *ContactsApiService) RequestContactExport(ctx context.Context, requestCo
 
 /*
 ContactsApiService Update contact attribute
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param attributeCategory Category of the attribute
- * @param attributeName Name of the existing attribute
- * @param updateAttribute Values to update an attribute
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param attributeCategory Category of the attribute
+  - @param attributeName Name of the existing attribute
+  - @param updateAttribute Values to update an attribute
 */
 func (a *ContactsApiService) UpdateAttribute(ctx context.Context, attributeCategory string, attributeName string, updateAttribute UpdateAttribute) (*http.Response, error) {
 	var (
@@ -3200,10 +3189,8 @@ func (a *ContactsApiService) UpdateAttribute(ctx context.Context, attributeCateg
 
 /*
 ContactsApiService Update multiple contacts
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param updateBatchContacts Values to update multiple contacts
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param updateBatchContacts Values to update multiple contacts
 */
 func (a *ContactsApiService) UpdateBatchContacts(ctx context.Context, updateBatchContacts UpdateBatchContacts) (*http.Response, error) {
 	var (
@@ -3317,11 +3304,9 @@ func (a *ContactsApiService) UpdateBatchContacts(ctx context.Context, updateBatc
 
 /*
 ContactsApiService Update a contact
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param identifier Email (urlencoded) OR ID of the contact
- * @param updateContact Values to update a contact
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param identifier Email (urlencoded) OR ID of the contact
+  - @param updateContact Values to update a contact
 */
 func (a *ContactsApiService) UpdateContact(ctx context.Context, identifier string, updateContact UpdateContact) (*http.Response, error) {
 	var (
@@ -3436,11 +3421,9 @@ func (a *ContactsApiService) UpdateContact(ctx context.Context, identifier strin
 
 /*
 ContactsApiService Update a folder
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param folderId Id of the folder
- * @param updateFolder Name of the folder
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param folderId Id of the folder
+  - @param updateFolder Name of the folder
 */
 func (a *ContactsApiService) UpdateFolder(ctx context.Context, folderId int64, updateFolder CreateUpdateFolder) (*http.Response, error) {
 	var (
@@ -3555,11 +3538,9 @@ func (a *ContactsApiService) UpdateFolder(ctx context.Context, folderId int64, u
 
 /*
 ContactsApiService Update a list
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param listId Id of the list
- * @param updateList Values to update a list
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param listId Id of the list
+  - @param updateList Values to update a list
 */
 func (a *ContactsApiService) UpdateList(ctx context.Context, listId int64, updateList UpdateList) (*http.Response, error) {
 	var (

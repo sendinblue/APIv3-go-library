@@ -32,7 +32,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateSenderModel**](CreateSenderModel.md)
+[**CreateSenderModel**](createSenderModel.md)
 
 ### Authorization
 
@@ -80,7 +80,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**GetIps**](GetIps.md)
+[**GetIps**](getIps.md)
 
 ### Authorization
 
@@ -106,7 +106,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetIpsFromSender**](GetIpsFromSender.md)
+[**GetIpsFromSender**](getIpsFromSender.md)
 
 ### Authorization
 
@@ -140,7 +140,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetSendersList**](GetSendersList.md)
+[**GetSendersList**](getSendersList.md)
 
 ### Authorization
 

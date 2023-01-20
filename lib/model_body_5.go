@@ -10,30 +10,13 @@
 
 package lib
 
-import (
-	"time"
-)
-
 type Body5 struct {
-	// Name of task
-	Name string `json:"name"`
-	// Duration of task in milliseconds [1 minute = 60000 ms]
-	Duration int64 `json:"duration,omitempty"`
-	// Id for type of task e.g Call / Email / Meeting etc.
-	TaskTypeId string `json:"taskTypeId"`
-	// Task due date and time
-	Date time.Time `json:"date"`
-	// Notes added to a task
-	Notes string `json:"notes,omitempty"`
-	// Task marked as done
-	Done bool `json:"done,omitempty"`
-	// User id to whom task is assigned
-	AssignToId string `json:"assignToId,omitempty"`
-	// Contact ids for contacts linked to this task
-	ContactsIds []int32 `json:"contactsIds,omitempty"`
-	// Deal ids for deals a task is linked to
-	DealsIds []string `json:"dealsIds,omitempty"`
-	// Companies ids for companies a task is linked to
-	CompaniesIds []string      `json:"companiesIds,omitempty"`
-	Reminder     *TaskReminder `json:"reminder,omitempty"`
+	// Contact ids for contacts to be linked with deal
+	LinkContactIds []int64 `json:"linkContactIds,omitempty"`
+	// Contact ids for contacts to be unlinked from deal
+	UnlinkContactIds []int64 `json:"unlinkContactIds,omitempty"`
+	// Company ids to be linked with deal
+	LinkCompanyIds []string `json:"linkCompanyIds,omitempty"`
+	// Company ids to be unlinked from deal
+	UnlinkCompanyIds []string `json:"unlinkCompanyIds,omitempty"`
 }

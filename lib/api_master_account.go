@@ -29,7 +29,7 @@ type MasterAccountApiService service
 /*
 MasterAccountApiService Get the details of requested master account
 This endpoint will provide the details of the master account.
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 
 @return MasterDetailsResponse
 */
@@ -153,9 +153,9 @@ func (a *MasterAccountApiService) CorporateMasterAccountGet(ctx context.Context)
 /*
 MasterAccountApiService Get the list of all the sub-accounts of the master account.
 This endpoint will provide the list all the sub-accounts of the master account.
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param offset Index of the first sub-account in the page
- * @param limit Number of sub-accounts to be displayed on each page
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param offset Index of the first sub-account in the page
+  - @param limit Number of sub-accounts to be displayed on each page
 
 @return SubAccountsResponse
 */
@@ -280,10 +280,8 @@ func (a *MasterAccountApiService) CorporateSubAccountGet(ctx context.Context, of
 
 /*
 MasterAccountApiService Delete a sub-account
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id Id of the sub-account organization to be deleted
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param id Id of the sub-account organization to be deleted
 */
 func (a *MasterAccountApiService) CorporateSubAccountIdDelete(ctx context.Context, id int64) (*http.Response, error) {
 	var (
@@ -375,8 +373,8 @@ func (a *MasterAccountApiService) CorporateSubAccountIdDelete(ctx context.Contex
 /*
 MasterAccountApiService Get sub-account details
 This endpoint will provide the details for the specified sub-account company
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id Id of the sub-account organization
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param id Id of the sub-account organization
 
 @return SubAccountDetailsResponse
 */
@@ -490,11 +488,9 @@ func (a *MasterAccountApiService) CorporateSubAccountIdGet(ctx context.Context, 
 /*
 MasterAccountApiService Update sub-account plan
 This endpoint will update the sub-account plan
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id Id of the sub-account organization
- * @param updatePlanDetails Values to update a sub-account plan
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param id Id of the sub-account organization
+  - @param updatePlanDetails Values to update a sub-account plan
 */
 func (a *MasterAccountApiService) CorporateSubAccountIdPlanPut(ctx context.Context, id int64, updatePlanDetails SubAccountUpdatePlanRequest) (*http.Response, error) {
 	var (
@@ -608,10 +604,137 @@ func (a *MasterAccountApiService) CorporateSubAccountIdPlanPut(ctx context.Conte
 }
 
 /*
+MasterAccountApiService Create an API key for a sub-account
+This endpoint will generate an API v3 key for a sub account
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param createApiKeyRequest Values to generate API key for sub-account
+
+@return CreateApiKeyResponse
+*/
+func (a *MasterAccountApiService) CorporateSubAccountKeyPost(ctx context.Context, createApiKeyRequest CreateApiKeyRequest) (CreateApiKeyResponse, *http.Response, error) {
+	var (
+		localVarHttpMethod  = strings.ToUpper("Post")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
+		localVarReturnValue CreateApiKeyResponse
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/corporate/subAccount/key"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	// body params
+	localVarPostBody = &createApiKeyRequest
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["api-key"] = key
+
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["partner-key"] = key
+
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHttpResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHttpResponse == nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarHttpResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
+			return localVarReturnValue, localVarHttpResponse, err
+		}
+	}
+
+	if localVarHttpResponse.StatusCode >= 300 {
+		newErr := GenericSwaggerError{
+			body:  localVarBody,
+			error: localVarHttpResponse.Status,
+		}
+
+		if localVarHttpResponse.StatusCode == 201 {
+			var v CreateApiKeyResponse
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+
+		if localVarHttpResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+
+		return localVarReturnValue, localVarHttpResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHttpResponse, nil
+}
+
+/*
 MasterAccountApiService Create a new sub-account under a master account.
 This endpoint will create a new sub-account under a master account
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param subAccountCreate values to create new sub-account
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param subAccountCreate values to create new sub-account
 
 @return CreateSubAccountResponse
 */
@@ -736,9 +859,9 @@ func (a *MasterAccountApiService) CorporateSubAccountPost(ctx context.Context, s
 
 /*
 MasterAccountApiService Generate SSO token to access Sendinblue
-This endpoint generates an sso token to authenticate and access a sub-account of the master using the account endpoint https://app.sendinblue.com/account/login/sub-account/sso/[token], where [token] will be replaced by the actual token.
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param ssoTokenRequest Values to generate SSO token for sub-account
+This endpoint generates an sso token to authenticate and access a sub-account of the master using the account endpoint https://account-app.sendinblue.com/account/login/sub-account/sso/[token], where [token] will be replaced by the actual token.
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ssoTokenRequest Values to generate SSO token for sub-account
 
 @return GetSsoToken
 */

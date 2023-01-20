@@ -1,71 +1,32 @@
-# \CRMApi
+# \EcommerceApi
 
 All URIs are relative to *https://api.sendinblue.com/v3*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CrmNotesGet**](CRMApi.md#CrmNotesGet) | **Get** /crm/notes | Get all notes
-[**CrmNotesIdDelete**](CRMApi.md#CrmNotesIdDelete) | **Delete** /crm/notes/{id} | Delete a note
-[**CrmNotesIdGet**](CRMApi.md#CrmNotesIdGet) | **Get** /crm/notes/{id} | Get a note
-[**CrmNotesIdPatch**](CRMApi.md#CrmNotesIdPatch) | **Patch** /crm/notes/{id} | Update a note
-[**CrmNotesPost**](CRMApi.md#CrmNotesPost) | **Post** /crm/notes | Create a note
-[**CrmTasksGet**](CRMApi.md#CrmTasksGet) | **Get** /crm/tasks | Get all tasks
-[**CrmTasksIdDelete**](CRMApi.md#CrmTasksIdDelete) | **Delete** /crm/tasks/{id} | Delete a task
-[**CrmTasksIdGet**](CRMApi.md#CrmTasksIdGet) | **Get** /crm/tasks/{id} | Get a task
-[**CrmTasksIdPatch**](CRMApi.md#CrmTasksIdPatch) | **Patch** /crm/tasks/{id} | Update a task
-[**CrmTasksPost**](CRMApi.md#CrmTasksPost) | **Post** /crm/tasks | Create a task
-[**CrmTasktypesGet**](CRMApi.md#CrmTasktypesGet) | **Get** /crm/tasktypes | Get all task types
+[**CreateBatchOrder**](EcommerceApi.md#CreateBatchOrder) | **Post** /orders/status/batch | Maintains a batch of orders
+[**CreateOrder**](EcommerceApi.md#CreateOrder) | **Post** /orders/status | Maintains every transactional status of the order
+[**CreateUpdateBatchCategory**](EcommerceApi.md#CreateUpdateBatchCategory) | **Post** /categories/batch | Create the categories in a batch
+[**CreateUpdateBatchProducts**](EcommerceApi.md#CreateUpdateBatchProducts) | **Post** /products/batch | Creates the products in a batch
+[**CreateUpdateCategory**](EcommerceApi.md#CreateUpdateCategory) | **Post** /categories | Create/Update a category
+[**CreateUpdateProduct**](EcommerceApi.md#CreateUpdateProduct) | **Post** /products | Create/Update a product
+[**EcommerceActivatePost**](EcommerceApi.md#EcommerceActivatePost) | **Post** /ecommerce/activate | **Fulfills the eCommerce pre-requisites**
+[**GetCategories**](EcommerceApi.md#GetCategories) | **Get** /categories | Return all your categories
+[**GetCategoryInfo**](EcommerceApi.md#GetCategoryInfo) | **Get** /categories/{id} | Get a category details
+[**GetProductInfo**](EcommerceApi.md#GetProductInfo) | **Get** /products/{id} | Get a product&#39;s details
+[**GetProducts**](EcommerceApi.md#GetProducts) | **Get** /products | Return all your products
 
 
-# **CrmNotesGet**
-> NoteList CrmNotesGet(ctx, optional)
-Get all notes
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***CrmNotesGetOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a CrmNotesGetOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **entity** | **optional.String**| Filter by note entity type | 
- **entityIds** | **optional.String**| Filter by note entity IDs | 
- **dateFrom** | **optional.Int32**| dateFrom to date range filter type (timestamp in milliseconds) | 
- **dateTo** | **optional.Int32**| dateTo to date range filter type (timestamp in milliseconds) | 
- **offset** | **optional.Int64**| Index of the first document of the page | 
- **limit** | **optional.Int64**| Number of documents per page | [default to 50]
- **sort** | **optional.String**| Sort the results in the ascending/descending order. Default order is **descending** by creation if &#x60;sort&#x60; is not passed | 
-
-### Return type
-
-[**NoteList**](NoteList.md)
-
-### Authorization
-
-[api-key](../README.md#api-key), [partner-key](../README.md#partner-key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **CrmNotesIdDelete**
-> CrmNotesIdDelete(ctx, id)
-Delete a note
+# **CreateBatchOrder**
+> CreateBatchOrder(ctx, orderBatch)
+Maintains a batch of orders
 
 ### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **id** | **string**| Note ID to delete | 
+  **orderBatch** | [**OrderBatch**](OrderBatch.md)|  | 
 
 ### Return type
 
@@ -82,43 +43,16 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **CrmNotesIdGet**
-> Note CrmNotesIdGet(ctx, id)
-Get a note
+# **CreateOrder**
+> CreateOrder(ctx, order)
+Maintains every transactional status of the order
 
 ### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **id** | **string**| Note ID to get | 
-
-### Return type
-
-[**Note**](Note.md)
-
-### Authorization
-
-[api-key](../README.md#api-key), [partner-key](../README.md#partner-key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **CrmNotesIdPatch**
-> CrmNotesIdPatch(ctx, id, body)
-Update a note
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **id** | **string**| Note ID to update | 
-  **body** | [**NoteData**](NoteData.md)| Note data to update a note | 
+  **order** | [**Order**](Order.md)|  | 
 
 ### Return type
 
@@ -135,20 +69,20 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **CrmNotesPost**
-> NoteId CrmNotesPost(ctx, body)
-Create a note
+# **CreateUpdateBatchCategory**
+> CreateUpdateBatchCategoryModel CreateUpdateBatchCategory(ctx, createUpdateBatchCategory)
+Create the categories in a batch
 
 ### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**NoteData**](NoteData.md)| Note data to create a note. | 
+  **createUpdateBatchCategory** | [**CreateUpdateBatchCategory**](CreateUpdateBatchCategory.md)| Values to create a batch of categories | 
 
 ### Return type
 
-[**NoteId**](NoteId.md)
+[**CreateUpdateBatchCategoryModel**](createUpdateBatchCategoryModel.md)
 
 ### Authorization
 
@@ -161,39 +95,20 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **CrmTasksGet**
-> TaskList CrmTasksGet(ctx, optional)
-Get all tasks
+# **CreateUpdateBatchProducts**
+> CreateUpdateBatchProductsModel CreateUpdateBatchProducts(ctx, createUpdateBatchProducts)
+Creates the products in a batch
 
 ### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***CrmTasksGetOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a CrmTasksGetOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **filterType** | **optional.String**| Filter by task type (ID) | 
- **filterStatus** | **optional.String**| Filter by task status | 
- **filterDate** | **optional.String**| Filter by date | 
- **filterAssignTo** | **optional.String**| Filter by assignTo id | 
- **filterContacts** | **optional.String**| Filter by contact ids | 
- **filterDeals** | **optional.String**| Filter by deals ids | 
- **filterCompanies** | **optional.String**| Filter by companies ids | 
- **dateFrom** | **optional.Int32**| dateFrom to date range filter type (timestamp in milliseconds) | 
- **dateTo** | **optional.Int32**| dateTo to date range filter type (timestamp in milliseconds) | 
- **offset** | **optional.Int64**| Index of the first document of the page | 
- **limit** | **optional.Int64**| Number of documents per page | [default to 50]
- **sort** | **optional.String**| Sort the results in the ascending/descending order. Default order is **descending** by creation if &#x60;sort&#x60; is not passed | 
- **sortBy** | **optional.String**| The field used to sort field names. | 
+  **createUpdateBatchProducts** | [**CreateUpdateBatchProducts**](CreateUpdateBatchProducts.md)| Values to create a batch of products | 
 
 ### Return type
 
-[**TaskList**](TaskList.md)
+[**CreateUpdateBatchProductsModel**](createUpdateBatchProductsModel.md)
 
 ### Authorization
 
@@ -206,20 +121,20 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **CrmTasksIdDelete**
-> CrmTasksIdDelete(ctx, id)
-Delete a task
+# **CreateUpdateCategory**
+> CreateCategoryModel CreateUpdateCategory(ctx, createUpdateCategory)
+Create/Update a category
 
 ### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **id** | **string**|  | 
+  **createUpdateCategory** | [**CreateUpdateCategory**](CreateUpdateCategory.md)| Values to create/update a category | 
 
 ### Return type
 
- (empty response body)
+[**CreateCategoryModel**](createCategoryModel.md)
 
 ### Authorization
 
@@ -232,20 +147,20 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **CrmTasksIdGet**
-> Task CrmTasksIdGet(ctx, id)
-Get a task
+# **CreateUpdateProduct**
+> CreateProductModel CreateUpdateProduct(ctx, createUpdateProduct)
+Create/Update a product
 
 ### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **id** | **string**|  | 
+  **createUpdateProduct** | [**CreateUpdateProduct**](CreateUpdateProduct.md)| Values to create/update a product | 
 
 ### Return type
 
-[**Task**](Task.md)
+[**CreateProductModel**](createProductModel.md)
 
 ### Authorization
 
@@ -258,69 +173,140 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **CrmTasksIdPatch**
-> CrmTasksIdPatch(ctx, id, body)
-Update a task
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **id** | **string**|  | 
-  **body** | [**Body6**](Body6.md)| Updated task details. | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[api-key](../README.md#api-key), [partner-key](../README.md#partner-key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **CrmTasksPost**
-> InlineResponse2011 CrmTasksPost(ctx, body)
-Create a task
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**Body5**](Body5.md)| Task name. | 
-
-### Return type
-
-[**InlineResponse2011**](InlineResponse2011.md)
-
-### Authorization
-
-[api-key](../README.md#api-key), [partner-key](../README.md#partner-key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **CrmTasktypesGet**
-> TaskTypes CrmTasktypesGet(ctx, )
-Get all task types
+# **EcommerceActivatePost**
+> EcommerceActivatePost(ctx, )
+**Fulfills the eCommerce pre-requisites**
 
 ### Required Parameters
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**TaskTypes**](TaskTypes.md)
+ (empty response body)
+
+### Authorization
+
+[api-key](../README.md#api-key), [partner-key](../README.md#partner-key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **GetCategories**
+> GetCategories GetCategories(ctx, optional)
+Return all your categories
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***GetCategoriesOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a GetCategoriesOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **limit** | **optional.Int64**| Number of documents per page | [default to 50]
+ **offset** | **optional.Int64**| Index of the first document in the page | [default to 0]
+ **sort** | **optional.String**| Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed | [default to desc]
+ **ids** | [**optional.Interface of []string**](string.md)| Filter by category ids | 
+
+### Return type
+
+[**GetCategories**](getCategories.md)
+
+### Authorization
+
+[api-key](../README.md#api-key), [partner-key](../README.md#partner-key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **GetCategoryInfo**
+> GetCategoryDetails GetCategoryInfo(ctx, id)
+Get a category details
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **id** | **string**| Category ID | 
+
+### Return type
+
+[**GetCategoryDetails**](getCategoryDetails.md)
+
+### Authorization
+
+[api-key](../README.md#api-key), [partner-key](../README.md#partner-key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **GetProductInfo**
+> GetProductDetails GetProductInfo(ctx, id)
+Get a product's details
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **id** | **string**| Product ID | 
+
+### Return type
+
+[**GetProductDetails**](getProductDetails.md)
+
+### Authorization
+
+[api-key](../README.md#api-key), [partner-key](../README.md#partner-key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **GetProducts**
+> GetProducts GetProducts(ctx, optional)
+Return all your products
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***GetProductsOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a GetProductsOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **limit** | **optional.Int64**| Number of documents per page | [default to 50]
+ **offset** | **optional.Int64**| Index of the first document in the page | [default to 0]
+ **sort** | **optional.String**| Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed | [default to desc]
+ **ids** | [**optional.Interface of []string**](string.md)| Filter by product ids | 
+
+### Return type
+
+[**GetProducts**](getProducts.md)
 
 ### Authorization
 

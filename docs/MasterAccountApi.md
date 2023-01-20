@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**CorporateSubAccountIdDelete**](MasterAccountApi.md#CorporateSubAccountIdDelete) | **Delete** /corporate/subAccount/{id} | Delete a sub-account
 [**CorporateSubAccountIdGet**](MasterAccountApi.md#CorporateSubAccountIdGet) | **Get** /corporate/subAccount/{id} | Get sub-account details
 [**CorporateSubAccountIdPlanPut**](MasterAccountApi.md#CorporateSubAccountIdPlanPut) | **Put** /corporate/subAccount/{id}/plan | Update sub-account plan
+[**CorporateSubAccountKeyPost**](MasterAccountApi.md#CorporateSubAccountKeyPost) | **Post** /corporate/subAccount/key | Create an API key for a sub-account
 [**CorporateSubAccountPost**](MasterAccountApi.md#CorporateSubAccountPost) | **Post** /corporate/subAccount | Create a new sub-account under a master account.
 [**CorporateSubAccountSsoTokenPost**](MasterAccountApi.md#CorporateSubAccountSsoTokenPost) | **Post** /corporate/subAccount/ssoToken | Generate SSO token to access Sendinblue
 
@@ -24,7 +25,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**MasterDetailsResponse**](MasterDetailsResponse.md)
+[**MasterDetailsResponse**](masterDetailsResponse.md)
 
 ### Authorization
 
@@ -53,7 +54,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubAccountsResponse**](SubAccountsResponse.md)
+[**SubAccountsResponse**](subAccountsResponse.md)
 
 ### Authorization
 
@@ -107,7 +108,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubAccountDetailsResponse**](SubAccountDetailsResponse.md)
+[**SubAccountDetailsResponse**](subAccountDetailsResponse.md)
 
 ### Authorization
 
@@ -149,6 +150,34 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **CorporateSubAccountKeyPost**
+> CreateApiKeyResponse CorporateSubAccountKeyPost(ctx, createApiKeyRequest)
+Create an API key for a sub-account
+
+This endpoint will generate an API v3 key for a sub account
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **createApiKeyRequest** | [**CreateApiKeyRequest**](CreateApiKeyRequest.md)| Values to generate API key for sub-account | 
+
+### Return type
+
+[**CreateApiKeyResponse**](createApiKeyResponse.md)
+
+### Authorization
+
+[api-key](../README.md#api-key), [partner-key](../README.md#partner-key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **CorporateSubAccountPost**
 > CreateSubAccountResponse CorporateSubAccountPost(ctx, subAccountCreate)
 Create a new sub-account under a master account.
@@ -164,7 +193,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateSubAccountResponse**](CreateSubAccountResponse.md)
+[**CreateSubAccountResponse**](createSubAccountResponse.md)
 
 ### Authorization
 
@@ -181,7 +210,7 @@ Name | Type | Description  | Notes
 > GetSsoToken CorporateSubAccountSsoTokenPost(ctx, ssoTokenRequest)
 Generate SSO token to access Sendinblue
 
-This endpoint generates an sso token to authenticate and access a sub-account of the master using the account endpoint https://app.sendinblue.com/account/login/sub-account/sso/[token], where [token] will be replaced by the actual token.
+This endpoint generates an sso token to authenticate and access a sub-account of the master using the account endpoint https://account-app.sendinblue.com/account/login/sub-account/sso/[token], where [token] will be replaced by the actual token.
 
 ### Required Parameters
 
@@ -192,7 +221,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetSsoToken**](GetSsoToken.md)
+[**GetSsoToken**](getSsoToken.md)
 
 ### Authorization
 

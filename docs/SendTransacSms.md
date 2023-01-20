@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Tag** | **string** | Tag of the message | [optional] [default to null]
 **WebUrl** | **string** | Webhook to call for each event triggered by the message (delivered etc.) | [optional] [default to null]
 **UnicodeEnabled** | **bool** | Format of the message. It indicates whether the content should be treated as unicode or not. | [optional] [default to null]
+**OrganisationPrefix** | **string** | A recognizable prefix will ensure your audience knows who you are. Recommended by U.S. carriers. This will be added as your Brand Name before the message content. **Prefer verifying maximum length of 160 characters including this prefix in message content to avoid multiple sending of same sms.** | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

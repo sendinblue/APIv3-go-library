@@ -105,13 +105,34 @@ Class | Method | HTTP request | Description
 *ContactsApi* | [**UpdateContact**](docs/ContactsApi.md#updatecontact) | **Put** /contacts/{identifier} | Update a contact
 *ContactsApi* | [**UpdateFolder**](docs/ContactsApi.md#updatefolder) | **Put** /contacts/folders/{folderId} | Update a folder
 *ContactsApi* | [**UpdateList**](docs/ContactsApi.md#updatelist) | **Put** /contacts/lists/{listId} | Update a list
+*ConversationsApi* | [**ConversationsAgentOnlinePingPost**](docs/ConversationsApi.md#conversationsagentonlinepingpost) | **Post** /conversations/agentOnlinePing | Sets agent’s status to online for 2-3 minutes
+*ConversationsApi* | [**ConversationsMessagesIdDelete**](docs/ConversationsApi.md#conversationsmessagesiddelete) | **Delete** /conversations/messages/{id} | Delete a message sent by an agent
+*ConversationsApi* | [**ConversationsMessagesIdGet**](docs/ConversationsApi.md#conversationsmessagesidget) | **Get** /conversations/messages/{id} | Get a message
+*ConversationsApi* | [**ConversationsMessagesIdPut**](docs/ConversationsApi.md#conversationsmessagesidput) | **Put** /conversations/messages/{id} | Update a message sent by an agent
+*ConversationsApi* | [**ConversationsMessagesPost**](docs/ConversationsApi.md#conversationsmessagespost) | **Post** /conversations/messages | Send a message as an agent
+*ConversationsApi* | [**ConversationsPushedMessagesIdDelete**](docs/ConversationsApi.md#conversationspushedmessagesiddelete) | **Delete** /conversations/pushedMessages/{id} | Delete an automated message
+*ConversationsApi* | [**ConversationsPushedMessagesIdGet**](docs/ConversationsApi.md#conversationspushedmessagesidget) | **Get** /conversations/pushedMessages/{id} | Get an automated message
+*ConversationsApi* | [**ConversationsPushedMessagesIdPut**](docs/ConversationsApi.md#conversationspushedmessagesidput) | **Put** /conversations/pushedMessages/{id} | Update an automated message
+*ConversationsApi* | [**ConversationsPushedMessagesPost**](docs/ConversationsApi.md#conversationspushedmessagespost) | **Post** /conversations/pushedMessages | Send an automated message to a visitor
 *DealsApi* | [**CrmAttributesDealsGet**](docs/DealsApi.md#crmattributesdealsget) | **Get** /crm/attributes/deals | Get deal attributes
 *DealsApi* | [**CrmDealsGet**](docs/DealsApi.md#crmdealsget) | **Get** /crm/deals | Get all deals
 *DealsApi* | [**CrmDealsIdDelete**](docs/DealsApi.md#crmdealsiddelete) | **Delete** /crm/deals/{id} | Delete a deal
 *DealsApi* | [**CrmDealsIdGet**](docs/DealsApi.md#crmdealsidget) | **Get** /crm/deals/{id} | Get a deal
 *DealsApi* | [**CrmDealsIdPatch**](docs/DealsApi.md#crmdealsidpatch) | **Patch** /crm/deals/{id} | Update a deal
+*DealsApi* | [**CrmDealsLinkUnlinkIdPatch**](docs/DealsApi.md#crmdealslinkunlinkidpatch) | **Patch** /crm/deals/link-unlink/{id} | Link and Unlink a deal with contacts and companies
 *DealsApi* | [**CrmDealsPost**](docs/DealsApi.md#crmdealspost) | **Post** /crm/deals | Create a deal
 *DealsApi* | [**CrmPipelineDetailsGet**](docs/DealsApi.md#crmpipelinedetailsget) | **Get** /crm/pipeline/details | Get pipeline stages
+*EcommerceApi* | [**CreateBatchOrder**](docs/EcommerceApi.md#createbatchorder) | **Post** /orders/status/batch | Maintains a batch of orders
+*EcommerceApi* | [**CreateOrder**](docs/EcommerceApi.md#createorder) | **Post** /orders/status | Maintains every transactional status of the order
+*EcommerceApi* | [**CreateUpdateBatchCategory**](docs/EcommerceApi.md#createupdatebatchcategory) | **Post** /categories/batch | Create the categories in a batch
+*EcommerceApi* | [**CreateUpdateBatchProducts**](docs/EcommerceApi.md#createupdatebatchproducts) | **Post** /products/batch | Creates the products in a batch
+*EcommerceApi* | [**CreateUpdateCategory**](docs/EcommerceApi.md#createupdatecategory) | **Post** /categories | Create/Update a category
+*EcommerceApi* | [**CreateUpdateProduct**](docs/EcommerceApi.md#createupdateproduct) | **Post** /products | Create/Update a product
+*EcommerceApi* | [**EcommerceActivatePost**](docs/EcommerceApi.md#ecommerceactivatepost) | **Post** /ecommerce/activate | **Fulfills the eCommerce pre-requisites**
+*EcommerceApi* | [**GetCategories**](docs/EcommerceApi.md#getcategories) | **Get** /categories | Return all your categories
+*EcommerceApi* | [**GetCategoryInfo**](docs/EcommerceApi.md#getcategoryinfo) | **Get** /categories/{id} | Get a category details
+*EcommerceApi* | [**GetProductInfo**](docs/EcommerceApi.md#getproductinfo) | **Get** /products/{id} | Get a product&#39;s details
+*EcommerceApi* | [**GetProducts**](docs/EcommerceApi.md#getproducts) | **Get** /products | Return all your products
 *EmailCampaignsApi* | [**CreateEmailCampaign**](docs/EmailCampaignsApi.md#createemailcampaign) | **Post** /emailCampaigns | Create an email campaign
 *EmailCampaignsApi* | [**DeleteEmailCampaign**](docs/EmailCampaignsApi.md#deleteemailcampaign) | **Delete** /emailCampaigns/{campaignId} | Delete an email campaign
 *EmailCampaignsApi* | [**EmailExportRecipients**](docs/EmailCampaignsApi.md#emailexportrecipients) | **Post** /emailCampaigns/{campaignId}/exportRecipients | Export the recipients of an email campaign
@@ -149,6 +170,11 @@ Class | Method | HTTP request | Description
 *MasterAccountApi* | [**CorporateSubAccountIdPlanPut**](docs/MasterAccountApi.md#corporatesubaccountidplanput) | **Put** /corporate/subAccount/{id}/plan | Update sub-account plan
 *MasterAccountApi* | [**CorporateSubAccountPost**](docs/MasterAccountApi.md#corporatesubaccountpost) | **Post** /corporate/subAccount | Create a new sub-account under a master account.
 *MasterAccountApi* | [**CorporateSubAccountSsoTokenPost**](docs/MasterAccountApi.md#corporatesubaccountssotokenpost) | **Post** /corporate/subAccount/ssoToken | Generate SSO token to access Sendinblue
+*NotesApi* | [**CrmNotesGet**](docs/NotesApi.md#crmnotesget) | **Get** /crm/notes | Get all notes
+*NotesApi* | [**CrmNotesIdDelete**](docs/NotesApi.md#crmnotesiddelete) | **Delete** /crm/notes/{id} | Delete a note
+*NotesApi* | [**CrmNotesIdGet**](docs/NotesApi.md#crmnotesidget) | **Get** /crm/notes/{id} | Get a note
+*NotesApi* | [**CrmNotesIdPatch**](docs/NotesApi.md#crmnotesidpatch) | **Patch** /crm/notes/{id} | Update a note
+*NotesApi* | [**CrmNotesPost**](docs/NotesApi.md#crmnotespost) | **Post** /crm/notes | Create a note
 *ProcessApi* | [**GetProcess**](docs/ProcessApi.md#getprocess) | **Get** /processes/{processId} | Return the informations for a process
 *ProcessApi* | [**GetProcesses**](docs/ProcessApi.md#getprocesses) | **Get** /processes | Return all the processes for your account
 *ResellerApi* | [**AddCredits**](docs/ResellerApi.md#addcredits) | **Post** /reseller/children/{childIdentifier}/credits/add | Add Email and/or SMS credits to a specific child account
@@ -183,6 +209,12 @@ Class | Method | HTTP request | Description
 *SendersApi* | [**GetIpsFromSender**](docs/SendersApi.md#getipsfromsender) | **Get** /senders/{senderId}/ips | Get all the dedicated IPs for a sender
 *SendersApi* | [**GetSenders**](docs/SendersApi.md#getsenders) | **Get** /senders | Get the list of all your senders
 *SendersApi* | [**UpdateSender**](docs/SendersApi.md#updatesender) | **Put** /senders/{senderId} | Update a sender
+*TasksApi* | [**CrmTasksGet**](docs/TasksApi.md#crmtasksget) | **Get** /crm/tasks | Get all tasks
+*TasksApi* | [**CrmTasksIdDelete**](docs/TasksApi.md#crmtasksiddelete) | **Delete** /crm/tasks/{id} | Delete a task
+*TasksApi* | [**CrmTasksIdGet**](docs/TasksApi.md#crmtasksidget) | **Get** /crm/tasks/{id} | Get a task
+*TasksApi* | [**CrmTasksIdPatch**](docs/TasksApi.md#crmtasksidpatch) | **Patch** /crm/tasks/{id} | Update a task
+*TasksApi* | [**CrmTasksPost**](docs/TasksApi.md#crmtaskspost) | **Post** /crm/tasks | Create a task
+*TasksApi* | [**CrmTasktypesGet**](docs/TasksApi.md#crmtasktypesget) | **Get** /crm/tasktypes | Get all task types
 *TransactionalEmailsApi* | [**BlockNewDomain**](docs/TransactionalEmailsApi.md#blocknewdomain) | **Post** /smtp/blockedDomains | Add a new domain to the list of blocked domains
 *TransactionalEmailsApi* | [**CreateSmtpTemplate**](docs/TransactionalEmailsApi.md#createsmtptemplate) | **Post** /smtp/templates | Create an email template
 *TransactionalEmailsApi* | [**DeleteBlockedDomain**](docs/TransactionalEmailsApi.md#deleteblockeddomain) | **Delete** /smtp/blockedDomains/{domain} | Unblock an existing domain from the list of blocked domains
@@ -235,12 +267,24 @@ Class | Method | HTTP request | Description
  - [Body4](docs/Body4.md)
  - [Body5](docs/Body5.md)
  - [Body6](docs/Body6.md)
+ - [Body7](docs/Body7.md)
+ - [Body8](docs/Body8.md)
+ - [Body9](docs/Body9.md)
+ - [Body10](docs/Body10.md)
+ - [Body11](docs/Body11.md)
+ - [Body12](docs/Body12.md)
  - [CompaniesList](docs/CompaniesList.md)
  - [Company](docs/Company.md)
  - [CompanyAttributes](docs/CompanyAttributes.md)
  - [CompanyAttributesInner](docs/CompanyAttributesInner.md)
+ - [ConversationsMessage](docs/ConversationsMessage.md)
+ - [ConversationsMessageFile](docs/ConversationsMessageFile.md)
+ - [ConversationsMessageFileImageInfo](docs/ConversationsMessageFileImageInfo.md)
+ - [CreateApiKeyRequest](docs/CreateApiKeyRequest.md)
+ - [CreateApiKeyResponse](docs/CreateApiKeyResponse.md)
  - [CreateAttribute](docs/CreateAttribute.md)
  - [CreateAttributeEnumeration](docs/CreateAttributeEnumeration.md)
+ - [CreateCategoryModel](docs/CreateCategoryModel.md)
  - [CreateChild](docs/CreateChild.md)
  - [CreateContact](docs/CreateContact.md)
  - [CreateDoiContact](docs/CreateDoiContact.md)
@@ -249,6 +293,7 @@ Class | Method | HTTP request | Description
  - [CreateEmailCampaignSender](docs/CreateEmailCampaignSender.md)
  - [CreateList](docs/CreateList.md)
  - [CreateModel](docs/CreateModel.md)
+ - [CreateProductModel](docs/CreateProductModel.md)
  - [CreateReseller](docs/CreateReseller.md)
  - [CreateSender](docs/CreateSender.md)
  - [CreateSenderIps](docs/CreateSenderIps.md)
@@ -260,9 +305,18 @@ Class | Method | HTTP request | Description
  - [CreateSmtpTemplateSender](docs/CreateSmtpTemplateSender.md)
  - [CreateSubAccount](docs/CreateSubAccount.md)
  - [CreateSubAccountResponse](docs/CreateSubAccountResponse.md)
+ - [CreateUpdateBatchCategory](docs/CreateUpdateBatchCategory.md)
+ - [CreateUpdateBatchCategoryModel](docs/CreateUpdateBatchCategoryModel.md)
+ - [CreateUpdateBatchProducts](docs/CreateUpdateBatchProducts.md)
+ - [CreateUpdateBatchProductsModel](docs/CreateUpdateBatchProductsModel.md)
+ - [CreateUpdateCategories](docs/CreateUpdateCategories.md)
+ - [CreateUpdateCategory](docs/CreateUpdateCategory.md)
  - [CreateUpdateContactModel](docs/CreateUpdateContactModel.md)
  - [CreateUpdateFolder](docs/CreateUpdateFolder.md)
+ - [CreateUpdateProduct](docs/CreateUpdateProduct.md)
+ - [CreateUpdateProducts](docs/CreateUpdateProducts.md)
  - [CreateWebhook](docs/CreateWebhook.md)
+ - [CreatedBatchId](docs/CreatedBatchId.md)
  - [CreatedProcessId](docs/CreatedProcessId.md)
  - [Deal](docs/Deal.md)
  - [DealAttributes](docs/DealAttributes.md)
@@ -271,6 +325,9 @@ Class | Method | HTTP request | Description
  - [DeleteHardbounces](docs/DeleteHardbounces.md)
  - [EmailExportRecipients](docs/EmailExportRecipients.md)
  - [ErrorModel](docs/ErrorModel.md)
+ - [FileData](docs/FileData.md)
+ - [FileDownloadableLink](docs/FileDownloadableLink.md)
+ - [FileList](docs/FileList.md)
  - [GetAccountMarketingAutomation](docs/GetAccountMarketingAutomation.md)
  - [GetAccountPlan](docs/GetAccountPlan.md)
  - [GetAccountRelay](docs/GetAccountRelay.md)
@@ -283,6 +340,8 @@ Class | Method | HTTP request | Description
  - [GetCampaignOverview](docs/GetCampaignOverview.md)
  - [GetCampaignRecipients](docs/GetCampaignRecipients.md)
  - [GetCampaignStats](docs/GetCampaignStats.md)
+ - [GetCategories](docs/GetCategories.md)
+ - [GetCategoryDetails](docs/GetCategoryDetails.md)
  - [GetChildAccountCreationStatus](docs/GetChildAccountCreationStatus.md)
  - [GetChildDomain](docs/GetChildDomain.md)
  - [GetChildDomains](docs/GetChildDomains.md)
@@ -333,6 +392,8 @@ Class | Method | HTTP request | Description
  - [GetLists](docs/GetLists.md)
  - [GetProcess](docs/GetProcess.md)
  - [GetProcesses](docs/GetProcesses.md)
+ - [GetProductDetails](docs/GetProductDetails.md)
+ - [GetProducts](docs/GetProducts.md)
  - [GetReports](docs/GetReports.md)
  - [GetReportsReports](docs/GetReportsReports.md)
  - [GetScheduledEmailByBatchId](docs/GetScheduledEmailByBatchId.md)
@@ -380,6 +441,10 @@ Class | Method | HTTP request | Description
  - [NoteData](docs/NoteData.md)
  - [NoteId](docs/NoteId.md)
  - [NoteList](docs/NoteList.md)
+ - [Order](docs/Order.md)
+ - [OrderBatch](docs/OrderBatch.md)
+ - [OrderBilling](docs/OrderBilling.md)
+ - [OrderProducts](docs/OrderProducts.md)
  - [Pipeline](docs/Pipeline.md)
  - [PipelineStage](docs/PipelineStage.md)
  - [PostContactInfo](docs/PostContactInfo.md)
@@ -450,6 +515,7 @@ Class | Method | HTTP request | Description
  - [UpdateSmtpTemplate](docs/UpdateSmtpTemplate.md)
  - [UpdateSmtpTemplateSender](docs/UpdateSmtpTemplateSender.md)
  - [UpdateWebhook](docs/UpdateWebhook.md)
+ - [UploadImageModel](docs/UploadImageModel.md)
  - [UploadImageToGallery](docs/UploadImageToGallery.md)
  - [GetChildInfo](docs/GetChildInfo.md)
  - [GetExtendedCampaignOverview](docs/GetExtendedCampaignOverview.md)

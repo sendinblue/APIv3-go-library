@@ -69,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateModel**](CreateModel.md)
+[**CreateModel**](createModel.md)
 
 ### Authorization
 
@@ -224,7 +224,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetAggregatedReport**](GetAggregatedReport.md)
+[**GetAggregatedReport**](getAggregatedReport.md)
 
 ### Authorization
 
@@ -248,7 +248,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**GetBlockedDomains**](GetBlockedDomains.md)
+[**GetBlockedDomains**](getBlockedDomains.md)
 
 ### Authorization
 
@@ -279,7 +279,7 @@ Optional parameters are passed through a pointer to a GetEmailEventReportOpts st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **optional.Int64**| Number limitation for the result returned | [default to 50]
+ **limit** | **optional.Int64**| Number limitation for the result returned | [default to 2500]
  **offset** | **optional.Int64**| Beginning point in the list to retrieve from. | [default to 0]
  **startDate** | **optional.String**| Mandatory if endDate is used. Starting date of the report (YYYY-MM-DD). Must be lower than equal to endDate | 
  **endDate** | **optional.String**| Mandatory if startDate is used. Ending date of the report (YYYY-MM-DD). Must be greater than equal to startDate | 
@@ -293,7 +293,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetEmailEventReport**](GetEmailEventReport.md)
+[**GetEmailEventReport**](getEmailEventReport.md)
 
 ### Authorization
 
@@ -335,7 +335,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetScheduledEmailByBatchId**](GetScheduledEmailByBatchId.md)
+[**GetScheduledEmailByBatchId**](getScheduledEmailByBatchId.md)
 
 ### Authorization
 
@@ -373,7 +373,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetScheduledEmailByMessageId**](GetScheduledEmailByMessageId.md)
+[**GetScheduledEmailByMessageId**](getScheduledEmailByMessageId.md)
 
 ### Authorization
 
@@ -412,7 +412,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetReports**](GetReports.md)
+[**GetReports**](getReports.md)
 
 ### Authorization
 
@@ -438,7 +438,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetSmtpTemplateOverview**](GetSmtpTemplateOverview.md)
+[**GetSmtpTemplateOverview**](getSmtpTemplateOverview.md)
 
 ### Authorization
 
@@ -474,7 +474,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetSmtpTemplates**](GetSmtpTemplates.md)
+[**GetSmtpTemplates**](getSmtpTemplates.md)
 
 ### Authorization
 
@@ -512,7 +512,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetTransacBlockedContacts**](GetTransacBlockedContacts.md)
+[**GetTransacBlockedContacts**](getTransacBlockedContacts.md)
 
 ### Authorization
 
@@ -538,7 +538,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetTransacEmailContent**](GetTransacEmailContent.md)
+[**GetTransacEmailContent**](getTransacEmailContent.md)
 
 ### Authorization
 
@@ -580,7 +580,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetTransacEmailsList**](GetTransacEmailsList.md)
+[**GetTransacEmailsList**](getTransacEmailsList.md)
 
 ### Authorization
 
@@ -633,7 +633,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateSmtpEmail**](CreateSmtpEmail.md)
+[**CreateSmtpEmail**](createSmtpEmail.md)
 
 ### Authorization
 

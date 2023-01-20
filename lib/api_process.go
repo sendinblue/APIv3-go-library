@@ -30,8 +30,8 @@ type ProcessApiService service
 
 /*
 ProcessApiService Return the informations for a process
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param processId Id of the process
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param processId Id of the process
 
 @return GetProcess
 */

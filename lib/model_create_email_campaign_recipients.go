@@ -10,10 +10,12 @@
 
 package lib
 
-// List ids to include/exclude from campaign
+// Segment ids and List ids to include/exclude from campaign
 type CreateEmailCampaignRecipients struct {
 	// List ids to exclude from the campaign
 	ExclusionListIds []int64 `json:"exclusionListIds,omitempty"`
 	// Mandatory if scheduledAt is not empty. List Ids to send the campaign to
 	ListIds []int64 `json:"listIds,omitempty"`
+	// Mandatory if listIds are not used. Segment ids to send the campaign to.
+	SegmentIds []int64 `json:"segmentIds,omitempty"`
 }

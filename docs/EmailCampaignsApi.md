@@ -32,7 +32,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateModel**](CreateModel.md)
+[**CreateModel**](createModel.md)
 
 ### Authorization
 
@@ -93,7 +93,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreatedProcessId**](CreatedProcessId.md)
+[**CreatedProcessId**](createdProcessId.md)
 
 ### Authorization
 
@@ -121,7 +121,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AbTestCampaignResult**](AbTestCampaignResult.md)
+[**AbTestCampaignResult**](abTestCampaignResult.md)
 
 ### Authorization
 
@@ -147,7 +147,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetEmailCampaign**](GetEmailCampaign.md)
+[**GetEmailCampaign**](getEmailCampaign.md)
 
 ### Authorization
 
@@ -186,7 +186,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetEmailCampaigns**](GetEmailCampaigns.md)
+[**GetEmailCampaigns**](getEmailCampaigns.md)
 
 ### Authorization
 
@@ -214,7 +214,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetSharedTemplateUrl**](GetSharedTemplateUrl.md)
+[**GetSharedTemplateUrl**](getSharedTemplateUrl.md)
 
 ### Authorization
 
@@ -364,7 +364,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UploadImageToGallery**
-> UploadImageToGallery(ctx, uploadImage)
+> UploadImageModel UploadImageToGallery(ctx, uploadImage)
 Upload an image to your account's image gallery
 
 ### Required Parameters
@@ -376,7 +376,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+[**UploadImageModel**](uploadImageModel.md)
 
 ### Authorization
 

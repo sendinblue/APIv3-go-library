@@ -10,7 +10,7 @@
 
 package lib
 
-// List of comapnies
+// List of companies
 type CompaniesList struct {
 	// List of compaies
 	Items []Company `json:"items,omitempty"`

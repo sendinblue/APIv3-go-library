@@ -11,8 +11,8 @@
 package lib
 
 type PostContactInfoContacts struct {
-	Success []interface{} `json:"success,omitempty"`
-	Failure []interface{} `json:"failure,omitempty"`
+	Success []string `json:"success,omitempty"`
+	Failure []string `json:"failure,omitempty"`
 	// Displays the count of total number of contacts removed from list when user opts for \"all\" option.
 	Total int64 `json:"total,omitempty"`
 	// Id of the process created to remove contacts from list when user opts for \"all\" option.
