@@ -12,5 +12,5 @@ package lib
 
 type CreateCategoryModel struct {
 	// ID of the category when a new category is created
-	Id int64 `json:"id,omitempty"`
+	Id string `json:"id,omitempty"`
 }

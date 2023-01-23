@@ -11,6 +11,5 @@
 package lib
 
 type CreatedBatchId struct {
-	// Batch ID of the request
-	BatchId float32 `json:"batchId"`
+	BatchId int64 `json:"batch_id"`
 }

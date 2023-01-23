@@ -12,5 +12,5 @@ package lib
 
 type CreateProductModel struct {
 	// ID of the Product when a new product is created
-	Id int64 `json:"id,omitempty"`
+	Id string `json:"id,omitempty"`
 }
