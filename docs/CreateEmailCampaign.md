@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Tag** | **string** | Tag of the campaign | [optional] [default to null]
-**Sender** | [***CreateEmailCampaignSender**](createEmailCampaign_sender.md) |  | [default to null]
+**Sender** | [***CreateEmailCampaignSender**](createEmailCampaignSender.md) |  | [default to null]
 **Name** | **string** | Name of the campaign | [default to null]
 **HtmlContent** | **string** | Mandatory if htmlUrl and templateId are empty. Body of the message (HTML) | [optional] [default to null]
 **HtmlUrl** | **string** | Mandatory if htmlContent and templateId are empty. Url to the message (HTML) | [optional] [default to null]
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **Subject** | **string** | Subject of the campaign. Mandatory if abTesting is false. Ignored if abTesting is true. | [optional] [default to null]
 **ReplyTo** | **string** | Email on which the campaign recipients will be able to reply to | [optional] [default to null]
 **ToField** | **string** | To personalize the «To» Field. If you want to include the first name and last name of your recipient, add {FNAME} {LNAME}. These contact attributes must already exist in your SendinBlue account. If input parameter &#39;params&#39; used please use {{contact.FNAME}} {{contact.LNAME}} for personalization | [optional] [default to null]
-**Recipients** | [***CreateEmailCampaignRecipients**](createEmailCampaign_recipients.md) |  | [optional] [default to null]
+**Recipients** | [***CreateEmailCampaignRecipients**](createEmailCampaignRecipients.md) |  | [optional] [default to null]
 **AttachmentUrl** | **string** | Absolute url of the attachment (no local file). Extension allowed: xlsx, xls, ods, docx, docm, doc, csv, pdf, txt, gif, jpg, jpeg, png, tif, tiff, rtf, bmp, cgm, css, shtml, html, htm, zip, xml, ppt, pptx, tar, ez, ics, mobi, msg, pub and eps | [optional] [default to null]
 **InlineImageActivation** | **bool** | Use true to embedded the images in your email. Final size of the email should be less than 4MB. Campaigns with embedded images can not be sent to more than 5000 contacts | [optional] [default to null]
 **MirrorActive** | **bool** | Use true to enable the mirror link | [optional] [default to null]

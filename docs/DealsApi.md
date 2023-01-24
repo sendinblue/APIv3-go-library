@@ -194,7 +194,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse201**](inline_response_201.md)
+[**InlineResponse201**](inlineResponse201.md)
 
 ### Authorization
 
