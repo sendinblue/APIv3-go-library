@@ -55,197 +55,197 @@ All URIs are relative to *https://api.sendinblue.com/v3*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AccountApi* | [**GetAccount**](docs/AccountApi.md#Getaccount) | **Get** /account | Get your account information, plan and credits details
-*AttributesApi* | [**CreateAttribute**](docs/AttributesApi.md#createattribute) | **Post** /contacts/attributes/{attributeCategory}/{attributeName} | Create contact attribute
-*AttributesApi* | [**DeleteAttribute**](docs/AttributesApi.md#deleteattribute) | **Delete** /contacts/attributes/{attributeCategory}/{attributeName} | Delete an attribute
-*AttributesApi* | [**GetAttributes**](docs/AttributesApi.md#getattributes) | **Get** /contacts/attributes | List all attributes
-*AttributesApi* | [**UpdateAttribute**](docs/AttributesApi.md#updateattribute) | **Put** /contacts/attributes/{attributeCategory}/{attributeName} | Update contact attribute
-*CRMApi* | [**CrmNotesGet**](docs/CRMApi.md#crmnotesget) | **Get** /crm/notes | Get all notes
-*CRMApi* | [**CrmNotesIdDelete**](docs/CRMApi.md#crmnotesiddelete) | **Delete** /crm/notes/{id} | Delete a note
-*CRMApi* | [**CrmNotesIdGet**](docs/CRMApi.md#crmnotesidget) | **Get** /crm/notes/{id} | Get a note
-*CRMApi* | [**CrmNotesIdPatch**](docs/CRMApi.md#crmnotesidpatch) | **Patch** /crm/notes/{id} | Update a note
-*CRMApi* | [**CrmNotesPost**](docs/CRMApi.md#crmnotespost) | **Post** /crm/notes | Create a note
-*CRMApi* | [**CrmTasksGet**](docs/CRMApi.md#crmtasksget) | **Get** /crm/tasks | Get all tasks
-*CRMApi* | [**CrmTasksIdDelete**](docs/CRMApi.md#crmtasksiddelete) | **Delete** /crm/tasks/{id} | Delete a task
-*CRMApi* | [**CrmTasksIdGet**](docs/CRMApi.md#crmtasksidget) | **Get** /crm/tasks/{id} | Get a task
-*CRMApi* | [**CrmTasksIdPatch**](docs/CRMApi.md#crmtasksidpatch) | **Patch** /crm/tasks/{id} | Update a task
-*CRMApi* | [**CrmTasksPost**](docs/CRMApi.md#crmtaskspost) | **Post** /crm/tasks | Create a task
-*CRMApi* | [**CrmTasktypesGet**](docs/CRMApi.md#crmtasktypesget) | **Get** /crm/tasktypes | Get all task types
-*CompaniesApi* | [**CompaniesAttributesGet**](docs/CompaniesApi.md#companiesattributesget) | **Get** /companies/attributes | Get company attributes
-*CompaniesApi* | [**CompaniesGet**](docs/CompaniesApi.md#companiesget) | **Get** /companies | Get all companies
-*CompaniesApi* | [**CompaniesIdDelete**](docs/CompaniesApi.md#companiesiddelete) | **Delete** /companies/{id} | Delete a company
-*CompaniesApi* | [**CompaniesIdGet**](docs/CompaniesApi.md#companiesidget) | **Get** /companies/{id} | Get a company
-*CompaniesApi* | [**CompaniesIdPatch**](docs/CompaniesApi.md#companiesidpatch) | **Patch** /companies/{id} | Update a company
-*CompaniesApi* | [**CompaniesLinkUnlinkIdPatch**](docs/CompaniesApi.md#companieslinkunlinkidpatch) | **Patch** /companies/link-unlink/{id} | Link and Unlink company with contacts and deals
-*CompaniesApi* | [**CompaniesPost**](docs/CompaniesApi.md#companiespost) | **Post** /companies | Create a company
-*ContactsApi* | [**AddContactToList**](docs/ContactsApi.md#addcontacttolist) | **Post** /contacts/lists/{listId}/contacts/add | Add existing contacts to a list
-*ContactsApi* | [**CreateAttribute**](docs/ContactsApi.md#createattribute) | **Post** /contacts/attributes/{attributeCategory}/{attributeName} | Create contact attribute
-*ContactsApi* | [**CreateContact**](docs/ContactsApi.md#createcontact) | **Post** /contacts | Create a contact
-*ContactsApi* | [**CreateDoiContact**](docs/ContactsApi.md#createdoicontact) | **Post** /contacts/doubleOptinConfirmation | Create Contact via DOI (Double-Opt-In) Flow
-*ContactsApi* | [**CreateFolder**](docs/ContactsApi.md#createfolder) | **Post** /contacts/folders | Create a folder
-*ContactsApi* | [**CreateList**](docs/ContactsApi.md#createlist) | **Post** /contacts/lists | Create a list
-*ContactsApi* | [**DeleteAttribute**](docs/ContactsApi.md#deleteattribute) | **Delete** /contacts/attributes/{attributeCategory}/{attributeName} | Delete an attribute
-*ContactsApi* | [**DeleteContact**](docs/ContactsApi.md#deletecontact) | **Delete** /contacts/{identifier} | Delete a contact
-*ContactsApi* | [**DeleteFolder**](docs/ContactsApi.md#deletefolder) | **Delete** /contacts/folders/{folderId} | Delete a folder (and all its lists)
-*ContactsApi* | [**DeleteList**](docs/ContactsApi.md#deletelist) | **Delete** /contacts/lists/{listId} | Delete a list
-*ContactsApi* | [**GetAttributes**](docs/ContactsApi.md#getattributes) | **Get** /contacts/attributes | List all attributes
-*ContactsApi* | [**GetContactInfo**](docs/ContactsApi.md#getcontactinfo) | **Get** /contacts/{identifier} | Get a contact&#39;s details
-*ContactsApi* | [**GetContactStats**](docs/ContactsApi.md#getcontactstats) | **Get** /contacts/{identifier}/campaignStats | Get email campaigns&#39; statistics for a contact
-*ContactsApi* | [**GetContacts**](docs/ContactsApi.md#getcontacts) | **Get** /contacts | Get all the contacts
-*ContactsApi* | [**GetContactsFromList**](docs/ContactsApi.md#getcontactsfromlist) | **Get** /contacts/lists/{listId}/contacts | Get contacts in a list
-*ContactsApi* | [**GetFolder**](docs/ContactsApi.md#getfolder) | **Get** /contacts/folders/{folderId} | Returns a folder&#39;s details
-*ContactsApi* | [**GetFolderLists**](docs/ContactsApi.md#getfolderlists) | **Get** /contacts/folders/{folderId}/lists | Get lists in a folder
-*ContactsApi* | [**GetFolders**](docs/ContactsApi.md#getfolders) | **Get** /contacts/folders | Get all folders
-*ContactsApi* | [**GetList**](docs/ContactsApi.md#getlist) | **Get** /contacts/lists/{listId} | Get a list&#39;s details
-*ContactsApi* | [**GetLists**](docs/ContactsApi.md#getlists) | **Get** /contacts/lists | Get all the lists
-*ContactsApi* | [**ImportContacts**](docs/ContactsApi.md#importcontacts) | **Post** /contacts/import | Import contacts
-*ContactsApi* | [**RemoveContactFromList**](docs/ContactsApi.md#removecontactfromlist) | **Post** /contacts/lists/{listId}/contacts/remove | Delete a contact from a list
-*ContactsApi* | [**RequestContactExport**](docs/ContactsApi.md#requestcontactexport) | **Post** /contacts/export | Export contacts
-*ContactsApi* | [**UpdateAttribute**](docs/ContactsApi.md#updateattribute) | **Put** /contacts/attributes/{attributeCategory}/{attributeName} | Update contact attribute
-*ContactsApi* | [**UpdateBatchContacts**](docs/ContactsApi.md#updatebatchcontacts) | **Post** /contacts/batch | Update multiple contacts
-*ContactsApi* | [**UpdateContact**](docs/ContactsApi.md#updatecontact) | **Put** /contacts/{identifier} | Update a contact
-*ContactsApi* | [**UpdateFolder**](docs/ContactsApi.md#updatefolder) | **Put** /contacts/folders/{folderId} | Update a folder
-*ContactsApi* | [**UpdateList**](docs/ContactsApi.md#updatelist) | **Put** /contacts/lists/{listId} | Update a list
-*ConversationsApi* | [**ConversationsAgentOnlinePingPost**](docs/ConversationsApi.md#conversationsagentonlinepingpost) | **Post** /conversations/agentOnlinePing | Sets agent’s status to online for 2-3 minutes
-*ConversationsApi* | [**ConversationsMessagesIdDelete**](docs/ConversationsApi.md#conversationsmessagesiddelete) | **Delete** /conversations/messages/{id} | Delete a message sent by an agent
-*ConversationsApi* | [**ConversationsMessagesIdGet**](docs/ConversationsApi.md#conversationsmessagesidget) | **Get** /conversations/messages/{id} | Get a message
-*ConversationsApi* | [**ConversationsMessagesIdPut**](docs/ConversationsApi.md#conversationsmessagesidput) | **Put** /conversations/messages/{id} | Update a message sent by an agent
-*ConversationsApi* | [**ConversationsMessagesPost**](docs/ConversationsApi.md#conversationsmessagespost) | **Post** /conversations/messages | Send a message as an agent
-*ConversationsApi* | [**ConversationsPushedMessagesIdDelete**](docs/ConversationsApi.md#conversationspushedmessagesiddelete) | **Delete** /conversations/pushedMessages/{id} | Delete an automated message
-*ConversationsApi* | [**ConversationsPushedMessagesIdGet**](docs/ConversationsApi.md#conversationspushedmessagesidget) | **Get** /conversations/pushedMessages/{id} | Get an automated message
-*ConversationsApi* | [**ConversationsPushedMessagesIdPut**](docs/ConversationsApi.md#conversationspushedmessagesidput) | **Put** /conversations/pushedMessages/{id} | Update an automated message
-*ConversationsApi* | [**ConversationsPushedMessagesPost**](docs/ConversationsApi.md#conversationspushedmessagespost) | **Post** /conversations/pushedMessages | Send an automated message to a visitor
-*DealsApi* | [**CrmAttributesDealsGet**](docs/DealsApi.md#crmattributesdealsget) | **Get** /crm/attributes/deals | Get deal attributes
-*DealsApi* | [**CrmDealsGet**](docs/DealsApi.md#crmdealsget) | **Get** /crm/deals | Get all deals
-*DealsApi* | [**CrmDealsIdDelete**](docs/DealsApi.md#crmdealsiddelete) | **Delete** /crm/deals/{id} | Delete a deal
-*DealsApi* | [**CrmDealsIdGet**](docs/DealsApi.md#crmdealsidget) | **Get** /crm/deals/{id} | Get a deal
-*DealsApi* | [**CrmDealsIdPatch**](docs/DealsApi.md#crmdealsidpatch) | **Patch** /crm/deals/{id} | Update a deal
-*DealsApi* | [**CrmDealsLinkUnlinkIdPatch**](docs/DealsApi.md#crmdealslinkunlinkidpatch) | **Patch** /crm/deals/link-unlink/{id} | Link and Unlink a deal with contacts and companies
-*DealsApi* | [**CrmDealsPost**](docs/DealsApi.md#crmdealspost) | **Post** /crm/deals | Create a deal
-*DealsApi* | [**CrmPipelineDetailsGet**](docs/DealsApi.md#crmpipelinedetailsget) | **Get** /crm/pipeline/details | Get pipeline stages
-*EcommerceApi* | [**CreateBatchOrder**](docs/EcommerceApi.md#createbatchorder) | **Post** /orders/status/batch | Maintains a batch of orders
-*EcommerceApi* | [**CreateOrder**](docs/EcommerceApi.md#createorder) | **Post** /orders/status | Maintains every transactional status of the order
-*EcommerceApi* | [**CreateUpdateBatchCategory**](docs/EcommerceApi.md#createupdatebatchcategory) | **Post** /categories/batch | Create the categories in a batch
-*EcommerceApi* | [**CreateUpdateBatchProducts**](docs/EcommerceApi.md#createupdatebatchproducts) | **Post** /products/batch | Creates the products in a batch
-*EcommerceApi* | [**CreateUpdateCategory**](docs/EcommerceApi.md#createupdatecategory) | **Post** /categories | Create/Update a category
-*EcommerceApi* | [**CreateUpdateProduct**](docs/EcommerceApi.md#createupdateproduct) | **Post** /products | Create/Update a product
-*EcommerceApi* | [**EcommerceActivatePost**](docs/EcommerceApi.md#ecommerceactivatepost) | **Post** /ecommerce/activate | **Fulfills the eCommerce pre-requisites**
-*EcommerceApi* | [**GetCategories**](docs/EcommerceApi.md#getcategories) | **Get** /categories | Return all your categories
-*EcommerceApi* | [**GetCategoryInfo**](docs/EcommerceApi.md#getcategoryinfo) | **Get** /categories/{id} | Get a category details
-*EcommerceApi* | [**GetProductInfo**](docs/EcommerceApi.md#getproductinfo) | **Get** /products/{id} | Get a product&#39;s details
-*EcommerceApi* | [**GetProducts**](docs/EcommerceApi.md#getproducts) | **Get** /products | Return all your products
-*EmailCampaignsApi* | [**CreateEmailCampaign**](docs/EmailCampaignsApi.md#createemailcampaign) | **Post** /emailCampaigns | Create an email campaign
-*EmailCampaignsApi* | [**DeleteEmailCampaign**](docs/EmailCampaignsApi.md#deleteemailcampaign) | **Delete** /emailCampaigns/{campaignId} | Delete an email campaign
-*EmailCampaignsApi* | [**EmailExportRecipients**](docs/EmailCampaignsApi.md#emailexportrecipients) | **Post** /emailCampaigns/{campaignId}/exportRecipients | Export the recipients of an email campaign
-*EmailCampaignsApi* | [**GetAbTestCampaignResult**](docs/EmailCampaignsApi.md#getabtestcampaignresult) | **Get** /emailCampaigns/{campaignId}/abTestCampaignResult | Get an A/B test email campaign results
-*EmailCampaignsApi* | [**GetEmailCampaign**](docs/EmailCampaignsApi.md#getemailcampaign) | **Get** /emailCampaigns/{campaignId} | Get an email campaign report
-*EmailCampaignsApi* | [**GetEmailCampaigns**](docs/EmailCampaignsApi.md#getemailcampaigns) | **Get** /emailCampaigns | Return all your created email campaigns
-*EmailCampaignsApi* | [**GetSharedTemplateUrl**](docs/EmailCampaignsApi.md#getsharedtemplateurl) | **Get** /emailCampaigns/{campaignId}/sharedUrl | Get a shared template url
-*EmailCampaignsApi* | [**SendEmailCampaignNow**](docs/EmailCampaignsApi.md#sendemailcampaignnow) | **Post** /emailCampaigns/{campaignId}/sendNow | Send an email campaign immediately, based on campaignId
-*EmailCampaignsApi* | [**SendReport**](docs/EmailCampaignsApi.md#sendreport) | **Post** /emailCampaigns/{campaignId}/sendReport | Send the report of a campaign
-*EmailCampaignsApi* | [**SendTestEmail**](docs/EmailCampaignsApi.md#sendtestemail) | **Post** /emailCampaigns/{campaignId}/sendTest | Send an email campaign to your test list
-*EmailCampaignsApi* | [**UpdateCampaignStatus**](docs/EmailCampaignsApi.md#updatecampaignstatus) | **Put** /emailCampaigns/{campaignId}/status | Update an email campaign status
-*EmailCampaignsApi* | [**UpdateEmailCampaign**](docs/EmailCampaignsApi.md#updateemailcampaign) | **Put** /emailCampaigns/{campaignId} | Update an email campaign
-*EmailCampaignsApi* | [**UploadImageToGallery**](docs/EmailCampaignsApi.md#uploadimagetogallery) | **Post** /emailCampaigns/images | Upload an image to your account&#39;s image gallery
-*FoldersApi* | [**CreateFolder**](docs/FoldersApi.md#createfolder) | **Post** /contacts/folders | Create a folder
-*FoldersApi* | [**DeleteFolder**](docs/FoldersApi.md#deletefolder) | **Delete** /contacts/folders/{folderId} | Delete a folder (and all its lists)
-*FoldersApi* | [**GetFolder**](docs/FoldersApi.md#getfolder) | **Get** /contacts/folders/{folderId} | Returns a folder&#39;s details
-*FoldersApi* | [**GetFolderLists**](docs/FoldersApi.md#getfolderlists) | **Get** /contacts/folders/{folderId}/lists | Get lists in a folder
-*FoldersApi* | [**GetFolders**](docs/FoldersApi.md#getfolders) | **Get** /contacts/folders | Get all folders
-*FoldersApi* | [**UpdateFolder**](docs/FoldersApi.md#updatefolder) | **Put** /contacts/folders/{folderId} | Update a folder
-*InboundParsingApi* | [**GetInboundEmailEvents**](docs/InboundParsingApi.md#getinboundemailevents) | **Get** /inbound/events | Get the list of all the events for the received emails.
-*InboundParsingApi* | [**GetInboundEmailEventsByUuid**](docs/InboundParsingApi.md#getinboundemaileventsbyuuid) | **Get** /inbound/events/{uuid} | Fetch all events history for one particular received email.
-*ListsApi* | [**AddContactToList**](docs/ListsApi.md#addcontacttolist) | **Post** /contacts/lists/{listId}/contacts/add | Add existing contacts to a list
-*ListsApi* | [**CreateList**](docs/ListsApi.md#createlist) | **Post** /contacts/lists | Create a list
-*ListsApi* | [**DeleteList**](docs/ListsApi.md#deletelist) | **Delete** /contacts/lists/{listId} | Delete a list
-*ListsApi* | [**GetContactsFromList**](docs/ListsApi.md#getcontactsfromlist) | **Get** /contacts/lists/{listId}/contacts | Get contacts in a list
-*ListsApi* | [**GetFolderLists**](docs/ListsApi.md#getfolderlists) | **Get** /contacts/folders/{folderId}/lists | Get lists in a folder
-*ListsApi* | [**GetList**](docs/ListsApi.md#getlist) | **Get** /contacts/lists/{listId} | Get a list&#39;s details
-*ListsApi* | [**GetLists**](docs/ListsApi.md#getlists) | **Get** /contacts/lists | Get all the lists
-*ListsApi* | [**RemoveContactFromList**](docs/ListsApi.md#removecontactfromlist) | **Post** /contacts/lists/{listId}/contacts/remove | Delete a contact from a list
-*ListsApi* | [**UpdateList**](docs/ListsApi.md#updatelist) | **Put** /contacts/lists/{listId} | Update a list
-*MasterAccountApi* | [**CorporateMasterAccountGet**](docs/MasterAccountApi.md#corporatemasteraccountget) | **Get** /corporate/masterAccount | Get the details of requested master account
-*MasterAccountApi* | [**CorporateSubAccountGet**](docs/MasterAccountApi.md#corporatesubaccountget) | **Get** /corporate/subAccount | Get the list of all the sub-accounts of the master account.
-*MasterAccountApi* | [**CorporateSubAccountIdDelete**](docs/MasterAccountApi.md#corporatesubaccountiddelete) | **Delete** /corporate/subAccount/{id} | Delete a sub-account
-*MasterAccountApi* | [**CorporateSubAccountIdGet**](docs/MasterAccountApi.md#corporatesubaccountidget) | **Get** /corporate/subAccount/{id} | Get sub-account details
-*MasterAccountApi* | [**CorporateSubAccountIdPlanPut**](docs/MasterAccountApi.md#corporatesubaccountidplanput) | **Put** /corporate/subAccount/{id}/plan | Update sub-account plan
-*MasterAccountApi* | [**CorporateSubAccountPost**](docs/MasterAccountApi.md#corporatesubaccountpost) | **Post** /corporate/subAccount | Create a new sub-account under a master account.
-*MasterAccountApi* | [**CorporateSubAccountSsoTokenPost**](docs/MasterAccountApi.md#corporatesubaccountssotokenpost) | **Post** /corporate/subAccount/ssoToken | Generate SSO token to access Sendinblue
-*NotesApi* | [**CrmNotesGet**](docs/NotesApi.md#crmnotesget) | **Get** /crm/notes | Get all notes
-*NotesApi* | [**CrmNotesIdDelete**](docs/NotesApi.md#crmnotesiddelete) | **Delete** /crm/notes/{id} | Delete a note
-*NotesApi* | [**CrmNotesIdGet**](docs/NotesApi.md#crmnotesidget) | **Get** /crm/notes/{id} | Get a note
-*NotesApi* | [**CrmNotesIdPatch**](docs/NotesApi.md#crmnotesidpatch) | **Patch** /crm/notes/{id} | Update a note
-*NotesApi* | [**CrmNotesPost**](docs/NotesApi.md#crmnotespost) | **Post** /crm/notes | Create a note
-*ProcessApi* | [**GetProcess**](docs/ProcessApi.md#getprocess) | **Get** /processes/{processId} | Return the informations for a process
-*ProcessApi* | [**GetProcesses**](docs/ProcessApi.md#getprocesses) | **Get** /processes | Return all the processes for your account
-*ResellerApi* | [**AddCredits**](docs/ResellerApi.md#addcredits) | **Post** /reseller/children/{childIdentifier}/credits/add | Add Email and/or SMS credits to a specific child account
-*ResellerApi* | [**AssociateIpToChild**](docs/ResellerApi.md#associateiptochild) | **Post** /reseller/children/{childIdentifier}/ips/associate | Associate a dedicated IP to the child
-*ResellerApi* | [**CreateChildDomain**](docs/ResellerApi.md#createchilddomain) | **Post** /reseller/children/{childIdentifier}/domains | Create a domain for a child account
-*ResellerApi* | [**CreateResellerChild**](docs/ResellerApi.md#createresellerchild) | **Post** /reseller/children | Creates a reseller child
-*ResellerApi* | [**DeleteChildDomain**](docs/ResellerApi.md#deletechilddomain) | **Delete** /reseller/children/{childIdentifier}/domains/{domainName} | Delete the sender domain of the reseller child based on the childIdentifier and domainName passed
-*ResellerApi* | [**DeleteResellerChild**](docs/ResellerApi.md#deleteresellerchild) | **Delete** /reseller/children/{childIdentifier} | Delete a single reseller child based on the child identifier supplied
-*ResellerApi* | [**DissociateIpFromChild**](docs/ResellerApi.md#dissociateipfromchild) | **Post** /reseller/children/{childIdentifier}/ips/dissociate | Dissociate a dedicated IP to the child
-*ResellerApi* | [**GetChildAccountCreationStatus**](docs/ResellerApi.md#getchildaccountcreationstatus) | **Get** /reseller/children/{childIdentifier}/accountCreationStatus | Get the status of a reseller&#39;s child account creation, whether it is successfully created (exists) or not based on the identifier supplied
-*ResellerApi* | [**GetChildDomains**](docs/ResellerApi.md#getchilddomains) | **Get** /reseller/children/{childIdentifier}/domains | Get all sender domains for a specific child account
-*ResellerApi* | [**GetChildInfo**](docs/ResellerApi.md#getchildinfo) | **Get** /reseller/children/{childIdentifier} | Get a child account&#39;s details
-*ResellerApi* | [**GetResellerChilds**](docs/ResellerApi.md#getresellerchilds) | **Get** /reseller/children | Get the list of all children accounts
-*ResellerApi* | [**GetSsoToken**](docs/ResellerApi.md#getssotoken) | **Get** /reseller/children/{childIdentifier}/auth | Get session token to access Sendinblue (SSO)
-*ResellerApi* | [**RemoveCredits**](docs/ResellerApi.md#removecredits) | **Post** /reseller/children/{childIdentifier}/credits/remove | Remove Email and/or SMS credits from a specific child account
-*ResellerApi* | [**UpdateChildAccountStatus**](docs/ResellerApi.md#updatechildaccountstatus) | **Put** /reseller/children/{childIdentifier}/accountStatus | Update info of reseller&#39;s child account status based on the childIdentifier supplied
-*ResellerApi* | [**UpdateChildDomain**](docs/ResellerApi.md#updatechilddomain) | **Put** /reseller/children/{childIdentifier}/domains/{domainName} | Update the sender domain of reseller&#39;s child based on the childIdentifier and domainName passed
-*ResellerApi* | [**UpdateResellerChild**](docs/ResellerApi.md#updateresellerchild) | **Put** /reseller/children/{childIdentifier} | Update info of reseller&#39;s child based on the child identifier supplied
-*SMSCampaignsApi* | [**CreateSmsCampaign**](docs/SMSCampaignsApi.md#createsmscampaign) | **Post** /smsCampaigns | Creates an SMS campaign
-*SMSCampaignsApi* | [**DeleteSmsCampaign**](docs/SMSCampaignsApi.md#deletesmscampaign) | **Delete** /smsCampaigns/{campaignId} | Delete an SMS campaign
-*SMSCampaignsApi* | [**GetSmsCampaign**](docs/SMSCampaignsApi.md#getsmscampaign) | **Get** /smsCampaigns/{campaignId} | Get an SMS campaign
-*SMSCampaignsApi* | [**GetSmsCampaigns**](docs/SMSCampaignsApi.md#getsmscampaigns) | **Get** /smsCampaigns | Returns the information for all your created SMS campaigns
-*SMSCampaignsApi* | [**RequestSmsRecipientExport**](docs/SMSCampaignsApi.md#requestsmsrecipientexport) | **Post** /smsCampaigns/{campaignId}/exportRecipients | Export an SMS campaign&#39;s recipients
-*SMSCampaignsApi* | [**SendSmsCampaignNow**](docs/SMSCampaignsApi.md#sendsmscampaignnow) | **Post** /smsCampaigns/{campaignId}/sendNow | Send your SMS campaign immediately
-*SMSCampaignsApi* | [**SendSmsReport**](docs/SMSCampaignsApi.md#sendsmsreport) | **Post** /smsCampaigns/{campaignId}/sendReport | Send an SMS campaign&#39;s report
-*SMSCampaignsApi* | [**SendTestSms**](docs/SMSCampaignsApi.md#sendtestsms) | **Post** /smsCampaigns/{campaignId}/sendTest | Send a test SMS campaign
-*SMSCampaignsApi* | [**UpdateSmsCampaign**](docs/SMSCampaignsApi.md#updatesmscampaign) | **Put** /smsCampaigns/{campaignId} | Update an SMS campaign
-*SMSCampaignsApi* | [**UpdateSmsCampaignStatus**](docs/SMSCampaignsApi.md#updatesmscampaignstatus) | **Put** /smsCampaigns/{campaignId}/status | Update a campaign&#39;s status
-*SendersApi* | [**CreateSender**](docs/SendersApi.md#createsender) | **Post** /senders | Create a new sender
-*SendersApi* | [**DeleteSender**](docs/SendersApi.md#deletesender) | **Delete** /senders/{senderId} | Delete a sender
-*SendersApi* | [**GetIps**](docs/SendersApi.md#getips) | **Get** /senders/ips | Get all the dedicated IPs for your account
-*SendersApi* | [**GetIpsFromSender**](docs/SendersApi.md#getipsfromsender) | **Get** /senders/{senderId}/ips | Get all the dedicated IPs for a sender
-*SendersApi* | [**GetSenders**](docs/SendersApi.md#getsenders) | **Get** /senders | Get the list of all your senders
-*SendersApi* | [**UpdateSender**](docs/SendersApi.md#updatesender) | **Put** /senders/{senderId} | Update a sender
-*TasksApi* | [**CrmTasksGet**](docs/TasksApi.md#crmtasksget) | **Get** /crm/tasks | Get all tasks
-*TasksApi* | [**CrmTasksIdDelete**](docs/TasksApi.md#crmtasksiddelete) | **Delete** /crm/tasks/{id} | Delete a task
-*TasksApi* | [**CrmTasksIdGet**](docs/TasksApi.md#crmtasksidget) | **Get** /crm/tasks/{id} | Get a task
-*TasksApi* | [**CrmTasksIdPatch**](docs/TasksApi.md#crmtasksidpatch) | **Patch** /crm/tasks/{id} | Update a task
-*TasksApi* | [**CrmTasksPost**](docs/TasksApi.md#crmtaskspost) | **Post** /crm/tasks | Create a task
-*TasksApi* | [**CrmTasktypesGet**](docs/TasksApi.md#crmtasktypesget) | **Get** /crm/tasktypes | Get all task types
-*TransactionalEmailsApi* | [**BlockNewDomain**](docs/TransactionalEmailsApi.md#blocknewdomain) | **Post** /smtp/blockedDomains | Add a new domain to the list of blocked domains
-*TransactionalEmailsApi* | [**CreateSmtpTemplate**](docs/TransactionalEmailsApi.md#createsmtptemplate) | **Post** /smtp/templates | Create an email template
-*TransactionalEmailsApi* | [**DeleteBlockedDomain**](docs/TransactionalEmailsApi.md#deleteblockeddomain) | **Delete** /smtp/blockedDomains/{domain} | Unblock an existing domain from the list of blocked domains
-*TransactionalEmailsApi* | [**DeleteHardbounces**](docs/TransactionalEmailsApi.md#deletehardbounces) | **Post** /smtp/deleteHardbounces | Delete hardbounces
-*TransactionalEmailsApi* | [**DeleteScheduledEmailById**](docs/TransactionalEmailsApi.md#deletescheduledemailbyid) | **Delete** /smtp/email/{identifier} | Delete scheduled emails by batchId or messageId
-*TransactionalEmailsApi* | [**DeleteSmtpTemplate**](docs/TransactionalEmailsApi.md#deletesmtptemplate) | **Delete** /smtp/templates/{templateId} | Delete an inactive email template
-*TransactionalEmailsApi* | [**GetAggregatedSmtpReport**](docs/TransactionalEmailsApi.md#getaggregatedsmtpreport) | **Get** /smtp/statistics/aggregatedReport | Get your transactional email activity aggregated over a period of time
-*TransactionalEmailsApi* | [**GetBlockedDomains**](docs/TransactionalEmailsApi.md#getblockeddomains) | **Get** /smtp/blockedDomains | Get the list of blocked domains
-*TransactionalEmailsApi* | [**GetEmailEventReport**](docs/TransactionalEmailsApi.md#getemaileventreport) | **Get** /smtp/statistics/events | Get all your transactional email activity (unaggregated events)
-*TransactionalEmailsApi* | [**GetScheduledEmailByBatchId**](docs/TransactionalEmailsApi.md#getscheduledemailbybatchid) | **Get** /smtp/emailStatus/{batchId} | Fetch scheduled emails by batchId
-*TransactionalEmailsApi* | [**GetScheduledEmailByMessageId**](docs/TransactionalEmailsApi.md#getscheduledemailbymessageid) | **Get** /smtp/emailStatus/{messageId} | Fetch scheduled email by messageId
-*TransactionalEmailsApi* | [**GetSmtpReport**](docs/TransactionalEmailsApi.md#getsmtpreport) | **Get** /smtp/statistics/reports | Get your transactional email activity aggregated per day
-*TransactionalEmailsApi* | [**GetSmtpTemplate**](docs/TransactionalEmailsApi.md#getsmtptemplate) | **Get** /smtp/templates/{templateId} | Returns the template information
-*TransactionalEmailsApi* | [**GetSmtpTemplates**](docs/TransactionalEmailsApi.md#getsmtptemplates) | **Get** /smtp/templates | Get the list of email templates
-*TransactionalEmailsApi* | [**GetTransacBlockedContacts**](docs/TransactionalEmailsApi.md#gettransacblockedcontacts) | **Get** /smtp/blockedContacts | Get the list of blocked or unsubscribed transactional contacts
-*TransactionalEmailsApi* | [**GetTransacEmailContent**](docs/TransactionalEmailsApi.md#gettransacemailcontent) | **Get** /smtp/emails/{uuid} | Get the personalized content of a sent transactional email
-*TransactionalEmailsApi* | [**GetTransacEmailsList**](docs/TransactionalEmailsApi.md#gettransacemailslist) | **Get** /smtp/emails | Get the list of transactional emails on the basis of allowed filters
-*TransactionalEmailsApi* | [**SendTestTemplate**](docs/TransactionalEmailsApi.md#sendtesttemplate) | **Post** /smtp/templates/{templateId}/sendTest | Send a template to your test list
-*TransactionalEmailsApi* | [**SendTransacEmail**](docs/TransactionalEmailsApi.md#sendtransacemail) | **Post** /smtp/email | Send a transactional email
-*TransactionalEmailsApi* | [**SmtpBlockedContactsEmailDelete**](docs/TransactionalEmailsApi.md#smtpblockedcontactsemaildelete) | **Delete** /smtp/blockedContacts/{email} | Unblock or resubscribe a transactional contact
-*TransactionalEmailsApi* | [**SmtpLogMessageIdDelete**](docs/TransactionalEmailsApi.md#smtplogmessageiddelete) | **Delete** /smtp/log/{messageId} | Delete an SMTP transactional log
-*TransactionalEmailsApi* | [**UpdateSmtpTemplate**](docs/TransactionalEmailsApi.md#updatesmtptemplate) | **Put** /smtp/templates/{templateId} | Update an email template
-*TransactionalSMSApi* | [**GetSmsEvents**](docs/TransactionalSMSApi.md#getsmsevents) | **Get** /transactionalSMS/statistics/events | Get all your SMS activity (unaggregated events)
-*TransactionalSMSApi* | [**GetTransacAggregatedSmsReport**](docs/TransactionalSMSApi.md#gettransacaggregatedsmsreport) | **Get** /transactionalSMS/statistics/aggregatedReport | Get your SMS activity aggregated over a period of time
-*TransactionalSMSApi* | [**GetTransacSmsReport**](docs/TransactionalSMSApi.md#gettransacsmsreport) | **Get** /transactionalSMS/statistics/reports | Get your SMS activity aggregated per day
-*TransactionalSMSApi* | [**SendTransacSms**](docs/TransactionalSMSApi.md#sendtransacsms) | **Post** /transactionalSMS/sms | Send SMS message to a mobile number
-*WebhooksApi* | [**CreateWebhook**](docs/WebhooksApi.md#createwebhook) | **Post** /webhooks | Create a webhook
-*WebhooksApi* | [**DeleteWebhook**](docs/WebhooksApi.md#deletewebhook) | **Delete** /webhooks/{webhookId} | Delete a webhook
-*WebhooksApi* | [**GetWebhook**](docs/WebhooksApi.md#getwebhook) | **Get** /webhooks/{webhookId} | Get a webhook details
-*WebhooksApi* | [**GetWebhooks**](docs/WebhooksApi.md#getwebhooks) | **Get** /webhooks | Get all webhooks
-*WebhooksApi* | [**UpdateWebhook**](docs/WebhooksApi.md#updatewebhook) | **Put** /webhooks/{webhookId} | Update a webhook
+*AttributesApi* | [**CreateAttribute**](docs/AttributesApi.md#CreateAttribute) | **Post** /contacts/attributes/{attributeCategory}/{attributeName} | Create contact attribute
+*AttributesApi* | [**DeleteAttribute**](docs/AttributesApi.md#DeleteAttribute) | **Delete** /contacts/attributes/{attributeCategory}/{attributeName} | Delete an attribute
+*AttributesApi* | [**GetAttributes**](docs/AttributesApi.md#GetAttributes) | **Get** /contacts/attributes | List all attributes
+*AttributesApi* | [**UpdateAttribute**](docs/AttributesApi.md#UpdateAttribute) | **Put** /contacts/attributes/{attributeCategory}/{attributeName} | Update contact attribute
+*CRMApi* | [**CrmNotesGet**](docs/CRMApi.md#CrmNotesGet) | **Get** /crm/notes | Get all notes
+*CRMApi* | [**CrmNotesIdDelete**](docs/CRMApi.md#CrmNotesIdDelete) | **Delete** /crm/notes/{id} | Delete a note
+*CRMApi* | [**CrmNotesIdGet**](docs/CRMApi.md#CrmNotesIdGet) | **Get** /crm/notes/{id} | Get a note
+*CRMApi* | [**CrmNotesIdPatch**](docs/CRMApi.md#CrmNotesIdPatch) | **Patch** /crm/notes/{id} | Update a note
+*CRMApi* | [**CrmNotesPost**](docs/CRMApi.md#CrmNotesPost) | **Post** /crm/notes | Create a note
+*CRMApi* | [**CrmTasksGet**](docs/CRMApi.md#CrmTasksGet) | **Get** /crm/tasks | Get all tasks
+*CRMApi* | [**CrmTasksIdDelete**](docs/CRMApi.md#CrmTasksIdDelete) | **Delete** /crm/tasks/{id} | Delete a task
+*CRMApi* | [**CrmTasksIdGet**](docs/CRMApi.md#CrmTasksIdGet) | **Get** /crm/tasks/{id} | Get a task
+*CRMApi* | [**CrmTasksIdPatch**](docs/CRMApi.md#CrmTasksIdPatch) | **Patch** /crm/tasks/{id} | Update a task
+*CRMApi* | [**CrmTasksPost**](docs/CRMApi.md#CrmTasksPost) | **Post** /crm/tasks | Create a task
+*CRMApi* | [**CrmTasktypesGet**](docs/CRMApi.md#CrmTasktypesGet) | **Get** /crm/tasktypes | Get all task types
+*CompaniesApi* | [**CompaniesAttributesGet**](docs/CompaniesApi.md#CompaniesAttributesGet) | **Get** /companies/attributes | Get company attributes
+*CompaniesApi* | [**CompaniesGet**](docs/CompaniesApi.md#CompaniesGet) | **Get** /companies | Get all companies
+*CompaniesApi* | [**CompaniesIdDelete**](docs/CompaniesApi.md#CompaniesIdDelete) | **Delete** /companies/{id} | Delete a company
+*CompaniesApi* | [**CompaniesIdGet**](docs/CompaniesApi.md#CompaniesIdGet) | **Get** /companies/{id} | Get a company
+*CompaniesApi* | [**CompaniesIdPatch**](docs/CompaniesApi.md#CompaniesIdPatch) | **Patch** /companies/{id} | Update a company
+*CompaniesApi* | [**CompaniesLinkUnlinkIdPatch**](docs/CompaniesApi.md#CompaniesLinkUnlinkIdPatch) | **Patch** /companies/link-unlink/{id} | Link and Unlink company with contacts and deals
+*CompaniesApi* | [**CompaniesPost**](docs/CompaniesApi.md#CompaniesPost) | **Post** /companies | Create a company
+*ContactsApi* | [**AddContactToList**](docs/ContactsApi.md#AddContactToList) | **Post** /contacts/lists/{listId}/contacts/add | Add existing contacts to a list
+*ContactsApi* | [**CreateAttribute**](docs/ContactsApi.md#CreateAttribute) | **Post** /contacts/attributes/{attributeCategory}/{attributeName} | Create contact attribute
+*ContactsApi* | [**CreateContact**](docs/ContactsApi.md#CreateContact) | **Post** /contacts | Create a contact
+*ContactsApi* | [**CreateDoiContact**](docs/ContactsApi.md#CreateDoiContact) | **Post** /contacts/doubleOptinConfirmation | Create Contact via DOI (Double-Opt-In) Flow
+*ContactsApi* | [**CreateFolder**](docs/ContactsApi.md#CreateFolder) | **Post** /contacts/folders | Create a folder
+*ContactsApi* | [**CreateList**](docs/ContactsApi.md#CreateList) | **Post** /contacts/lists | Create a list
+*ContactsApi* | [**DeleteAttribute**](docs/ContactsApi.md#DeleteAttribute) | **Delete** /contacts/attributes/{attributeCategory}/{attributeName} | Delete an attribute
+*ContactsApi* | [**DeleteContact**](docs/ContactsApi.md#DeleteContact) | **Delete** /contacts/{identifier} | Delete a contact
+*ContactsApi* | [**DeleteFolder**](docs/ContactsApi.md#DeleteFolder) | **Delete** /contacts/folders/{folderId} | Delete a folder (and all its lists)
+*ContactsApi* | [**DeleteList**](docs/ContactsApi.md#DeleteList) | **Delete** /contacts/lists/{listId} | Delete a list
+*ContactsApi* | [**GetAttributes**](docs/ContactsApi.md#GetAttributes) | **Get** /contacts/attributes | List all attributes
+*ContactsApi* | [**GetContactInfo**](docs/ContactsApi.md#GetContactInfo) | **Get** /contacts/{identifier} | Get a contact&#39;s details
+*ContactsApi* | [**GetContactStats**](docs/ContactsApi.md#GetContactStats) | **Get** /contacts/{identifier}/campaignStats | Get email campaigns&#39; statistics for a contact
+*ContactsApi* | [**GetContacts**](docs/ContactsApi.md#GetContacts) | **Get** /contacts | Get all the contacts
+*ContactsApi* | [**GetContactsFromList**](docs/ContactsApi.md#GetContactsFromList) | **Get** /contacts/lists/{listId}/contacts | Get contacts in a list
+*ContactsApi* | [**GetFolder**](docs/ContactsApi.md#GetFolder) | **Get** /contacts/folders/{folderId} | Returns a folder&#39;s details
+*ContactsApi* | [**GetFolderLists**](docs/ContactsApi.md#GetFolderLists) | **Get** /contacts/folders/{folderId}/lists | Get lists in a folder
+*ContactsApi* | [**GetFolders**](docs/ContactsApi.md#GetFolders) | **Get** /contacts/folders | Get all folders
+*ContactsApi* | [**GetList**](docs/ContactsApi.md#GetList) | **Get** /contacts/lists/{listId} | Get a list&#39;s details
+*ContactsApi* | [**GetLists**](docs/ContactsApi.md#GetLists) | **Get** /contacts/lists | Get all the lists
+*ContactsApi* | [**ImportContacts**](docs/ContactsApi.md#ImportContacts) | **Post** /contacts/import | Import contacts
+*ContactsApi* | [**RemoveContactFromList**](docs/ContactsApi.md#RemoveContactFromList) | **Post** /contacts/lists/{listId}/contacts/remove | Delete a contact from a list
+*ContactsApi* | [**RequestContactExport**](docs/ContactsApi.md#RequestContactExport) | **Post** /contacts/export | Export contacts
+*ContactsApi* | [**UpdateAttribute**](docs/ContactsApi.md#UpdateAttribute) | **Put** /contacts/attributes/{attributeCategory}/{attributeName} | Update contact attribute
+*ContactsApi* | [**UpdateBatchContacts**](docs/ContactsApi.md#UpdateBatchContacts) | **Post** /contacts/batch | Update multiple contacts
+*ContactsApi* | [**UpdateContact**](docs/ContactsApi.md#UpdateContact) | **Put** /contacts/{identifier} | Update a contact
+*ContactsApi* | [**UpdateFolder**](docs/ContactsApi.md#UpdateFolder) | **Put** /contacts/folders/{folderId} | Update a folder
+*ContactsApi* | [**UpdateList**](docs/ContactsApi.md#UpdateList) | **Put** /contacts/lists/{listId} | Update a list
+*ConversationsApi* | [**ConversationsAgentOnlinePingPost**](docs/ConversationsApi.md#ConversationsAgentOnlinePingPost) | **Post** /conversations/agentOnlinePing | Sets agent’s status to online for 2-3 minutes
+*ConversationsApi* | [**ConversationsMessagesIdDelete**](docs/ConversationsApi.md#ConversationsMessagesIdDelete) | **Delete** /conversations/messages/{id} | Delete a message sent by an agent
+*ConversationsApi* | [**ConversationsMessagesIdGet**](docs/ConversationsApi.md#ConversationsMessagesIdGet) | **Get** /conversations/messages/{id} | Get a message
+*ConversationsApi* | [**ConversationsMessagesIdPut**](docs/ConversationsApi.md#ConversationsMessagesIdPut) | **Put** /conversations/messages/{id} | Update a message sent by an agent
+*ConversationsApi* | [**ConversationsMessagesPost**](docs/ConversationsApi.md#ConversationsMessagesPost) | **Post** /conversations/messages | Send a message as an agent
+*ConversationsApi* | [**ConversationsPushedMessagesIdDelete**](docs/ConversationsApi.md#ConversationsPushedMessagesIdDelete) | **Delete** /conversations/pushedMessages/{id} | Delete an automated message
+*ConversationsApi* | [**ConversationsPushedMessagesIdGet**](docs/ConversationsApi.md#ConversationsPushedMessagesIdGet) | **Get** /conversations/pushedMessages/{id} | Get an automated message
+*ConversationsApi* | [**ConversationsPushedMessagesIdPut**](docs/ConversationsApi.md#ConversationsPushedMessagesIdPut) | **Put** /conversations/pushedMessages/{id} | Update an automated message
+*ConversationsApi* | [**ConversationsPushedMessagesPost**](docs/ConversationsApi.md#ConversationsPushedMessagesPost) | **Post** /conversations/pushedMessages | Send an automated message to a visitor
+*DealsApi* | [**CrmAttributesDealsGet**](docs/DealsApi.md#CrmAttributesDealsGet) | **Get** /crm/attributes/deals | Get deal attributes
+*DealsApi* | [**CrmDealsGet**](docs/DealsApi.md#CrmDealsGet) | **Get** /crm/deals | Get all deals
+*DealsApi* | [**CrmDealsIdDelete**](docs/DealsApi.md#CrmDealsIdDelete) | **Delete** /crm/deals/{id} | Delete a deal
+*DealsApi* | [**CrmDealsIdGet**](docs/DealsApi.md#CrmDealsIdGet) | **Get** /crm/deals/{id} | Get a deal
+*DealsApi* | [**CrmDealsIdPatch**](docs/DealsApi.md#CrmDealsIdPatch) | **Patch** /crm/deals/{id} | Update a deal
+*DealsApi* | [**CrmDealsLinkUnlinkIdPatch**](docs/DealsApi.md#CrmDealsLinkUnlinkIdPatch) | **Patch** /crm/deals/link-unlink/{id} | Link and Unlink a deal with contacts and companies
+*DealsApi* | [**CrmDealsPost**](docs/DealsApi.md#CrmDealsPost) | **Post** /crm/deals | Create a deal
+*DealsApi* | [**CrmPipelineDetailsGet**](docs/DealsApi.md#CrmPipelineDetailsGet) | **Get** /crm/pipeline/details | Get pipeline stages
+*EcommerceApi* | [**CreateBatchOrder**](docs/EcommerceApi.md#CreateBatchOrder) | **Post** /orders/status/batch | Maintains a batch of orders
+*EcommerceApi* | [**CreateOrder**](docs/EcommerceApi.md#CreateOrder) | **Post** /orders/status | Maintains every transactional status of the order
+*EcommerceApi* | [**CreateUpdateBatchCategory**](docs/EcommerceApi.md#CreateUpdateBatchCategory) | **Post** /categories/batch | Create the categories in a batch
+*EcommerceApi* | [**CreateUpdateBatchProducts**](docs/EcommerceApi.md#CreateUpdateBatchProducts) | **Post** /products/batch | Creates the products in a batch
+*EcommerceApi* | [**CreateUpdateCategory**](docs/EcommerceApi.md#CreateUpdateCategory) | **Post** /categories | Create/Update a category
+*EcommerceApi* | [**CreateUpdateProduct**](docs/EcommerceApi.md#CreateUpdateProduct) | **Post** /products | Create/Update a product
+*EcommerceApi* | [**EcommerceActivatePost**](docs/EcommerceApi.md#EcommerceActivatePost) | **Post** /ecommerce/activate | **Fulfills the eCommerce pre-requisites**
+*EcommerceApi* | [**GetCategories**](docs/EcommerceApi.md#GetCategories) | **Get** /categories | Return all your categories
+*EcommerceApi* | [**GetCategoryInfo**](docs/EcommerceApi.md#GetCategoryInfo) | **Get** /categories/{id} | Get a category details
+*EcommerceApi* | [**GetProductInfo**](docs/EcommerceApi.md#GetProductInfo) | **Get** /products/{id} | Get a product&#39;s details
+*EcommerceApi* | [**GetProducts**](docs/EcommerceApi.md#GetProducts) | **Get** /products | Return all your products
+*EmailCampaignsApi* | [**CreateEmailCampaign**](docs/EmailCampaignsApi.md#CreateEmailCampaign) | **Post** /emailCampaigns | Create an email campaign
+*EmailCampaignsApi* | [**DeleteEmailCampaign**](docs/EmailCampaignsApi.md#DeleteEmailCampaign) | **Delete** /emailCampaigns/{campaignId} | Delete an email campaign
+*EmailCampaignsApi* | [**EmailExportRecipients**](docs/EmailCampaignsApi.md#EmailExportRecipients) | **Post** /emailCampaigns/{campaignId}/exportRecipients | Export the recipients of an email campaign
+*EmailCampaignsApi* | [**GetAbTestCampaignResult**](docs/EmailCampaignsApi.md#GetAbTestCampaignResult) | **Get** /emailCampaigns/{campaignId}/abTestCampaignResult | Get an A/B test email campaign results
+*EmailCampaignsApi* | [**GetEmailCampaign**](docs/EmailCampaignsApi.md#GetEmailCampaign) | **Get** /emailCampaigns/{campaignId} | Get an email campaign report
+*EmailCampaignsApi* | [**GetEmailCampaigns**](docs/EmailCampaignsApi.md#GetEmailCampaigns) | **Get** /emailCampaigns | Return all your created email campaigns
+*EmailCampaignsApi* | [**GetSharedTemplateUrl**](docs/EmailCampaignsApi.md#GetSharedTemplateUrl) | **Get** /emailCampaigns/{campaignId}/sharedUrl | Get a shared template url
+*EmailCampaignsApi* | [**SendEmailCampaignNow**](docs/EmailCampaignsApi.md#SendEmailCampaignNow) | **Post** /emailCampaigns/{campaignId}/sendNow | Send an email campaign immediately, based on campaignId
+*EmailCampaignsApi* | [**SendReport**](docs/EmailCampaignsApi.md#SendReport) | **Post** /emailCampaigns/{campaignId}/sendReport | Send the report of a campaign
+*EmailCampaignsApi* | [**SendTestEmail**](docs/EmailCampaignsApi.md#SendTestEmail) | **Post** /emailCampaigns/{campaignId}/sendTest | Send an email campaign to your test list
+*EmailCampaignsApi* | [**UpdateCampaignStatus**](docs/EmailCampaignsApi.md#UpdateCampaignStatus) | **Put** /emailCampaigns/{campaignId}/status | Update an email campaign status
+*EmailCampaignsApi* | [**UpdateEmailCampaign**](docs/EmailCampaignsApi.md#UpdateEmailCampaign) | **Put** /emailCampaigns/{campaignId} | Update an email campaign
+*EmailCampaignsApi* | [**UploadImageToGallery**](docs/EmailCampaignsApi.md#UploadImageToGallery) | **Post** /emailCampaigns/images | Upload an image to your account&#39;s image gallery
+*FoldersApi* | [**CreateFolder**](docs/FoldersApi.md#CreateFolder) | **Post** /contacts/folders | Create a folder
+*FoldersApi* | [**DeleteFolder**](docs/FoldersApi.md#DeleteFolder) | **Delete** /contacts/folders/{folderId} | Delete a folder (and all its lists)
+*FoldersApi* | [**GetFolder**](docs/FoldersApi.md#GetFolder) | **Get** /contacts/folders/{folderId} | Returns a folder&#39;s details
+*FoldersApi* | [**GetFolderLists**](docs/FoldersApi.md#GetFolderLists) | **Get** /contacts/folders/{folderId}/lists | Get lists in a folder
+*FoldersApi* | [**GetFolders**](docs/FoldersApi.md#GetFolders) | **Get** /contacts/folders | Get all folders
+*FoldersApi* | [**UpdateFolder**](docs/FoldersApi.md#UpdateFolder) | **Put** /contacts/folders/{folderId} | Update a folder
+*InboundParsingApi* | [**GetInboundEmailEvents**](docs/InboundParsingApi.md#GetInboundEmailEvents) | **Get** /inbound/events | Get the list of all the events for the received emails.
+*InboundParsingApi* | [**GetInboundEmailEventsByUuid**](docs/InboundParsingApi.md#GetInboundEmailEventsByUuid) | **Get** /inbound/events/{uuid} | Fetch all events history for one particular received email.
+*ListsApi* | [**AddContactToList**](docs/ListsApi.md#AddContactToList) | **Post** /contacts/lists/{listId}/contacts/add | Add existing contacts to a list
+*ListsApi* | [**CreateList**](docs/ListsApi.md#CreateList) | **Post** /contacts/lists | Create a list
+*ListsApi* | [**DeleteList**](docs/ListsApi.md#DeleteList) | **Delete** /contacts/lists/{listId} | Delete a list
+*ListsApi* | [**GetContactsFromList**](docs/ListsApi.md#GetContactsFromList) | **Get** /contacts/lists/{listId}/contacts | Get contacts in a list
+*ListsApi* | [**GetFolderLists**](docs/ListsApi.md#GetFolderLists) | **Get** /contacts/folders/{folderId}/lists | Get lists in a folder
+*ListsApi* | [**GetList**](docs/ListsApi.md#GetList) | **Get** /contacts/lists/{listId} | Get a list&#39;s details
+*ListsApi* | [**GetLists**](docs/ListsApi.md#GetLists) | **Get** /contacts/lists | Get all the lists
+*ListsApi* | [**RemoveContactFromList**](docs/ListsApi.md#RemoveContactFromList) | **Post** /contacts/lists/{listId}/contacts/remove | Delete a contact from a list
+*ListsApi* | [**UpdateList**](docs/ListsApi.md#UpdateList) | **Put** /contacts/lists/{listId} | Update a list
+*MasterAccountApi* | [**CorporateMasterAccountGet**](docs/MasterAccountApi.md#CorporateMasterAccountGet) | **Get** /corporate/masterAccount | Get the details of requested master account
+*MasterAccountApi* | [**CorporateSubAccountGet**](docs/MasterAccountApi.md#CorporateSubAccountGet) | **Get** /corporate/subAccount | Get the list of all the sub-accounts of the master account.
+*MasterAccountApi* | [**CorporateSubAccountIdDelete**](docs/MasterAccountApi.md#CorporateSubAccountIdDelete) | **Delete** /corporate/subAccount/{id} | Delete a sub-account
+*MasterAccountApi* | [**CorporateSubAccountIdGet**](docs/MasterAccountApi.md#CorporateSubAccountIdGet) | **Get** /corporate/subAccount/{id} | Get sub-account details
+*MasterAccountApi* | [**CorporateSubAccountIdPlanPut**](docs/MasterAccountApi.md#CorporateSubAccountIdPlanPut) | **Put** /corporate/subAccount/{id}/plan | Update sub-account plan
+*MasterAccountApi* | [**CorporateSubAccountPost**](docs/MasterAccountApi.md#CorporateSubAccountPost) | **Post** /corporate/subAccount | Create a new sub-account under a master account.
+*MasterAccountApi* | [**CorporateSubAccountSsoTokenPost**](docs/MasterAccountApi.md#CorporateSubAccountSsoTokenPost) | **Post** /corporate/subAccount/ssoToken | Generate SSO token to access Sendinblue
+*NotesApi* | [**CrmNotesGet**](docs/NotesApi.md#CrmNotesGet) | **Get** /crm/notes | Get all notes
+*NotesApi* | [**CrmNotesIdDelete**](docs/NotesApi.md#CrmNotesIdDelete) | **Delete** /crm/notes/{id} | Delete a note
+*NotesApi* | [**CrmNotesIdGet**](docs/NotesApi.md#CrmNotesIdGet) | **Get** /crm/notes/{id} | Get a note
+*NotesApi* | [**CrmNotesIdPatch**](docs/NotesApi.md#CrmNotesIdPatch) | **Patch** /crm/notes/{id} | Update a note
+*NotesApi* | [**CrmNotesPost**](docs/NotesApi.md#CrmNotesPost) | **Post** /crm/notes | Create a note
+*ProcessApi* | [**GetProcess**](docs/ProcessApi.md#GetProcess) | **Get** /processes/{processId} | Return the informations for a process
+*ProcessApi* | [**GetProcesses**](docs/ProcessApi.md#GetProcesses) | **Get** /processes | Return all the processes for your account
+*ResellerApi* | [**AddCredits**](docs/ResellerApi.md#AddCredits) | **Post** /reseller/children/{childIdentifier}/credits/add | Add Email and/or SMS credits to a specific child account
+*ResellerApi* | [**AssociateIpToChild**](docs/ResellerApi.md#AssociateIpToChild) | **Post** /reseller/children/{childIdentifier}/ips/associate | Associate a dedicated IP to the child
+*ResellerApi* | [**CreateChildDomain**](docs/ResellerApi.md#CreateChildDomain) | **Post** /reseller/children/{childIdentifier}/domains | Create a domain for a child account
+*ResellerApi* | [**CreateResellerChild**](docs/ResellerApi.md#CreateResellerChild) | **Post** /reseller/children | Creates a reseller child
+*ResellerApi* | [**DeleteChildDomain**](docs/ResellerApi.md#DeleteChildDomain) | **Delete** /reseller/children/{childIdentifier}/domains/{domainName} | Delete the sender domain of the reseller child based on the childIdentifier and domainName passed
+*ResellerApi* | [**DeleteResellerChild**](docs/ResellerApi.md#DeleteResellerChild) | **Delete** /reseller/children/{childIdentifier} | Delete a single reseller child based on the child identifier supplied
+*ResellerApi* | [**DissociateIpFromChild**](docs/ResellerApi.md#DissociateIpFromChild) | **Post** /reseller/children/{childIdentifier}/ips/dissociate | Dissociate a dedicated IP to the child
+*ResellerApi* | [**GetChildAccountCreationStatus**](docs/ResellerApi.md#GetChildAccountCreationStatus) | **Get** /reseller/children/{childIdentifier}/accountCreationStatus | Get the status of a reseller&#39;s child account creation, whether it is successfully created (exists) or not based on the identifier supplied
+*ResellerApi* | [**GetChildDomains**](docs/ResellerApi.md#GetChildDomains) | **Get** /reseller/children/{childIdentifier}/domains | Get all sender domains for a specific child account
+*ResellerApi* | [**GetChildInfo**](docs/ResellerApi.md#GetChildInfo) | **Get** /reseller/children/{childIdentifier} | Get a child account&#39;s details
+*ResellerApi* | [**GetResellerChilds**](docs/ResellerApi.md#GetResellerChilds) | **Get** /reseller/children | Get the list of all children accounts
+*ResellerApi* | [**GetSsoToken**](docs/ResellerApi.md#GetSsoToken) | **Get** /reseller/children/{childIdentifier}/auth | Get session token to access Sendinblue (SSO)
+*ResellerApi* | [**RemoveCredits**](docs/ResellerApi.md#RemoveCredits) | **Post** /reseller/children/{childIdentifier}/credits/remove | Remove Email and/or SMS credits from a specific child account
+*ResellerApi* | [**UpdateChildAccountStatus**](docs/ResellerApi.md#UpdateChildAccountStatus) | **Put** /reseller/children/{childIdentifier}/accountStatus | Update info of reseller&#39;s child account status based on the childIdentifier supplied
+*ResellerApi* | [**UpdateChildDomain**](docs/ResellerApi.md#UpdateChildDomain) | **Put** /reseller/children/{childIdentifier}/domains/{domainName} | Update the sender domain of reseller&#39;s child based on the childIdentifier and domainName passed
+*ResellerApi* | [**UpdateResellerChild**](docs/ResellerApi.md#UpdateResellerChild) | **Put** /reseller/children/{childIdentifier} | Update info of reseller&#39;s child based on the child identifier supplied
+*SMSCampaignsApi* | [**CreateSmsCampaign**](docs/SMSCampaignsApi.md#CreateSmsCampaign) | **Post** /smsCampaigns | Creates an SMS campaign
+*SMSCampaignsApi* | [**DeleteSmsCampaign**](docs/SMSCampaignsApi.md#DeleteSmsCampaign) | **Delete** /smsCampaigns/{campaignId} | Delete an SMS campaign
+*SMSCampaignsApi* | [**GetSmsCampaign**](docs/SMSCampaignsApi.md#GetSmsCampaign) | **Get** /smsCampaigns/{campaignId} | Get an SMS campaign
+*SMSCampaignsApi* | [**GetSmsCampaigns**](docs/SMSCampaignsApi.md#GetSmsCampaigns) | **Get** /smsCampaigns | Returns the information for all your created SMS campaigns
+*SMSCampaignsApi* | [**RequestSmsRecipientExport**](docs/SMSCampaignsApi.md#RequestSmsRecipientExport) | **Post** /smsCampaigns/{campaignId}/exportRecipients | Export an SMS campaign&#39;s recipients
+*SMSCampaignsApi* | [**SendSmsCampaignNow**](docs/SMSCampaignsApi.md#SendSmsCampaignNow) | **Post** /smsCampaigns/{campaignId}/sendNow | Send your SMS campaign immediately
+*SMSCampaignsApi* | [**SendSmsReport**](docs/SMSCampaignsApi.md#SendSmsReport) | **Post** /smsCampaigns/{campaignId}/sendReport | Send an SMS campaign&#39;s report
+*SMSCampaignsApi* | [**SendTestSms**](docs/SMSCampaignsApi.md#SendTestSms) | **Post** /smsCampaigns/{campaignId}/sendTest | Send a test SMS campaign
+*SMSCampaignsApi* | [**UpdateSmsCampaign**](docs/SMSCampaignsApi.md#UpdateSmsCampaign) | **Put** /smsCampaigns/{campaignId} | Update an SMS campaign
+*SMSCampaignsApi* | [**UpdateSmsCampaignStatus**](docs/SMSCampaignsApi.md#UpdateSmsCampaignStatus) | **Put** /smsCampaigns/{campaignId}/status | Update a campaign&#39;s status
+*SendersApi* | [**CreateSender**](docs/SendersApi.md#CreateSender) | **Post** /senders | Create a new sender
+*SendersApi* | [**DeleteSender**](docs/SendersApi.md#DeleteSender) | **Delete** /senders/{senderId} | Delete a sender
+*SendersApi* | [**GetIps**](docs/SendersApi.md#GetIps) | **Get** /senders/ips | Get all the dedicated IPs for your account
+*SendersApi* | [**GetIpsFromSender**](docs/SendersApi.md#GetIpsFromSender) | **Get** /senders/{senderId}/ips | Get all the dedicated IPs for a sender
+*SendersApi* | [**GetSenders**](docs/SendersApi.md#GetSenders) | **Get** /senders | Get the list of all your senders
+*SendersApi* | [**UpdateSender**](docs/SendersApi.md#UpdateSender) | **Put** /senders/{senderId} | Update a sender
+*TasksApi* | [**CrmTasksGet**](docs/TasksApi.md#CrmTasksGet) | **Get** /crm/tasks | Get all tasks
+*TasksApi* | [**CrmTasksIdDelete**](docs/TasksApi.md#CrmTasksIdDelete) | **Delete** /crm/tasks/{id} | Delete a task
+*TasksApi* | [**CrmTasksIdGet**](docs/TasksApi.md#CrmTasksIdGet) | **Get** /crm/tasks/{id} | Get a task
+*TasksApi* | [**CrmTasksIdPatch**](docs/TasksApi.md#CrmTasksIdPatch) | **Patch** /crm/tasks/{id} | Update a task
+*TasksApi* | [**CrmTasksPost**](docs/TasksApi.md#CrmTasksPost) | **Post** /crm/tasks | Create a task
+*TasksApi* | [**CrmTasktypesGet**](docs/TasksApi.md#CrmTasktypesGet) | **Get** /crm/tasktypes | Get all task types
+*TransactionalEmailsApi* | [**BlockNewDomain**](docs/TransactionalEmailsApi.md#BlockNewDomain) | **Post** /smtp/blockedDomains | Add a new domain to the list of blocked domains
+*TransactionalEmailsApi* | [**CreateSmtpTemplate**](docs/TransactionalEmailsApi.md#CreateSmtpTemplate) | **Post** /smtp/templates | Create an email template
+*TransactionalEmailsApi* | [**DeleteBlockedDomain**](docs/TransactionalEmailsApi.md#DeleteBlockedDomain) | **Delete** /smtp/blockedDomains/{domain} | Unblock an existing domain from the list of blocked domains
+*TransactionalEmailsApi* | [**DeleteHardbounces**](docs/TransactionalEmailsApi.md#DeleteHardbounces) | **Post** /smtp/deleteHardbounces | Delete hardbounces
+*TransactionalEmailsApi* | [**DeleteScheduledEmailById**](docs/TransactionalEmailsApi.md#DeleteScheduledEmailById) | **Delete** /smtp/email/{identifier} | Delete scheduled emails by batchId or messageId
+*TransactionalEmailsApi* | [**DeleteSmtpTemplate**](docs/TransactionalEmailsApi.md#DeleteSmtpTemplate) | **Delete** /smtp/templates/{templateId} | Delete an inactive email template
+*TransactionalEmailsApi* | [**GetAggregatedSmtpReport**](docs/TransactionalEmailsApi.md#GetAggregatedSmtpReport) | **Get** /smtp/statistics/aggregatedReport | Get your transactional email activity aggregated over a period of time
+*TransactionalEmailsApi* | [**GetBlockedDomains**](docs/TransactionalEmailsApi.md#GetBlockedDomains) | **Get** /smtp/blockedDomains | Get the list of blocked domains
+*TransactionalEmailsApi* | [**GetEmailEventReport**](docs/TransactionalEmailsApi.md#GetEmailEventReport) | **Get** /smtp/statistics/events | Get all your transactional email activity (unaggregated events)
+*TransactionalEmailsApi* | [**GetScheduledEmailByBatchId**](docs/TransactionalEmailsApi.md#GetScheduledEmailByBatchId) | **Get** /smtp/emailStatus/{batchId} | Fetch scheduled emails by batchId
+*TransactionalEmailsApi* | [**GetScheduledEmailByMessageId**](docs/TransactionalEmailsApi.md#GetScheduledEmailByMessageId) | **Get** /smtp/emailStatus/{messageId} | Fetch scheduled email by messageId
+*TransactionalEmailsApi* | [**GetSmtpReport**](docs/TransactionalEmailsApi.md#GetSmtpReport) | **Get** /smtp/statistics/reports | Get your transactional email activity aggregated per day
+*TransactionalEmailsApi* | [**GetSmtpTemplate**](docs/TransactionalEmailsApi.md#GetSmtpTemplate) | **Get** /smtp/templates/{templateId} | Returns the template information
+*TransactionalEmailsApi* | [**GetSmtpTemplates**](docs/TransactionalEmailsApi.md#GetSmtpTemplates) | **Get** /smtp/templates | Get the list of email templates
+*TransactionalEmailsApi* | [**GetTransacBlockedContacts**](docs/TransactionalEmailsApi.md#GetTransacBlockedContacts) | **Get** /smtp/blockedContacts | Get the list of blocked or unsubscribed transactional contacts
+*TransactionalEmailsApi* | [**GetTransacEmailContent**](docs/TransactionalEmailsApi.md#GetTransacEmailContent) | **Get** /smtp/emails/{uuid} | Get the personalized content of a sent transactional email
+*TransactionalEmailsApi* | [**GetTransacEmailsList**](docs/TransactionalEmailsApi.md#GetTransacEmailsList) | **Get** /smtp/emails | Get the list of transactional emails on the basis of allowed filters
+*TransactionalEmailsApi* | [**SendTestTemplate**](docs/TransactionalEmailsApi.md#SendTestTemplate) | **Post** /smtp/templates/{templateId}/sendTest | Send a template to your test list
+*TransactionalEmailsApi* | [**SendTransacEmail**](docs/TransactionalEmailsApi.md#SendTransacEmail) | **Post** /smtp/email | Send a transactional email
+*TransactionalEmailsApi* | [**SmtpBlockedContactsEmailDelete**](docs/TransactionalEmailsApi.md#SmtpBlockedContactsEmailDelete) | **Delete** /smtp/blockedContacts/{email} | Unblock or resubscribe a transactional contact
+*TransactionalEmailsApi* | [**SmtpLogMessageIdDelete**](docs/TransactionalEmailsApi.md#SmtpLogMessageIdDelete) | **Delete** /smtp/log/{messageId} | Delete an SMTP transactional log
+*TransactionalEmailsApi* | [**UpdateSmtpTemplate**](docs/TransactionalEmailsApi.md#UpdateSmtpTemplate) | **Put** /smtp/templates/{templateId} | Update an email template
+*TransactionalSMSApi* | [**GetSmsEvents**](docs/TransactionalSMSApi.md#GetSmsEvents) | **Get** /transactionalSMS/statistics/events | Get all your SMS activity (unaggregated events)
+*TransactionalSMSApi* | [**GetTransacAggregatedSmsReport**](docs/TransactionalSMSApi.md#GetTransacAggregatedSmsReport) | **Get** /transactionalSMS/statistics/aggregatedReport | Get your SMS activity aggregated over a period of time
+*TransactionalSMSApi* | [**GetTransacSmsReport**](docs/TransactionalSMSApi.md#GetTransacSmsReport) | **Get** /transactionalSMS/statistics/reports | Get your SMS activity aggregated per day
+*TransactionalSMSApi* | [**SendTransacSms**](docs/TransactionalSMSApi.md#SendTransacSms) | **Post** /transactionalSMS/sms | Send SMS message to a mobile number
+*WebhooksApi* | [**CreateWebhook**](docs/WebhooksApi.md#CreateWebhook) | **Post** /webhooks | Create a webhook
+*WebhooksApi* | [**DeleteWebhook**](docs/WebhooksApi.md#DeleteWebhook) | **Delete** /webhooks/{webhookId} | Delete a webhook
+*WebhooksApi* | [**GetWebhook**](docs/WebhooksApi.md#GetWebhook) | **Get** /webhooks/{webhookId} | Get a webhook details
+*WebhooksApi* | [**GetWebhooks**](docs/WebhooksApi.md#GetWebhooks) | **Get** /webhooks | Get all webhooks
+*WebhooksApi* | [**UpdateWebhook**](docs/WebhooksApi.md#UpdateWebhook) | **Put** /webhooks/{webhookId} | Update a webhook
 
 
 ## Documentation For Models

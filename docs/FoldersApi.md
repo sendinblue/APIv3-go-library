@@ -1,38 +1,31 @@
-# \SendersApi
+# \FoldersApi
 
 All URIs are relative to *https://api.sendinblue.com/v3*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateSender**](SendersApi.md#CreateSender) | **Post** /senders | Create a new sender
-[**DeleteSender**](SendersApi.md#DeleteSender) | **Delete** /senders/{senderId} | Delete a sender
-[**GetIps**](SendersApi.md#GetIps) | **Get** /senders/ips | Get all the dedicated IPs for your account
-[**GetIpsFromSender**](SendersApi.md#GetIpsFromSender) | **Get** /senders/{senderId}/ips | Get all the dedicated IPs for a sender
-[**GetSenders**](SendersApi.md#GetSenders) | **Get** /senders | Get the list of all your senders
-[**UpdateSender**](SendersApi.md#UpdateSender) | **Put** /senders/{senderId} | Update a sender
+[**CreateFolder**](FoldersApi.md#CreateFolder) | **Post** /contacts/folders | Create a folder
+[**DeleteFolder**](FoldersApi.md#DeleteFolder) | **Delete** /contacts/folders/{folderId} | Delete a folder (and all its lists)
+[**GetFolder**](FoldersApi.md#GetFolder) | **Get** /contacts/folders/{folderId} | Returns a folder&#39;s details
+[**GetFolderLists**](FoldersApi.md#GetFolderLists) | **Get** /contacts/folders/{folderId}/lists | Get lists in a folder
+[**GetFolders**](FoldersApi.md#GetFolders) | **Get** /contacts/folders | Get all folders
+[**UpdateFolder**](FoldersApi.md#UpdateFolder) | **Put** /contacts/folders/{folderId} | Update a folder
 
 
-# **CreateSender**
-> CreateSenderModel CreateSender(ctx, optional)
-Create a new sender
+# **CreateFolder**
+> CreateModel CreateFolder(ctx, createFolder)
+Create a folder
 
 ### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***CreateSenderOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a CreateSenderOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **sender** | [**optional.Interface of CreateSender**](CreateSender.md)| sender&#39;s name | 
+  **createFolder** | [**CreateUpdateFolder**](CreateUpdateFolder.md)| Name of the folder | 
 
 ### Return type
 
-[**CreateSenderModel**](CreateSenderModel.md)
+[**CreateModel**](CreateModel.md)
 
 ### Authorization
 
@@ -45,16 +38,16 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **DeleteSender**
-> DeleteSender(ctx, senderId)
-Delete a sender
+# **DeleteFolder**
+> DeleteFolder(ctx, folderId)
+Delete a folder (and all its lists)
 
 ### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **senderId** | **int64**| Id of the sender | 
+  **folderId** | **int64**| Id of the folder | 
 
 ### Return type
 
@@ -71,16 +64,20 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **GetIps**
-> GetIps GetIps(ctx, )
-Get all the dedicated IPs for your account
+# **GetFolder**
+> GetFolder GetFolder(ctx, folderId)
+Returns a folder's details
 
 ### Required Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **folderId** | **int64**| id of the folder | 
 
 ### Return type
 
-[**GetIps**](GetIps.md)
+[**GetFolder**](GetFolder.md)
 
 ### Authorization
 
@@ -93,54 +90,31 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **GetIpsFromSender**
-> GetIpsFromSender GetIpsFromSender(ctx, senderId)
-Get all the dedicated IPs for a sender
+# **GetFolderLists**
+> GetFolderLists GetFolderLists(ctx, folderId, optional)
+Get lists in a folder
 
 ### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **senderId** | **int64**| Id of the sender | 
-
-### Return type
-
-[**GetIpsFromSender**](GetIpsFromSender.md)
-
-### Authorization
-
-[api-key](../README.md#api-key), [partner-key](../README.md#partner-key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **GetSenders**
-> GetSendersList GetSenders(ctx, optional)
-Get the list of all your senders
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***GetSendersOpts** | optional parameters | nil if no parameters
+  **folderId** | **int64**| Id of the folder | 
+ **optional** | ***GetFolderListsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a GetSendersOpts struct
+Optional parameters are passed through a pointer to a GetFolderListsOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ip** | **optional.String**| Filter your senders for a specific ip (available for dedicated IP usage only) | 
- **domain** | **optional.String**| Filter your senders for a specific domain | 
+
+ **limit** | **optional.Int64**| Number of documents per page | [default to 10]
+ **offset** | **optional.Int64**| Index of the first document of the page | [default to 0]
+ **sort** | **optional.String**| Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed | [default to desc]
 
 ### Return type
 
-[**GetSendersList**](GetSendersList.md)
+[**GetFolderLists**](GetFolderLists.md)
 
 ### Authorization
 
@@ -153,25 +127,54 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **UpdateSender**
-> UpdateSender(ctx, senderId, optional)
-Update a sender
+# **GetFolders**
+> GetFolders GetFolders(ctx, limit, offset, optional)
+Get all folders
 
 ### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **senderId** | **int64**| Id of the sender | 
- **optional** | ***UpdateSenderOpts** | optional parameters | nil if no parameters
+  **limit** | **int64**| Number of documents per page | [default to 10]
+  **offset** | **int64**| Index of the first document of the page | [default to 0]
+ **optional** | ***GetFoldersOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a UpdateSenderOpts struct
+Optional parameters are passed through a pointer to a GetFoldersOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **sender** | [**optional.Interface of UpdateSender**](UpdateSender.md)| sender&#39;s name | 
+
+ **sort** | **optional.String**| Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed | [default to desc]
+
+### Return type
+
+[**GetFolders**](GetFolders.md)
+
+### Authorization
+
+[api-key](../README.md#api-key), [partner-key](../README.md#partner-key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **UpdateFolder**
+> UpdateFolder(ctx, folderId, updateFolder)
+Update a folder
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **folderId** | **int64**| Id of the folder | 
+  **updateFolder** | [**CreateUpdateFolder**](CreateUpdateFolder.md)| Name of the folder | 
 
 ### Return type
 
@@ -187,4 +190,3 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-

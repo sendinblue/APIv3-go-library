@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateUpdateBatchCategoryModel**](createUpdateBatchCategoryModel.md)
+[**CreateUpdateBatchCategoryModel**](CreateUpdateBatchCategoryModel.md)
 
 ### Authorization
 
@@ -108,7 +108,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateUpdateBatchProductsModel**](createUpdateBatchProductsModel.md)
+[**CreateUpdateBatchProductsModel**](CreateUpdateBatchProductsModel.md)
 
 ### Authorization
 
@@ -134,7 +134,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateCategoryModel**](createCategoryModel.md)
+[**CreateCategoryModel**](CreateCategoryModel.md)
 
 ### Authorization
 
@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateProductModel**](createProductModel.md)
+[**CreateProductModel**](CreateProductModel.md)
 
 ### Authorization
 
@@ -218,7 +218,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetCategories**](getCategories.md)
+[**GetCategories**](GetCategories.md)
 
 ### Authorization
 
@@ -244,7 +244,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetCategoryDetails**](getCategoryDetails.md)
+[**GetCategoryDetails**](GetCategoryDetails.md)
 
 ### Authorization
 
@@ -270,7 +270,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetProductDetails**](getProductDetails.md)
+[**GetProductDetails**](GetProductDetails.md)
 
 ### Authorization
 
@@ -306,7 +306,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetProducts**](getProducts.md)
+[**GetProducts**](GetProducts.md)
 
 ### Authorization
 
