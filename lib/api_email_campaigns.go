@@ -30,8 +30,8 @@ type EmailCampaignsApiService service
 
 /*
 EmailCampaignsApiService Create an email campaign
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param emailCampaigns Values to create a campaign
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param emailCampaigns Values to create a campaign
 
 @return CreateModel
 */
@@ -156,10 +156,8 @@ func (a *EmailCampaignsApiService) CreateEmailCampaign(ctx context.Context, emai
 
 /*
 EmailCampaignsApiService Delete an email campaign
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param campaignId id of the campaign
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param campaignId id of the campaign
 */
 func (a *EmailCampaignsApiService) DeleteEmailCampaign(ctx context.Context, campaignId int64) (*http.Response, error) {
 	var (
@@ -425,8 +423,8 @@ func (a *EmailCampaignsApiService) EmailExportRecipients(ctx context.Context, ca
 /*
 EmailCampaignsApiService Get an A/B test email campaign results
 Obtain winning version of an A/B test email campaign
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param campaignId Id of the A/B test campaign
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param campaignId Id of the A/B test campaign
 
 @return AbTestCampaignResult
 */
@@ -572,8 +570,8 @@ func (a *EmailCampaignsApiService) GetAbTestCampaignResult(ctx context.Context, 
 
 /*
 EmailCampaignsApiService Get an email campaign report
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param campaignId Id of the campaign
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param campaignId Id of the campaign
 
 @return GetEmailCampaign
 */
@@ -872,8 +870,8 @@ func (a *EmailCampaignsApiService) GetEmailCampaigns(ctx context.Context, localV
 /*
 EmailCampaignsApiService Get a shared template url
 Get a unique URL to share &amp; import an email template from one Sendinblue account to another.
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param campaignId Id of the campaign or template
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param campaignId Id of the campaign or template
 
 @return GetSharedTemplateUrl
 */
@@ -1008,10 +1006,8 @@ func (a *EmailCampaignsApiService) GetSharedTemplateUrl(ctx context.Context, cam
 
 /*
 EmailCampaignsApiService Send an email campaign immediately, based on campaignId
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param campaignId Id of the campaign
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param campaignId Id of the campaign
 */
 func (a *EmailCampaignsApiService) SendEmailCampaignNow(ctx context.Context, campaignId int64) (*http.Response, error) {
 	var (
@@ -1136,11 +1132,9 @@ func (a *EmailCampaignsApiService) SendEmailCampaignNow(ctx context.Context, cam
 /*
 EmailCampaignsApiService Send the report of a campaign
 A PDF will be sent to the specified email addresses
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param campaignId Id of the campaign
- * @param sendReport Values for send a report
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param campaignId Id of the campaign
+  - @param sendReport Values for send a report
 */
 func (a *EmailCampaignsApiService) SendReport(ctx context.Context, campaignId int64, sendReport SendReport) (*http.Response, error) {
 	var (
@@ -1255,11 +1249,9 @@ func (a *EmailCampaignsApiService) SendReport(ctx context.Context, campaignId in
 
 /*
 EmailCampaignsApiService Send an email campaign to your test list
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param campaignId Id of the campaign
- * @param emailTo
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param campaignId Id of the campaign
+  - @param emailTo
 */
 func (a *EmailCampaignsApiService) SendTestEmail(ctx context.Context, campaignId int64, emailTo SendTestEmail) (*http.Response, error) {
 	var (
@@ -1374,11 +1366,9 @@ func (a *EmailCampaignsApiService) SendTestEmail(ctx context.Context, campaignId
 
 /*
 EmailCampaignsApiService Update an email campaign status
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param campaignId Id of the campaign
- * @param status Status of the campaign
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param campaignId Id of the campaign
+  - @param status Status of the campaign
 */
 func (a *EmailCampaignsApiService) UpdateCampaignStatus(ctx context.Context, campaignId int64, status UpdateCampaignStatus) (*http.Response, error) {
 	var (
@@ -1493,11 +1483,9 @@ func (a *EmailCampaignsApiService) UpdateCampaignStatus(ctx context.Context, cam
 
 /*
 EmailCampaignsApiService Update an email campaign
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param campaignId Id of the campaign
- * @param emailCampaign Values to update a campaign
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param campaignId Id of the campaign
+  - @param emailCampaign Values to update a campaign
 */
 func (a *EmailCampaignsApiService) UpdateEmailCampaign(ctx context.Context, campaignId int64, emailCampaign UpdateEmailCampaign) (*http.Response, error) {
 	var (
@@ -1612,17 +1600,18 @@ func (a *EmailCampaignsApiService) UpdateEmailCampaign(ctx context.Context, camp
 
 /*
 EmailCampaignsApiService Upload an image to your account&#39;s image gallery
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param uploadImage Parameters to upload an image
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param uploadImage Parameters to upload an image
 
-
+@return UploadImageModel
 */
-func (a *EmailCampaignsApiService) UploadImageToGallery(ctx context.Context, uploadImage UploadImageToGallery) (*http.Response, error) {
+func (a *EmailCampaignsApiService) UploadImageToGallery(ctx context.Context, uploadImage UploadImageToGallery) (UploadImageModel, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Post")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Post")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
+		localVarReturnValue UploadImageModel
 	)
 
 	// create path and map variables
@@ -1679,18 +1668,26 @@ func (a *EmailCampaignsApiService) UploadImageToGallery(ctx context.Context, upl
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHttpResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHttpResponse == nil {
-		return localVarHttpResponse, err
+		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
 	localVarHttpResponse.Body.Close()
 	if err != nil {
-		return localVarHttpResponse, err
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
+			return localVarReturnValue, localVarHttpResponse, err
+		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
@@ -1699,19 +1696,30 @@ func (a *EmailCampaignsApiService) UploadImageToGallery(ctx context.Context, upl
 			error: localVarHttpResponse.Status,
 		}
 
+		if localVarHttpResponse.StatusCode == 201 {
+			var v UploadImageModel
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+
 		if localVarHttpResponse.StatusCode == 400 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHttpResponse, newErr
+				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
-			return localVarHttpResponse, newErr
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 
-		return localVarHttpResponse, newErr
+		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
-	return localVarHttpResponse, nil
+	return localVarReturnValue, localVarHttpResponse, nil
 }

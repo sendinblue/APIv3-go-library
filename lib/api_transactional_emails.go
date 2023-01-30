@@ -31,10 +31,8 @@ type TransactionalEmailsApiService service
 /*
 TransactionalEmailsApiService Add a new domain to the list of blocked domains
 Blocks a new domain in order to avoid messages being sent to the same
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param blockDomain
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param blockDomain
 */
 func (a *TransactionalEmailsApiService) BlockNewDomain(ctx context.Context, blockDomain BlockDomain) (*http.Response, error) {
 	var (
@@ -137,8 +135,8 @@ func (a *TransactionalEmailsApiService) BlockNewDomain(ctx context.Context, bloc
 
 /*
 TransactionalEmailsApiService Create an email template
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param smtpTemplate values to update in transactional email template
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param smtpTemplate values to update in transactional email template
 
 @return CreateModel
 */
@@ -264,10 +262,8 @@ func (a *TransactionalEmailsApiService) CreateSmtpTemplate(ctx context.Context, 
 /*
 TransactionalEmailsApiService Unblock an existing domain from the list of blocked domains
 Unblocks an existing domain from the list of blocked domains
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param domain The name of the domain to be deleted
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param domain The name of the domain to be deleted
 */
 func (a *TransactionalEmailsApiService) DeleteBlockedDomain(ctx context.Context, domain string) (*http.Response, error) {
 	var (
@@ -490,10 +486,8 @@ func (a *TransactionalEmailsApiService) DeleteHardbounces(ctx context.Context, l
 /*
 TransactionalEmailsApiService Delete scheduled emails by batchId or messageId
 Delete scheduled batch of emails by batchId or single scheduled email by messageId
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param identifier The &#x60;batchId&#x60; of scheduled emails batch (Should be a valid UUIDv4) or the &#x60;messageId&#x60; of scheduled email.
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param identifier The &#x60;batchId&#x60; of scheduled emails batch (Should be a valid UUIDv4) or the &#x60;messageId&#x60; of scheduled email.
 */
 func (a *TransactionalEmailsApiService) DeleteScheduledEmailById(ctx context.Context, identifier string) (*http.Response, error) {
 	var (
@@ -606,10 +600,8 @@ func (a *TransactionalEmailsApiService) DeleteScheduledEmailById(ctx context.Con
 
 /*
 TransactionalEmailsApiService Delete an inactive email template
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param templateId id of the template
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param templateId id of the template
 */
 func (a *TransactionalEmailsApiService) DeleteSmtpTemplate(ctx context.Context, templateId int64) (*http.Response, error) {
 	var (
@@ -872,7 +864,7 @@ func (a *TransactionalEmailsApiService) GetAggregatedSmtpReport(ctx context.Cont
 /*
 TransactionalEmailsApiService Get the list of blocked domains
 Get the list of blocked domains
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 
 @return GetBlockedDomains
 */
@@ -1655,8 +1647,8 @@ func (a *TransactionalEmailsApiService) GetSmtpReport(ctx context.Context, local
 
 /*
 TransactionalEmailsApiService Returns the template information
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param templateId id of the template
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param templateId id of the template
 
 @return GetSmtpTemplateOverview
 */
@@ -2097,8 +2089,8 @@ func (a *TransactionalEmailsApiService) GetTransacBlockedContacts(ctx context.Co
 
 /*
 TransactionalEmailsApiService Get the personalized content of a sent transactional email
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param uuid Unique id of the transactional email that has been sent to a particular contact
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param uuid Unique id of the transactional email that has been sent to a particular contact
 
 @return GetTransacEmailContent
 */
@@ -2380,11 +2372,9 @@ func (a *TransactionalEmailsApiService) GetTransacEmailsList(ctx context.Context
 
 /*
 TransactionalEmailsApiService Send a template to your test list
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param templateId Id of the template
- * @param sendTestEmail
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param templateId Id of the template
+  - @param sendTestEmail
 */
 func (a *TransactionalEmailsApiService) SendTestTemplate(ctx context.Context, templateId int64, sendTestEmail SendTestEmail) (*http.Response, error) {
 	var (
@@ -2499,8 +2489,8 @@ func (a *TransactionalEmailsApiService) SendTestTemplate(ctx context.Context, te
 
 /*
 TransactionalEmailsApiService Send a transactional email
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param sendSmtpEmail Values to send a transactional email
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param sendSmtpEmail Values to send a transactional email
 
 @return CreateSmtpEmail
 */
@@ -2636,10 +2626,8 @@ func (a *TransactionalEmailsApiService) SendTransacEmail(ctx context.Context, se
 
 /*
 TransactionalEmailsApiService Unblock or resubscribe a transactional contact
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param email contact email (urlencoded) to unblock.
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param email contact email (urlencoded) to unblock.
 */
 func (a *TransactionalEmailsApiService) SmtpBlockedContactsEmailDelete(ctx context.Context, email string) (*http.Response, error) {
 	var (
@@ -2752,10 +2740,8 @@ func (a *TransactionalEmailsApiService) SmtpBlockedContactsEmailDelete(ctx conte
 
 /*
 TransactionalEmailsApiService Delete an SMTP transactional log
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param messageId MessageId of the transactional log to delete
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param messageId MessageId of the transactional log to delete
 */
 func (a *TransactionalEmailsApiService) SmtpLogMessageIdDelete(ctx context.Context, messageId string) (*http.Response, error) {
 	var (
@@ -2868,11 +2854,9 @@ func (a *TransactionalEmailsApiService) SmtpLogMessageIdDelete(ctx context.Conte
 
 /*
 TransactionalEmailsApiService Update an email template
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param templateId id of the template
- * @param smtpTemplate values to update in transactional email template
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param templateId id of the template
+  - @param smtpTemplate values to update in transactional email template
 */
 func (a *TransactionalEmailsApiService) UpdateSmtpTemplate(ctx context.Context, templateId int64, smtpTemplate UpdateSmtpTemplate) (*http.Response, error) {
 	var (

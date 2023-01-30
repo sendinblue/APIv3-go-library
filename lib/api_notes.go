@@ -17,6 +17,8 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+
+	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -24,34 +26,70 @@ var (
 	_ context.Context
 )
 
-type AttributesApiService service
+type NotesApiService service
 
 /*
-AttributesApiService Create contact attribute
+NotesApiService Get all notes
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param attributeCategory Category of the attribute
- * @param attributeName Name of the attribute
- * @param createAttribute Values to create an attribute
+ * @param optional nil or *CrmNotesGetOpts - Optional Parameters:
+     * @param "Entity" (optional.String) -  Filter by note entity type
+     * @param "EntityIds" (optional.String) -  Filter by note entity IDs
+     * @param "DateFrom" (optional.Int32) -  dateFrom to date range filter type (timestamp in milliseconds)
+     * @param "DateTo" (optional.Int32) -  dateTo to date range filter type (timestamp in milliseconds)
+     * @param "Offset" (optional.Int64) -  Index of the first document of the page
+     * @param "Limit" (optional.Int64) -  Number of documents per page
+     * @param "Sort" (optional.String) -  Sort the results in the ascending/descending order. Default order is **descending** by creation if &#x60;sort&#x60; is not passed
 
-
+@return NoteList
 */
-func (a *AttributesApiService) CreateAttribute(ctx context.Context, attributeCategory string, attributeName string, createAttribute CreateAttribute) (*http.Response, error) {
+
+type CrmNotesGetOpts struct {
+	Entity    optional.String
+	EntityIds optional.String
+	DateFrom  optional.Int32
+	DateTo    optional.Int32
+	Offset    optional.Int64
+	Limit     optional.Int64
+	Sort      optional.String
+}
+
+func (a *NotesApiService) CrmNotesGet(ctx context.Context, localVarOptionals *CrmNotesGetOpts) (NoteList, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Post")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
+		localVarReturnValue NoteList
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/contacts/attributes/{attributeCategory}/{attributeName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"attributeCategory"+"}", fmt.Sprintf("%v", attributeCategory), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"attributeName"+"}", fmt.Sprintf("%v", attributeName), -1)
+	localVarPath := a.client.cfg.BasePath + "/crm/notes"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.Entity.IsSet() {
+		localVarQueryParams.Add("entity", parameterToString(localVarOptionals.Entity.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.EntityIds.IsSet() {
+		localVarQueryParams.Add("entityIds", parameterToString(localVarOptionals.EntityIds.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.DateFrom.IsSet() {
+		localVarQueryParams.Add("dateFrom", parameterToString(localVarOptionals.DateFrom.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.DateTo.IsSet() {
+		localVarQueryParams.Add("dateTo", parameterToString(localVarOptionals.DateTo.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Offset.IsSet() {
+		localVarQueryParams.Add("offset", parameterToString(localVarOptionals.Offset.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Limit.IsSet() {
+		localVarQueryParams.Add("limit", parameterToString(localVarOptionals.Limit.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Sort.IsSet() {
+		localVarQueryParams.Add("sort", parameterToString(localVarOptionals.Sort.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json"}
 
@@ -69,8 +107,6 @@ func (a *AttributesApiService) CreateAttribute(ctx context.Context, attributeCat
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	// body params
-	localVarPostBody = &createAttribute
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -99,18 +135,26 @@ func (a *AttributesApiService) CreateAttribute(ctx context.Context, attributeCat
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHttpResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHttpResponse == nil {
-		return localVarHttpResponse, err
+		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
 	localVarHttpResponse.Body.Close()
 	if err != nil {
-		return localVarHttpResponse, err
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
+			return localVarReturnValue, localVarHttpResponse, err
+		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
@@ -119,32 +163,40 @@ func (a *AttributesApiService) CreateAttribute(ctx context.Context, attributeCat
 			error: localVarHttpResponse.Status,
 		}
 
+		if localVarHttpResponse.StatusCode == 200 {
+			var v NoteList
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+
 		if localVarHttpResponse.StatusCode == 400 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHttpResponse, newErr
+				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
-			return localVarHttpResponse, newErr
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 
-		return localVarHttpResponse, newErr
+		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
-	return localVarHttpResponse, nil
+	return localVarReturnValue, localVarHttpResponse, nil
 }
 
 /*
-AttributesApiService Delete an attribute
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param attributeCategory Category of the attribute
- * @param attributeName Name of the existing attribute
-
-
+NotesApiService Delete a note
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param id Note ID to delete
 */
-func (a *AttributesApiService) DeleteAttribute(ctx context.Context, attributeCategory string, attributeName string) (*http.Response, error) {
+func (a *NotesApiService) CrmNotesIdDelete(ctx context.Context, id string) (*http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Delete")
 		localVarPostBody   interface{}
@@ -153,9 +205,8 @@ func (a *AttributesApiService) DeleteAttribute(ctx context.Context, attributeCat
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/contacts/attributes/{attributeCategory}/{attributeName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"attributeCategory"+"}", fmt.Sprintf("%v", attributeCategory), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"attributeName"+"}", fmt.Sprintf("%v", attributeName), -1)
+	localVarPath := a.client.cfg.BasePath + "/crm/notes/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -255,22 +306,24 @@ func (a *AttributesApiService) DeleteAttribute(ctx context.Context, attributeCat
 }
 
 /*
-AttributesApiService List all attributes
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+NotesApiService Get a note
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param id Note ID to get
 
-@return GetAttributes
+@return Note
 */
-func (a *AttributesApiService) GetAttributes(ctx context.Context) (GetAttributes, *http.Response, error) {
+func (a *NotesApiService) CrmNotesIdGet(ctx context.Context, id string) (Note, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}
 		localVarFileName    string
 		localVarFileBytes   []byte
-		localVarReturnValue GetAttributes
+		localVarReturnValue Note
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/contacts/attributes"
+	localVarPath := a.client.cfg.BasePath + "/crm/notes/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -350,7 +403,29 @@ func (a *AttributesApiService) GetAttributes(ctx context.Context) (GetAttributes
 		}
 
 		if localVarHttpResponse.StatusCode == 200 {
-			var v GetAttributes
+			var v Note
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+
+		if localVarHttpResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+
+		if localVarHttpResponse.StatusCode == 404 {
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -367,26 +442,22 @@ func (a *AttributesApiService) GetAttributes(ctx context.Context) (GetAttributes
 }
 
 /*
-AttributesApiService Update contact attribute
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param attributeCategory Category of the attribute
- * @param attributeName Name of the existing attribute
- * @param updateAttribute Values to update an attribute
-
-
+NotesApiService Update a note
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param id Note ID to update
+  - @param body Note data to update a note
 */
-func (a *AttributesApiService) UpdateAttribute(ctx context.Context, attributeCategory string, attributeName string, updateAttribute UpdateAttribute) (*http.Response, error) {
+func (a *NotesApiService) CrmNotesIdPatch(ctx context.Context, id string, body NoteData) (*http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Put")
+		localVarHttpMethod = strings.ToUpper("Patch")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/contacts/attributes/{attributeCategory}/{attributeName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"attributeCategory"+"}", fmt.Sprintf("%v", attributeCategory), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"attributeName"+"}", fmt.Sprintf("%v", attributeName), -1)
+	localVarPath := a.client.cfg.BasePath + "/crm/notes/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -410,7 +481,7 @@ func (a *AttributesApiService) UpdateAttribute(ctx context.Context, attributeCat
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	localVarPostBody = &updateAttribute
+	localVarPostBody = &body
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -481,8 +552,156 @@ func (a *AttributesApiService) UpdateAttribute(ctx context.Context, attributeCat
 			return localVarHttpResponse, newErr
 		}
 
+		if localVarHttpResponse.StatusCode == 415 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarHttpResponse, newErr
+		}
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
+}
+
+/*
+NotesApiService Create a note
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param body Note data to create a note.
+
+@return NoteId
+*/
+func (a *NotesApiService) CrmNotesPost(ctx context.Context, body NoteData) (NoteId, *http.Response, error) {
+	var (
+		localVarHttpMethod  = strings.ToUpper("Post")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
+		localVarReturnValue NoteId
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/crm/notes"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	// body params
+	localVarPostBody = &body
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["api-key"] = key
+
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["partner-key"] = key
+
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHttpResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHttpResponse == nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarHttpResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
+			return localVarReturnValue, localVarHttpResponse, err
+		}
+	}
+
+	if localVarHttpResponse.StatusCode >= 300 {
+		newErr := GenericSwaggerError{
+			body:  localVarBody,
+			error: localVarHttpResponse.Status,
+		}
+
+		if localVarHttpResponse.StatusCode == 200 {
+			var v NoteId
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+
+		if localVarHttpResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+
+		if localVarHttpResponse.StatusCode == 415 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+
+		return localVarReturnValue, localVarHttpResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHttpResponse, nil
 }

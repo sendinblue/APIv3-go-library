@@ -30,7 +30,7 @@ type DealsApiService service
 
 /*
 DealsApiService Get deal attributes
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 
 @return DealAttributes
 */
@@ -144,9 +144,9 @@ func (a *DealsApiService) CrmAttributesDealsGet(ctx context.Context) (DealAttrib
 DealsApiService Get all deals
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *CrmDealsGetOpts - Optional Parameters:
-     * @param "FilterAttributes" (optional.String) -  Filter by attrbutes. If you have filter for owner on your side please send it as &#x60;attributes.owner&#x60;.\&quot;
-     * @param "FilterLinkedCompaniesIds" (optional.String) -  Filter by linked companies ids
-     * @param "FilterLinkedContactsIds" (optional.String) -  Filter by linked companies ids
+     * @param "FiltersAttributes" (optional.String) -  Filter by attrbutes. If you have filter for owner on your side please send it as &#x60;attributes.owner&#x60;.\&quot;
+     * @param "FiltersLinkedCompaniesIds" (optional.String) -  Filter by linked companies ids
+     * @param "FiltersLinkedContactsIds" (optional.String) -  Filter by linked companies ids
      * @param "Offset" (optional.Int64) -  Index of the first document of the page
      * @param "Limit" (optional.Int64) -  Number of documents per page
      * @param "Sort" (optional.String) -  Sort the results in the ascending/descending order. Default order is **descending** by creation if &#x60;sort&#x60; is not passed
@@ -156,13 +156,13 @@ DealsApiService Get all deals
 */
 
 type CrmDealsGetOpts struct {
-	FilterAttributes         optional.String
-	FilterLinkedCompaniesIds optional.String
-	FilterLinkedContactsIds  optional.String
-	Offset                   optional.Int64
-	Limit                    optional.Int64
-	Sort                     optional.String
-	SortBy                   optional.String
+	FiltersAttributes         optional.String
+	FiltersLinkedCompaniesIds optional.String
+	FiltersLinkedContactsIds  optional.String
+	Offset                    optional.Int64
+	Limit                     optional.Int64
+	Sort                      optional.String
+	SortBy                    optional.String
 }
 
 func (a *DealsApiService) CrmDealsGet(ctx context.Context, localVarOptionals *CrmDealsGetOpts) (DealsList, *http.Response, error) {
@@ -181,14 +181,14 @@ func (a *DealsApiService) CrmDealsGet(ctx context.Context, localVarOptionals *Cr
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if localVarOptionals != nil && localVarOptionals.FilterAttributes.IsSet() {
-		localVarQueryParams.Add("filter[attributes]", parameterToString(localVarOptionals.FilterAttributes.Value(), ""))
+	if localVarOptionals != nil && localVarOptionals.FiltersAttributes.IsSet() {
+		localVarQueryParams.Add("filters[attributes]", parameterToString(localVarOptionals.FiltersAttributes.Value(), ""))
 	}
-	if localVarOptionals != nil && localVarOptionals.FilterLinkedCompaniesIds.IsSet() {
-		localVarQueryParams.Add("filter[linkedCompaniesIds]", parameterToString(localVarOptionals.FilterLinkedCompaniesIds.Value(), ""))
+	if localVarOptionals != nil && localVarOptionals.FiltersLinkedCompaniesIds.IsSet() {
+		localVarQueryParams.Add("filters[linkedCompaniesIds]", parameterToString(localVarOptionals.FiltersLinkedCompaniesIds.Value(), ""))
 	}
-	if localVarOptionals != nil && localVarOptionals.FilterLinkedContactsIds.IsSet() {
-		localVarQueryParams.Add("filter[linkedContactsIds]", parameterToString(localVarOptionals.FilterLinkedContactsIds.Value(), ""))
+	if localVarOptionals != nil && localVarOptionals.FiltersLinkedContactsIds.IsSet() {
+		localVarQueryParams.Add("filters[linkedContactsIds]", parameterToString(localVarOptionals.FiltersLinkedContactsIds.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.Offset.IsSet() {
 		localVarQueryParams.Add("offset", parameterToString(localVarOptionals.Offset.Value(), ""))
@@ -305,10 +305,8 @@ func (a *DealsApiService) CrmDealsGet(ctx context.Context, localVarOptionals *Cr
 
 /*
 DealsApiService Delete a deal
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param id
 */
 func (a *DealsApiService) CrmDealsIdDelete(ctx context.Context, id string) (*http.Response, error) {
 	var (
@@ -421,8 +419,8 @@ func (a *DealsApiService) CrmDealsIdDelete(ctx context.Context, id string) (*htt
 
 /*
 DealsApiService Get a deal
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param id
 
 @return Deal
 */
@@ -557,13 +555,11 @@ func (a *DealsApiService) CrmDealsIdGet(ctx context.Context, id string) (Deal, *
 
 /*
 DealsApiService Update a deal
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id
- * @param body Updated deal details.
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param id
+  - @param body Updated deal details.
 */
-func (a *DealsApiService) CrmDealsIdPatch(ctx context.Context, id string, body Body1) (*http.Response, error) {
+func (a *DealsApiService) CrmDealsIdPatch(ctx context.Context, id string, body Body4) (*http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Patch")
 		localVarPostBody   interface{}
@@ -675,13 +671,119 @@ func (a *DealsApiService) CrmDealsIdPatch(ctx context.Context, id string, body B
 }
 
 /*
+DealsApiService Link and Unlink a deal with contacts and companies
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param id
+  - @param body Linked / Unlinked contacts and companies ids.
+*/
+func (a *DealsApiService) CrmDealsLinkUnlinkIdPatch(ctx context.Context, id string, body Body5) (*http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Patch")
+		localVarPostBody   interface{}
+		localVarFileName   string
+		localVarFileBytes  []byte
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/crm/deals/link-unlink/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	// body params
+	localVarPostBody = &body
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["api-key"] = key
+
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["partner-key"] = key
+
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHttpResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHttpResponse == nil {
+		return localVarHttpResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarHttpResponse.Body.Close()
+	if err != nil {
+		return localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode >= 300 {
+		newErr := GenericSwaggerError{
+			body:  localVarBody,
+			error: localVarHttpResponse.Status,
+		}
+
+		if localVarHttpResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarHttpResponse, newErr
+		}
+
+		return localVarHttpResponse, newErr
+	}
+
+	return localVarHttpResponse, nil
+}
+
+/*
 DealsApiService Create a deal
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param body Deal create data.
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param body Deal create data.
 
 @return InlineResponse201
 */
-func (a *DealsApiService) CrmDealsPost(ctx context.Context, body Body) (InlineResponse201, *http.Response, error) {
+func (a *DealsApiService) CrmDealsPost(ctx context.Context, body Body3) (InlineResponse201, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Post")
 		localVarPostBody    interface{}
@@ -791,7 +893,7 @@ func (a *DealsApiService) CrmDealsPost(ctx context.Context, body Body) (InlineRe
 
 /*
 DealsApiService Get pipeline stages
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 
 @return Pipeline
 */

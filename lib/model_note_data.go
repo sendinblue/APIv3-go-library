@@ -18,4 +18,6 @@ type NoteData struct {
 	ContactIds []int32 `json:"contactIds,omitempty"`
 	// Deal Ids linked to a note
 	DealIds []string `json:"dealIds,omitempty"`
+	// Company Ids linked to a note
+	CompanyIds []string `json:"companyIds,omitempty"`
 }

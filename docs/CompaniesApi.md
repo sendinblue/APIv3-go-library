@@ -136,7 +136,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **id** | **string**|  | 
-  **body** | [**Body3**](Body3.md)| Updated company details. | 
+  **body** | [**Body1**](Body1.md)| Updated company details. | 
 
 ### Return type
 
@@ -163,7 +163,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **id** | **string**|  | 
-  **body** | [**Body4**](Body4.md)| Linked / Unlinked contacts and deals ids. | 
+  **body** | [**Body2**](Body2.md)| Linked / Unlinked contacts and deals ids. | 
 
 ### Return type
 
@@ -189,11 +189,11 @@ Create a company
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**Body2**](Body2.md)| Company create data. | 
+  **body** | [**Body**](Body.md)| Company create data. | 
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**InlineResponse200**](inline_response_200.md)
 
 ### Authorization
 

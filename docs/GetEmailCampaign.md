@@ -32,8 +32,8 @@ Name | Type | Description | Notes
 **Recurring** | **bool** | FOR TRIGGER ONLY ! Type of trigger campaign.recurring &#x3D; false means contact can receive the same Trigger campaign only once, &amp; recurring &#x3D; true means contact can receive the same Trigger campaign several times | [optional] [default to null]
 **SentDate** | **string** | Sent UTC date-time of the campaign (YYYY-MM-DDTHH:mm:ss.SSSZ). Only available if &#39;status&#39; of the campaign is &#39;sent&#39; | [optional] [default to null]
 **ReturnBounce** | **int64** | Total number of non-delivered campaigns for a particular campaign id. | [optional] [default to null]
-**Recipients** | [**map[string]interface{}**](interface{}.md) |  | [default to null]
-**Statistics** | [**map[string]interface{}**](interface{}.md) |  | [default to null]
+**Recipients** | [***interface{}**](interface{}.md) |  | [default to null]
+**Statistics** | [***interface{}**](interface{}.md) |  | [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

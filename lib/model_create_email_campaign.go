@@ -44,7 +44,7 @@ type CreateEmailCampaign struct {
 	// Customize the utm_campaign value. If this field is empty, the campaign name will be used. Only alphanumeric characters and spaces are allowed
 	UtmCampaign string `json:"utmCampaign,omitempty"`
 	// Pass the set of attributes to customize the type classic campaign. For example, {\"FNAME\":\"Joe\", \"LNAME\":\"Doe\"}. Only available if 'type' is 'classic'. It's considered only if campaign is in New Template Language format. The New Template Language is dependent on the values of 'subject', 'htmlContent/htmlUrl', 'sender.name' & 'toField'
-	Params map[string]interface{} `json:"params,omitempty"`
+	Params *interface{} `json:"params,omitempty"`
 	// Set this to true if you want to send your campaign at best time.
 	SendAtBestTime bool `json:"sendAtBestTime,omitempty"`
 	// Status of A/B Test. abTesting = false means it is disabled, & abTesting = true means it is enabled. 'subjectA', 'subjectB', 'splitRule', 'winnerCriteria' & 'winnerDelay' will be considered when abTesting is set to true. 'subjectA' & 'subjectB' are mandatory together & 'subject' if passed is ignored. Can be set to true only if 'sendAtBestTime' is 'false'. You will be able to set up two subject lines for your campaign and send them to a random sample of your total recipients. Half of the test group will receive version A, and the other half will receive version B
@@ -65,4 +65,8 @@ type CreateEmailCampaign struct {
 	InitialQuota int64 `json:"initialQuota,omitempty"`
 	// Mandatory if ipWarmupEnable is set to true. Set a percentage increase rate for warming up your ip. We recommend you set the increase rate to 30% per day. If you want to send the same number of emails every day, set the daily increase value to 0%.
 	IncreaseRate int64 `json:"increaseRate,omitempty"`
+	// Enter an unsubscription page id. The page id is a 24 digit alphanumeric id that can be found in the URL when editing the page. If not entered, then the default unsubscription page will be used.
+	UnsubscriptionPageId string `json:"unsubscriptionPageId,omitempty"`
+	// Mandatory if templateId is used containing the {{ update_profile }} tag. Enter an update profile form id. The form id is a 24 digit alphanumeric id that can be found in the URL when editing the form. If not entered, then the default update profile form will be used.
+	UpdateFormId string `json:"updateFormId,omitempty"`
 }

@@ -18,7 +18,7 @@ type GetWebhook struct {
 	// Description of the webhook
 	Description string   `json:"description"`
 	Events      []string `json:"events"`
-	// Type of webhook (marketing or transac)
+	// Type of webhook (marketing or transactional)
 	Type_ string `json:"type"`
 	// Creation UTC date-time of the webhook (YYYY-MM-DDTHH:mm:ss.SSSZ)
 	CreatedAt string `json:"createdAt"`

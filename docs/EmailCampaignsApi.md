@@ -364,7 +364,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UploadImageToGallery**
-> UploadImageToGallery(ctx, uploadImage)
+> UploadImageModel UploadImageToGallery(ctx, uploadImage)
 Upload an image to your account's image gallery
 
 ### Required Parameters
@@ -376,7 +376,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+[**UploadImageModel**](UploadImageModel.md)
 
 ### Authorization
 

@@ -48,25 +48,25 @@ type APIClient struct {
 
 	AccountApi *AccountApiService
 
-	AttributesApi *AttributesApiService
-
-	CRMApi *CRMApiService
-
 	CompaniesApi *CompaniesApiService
 
 	ContactsApi *ContactsApiService
 
+	ConversationsApi *ConversationsApiService
+
 	DealsApi *DealsApiService
+
+	EcommerceApi *EcommerceApiService
 
 	EmailCampaignsApi *EmailCampaignsApiService
 
-	FoldersApi *FoldersApiService
+	FilesApi *FilesApiService
 
 	InboundParsingApi *InboundParsingApiService
 
-	ListsApi *ListsApiService
-
 	MasterAccountApi *MasterAccountApiService
+
+	NotesApi *NotesApiService
 
 	ProcessApi *ProcessApiService
 
@@ -75,6 +75,8 @@ type APIClient struct {
 	SMSCampaignsApi *SMSCampaignsApiService
 
 	SendersApi *SendersApiService
+
+	TasksApi *TasksApiService
 
 	TransactionalEmailsApi *TransactionalEmailsApiService
 
@@ -100,20 +102,21 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 
 	// API Services
 	c.AccountApi = (*AccountApiService)(&c.common)
-	c.AttributesApi = (*AttributesApiService)(&c.common)
-	c.CRMApi = (*CRMApiService)(&c.common)
 	c.CompaniesApi = (*CompaniesApiService)(&c.common)
 	c.ContactsApi = (*ContactsApiService)(&c.common)
+	c.ConversationsApi = (*ConversationsApiService)(&c.common)
 	c.DealsApi = (*DealsApiService)(&c.common)
+	c.EcommerceApi = (*EcommerceApiService)(&c.common)
 	c.EmailCampaignsApi = (*EmailCampaignsApiService)(&c.common)
-	c.FoldersApi = (*FoldersApiService)(&c.common)
+	c.FilesApi = (*FilesApiService)(&c.common)
 	c.InboundParsingApi = (*InboundParsingApiService)(&c.common)
-	c.ListsApi = (*ListsApiService)(&c.common)
 	c.MasterAccountApi = (*MasterAccountApiService)(&c.common)
+	c.NotesApi = (*NotesApiService)(&c.common)
 	c.ProcessApi = (*ProcessApiService)(&c.common)
 	c.ResellerApi = (*ResellerApiService)(&c.common)
 	c.SMSCampaignsApi = (*SMSCampaignsApiService)(&c.common)
 	c.SendersApi = (*SendersApiService)(&c.common)
+	c.TasksApi = (*TasksApiService)(&c.common)
 	c.TransactionalEmailsApi = (*TransactionalEmailsApiService)(&c.common)
 	c.TransactionalSMSApi = (*TransactionalSMSApiService)(&c.common)
 	c.WebhooksApi = (*WebhooksApiService)(&c.common)

@@ -26,5 +26,5 @@ type GetContactDetails struct {
 	ListIds          []int64 `json:"listIds"`
 	ListUnsubscribed []int64 `json:"listUnsubscribed,omitempty"`
 	// Set of attributes of the contact
-	Attributes map[string]interface{} `json:"attributes"`
+	Attributes *interface{} `json:"attributes"`
 }

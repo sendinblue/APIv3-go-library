@@ -30,7 +30,7 @@ type CompaniesApiService service
 
 /*
 CompaniesApiService Get company attributes
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 
 @return CompanyAttributes
 */
@@ -305,10 +305,8 @@ func (a *CompaniesApiService) CompaniesGet(ctx context.Context, localVarOptional
 
 /*
 CompaniesApiService Delete a company
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param id
 */
 func (a *CompaniesApiService) CompaniesIdDelete(ctx context.Context, id string) (*http.Response, error) {
 	var (
@@ -421,8 +419,8 @@ func (a *CompaniesApiService) CompaniesIdDelete(ctx context.Context, id string) 
 
 /*
 CompaniesApiService Get a company
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param id
 
 @return Company
 */
@@ -557,13 +555,13 @@ func (a *CompaniesApiService) CompaniesIdGet(ctx context.Context, id string) (Co
 
 /*
 CompaniesApiService Update a company
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id
- * @param body Updated company details.
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param id
+  - @param body Updated company details.
 
 @return Company
 */
-func (a *CompaniesApiService) CompaniesIdPatch(ctx context.Context, id string, body Body3) (Company, *http.Response, error) {
+func (a *CompaniesApiService) CompaniesIdPatch(ctx context.Context, id string, body Body1) (Company, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Patch")
 		localVarPostBody    interface{}
@@ -696,13 +694,11 @@ func (a *CompaniesApiService) CompaniesIdPatch(ctx context.Context, id string, b
 
 /*
 CompaniesApiService Link and Unlink company with contacts and deals
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id
- * @param body Linked / Unlinked contacts and deals ids.
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param id
+  - @param body Linked / Unlinked contacts and deals ids.
 */
-func (a *CompaniesApiService) CompaniesLinkUnlinkIdPatch(ctx context.Context, id string, body Body4) (*http.Response, error) {
+func (a *CompaniesApiService) CompaniesLinkUnlinkIdPatch(ctx context.Context, id string, body Body2) (*http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Patch")
 		localVarPostBody   interface{}
@@ -804,12 +800,12 @@ func (a *CompaniesApiService) CompaniesLinkUnlinkIdPatch(ctx context.Context, id
 
 /*
 CompaniesApiService Create a company
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param body Company create data.
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param body Company create data.
 
 @return InlineResponse200
 */
-func (a *CompaniesApiService) CompaniesPost(ctx context.Context, body Body2) (InlineResponse200, *http.Response, error) {
+func (a *CompaniesApiService) CompaniesPost(ctx context.Context, body Body) (InlineResponse200, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Post")
 		localVarPostBody    interface{}

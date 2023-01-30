@@ -11,8 +11,10 @@
 package lib
 
 type Body1 struct {
-	// Name of deal
+	// Name of company
 	Name string `json:"name,omitempty"`
-	// Attributes for deal update
-	Attributes map[string]interface{} `json:"attributes,omitempty"`
+	// Attributes for company update
+	Attributes *interface{} `json:"attributes,omitempty"`
+	// Country code if phone_number is passed in attributes.
+	CountryCode int64 `json:"countryCode,omitempty"`
 }

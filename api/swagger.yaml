@@ -91,6 +91,7 @@ paths:
         type: "integer"
         default: 50
         maximum: 100
+        minimum: 0
         format: "int64"
         x-exportParamName: "Limit"
         x-optionalDataType: "Int64"
@@ -804,6 +805,8 @@ paths:
       responses:
         "201":
           description: "Image successfully uploaded"
+          schema:
+            $ref: "#/definitions/uploadImageModel"
         "400":
           description: "bad request"
           schema:
@@ -907,6 +910,7 @@ paths:
         type: "integer"
         default: 500
         maximum: 1000
+        minimum: 0
         format: "int64"
         x-exportParamName: "Limit"
         x-optionalDataType: "Int64"
@@ -1023,6 +1027,7 @@ paths:
         type: "integer"
         default: 50
         maximum: 1000
+        minimum: 0
         format: "int64"
         x-exportParamName: "Limit"
         x-optionalDataType: "Int64"
@@ -1324,6 +1329,7 @@ paths:
         type: "integer"
         default: 10
         maximum: 30
+        minimum: 0
         format: "int64"
         x-exportParamName: "Limit"
         x-optionalDataType: "Int64"
@@ -1431,8 +1437,9 @@ paths:
         description: "Number limitation for the result returned"
         required: false
         type: "integer"
-        default: 50
-        maximum: 100
+        default: 2500
+        maximum: 5000
+        minimum: 0
         format: "int64"
         x-exportParamName: "Limit"
         x-optionalDataType: "Int64"
@@ -1614,6 +1621,7 @@ paths:
         type: "integer"
         default: 50
         maximum: 100
+        minimum: 0
         format: "int64"
         x-exportParamName: "Limit"
         x-optionalDataType: "Int64"
@@ -1818,6 +1826,7 @@ paths:
         type: "integer"
         default: 100
         maximum: 500
+        minimum: 0
         format: "int64"
         x-exportParamName: "Limit"
         x-optionalDataType: "Int64"
@@ -1950,6 +1959,7 @@ paths:
         type: "integer"
         default: 50
         maximum: 1000
+        minimum: 0
         format: "int64"
         x-exportParamName: "Limit"
         x-optionalDataType: "Int64"
@@ -2340,7 +2350,6 @@ paths:
     get:
       tags:
       - "Contacts"
-      - "Attributes"
       summary: "List all attributes"
       operationId: "getAttributes"
       parameters: []
@@ -2375,7 +2384,6 @@ paths:
     post:
       tags:
       - "Contacts"
-      - "Attributes"
       summary: "Create contact attribute"
       operationId: "createAttribute"
       parameters:
@@ -2414,7 +2422,6 @@ paths:
     put:
       tags:
       - "Contacts"
-      - "Attributes"
       summary: "Update contact attribute"
       operationId: "updateAttribute"
       parameters:
@@ -2455,7 +2462,6 @@ paths:
     delete:
       tags:
       - "Contacts"
-      - "Attributes"
       summary: "Delete an attribute"
       operationId: "deleteAttribute"
       parameters:
@@ -2492,7 +2498,6 @@ paths:
     get:
       tags:
       - "Contacts"
-      - "Folders"
       summary: "Get all folders"
       operationId: "getFolders"
       parameters:
@@ -2503,6 +2508,7 @@ paths:
         type: "integer"
         default: 10
         maximum: 50
+        minimum: 0
         format: "int64"
         x-exportParamName: "Limit"
       - name: "offset"
@@ -2551,7 +2557,6 @@ paths:
     post:
       tags:
       - "Contacts"
-      - "Folders"
       summary: "Create a folder"
       operationId: "createFolder"
       parameters:
@@ -2575,7 +2580,6 @@ paths:
     get:
       tags:
       - "Contacts"
-      - "Folders"
       summary: "Returns a folder's details"
       operationId: "getFolder"
       parameters:
@@ -2609,7 +2613,6 @@ paths:
     put:
       tags:
       - "Contacts"
-      - "Folders"
       summary: "Update a folder"
       operationId: "updateFolder"
       parameters:
@@ -2641,7 +2644,6 @@ paths:
     delete:
       tags:
       - "Contacts"
-      - "Folders"
       summary: "Delete a folder (and all its lists)"
       operationId: "deleteFolder"
       parameters:
@@ -2667,8 +2669,6 @@ paths:
     get:
       tags:
       - "Contacts"
-      - "Folders"
-      - "Lists"
       summary: "Get lists in a folder"
       operationId: "getFolderLists"
       parameters:
@@ -2686,6 +2686,7 @@ paths:
         type: "integer"
         default: 10
         maximum: 50
+        minimum: 0
         format: "int64"
         x-exportParamName: "Limit"
         x-optionalDataType: "Int64"
@@ -2746,7 +2747,6 @@ paths:
     get:
       tags:
       - "Contacts"
-      - "Lists"
       summary: "Get all the lists"
       operationId: "getLists"
       parameters:
@@ -2757,6 +2757,7 @@ paths:
         type: "integer"
         default: 10
         maximum: 50
+        minimum: 0
         format: "int64"
         x-exportParamName: "Limit"
         x-optionalDataType: "Int64"
@@ -2809,7 +2810,6 @@ paths:
     post:
       tags:
       - "Contacts"
-      - "Lists"
       summary: "Create a list"
       operationId: "createList"
       parameters:
@@ -2833,7 +2833,6 @@ paths:
     get:
       tags:
       - "Contacts"
-      - "Lists"
       summary: "Get a list's details"
       operationId: "getList"
       parameters:
@@ -2897,7 +2896,6 @@ paths:
     put:
       tags:
       - "Contacts"
-      - "Lists"
       summary: "Update a list"
       operationId: "updateList"
       parameters:
@@ -2929,7 +2927,6 @@ paths:
     delete:
       tags:
       - "Contacts"
-      - "Lists"
       summary: "Delete a list"
       operationId: "deleteList"
       parameters:
@@ -2955,7 +2952,6 @@ paths:
     get:
       tags:
       - "Contacts"
-      - "Lists"
       summary: "Get contacts in a list"
       operationId: "getContactsFromList"
       parameters:
@@ -2982,6 +2978,7 @@ paths:
         type: "integer"
         default: 50
         maximum: 500
+        minimum: 0
         format: "int64"
         x-exportParamName: "Limit"
         x-optionalDataType: "Int64"
@@ -3078,7 +3075,6 @@ paths:
     post:
       tags:
       - "Contacts"
-      - "Lists"
       summary: "Add existing contacts to a list"
       operationId: "addContactToList"
       parameters:
@@ -3114,7 +3110,6 @@ paths:
     post:
       tags:
       - "Contacts"
-      - "Lists"
       summary: "Delete a contact from a list"
       operationId: "removeContactFromList"
       parameters:
@@ -3246,6 +3241,7 @@ paths:
         type: "integer"
         default: 500
         maximum: 1000
+        minimum: 0
         format: "int64"
         x-exportParamName: "Limit"
         x-optionalDataType: "Int64"
@@ -4309,6 +4305,7 @@ paths:
         type: "integer"
         default: 10
         maximum: 20
+        minimum: 0
         format: "int64"
         x-exportParamName: "Limit"
         x-optionalDataType: "Int64"
@@ -4984,6 +4981,7 @@ paths:
         type: "integer"
         default: 10
         maximum: 50
+        minimum: 0
         format: "int64"
         x-exportParamName: "Limit"
         x-optionalDataType: "Int64"
@@ -5113,6 +5111,7 @@ paths:
         type: "integer"
         default: 100
         maximum: 500
+        minimum: 0
         format: "int64"
         x-exportParamName: "Limit"
         x-optionalDataType: "Int64"
@@ -5199,6 +5198,44 @@ paths:
             $ref: "#/definitions/getInboundEmailEventsByUuid"
         "400":
           description: "bad request"
+          schema:
+            $ref: "#/definitions/errorModel"
+  /inbound/attachments/{downloadToken}:
+    get:
+      tags:
+      - "Inbound Parsing"
+      summary: "Retrieve inbound attachment with download token."
+      description: "This endpoint will retrieve inbound attachment with download token."
+      operationId: "getInboundEmailAttachment"
+      parameters:
+      - name: "downloadToken"
+        in: "path"
+        description: "Token to fetch a particular attachment"
+        required: true
+        type: "string"
+        x-exportParamName: "DownloadToken"
+      responses:
+        "200":
+          description: "Attachment information"
+          headers:
+            Content-Type:
+              type: "string"
+              description: "example: image/png"
+            Content-Disposition:
+              type: "string"
+              description: "example: attachment; filename=\"download.png\""
+            Content-Length:
+              type: "integer"
+              description: "example: 4032"
+          schema:
+            type: "file"
+            format: "binary"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/errorModel"
+        "404":
+          description: "attachment not found"
           schema:
             $ref: "#/definitions/errorModel"
   /corporate/subAccount:
@@ -5386,7 +5423,7 @@ paths:
       - "Master account"
       summary: "Generate SSO token to access Sendinblue"
       description: "This endpoint generates an sso token to authenticate and access\
-        \ a sub-account of the master using the account endpoint https://app.sendinblue.com/account/login/sub-account/sso/[token],\
+        \ a sub-account of the master using the account endpoint https://account-app.sendinblue.com/account/login/sub-account/sso/[token],\
         \ where [token] will be replaced by the actual token."
       parameters:
       - in: "body"
@@ -5487,212 +5524,35 @@ paths:
           description: "bad request"
           schema:
             $ref: "#/definitions/errorModel"
-  /crm/pipeline/details:
-    get:
-      tags:
-      - "Deals"
-      summary: "Get pipeline stages"
-      parameters: []
-      responses:
-        "200":
-          description: "Returns list of pipeline stages"
-          schema:
-            $ref: "#/definitions/Pipeline"
-  /crm/attributes/deals:
-    get:
-      tags:
-      - "Deals"
-      summary: "Get deal attributes"
-      parameters: []
-      responses:
-        "200":
-          description: "Returns list of deal attributes"
-          schema:
-            $ref: "#/definitions/DealAttributes"
-  /crm/deals:
-    get:
-      tags:
-      - "Deals"
-      summary: "Get all deals"
-      parameters:
-      - name: "filter[attributes]"
-        in: "query"
-        description: "Filter by attrbutes. If you have filter for owner on your side\
-          \ please send it as `attributes.owner`.\""
-        required: false
-        type: "string"
-        x-exportParamName: "FilterAttributes"
-        x-optionalDataType: "String"
-      - name: "filter[linkedCompaniesIds]"
-        in: "query"
-        description: "Filter by linked companies ids"
-        required: false
-        type: "string"
-        x-exportParamName: "FilterLinkedCompaniesIds"
-        x-optionalDataType: "String"
-      - name: "filter[linkedContactsIds]"
-        in: "query"
-        description: "Filter by linked companies ids"
-        required: false
-        type: "string"
-        x-exportParamName: "FilterLinkedContactsIds"
-        x-optionalDataType: "String"
-      - name: "offset"
-        in: "query"
-        description: "Index of the first document of the page"
-        required: false
-        type: "integer"
-        format: "int64"
-        x-exportParamName: "Offset"
-        x-optionalDataType: "Int64"
-      - name: "limit"
-        in: "query"
-        description: "Number of documents per page"
-        required: false
-        type: "integer"
-        default: 50
-        format: "int64"
-        x-exportParamName: "Limit"
-        x-optionalDataType: "Int64"
-      - name: "sort"
-        in: "query"
-        description: "Sort the results in the ascending/descending order. Default\
-          \ order is **descending** by creation if `sort` is not passed"
-        required: false
-        type: "string"
-        enum:
-        - "asc"
-        - "desc"
-        x-exportParamName: "Sort"
-        x-optionalDataType: "String"
-      - name: "sortBy"
-        in: "query"
-        description: "The field used to sort field names."
-        required: false
-        type: "string"
-        x-exportParamName: "SortBy"
-        x-optionalDataType: "String"
-      responses:
-        "200":
-          description: "Returns deals list with filters"
-          schema:
-            $ref: "#/definitions/DealsList"
-        "400":
-          description: "Returned when query params are invalid"
-          examples:
-            response:
-              value:
-                message: "Not valid data."
-          schema:
-            $ref: "#/definitions/errorModel"
+  /corporate/subAccount/key:
     post:
       tags:
-      - "Deals"
-      summary: "Create a deal"
+      - "Master account"
+      summary: "Create an API key for a sub-account"
+      description: "This endpoint will generate an API v3 key for a sub account"
       parameters:
       - in: "body"
-        name: "body"
-        description: "Deal create data."
+        name: "createApiKeyRequest"
+        description: "Values to generate API key for sub-account"
         required: true
         schema:
-          $ref: "#/definitions/body"
-        x-exportParamName: "Body"
+          $ref: "#/definitions/createApiKeyRequest"
+        x-exportParamName: "CreateApiKeyRequest"
       responses:
         "201":
-          description: "Created new Deal"
+          description: "API Key"
+          examples:
+            application/json:
+              status: "success"
+              key: "xkeysib-21881axxxxxcc92e04-mIrexxxx7z"
           schema:
-            $ref: "#/definitions/inline_response_201"
+            $ref: "#/definitions/createApiKeyResponse"
         "400":
-          description: "Returned when invalid data posted"
-  /crm/deals/{id}:
-    get:
-      tags:
-      - "Deals"
-      summary: "Get a deal"
-      parameters:
-      - name: "id"
-        in: "path"
-        required: true
-        type: "string"
-        x-exportParamName: "Id"
-      responses:
-        "200":
-          description: "Returns the deal by id"
-          schema:
-            $ref: "#/definitions/Deal"
-        "400":
-          description: "Returned when task id is invalid"
+          description: "bad request"
           examples:
             application/json:
-              message: "Route attribute id is not valid."
-          schema:
-            $ref: "#/definitions/errorModel"
-        "404":
-          description: "Returned when item not found"
-          examples:
-            application/json:
-              message: "Document not found"
-          schema:
-            $ref: "#/definitions/errorModel"
-    delete:
-      tags:
-      - "Deals"
-      summary: "Delete a deal"
-      parameters:
-      - name: "id"
-        in: "path"
-        required: true
-        type: "string"
-        x-exportParamName: "Id"
-      responses:
-        "204":
-          description: "Returned when item deleted"
-        "400":
-          description: "Returned when invalid data posted"
-          examples:
-            application/json:
-              message: "Route attribute id is not valid."
-          schema:
-            $ref: "#/definitions/errorModel"
-        "404":
-          description: "Returned when deal id is not found"
-          examples:
-            application/json:
-              message: "Document not found"
-          schema:
-            $ref: "#/definitions/errorModel"
-    patch:
-      tags:
-      - "Deals"
-      summary: "Update a deal"
-      parameters:
-      - name: "id"
-        in: "path"
-        required: true
-        type: "string"
-        x-exportParamName: "Id"
-      - in: "body"
-        name: "body"
-        description: "Updated deal details."
-        required: true
-        schema:
-          $ref: "#/definitions/body_1"
-        x-exportParamName: "Body"
-      responses:
-        "204":
-          description: "Deal updated successfully"
-        "400":
-          description: "Returned when invalid data posted"
-          examples:
-            application/json:
-              message: "Route attribute id is not valid."
-          schema:
-            $ref: "#/definitions/errorModel"
-        "404":
-          description: "Returned when deal id is not found"
-          examples:
-            application/json:
-              message: "Document not found"
+              code: "invalid_parameter"
+              message: "id should be a positive number"
           schema:
             $ref: "#/definitions/errorModel"
   /companies:
@@ -5783,7 +5643,7 @@ paths:
         description: "Company create data."
         required: true
         schema:
-          $ref: "#/definitions/body_2"
+          $ref: "#/definitions/body"
         x-exportParamName: "Body"
       responses:
         "200":
@@ -5864,7 +5724,7 @@ paths:
         description: "Updated company details."
         required: true
         schema:
-          $ref: "#/definitions/body_3"
+          $ref: "#/definitions/body_1"
         x-exportParamName: "Body"
       responses:
         "200":
@@ -5912,7 +5772,7 @@ paths:
         description: "Linked / Unlinked contacts and deals ids."
         required: true
         schema:
-          $ref: "#/definitions/body_4"
+          $ref: "#/definitions/body_2"
         x-exportParamName: "Body"
       responses:
         "204":
@@ -5925,10 +5785,248 @@ paths:
                 message: "Not valid data."
           schema:
             $ref: "#/definitions/errorModel"
+  /crm/pipeline/details:
+    get:
+      tags:
+      - "Deals"
+      summary: "Get pipeline stages"
+      parameters: []
+      responses:
+        "200":
+          description: "Returns list of pipeline stages"
+          schema:
+            $ref: "#/definitions/Pipeline"
+  /crm/attributes/deals:
+    get:
+      tags:
+      - "Deals"
+      summary: "Get deal attributes"
+      parameters: []
+      responses:
+        "200":
+          description: "Returns list of deal attributes"
+          schema:
+            $ref: "#/definitions/DealAttributes"
+  /crm/deals:
+    get:
+      tags:
+      - "Deals"
+      summary: "Get all deals"
+      parameters:
+      - name: "filters[attributes]"
+        in: "query"
+        description: "Filter by attrbutes. If you have filter for owner on your side\
+          \ please send it as `attributes.owner`.\""
+        required: false
+        type: "string"
+        x-exportParamName: "FiltersAttributes"
+        x-optionalDataType: "String"
+      - name: "filters[linkedCompaniesIds]"
+        in: "query"
+        description: "Filter by linked companies ids"
+        required: false
+        type: "string"
+        x-exportParamName: "FiltersLinkedCompaniesIds"
+        x-optionalDataType: "String"
+      - name: "filters[linkedContactsIds]"
+        in: "query"
+        description: "Filter by linked companies ids"
+        required: false
+        type: "string"
+        x-exportParamName: "FiltersLinkedContactsIds"
+        x-optionalDataType: "String"
+      - name: "offset"
+        in: "query"
+        description: "Index of the first document of the page"
+        required: false
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Offset"
+        x-optionalDataType: "Int64"
+      - name: "limit"
+        in: "query"
+        description: "Number of documents per page"
+        required: false
+        type: "integer"
+        default: 50
+        format: "int64"
+        x-exportParamName: "Limit"
+        x-optionalDataType: "Int64"
+      - name: "sort"
+        in: "query"
+        description: "Sort the results in the ascending/descending order. Default\
+          \ order is **descending** by creation if `sort` is not passed"
+        required: false
+        type: "string"
+        enum:
+        - "asc"
+        - "desc"
+        x-exportParamName: "Sort"
+        x-optionalDataType: "String"
+      - name: "sortBy"
+        in: "query"
+        description: "The field used to sort field names."
+        required: false
+        type: "string"
+        x-exportParamName: "SortBy"
+        x-optionalDataType: "String"
+      responses:
+        "200":
+          description: "Returns deals list with filters"
+          schema:
+            $ref: "#/definitions/DealsList"
+        "400":
+          description: "Returned when query params are invalid"
+          examples:
+            response:
+              value:
+                message: "Not valid data."
+          schema:
+            $ref: "#/definitions/errorModel"
+    post:
+      tags:
+      - "Deals"
+      summary: "Create a deal"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Deal create data."
+        required: true
+        schema:
+          $ref: "#/definitions/body_3"
+        x-exportParamName: "Body"
+      responses:
+        "201":
+          description: "Created new Deal"
+          schema:
+            $ref: "#/definitions/inline_response_201"
+        "400":
+          description: "Returned when invalid data posted"
+  /crm/deals/{id}:
+    get:
+      tags:
+      - "Deals"
+      summary: "Get a deal"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+        x-exportParamName: "Id"
+      responses:
+        "200":
+          description: "Returns the deal by id"
+          schema:
+            $ref: "#/definitions/Deal"
+        "400":
+          description: "Returned when task id is invalid"
+          examples:
+            application/json:
+              message: "Route attribute id is not valid."
+          schema:
+            $ref: "#/definitions/errorModel"
+        "404":
+          description: "Returned when item not found"
+          examples:
+            application/json:
+              message: "Document not found"
+          schema:
+            $ref: "#/definitions/errorModel"
+    delete:
+      tags:
+      - "Deals"
+      summary: "Delete a deal"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+        x-exportParamName: "Id"
+      responses:
+        "204":
+          description: "Returned when item deleted"
+        "400":
+          description: "Returned when invalid data posted"
+          examples:
+            application/json:
+              message: "Route attribute id is not valid."
+          schema:
+            $ref: "#/definitions/errorModel"
+        "404":
+          description: "Returned when deal id is not found"
+          examples:
+            application/json:
+              message: "Document not found"
+          schema:
+            $ref: "#/definitions/errorModel"
+    patch:
+      tags:
+      - "Deals"
+      summary: "Update a deal"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+        x-exportParamName: "Id"
+      - in: "body"
+        name: "body"
+        description: "Updated deal details."
+        required: true
+        schema:
+          $ref: "#/definitions/body_4"
+        x-exportParamName: "Body"
+      responses:
+        "204":
+          description: "Deal updated successfully"
+        "400":
+          description: "Returned when invalid data posted"
+          examples:
+            application/json:
+              message: "Route attribute id is not valid."
+          schema:
+            $ref: "#/definitions/errorModel"
+        "404":
+          description: "Returned when deal id is not found"
+          examples:
+            application/json:
+              message: "Document not found"
+          schema:
+            $ref: "#/definitions/errorModel"
+  /crm/deals/link-unlink/{id}:
+    patch:
+      tags:
+      - "Deals"
+      summary: "Link and Unlink a deal with contacts and companies"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+        x-exportParamName: "Id"
+      - in: "body"
+        name: "body"
+        description: "Linked / Unlinked contacts and companies ids."
+        required: true
+        schema:
+          $ref: "#/definitions/body_5"
+        x-exportParamName: "Body"
+      responses:
+        "204":
+          description: "Successfully linked/unlinked contacts/companies with the deal."
+        "400":
+          description: "Returned when query params are invalid or invalid data provided\
+            \ in request."
+          examples:
+            response:
+              value:
+                message: "Not valid data."
+          schema:
+            $ref: "#/definitions/errorModel"
   /crm/tasktypes:
     get:
       tags:
-      - "CRM"
+      - "Tasks"
       summary: "Get all task types"
       parameters: []
       responses:
@@ -5939,7 +6037,7 @@ paths:
   /crm/tasks:
     get:
       tags:
-      - "CRM"
+      - "Tasks"
       summary: "Get all tasks"
       parameters:
       - name: "filter[type]"
@@ -6064,7 +6162,7 @@ paths:
             $ref: "#/definitions/errorModel"
     post:
       tags:
-      - "CRM"
+      - "Tasks"
       summary: "Create a task"
       parameters:
       - in: "body"
@@ -6072,7 +6170,7 @@ paths:
         description: "Task name."
         required: true
         schema:
-          $ref: "#/definitions/body_5"
+          $ref: "#/definitions/body_6"
         x-exportParamName: "Body"
       responses:
         "201":
@@ -6084,7 +6182,7 @@ paths:
   /crm/tasks/{id}:
     get:
       tags:
-      - "CRM"
+      - "Tasks"
       summary: "Get a task"
       parameters:
       - name: "id"
@@ -6113,7 +6211,7 @@ paths:
             $ref: "#/definitions/errorModel"
     delete:
       tags:
-      - "CRM"
+      - "Tasks"
       summary: "Delete a task"
       parameters:
       - name: "id"
@@ -6140,7 +6238,7 @@ paths:
             $ref: "#/definitions/errorModel"
     patch:
       tags:
-      - "CRM"
+      - "Tasks"
       summary: "Update a task"
       parameters:
       - name: "id"
@@ -6153,7 +6251,7 @@ paths:
         description: "Updated task details."
         required: true
         schema:
-          $ref: "#/definitions/body_6"
+          $ref: "#/definitions/body_7"
         x-exportParamName: "Body"
       responses:
         "204":
@@ -6175,7 +6273,7 @@ paths:
   /crm/notes:
     get:
       tags:
-      - "CRM"
+      - "Notes"
       summary: "Get all notes"
       parameters:
       - name: "entity"
@@ -6253,7 +6351,7 @@ paths:
             $ref: "#/definitions/errorModel"
     post:
       tags:
-      - "CRM"
+      - "Notes"
       summary: "Create a note"
       parameters:
       - in: "body"
@@ -6285,7 +6383,7 @@ paths:
   /crm/notes/{id}:
     get:
       tags:
-      - "CRM"
+      - "Notes"
       summary: "Get a note"
       parameters:
       - name: "id"
@@ -6315,7 +6413,7 @@ paths:
             $ref: "#/definitions/errorModel"
     delete:
       tags:
-      - "CRM"
+      - "Notes"
       summary: "Delete a note"
       parameters:
       - name: "id"
@@ -6343,7 +6441,7 @@ paths:
             $ref: "#/definitions/errorModel"
     patch:
       tags:
-      - "CRM"
+      - "Notes"
       summary: "Update a note"
       parameters:
       - name: "id"
@@ -6383,6 +6481,853 @@ paths:
               message: "The format not supported for deserialization."
           schema:
             $ref: "#/definitions/errorModel"
+  /crm/files:
+    get:
+      tags:
+      - "Files"
+      summary: "Get all files"
+      parameters:
+      - name: "entity"
+        in: "query"
+        description: "Filter by file entity type"
+        required: false
+        type: "string"
+        enum:
+        - "companies"
+        - "deals"
+        - "contacts"
+        x-exportParamName: "Entity"
+        x-optionalDataType: "String"
+      - name: "entityIds"
+        in: "query"
+        description: "Filter by file entity IDs"
+        required: false
+        type: "string"
+        x-exportParamName: "EntityIds"
+        x-optionalDataType: "String"
+      - name: "dateFrom"
+        in: "query"
+        description: "dateFrom to date range filter type (timestamp in milliseconds)"
+        required: false
+        type: "integer"
+        x-exportParamName: "DateFrom"
+        x-optionalDataType: "Int32"
+      - name: "dateTo"
+        in: "query"
+        description: "dateTo to date range filter type (timestamp in milliseconds)"
+        required: false
+        type: "integer"
+        x-exportParamName: "DateTo"
+        x-optionalDataType: "Int32"
+      - name: "offset"
+        in: "query"
+        description: "Index of the first document of the page"
+        required: false
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Offset"
+        x-optionalDataType: "Int64"
+      - name: "limit"
+        in: "query"
+        description: "Number of documents per page"
+        required: false
+        type: "integer"
+        default: 50
+        format: "int64"
+        x-exportParamName: "Limit"
+        x-optionalDataType: "Int64"
+      - name: "sort"
+        in: "query"
+        description: "Sort the results in the ascending/descending order. Default\
+          \ order is **descending** by creation if `sort` is not passed"
+        required: false
+        type: "string"
+        enum:
+        - "asc"
+        - "desc"
+        x-exportParamName: "Sort"
+        x-optionalDataType: "String"
+      responses:
+        "200":
+          description: "Returns files list with filters"
+          schema:
+            $ref: "#/definitions/FileList"
+        "400":
+          description: "Returned when query params are invalid"
+          examples:
+            application/json:
+              message: "Not valid data."
+          schema:
+            $ref: "#/definitions/errorModel"
+    post:
+      tags:
+      - "Files"
+      summary: "Upload a file"
+      consumes:
+      - "multipart/form-data"
+      parameters:
+      - name: "file"
+        in: "formData"
+        description: "File data to create a file."
+        required: true
+        type: "file"
+        x-exportParamName: "File"
+      - name: "dealId"
+        in: "formData"
+        description: "Deal id linked to a file"
+        required: false
+        type: "string"
+        x-exportParamName: "DealId"
+        x-optionalDataType: "String"
+      - name: "contactId"
+        in: "formData"
+        description: "Contact id linked to a file"
+        required: false
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "ContactId"
+        x-optionalDataType: "Int64"
+      - name: "companyId"
+        in: "formData"
+        description: "Company id linked to a file"
+        required: false
+        type: "string"
+        x-exportParamName: "CompanyId"
+        x-optionalDataType: "String"
+      responses:
+        "201":
+          description: "Returns the created File with additional details"
+          schema:
+            $ref: "#/definitions/FileData"
+        "400":
+          description: "Returned when invalid data posted"
+          examples:
+            application/json:
+              message: "Invalid deals ids format."
+          schema:
+            $ref: "#/definitions/errorModel"
+  /crm/files/{id}:
+    get:
+      tags:
+      - "Files"
+      summary: "Download a file"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "File id to download."
+        required: true
+        type: "string"
+        x-exportParamName: "Id"
+      responses:
+        "200":
+          description: "Returns downloadable file link. Valid for next 5 minutes only."
+          schema:
+            $ref: "#/definitions/FileDownloadableLink"
+        "400":
+          description: "Returned when invalid data posted"
+          examples:
+            application/json:
+              message: "Route attribute id is not valid"
+          schema:
+            $ref: "#/definitions/errorModel"
+        "404":
+          description: "Returned when item not found"
+          examples:
+            application/json:
+              message: "Document not found"
+          schema:
+            $ref: "#/definitions/errorModel"
+    delete:
+      tags:
+      - "Files"
+      summary: "Delete a file"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "File id to delete."
+        required: true
+        type: "string"
+        x-exportParamName: "Id"
+      responses:
+        "204":
+          description: "Returned when file is deleted."
+        "400":
+          description: "Returned when invalid data posted"
+          examples:
+            application/json:
+              message: "Route attribute id is not valid"
+          schema:
+            $ref: "#/definitions/errorModel"
+        "404":
+          description: "Returned when item not found"
+          examples:
+            application/json:
+              message: "Document not found"
+          schema:
+            $ref: "#/definitions/errorModel"
+  /crm/files/{id}/data:
+    get:
+      tags:
+      - "Files"
+      summary: "Get file details"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "File id to get file data."
+        required: true
+        type: "string"
+        x-exportParamName: "Id"
+      responses:
+        "200":
+          description: "Returned when file is found."
+          schema:
+            $ref: "#/definitions/FileData"
+        "400":
+          description: "Returned when invalid data posted"
+          examples:
+            application/json:
+              message: "Route attribute id is not valid"
+          schema:
+            $ref: "#/definitions/errorModel"
+        "404":
+          description: "Returned when item not found"
+          examples:
+            application/json:
+              message: "Document not found"
+          schema:
+            $ref: "#/definitions/errorModel"
+  /conversations/messages:
+    post:
+      tags:
+      - "Conversations"
+      summary: "Send a message as an agent"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Message fields."
+        required: true
+        schema:
+          $ref: "#/definitions/body_8"
+        x-exportParamName: "Body"
+      responses:
+        "200":
+          description: "Newly created message is returned as a response"
+          examples:
+            application/json:
+              id: "eYBEm3gq3zc5ayE2g"
+              type: "agent"
+              text: "Hello! How can I help you?"
+              visitorId: "kZMvWhf8npAu3H6qd57w2Hv6nh6rnxvg"
+              agentId: "d9nKoegKSjmCtyK78"
+              createdAt: 1482512803740
+              receivedFrom: "SuperAwesomeHelpdesk"
+          schema:
+            $ref: "#/definitions/ConversationsMessage"
+        "400":
+          description: "Returned when invalid data posted"
+          schema:
+            $ref: "#/definitions/errorModel"
+  /conversations/messages/{id}:
+    get:
+      tags:
+      - "Conversations"
+      summary: "Get a message"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of the message"
+        required: true
+        type: "string"
+        x-exportParamName: "Id"
+      responses:
+        "200":
+          description: "Requested message is returned as a response"
+          schema:
+            $ref: "#/definitions/ConversationsMessage"
+        "400":
+          description: "Returned when invalid data posted"
+          schema:
+            $ref: "#/definitions/errorModel"
+        "404":
+          description: "Returned when item not found"
+          schema:
+            $ref: "#/definitions/errorModel"
+    put:
+      tags:
+      - "Conversations"
+      summary: "Update a message sent by an agent"
+      description: "Only agents’ messages can be edited."
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of the message"
+        required: true
+        type: "string"
+        x-exportParamName: "Id"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/body_9"
+        x-exportParamName: "Body"
+      responses:
+        "200":
+          description: "Updated message is returned as a response"
+          examples:
+            application/json:
+              id: "eYBEm3gq3zc5ayE2g"
+              type: "agent"
+              text: "Hello! How can I help you?"
+              visitorId: "kZMvWhf8npAu3H6qd57w2Hv6nh6rnxvg"
+              agentId: "d9nKoegKSjmCtyK78"
+              createdAt: 1482512803740
+              receivedFrom: "SuperAwesomeHelpdesk"
+          schema:
+            $ref: "#/definitions/ConversationsMessage"
+        "400":
+          description: "Returned when invalid data posted"
+          schema:
+            $ref: "#/definitions/errorModel"
+        "404":
+          description: "Returned when item not found"
+          schema:
+            $ref: "#/definitions/errorModel"
+    delete:
+      tags:
+      - "Conversations"
+      summary: "Delete a message sent by an agent"
+      description: "Only agents’ messages can be deleted."
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of the message"
+        required: true
+        type: "string"
+        x-exportParamName: "Id"
+      responses:
+        "204":
+          description: "The message was deleted from the conversation"
+        "400":
+          description: "Returned when invalid data posted"
+          schema:
+            $ref: "#/definitions/errorModel"
+        "404":
+          description: "Returned when item not found"
+          schema:
+            $ref: "#/definitions/errorModel"
+  /conversations/pushedMessages:
+    post:
+      tags:
+      - "Conversations"
+      summary: "Send an automated message to a visitor"
+      description: "Example of automated messages: order status, announce new features\
+        \ in your web app, etc."
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/body_10"
+        x-exportParamName: "Body"
+      responses:
+        "200":
+          description: "Newly created message is returned as a response"
+          examples:
+            application/json:
+              id: "AXCR3k9bpSY7bpuh7"
+              type: "agent"
+              text: "Your order has shipped! Here’s your tracking number: 9114 5847\
+                \ 3325 9667 4328 88"
+              visitorId: "kZMvWhf8npAu3H6qd57w2Hv6nh6rnxvg"
+              agentId: "d9nKoegKSjmCtyK78"
+              createdAt: 1470222622433
+              isPushed: true
+          schema:
+            $ref: "#/definitions/ConversationsMessage"
+        "400":
+          description: "Returned when invalid data posted"
+          schema:
+            $ref: "#/definitions/errorModel"
+  /conversations/pushedMessages/{id}:
+    get:
+      tags:
+      - "Conversations"
+      summary: "Get an automated message"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of the message sent previously"
+        required: true
+        type: "string"
+        x-exportParamName: "Id"
+      responses:
+        "200":
+          description: "Requested message is returned as a response"
+          schema:
+            $ref: "#/definitions/ConversationsMessage"
+        "400":
+          description: "Returned when invalid data posted"
+          schema:
+            $ref: "#/definitions/errorModel"
+        "404":
+          description: "Returned when item not found"
+          schema:
+            $ref: "#/definitions/errorModel"
+    put:
+      tags:
+      - "Conversations"
+      summary: "Update an automated message"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of the message"
+        required: true
+        type: "string"
+        x-exportParamName: "Id"
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/body_11"
+        x-exportParamName: "Body"
+      responses:
+        "200":
+          description: "Updated message is returned as a response"
+          examples:
+            application/json:
+              id: "AXCR3k9bpSY7bpuh7"
+              type: "agent"
+              text: "Your order has shipped! Here’s your tracking number: 9114 5847\
+                \ 4668 7775 9233 54"
+              visitorId: "kZMvWhf8npAu3H6qd57w2Hv6nh6rnxvg"
+              agentId: "d9nKoegKSjmCtyK78"
+              createdAt: 1470222622433
+              isPushed: true
+          schema:
+            $ref: "#/definitions/ConversationsMessage"
+        "400":
+          description: "Returned when invalid data posted"
+          schema:
+            $ref: "#/definitions/errorModel"
+        "404":
+          description: "Returned when item not found"
+          schema:
+            $ref: "#/definitions/errorModel"
+    delete:
+      tags:
+      - "Conversations"
+      summary: "Delete an automated message"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of the message"
+        required: true
+        type: "string"
+        x-exportParamName: "Id"
+      responses:
+        "204":
+          description: "The message was deleted from the conversation"
+        "400":
+          description: "Returned when invalid data posted"
+          schema:
+            $ref: "#/definitions/errorModel"
+        "404":
+          description: "Returned when item not found"
+          schema:
+            $ref: "#/definitions/errorModel"
+  /conversations/agentOnlinePing:
+    post:
+      tags:
+      - "Conversations"
+      summary: "Sets agent’s status to online for 2-3 minutes"
+      description: "We recommend pinging this endpoint every minute for as long as\
+        \ the agent has to be considered online."
+      consumes:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Agent fields."
+        required: true
+        schema:
+          $ref: "#/definitions/body_12"
+        x-exportParamName: "Body"
+      responses:
+        "201":
+          description: "Status of the agent was set successfully. Response body will\
+            \ be empty."
+        "400":
+          description: "Returned when invalid data posted"
+          schema:
+            $ref: "#/definitions/errorModel"
+  /ecommerce/activate:
+    post:
+      tags:
+      - "Ecommerce"
+      summary: "**Fulfills the eCommerce pre-requisites**"
+      parameters: []
+      responses:
+        "200":
+          description: "DB created successfully"
+        "401":
+          description: "unauthorized"
+          schema:
+            $ref: "#/definitions/errorModel"
+  /orders/status:
+    post:
+      tags:
+      - "Ecommerce"
+      summary: "Maintains every transactional status of the order"
+      operationId: "createOrder"
+      parameters:
+      - in: "body"
+        name: "order"
+        required: true
+        schema:
+          $ref: "#/definitions/order"
+        x-exportParamName: "Order"
+      responses:
+        "204":
+          description: "Order Event posted"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/errorModel"
+  /orders/status/batch:
+    post:
+      tags:
+      - "Ecommerce"
+      summary: "Maintains a batch of orders"
+      operationId: "createBatchOrder"
+      parameters:
+      - in: "body"
+        name: "orderBatch"
+        required: true
+        schema:
+          $ref: "#/definitions/orderBatch"
+        x-exportParamName: "OrderBatch"
+      responses:
+        "202":
+          $ref: "#/definitions/createdBatchId"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/errorModel"
+  /categories:
+    get:
+      tags:
+      - "Ecommerce"
+      summary: "Return all your categories"
+      operationId: "getCategories"
+      parameters:
+      - name: "limit"
+        in: "query"
+        description: "Number of documents per page"
+        required: false
+        type: "integer"
+        default: 50
+        maximum: 100
+        format: "int64"
+        x-exportParamName: "Limit"
+        x-optionalDataType: "Int64"
+      - name: "offset"
+        in: "query"
+        description: "Index of the first document in the page"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int64"
+        x-exportParamName: "Offset"
+        x-optionalDataType: "Int64"
+      - name: "sort"
+        in: "query"
+        description: "Sort the results in the ascending/descending order of record\
+          \ creation. Default order is **descending** if `sort` is not passed"
+        required: false
+        type: "string"
+        default: "desc"
+        enum:
+        - "asc"
+        - "desc"
+        x-exportParamName: "Sort"
+        x-optionalDataType: "String"
+      - name: "ids"
+        in: "query"
+        description: "Filter by category ids"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        x-exportParamName: "Ids"
+      responses:
+        "200":
+          description: "All categories listed"
+          examples:
+            application/json:
+              categories:
+              - id: 19
+                name: "Food"
+                url: "https://mydomain.com/cagetory/food"
+                modifiedAt: "2022-03-03T14:48:31.867Z"
+                createdAt: "2021-12-31T11:42:35.638Z"
+              - id: 20
+                name: "clothing"
+                url: "https://mydomain.com/cagetory/food"
+                modifiedAt: "2022-03-03T14:48:31.867Z"
+                createdAt: "2021-12-31T11:42:35.638Z"
+              count: 2
+          schema:
+            $ref: "#/definitions/getCategories"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/errorModel"
+    post:
+      tags:
+      - "Ecommerce"
+      summary: "Create/Update a category"
+      operationId: "createUpdateCategory"
+      parameters:
+      - in: "body"
+        name: "createUpdateCategory"
+        description: "Values to create/update a category"
+        required: true
+        schema:
+          $ref: "#/definitions/createUpdateCategory"
+        x-exportParamName: "CreateUpdateCategory"
+      responses:
+        "201":
+          description: "Category created"
+          schema:
+            $ref: "#/definitions/createCategoryModel"
+        "204":
+          description: "Category updated"
+  /categories/{id}:
+    get:
+      tags:
+      - "Ecommerce"
+      summary: "Get a category details"
+      operationId: "getCategoryInfo"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Category ID"
+        required: true
+        type: "string"
+        x-exportParamName: "Id"
+      responses:
+        "200":
+          description: "Category informations"
+          schema:
+            $ref: "#/definitions/getCategoryDetails"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/errorModel"
+        "404":
+          description: "Category id not found"
+          schema:
+            $ref: "#/definitions/errorModel"
+  /categories/batch:
+    post:
+      tags:
+      - "Ecommerce"
+      summary: "Create the categories in a batch"
+      operationId: "createUpdateBatchCategory"
+      parameters:
+      - in: "body"
+        name: "createUpdateBatchCategory"
+        description: "Values to create a batch of categories"
+        required: true
+        schema:
+          $ref: "#/definitions/createUpdateBatchCategory"
+        x-exportParamName: "CreateUpdateBatchCategory"
+      responses:
+        "201":
+          description: "Category created and updated"
+          schema:
+            $ref: "#/definitions/createUpdateBatchCategoryModel"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/errorModel"
+  /products:
+    get:
+      tags:
+      - "Ecommerce"
+      summary: "Return all your products"
+      operationId: "getProducts"
+      parameters:
+      - name: "limit"
+        in: "query"
+        description: "Number of documents per page"
+        required: false
+        type: "integer"
+        default: 50
+        maximum: 1000
+        format: "int64"
+        x-exportParamName: "Limit"
+        x-optionalDataType: "Int64"
+      - name: "offset"
+        in: "query"
+        description: "Index of the first document in the page"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int64"
+        x-exportParamName: "Offset"
+        x-optionalDataType: "Int64"
+      - name: "sort"
+        in: "query"
+        description: "Sort the results in the ascending/descending order of record\
+          \ creation. Default order is **descending** if `sort` is not passed"
+        required: false
+        type: "string"
+        default: "desc"
+        enum:
+        - "asc"
+        - "desc"
+        x-exportParamName: "Sort"
+        x-optionalDataType: "String"
+      - name: "ids"
+        in: "query"
+        description: "Filter by product ids"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        x-exportParamName: "Ids"
+      responses:
+        "200":
+          description: "All products listed"
+          examples:
+            application/json:
+              products:
+              - id: 7498033266862
+                name: "Alpina Panoma Classic"
+                url: "https://mydomain.com/products/alpina-panoma-classic"
+                sku: "186622-9"
+                imageUrl: "http://mydomain.com/product-absoulte-url/img.jpeg"
+                categories:
+                - "279638835374"
+                - "279502848174"
+                price: 49.95
+                modifiedAt: "2022-06-30T10:29:16.078Z"
+                createdAt: "2022-06-30T10:29:16.078Z"
+                s3Original: "https://img-ecom.mailinblue.com/path-to-original/img.jpg"
+                s3ThumbAnalytics: "https://img-ecom.mailinblue.com/path-to-analytics/img.jpg"
+                s3ThumbEditor: "https://img-ecom.mailinblue.com/path-to-editor/img.jpg"
+              - id: 7498033266862
+                name: "Alpina Panoma Classic2"
+                url: "https://mydomain.com/products/alpina-panoma-classic2"
+                sku: "186622-9"
+                imageUrl: "http://mydomain.com/product-absoulte-url/img.jpeg"
+                categories:
+                - "2d79638835374"
+                - "27d9502848174"
+                price: 49.95
+                modifiedAt: "2022-06-30T10:29:16.078Z"
+                createdAt: "2022-06-30T10:29:16.078Z"
+                s3Original: "https://img-ecom.mailinblue.com/path-to-original/img.jpg"
+                s3ThumbAnalytics: "https://img-ecom.mailinblue.com/path-to-analytics/img.jpg"
+                s3ThumbEditor: "https://img-ecom.mailinblue.com/path-to-editor/img.jpg"
+              count: 2
+          schema:
+            $ref: "#/definitions/getProducts"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/errorModel"
+    post:
+      tags:
+      - "Ecommerce"
+      summary: "Create/Update a product"
+      operationId: "createUpdateProduct"
+      parameters:
+      - in: "body"
+        name: "createUpdateProduct"
+        description: "Values to create/update a product"
+        required: true
+        schema:
+          $ref: "#/definitions/createUpdateProduct"
+        x-exportParamName: "CreateUpdateProduct"
+      responses:
+        "201":
+          description: "Product created"
+          examples:
+            application/json:
+              id: 21
+          schema:
+            $ref: "#/definitions/createProductModel"
+        "204":
+          description: "Product updated"
+  /products/{id}:
+    get:
+      tags:
+      - "Ecommerce"
+      summary: "Get a product's details"
+      operationId: "getProductInfo"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Product ID"
+        required: true
+        type: "string"
+        x-exportParamName: "Id"
+      responses:
+        "200":
+          description: "Product informations"
+          schema:
+            $ref: "#/definitions/getProductDetails"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/errorModel"
+        "404":
+          description: "Product's id not found"
+          schema:
+            $ref: "#/definitions/errorModel"
+  /products/batch:
+    post:
+      tags:
+      - "Ecommerce"
+      summary: "Creates the products in a batch"
+      operationId: "createUpdateBatchProducts"
+      parameters:
+      - in: "body"
+        name: "createUpdateBatchProducts"
+        description: "Values to create a batch of products"
+        required: true
+        schema:
+          $ref: "#/definitions/createUpdateBatchProducts"
+        x-exportParamName: "CreateUpdateBatchProducts"
+      responses:
+        "201":
+          description: "Products created and updated"
+          examples:
+            application/json:
+              createdCount: 2
+              updatedCount: 7
+          schema:
+            $ref: "#/definitions/createUpdateBatchProductsModel"
+        "400":
+          description: "bad request"
 securityDefinitions:
   api-key:
     description: "The API key should be passed in the request headers as `api-key`\
@@ -7278,6 +8223,18 @@ definitions:
         description: "ID of the object created"
     example:
       id: 122
+  uploadImageModel:
+    type: "object"
+    required:
+    - "url"
+    properties:
+      url:
+        type: "string"
+        format: "string"
+        example: "https://img.mailinblue.com/100000/images/rnb/original/62casdase8wewq9df1c2f27c.jpeg"
+        description: "URL of the image uploaded"
+    example:
+      url: "https://img.mailinblue.com/100000/images/rnb/original/62casdase8wewq9df1c2f27c.jpeg"
   createUpdateContactModel:
     properties:
       id:
@@ -7733,10 +8690,10 @@ definitions:
       type:
         type: "string"
         example: "marketing"
-        description: "Type of webhook (marketing or transac)"
+        description: "Type of webhook (marketing or transactional)"
         enum:
         - "marketing"
-        - "transac"
+        - "transactional"
       createdAt:
         type: "string"
         example: "2016-12-01T12:50:00Z"
@@ -8526,6 +9483,19 @@ definitions:
           \ day, set the daily increase value to 0%."
         minimum: 0
         maximum: 100
+      unsubscriptionPageId:
+        type: "string"
+        example: "62cbb7fabbe85021021aac52"
+        description: "Enter an unsubscription page id. The page id is a 24 digit alphanumeric\
+          \ id that can be found in the URL when editing the page. If not entered,\
+          \ then the default unsubscription page will be used."
+      updateFormId:
+        type: "string"
+        example: "6313436b9ad40e23b371d095"
+        description: "Mandatory if templateId is used containing the {{ update_profile\
+          \ }} tag. Enter an update profile form id. The form id is a 24 digit alphanumeric\
+          \ id that can be found in the URL when editing the form. If not entered,\
+          \ then the default update profile form will be used."
   updateEmailCampaign:
     type: "object"
     properties:
@@ -8709,6 +9679,17 @@ definitions:
           \ number of emails every day, set the daily increase value to 0%."
         minimum: 0
         maximum: 100
+      unsubscriptionPageId:
+        type: "string"
+        example: "62cbb7fabbe85021021aac52"
+        description: "Enter an unsubscription page id. The page id is a 24 digit alphanumeric\
+          \ id that can be found in the URL when editing the page."
+      updateFormId:
+        type: "string"
+        example: "6313436b9ad40e23b371d095"
+        description: "Mandatory if templateId is used containing the {{ update_profile\
+          \ }} tag. Enter an update profile form id. The form id is a 24 digit alphanumeric\
+          \ id that can be found in the URL when editing the form."
   getSharedTemplateUrl:
     type: "object"
     required:
@@ -9259,6 +10240,11 @@ definitions:
         example: "COUNT[BLACKLISTED,BLACKLISTED,<,NOW()]"
         description: "Value of the attribute. Use only if the attribute's category\
           \ is 'calculated' or 'global'"
+      isRecurring:
+        type: "boolean"
+        example: true
+        description: "Type of the calculated attribute. Use only if the attribute's\
+          \ category is 'calculated'"
       enumeration:
         type: "array"
         description: "List of values and labels that the attribute can take. Use only\
@@ -9325,6 +10311,20 @@ definitions:
         type: "string"
         example: "vipin+subaccount@sendinblue.com"
         description: "User email of sub-account organization"
+  createApiKeyRequest:
+    type: "object"
+    required:
+    - "id"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        example: 2333323
+        description: "Id of the sub-account organization"
+      name:
+        type: "string"
+        example: "My Api Key"
+        description: "Name of the API key"
   updateList:
     type: "object"
     properties:
@@ -9477,6 +10477,22 @@ definitions:
         description: "Format of the message. It indicates whether the content should\
           \ be treated as unicode or not."
         default: false
+      organisationPrefix:
+        type: "string"
+        example: "MyCompany"
+        description: "A recognizable prefix will ensure your audience knows who you\
+          \ are. Recommended by U.S. carriers. This will be added as your Brand Name\
+          \ before the message content. **Prefer verifying maximum length of 160 characters\
+          \ including this prefix in message content to avoid multiple sending of\
+          \ same sms.**"
+      unsubscribeInstruction:
+        type: "string"
+        example: "send Stop if you want to unsubscribe."
+        description: "Instructions to unsubscribe from future communications. Recommended\
+          \ by U.S. carriers. Must include **STOP** keyword. This will be added as\
+          \ instructions after the end of message content. **Prefer verifying maximum\
+          \ length of 160 characters including this instructions in message content\
+          \ to avoid multiple sending of same sms.**"
   updateSmsCampaign:
     type: "object"
     properties:
@@ -9508,6 +10524,22 @@ definitions:
         description: "Format of the message. It indicates whether the content should\
           \ be treated as unicode or not."
         default: false
+      organisationPrefix:
+        type: "string"
+        example: "MyCompany"
+        description: "A recognizable prefix will ensure your audience knows who you\
+          \ are. Recommended by U.S. carriers. This will be added as your Brand Name\
+          \ before the message content. **Prefer verifying maximum length of 160 characters\
+          \ including this prefix in message content to avoid multiple sending of\
+          \ same sms.**"
+      unsubscribeInstruction:
+        type: "string"
+        example: "send Stop if you want to unsubscribe."
+        description: "Instructions to unsubscribe from future communications. Recommended\
+          \ by U.S. carriers. Must include **STOP** keyword. This will be added as\
+          \ instructions after the end of message content. **Prefer verifying maximum\
+          \ length of 160 characters including this instructions in message content\
+          \ to avoid multiple sending of same sms.**"
   sendTransacSms:
     type: "object"
     required:
@@ -9557,6 +10589,14 @@ definitions:
         description: "Format of the message. It indicates whether the content should\
           \ be treated as unicode or not."
         default: false
+      organisationPrefix:
+        type: "string"
+        example: "MyCompany"
+        description: "A recognizable prefix will ensure your audience knows who you\
+          \ are. Recommended by U.S. carriers. This will be added as your Brand Name\
+          \ before the message content. **Prefer verifying maximum length of 160 characters\
+          \ including this prefix in message content to avoid multiple sending of\
+          \ same sms.**"
   sendTestEmail:
     type: "object"
     properties:
@@ -9967,6 +11007,15 @@ definitions:
         $ref: "#/definitions/masterDetailsResponse_billingInfo"
       planInfo:
         $ref: "#/definitions/masterDetailsResponse_planInfo"
+  createApiKeyResponse:
+    type: "object"
+    properties:
+      status:
+        type: "string"
+        description: "Status of the API operation."
+      key:
+        type: "string"
+        description: "API Key"
   subAccountDetailsResponse:
     type: "object"
     properties:
@@ -10093,6 +11142,66 @@ definitions:
         items:
           type: "string"
     description: "Task reminder date/time for a task"
+  FileList:
+    type: "array"
+    description: "List of files"
+    items:
+      $ref: "#/definitions/FileData"
+  FileDownloadableLink:
+    type: "object"
+    required:
+    - "fileUrl"
+    properties:
+      fileUrl:
+        type: "string"
+        format: "url"
+        example: "https://storage.googleapis.com/sendinblue-app-crm.......-sample.pdf"
+        description: "A unique link to download the requested file."
+    example:
+      fileUrl: "https://storage.googleapis.com/sendinblue-app-crm.......-sample.pdf"
+  FileData:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+        example: "example.png"
+        description: "Name of uploaded file"
+      authorId:
+        type: "string"
+        example: "61a5ce58y5d4795761045991"
+        description: "Account id of user which created the file"
+      contactId:
+        type: "integer"
+        format: "int64"
+        example: 1
+        description: "Contact id of contact on which file is uploaded"
+      dealId:
+        type: "string"
+        example: "61a5ce58c5d4795761045991"
+        description: "Deal id linked to a file"
+      companyId:
+        type: "string"
+        example: "61a5ce58c5d4795761045991"
+        description: "Company id linked to a file"
+      size:
+        type: "integer"
+        format: "int64"
+        example: 10
+        description: "Size of file in bytes"
+      createdAt:
+        type: "string"
+        format: "date-time"
+        example: "2017-05-01T17:05:03.000Z"
+        description: "File created date/time"
+    description: "File data that is uploaded"
+    example:
+      createdAt: "2017-05-01T17:05:03.000Z"
+      companyId: "61a5ce58c5d4795761045991"
+      size: 10
+      contactId: 1
+      dealId: "61a5ce58c5d4795761045991"
+      name: "example.png"
+      authorId: "61a5ce58y5d4795761045991"
   NoteData:
     type: "object"
     required:
@@ -10121,8 +11230,19 @@ definitions:
         description: "Deal Ids linked to a note"
         items:
           type: "string"
+      companyIds:
+        type: "array"
+        example:
+        - "61a5ce58c5d4795761045990"
+        - "61a5ce58c5d4795761045991"
+        description: "Company Ids linked to a note"
+        items:
+          type: "string"
     description: "Note data to be saved"
     example:
+      companyIds:
+      - "61a5ce58c5d4795761045990"
+      - "61a5ce58c5d4795761045991"
       text: "In communication with client for resolution of queries."
       dealIds:
       - "61a5ce58c5d4795761045990"
@@ -10420,7 +11540,7 @@ definitions:
         description: "List of compaies"
         items:
           $ref: "#/definitions/Company"
-    description: "List of comapnies"
+    description: "List of companies"
     example:
       items:
       - linkedDealsIds:
@@ -10526,7 +11646,641 @@ definitions:
     description: "List of company attributes"
     items:
       $ref: "#/definitions/CompanyAttributes_inner"
+  ConversationsMessage:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: "eYBEm3gq3zc5ayE2g"
+        description: "Message ID. It can be used for further manipulations with the\
+          \ message."
+      type:
+        type: "string"
+        example: "agent"
+        description: "`\"agent\"` for agents’ messages, `\"visitor\"` for visitors’\
+          \ messages."
+        enum:
+        - "agent"
+        - "visitor"
+      text:
+        type: "string"
+        example: "Good morning! How can I help you?"
+        description: "Message text or name of the attached file"
+      visitorId:
+        type: "string"
+        example: "kZMvWhf8npAu3H6qd57w2Hv6nh6rnxvg"
+        description: "visitor’s ID"
+      agentId:
+        type: "string"
+        example: "d9nKoegKSjmCtyK78"
+        description: "ID of the agent on whose behalf the message was sent (only in\
+          \ messages sent by an agent)."
+      agentName:
+        type: "string"
+        example: "Liz"
+        description: "Agent’s name as displayed to the visitor. Only in the messages\
+          \ sent by an agent."
+      createdAt:
+        type: "integer"
+        format: "int64"
+        example: 1470222622433
+        description: "Timestamp in milliseconds."
+        minimum: 0
+      isPushed:
+        type: "boolean"
+        example: true
+        description: "`true` for pushed messages"
+      receivedFrom:
+        type: "string"
+        example: "SuperAwesomeHelpdesk"
+        description: "In two-way integrations, messages sent via REST API can be marked\
+          \ with receivedFrom property and then filtered out when received in a webhook\
+          \ to avoid infinite loop."
+      file:
+        $ref: "#/definitions/ConversationsMessage_file"
+    description: "a Conversations message"
+    example:
+      createdAt: 1470222622433
+      isPushed: true
+      agentId: "d9nKoegKSjmCtyK78"
+      file:
+        isImage: true
+        filename: "conversations.png"
+        size: 15538
+        imageInfo:
+          previewUrl: "https://ucarecdn.com/03cd56cd-1de9-4f65-996d-08afdf27fa1b/-/preview/800x800/-/quality/lighter/"
+          width: 1129
+          height: 525
+        url: "https://ucarecdn.com/cee5c10c-8302-45c1-b1fb-43860ca941a9/"
+      receivedFrom: "SuperAwesomeHelpdesk"
+      agentName: "Liz"
+      id: "eYBEm3gq3zc5ayE2g"
+      text: "Good morning! How can I help you?"
+      type: "agent"
+      visitorId: "kZMvWhf8npAu3H6qd57w2Hv6nh6rnxvg"
+  order:
+    type: "object"
+    required:
+    - "amount"
+    - "createdAt"
+    - "id"
+    - "products"
+    - "status"
+    - "updatedAt"
+    properties:
+      id:
+        type: "string"
+        example: "14"
+        description: "Unique ID of the order."
+      createdAt:
+        type: "string"
+        example: "2021-07-29T20:59:23.383Z"
+        description: "Event occurrence UTC date-time (YYYY-MM-DDTHH:mm:ssZ), when\
+          \ order is actually created."
+      updatedAt:
+        type: "string"
+        example: "2021-07-30T10:59:23.383Z"
+        description: "Event updated UTC date-time (YYYY-MM-DDTHH:mm:ssZ), when the\
+          \ status of the order is actually changed/updated."
+      status:
+        type: "string"
+        example: "completed"
+        description: "State of the order."
+      amount:
+        type: "number"
+        example: 308.42
+        description: "Total amount of the order, including all shipping expenses,\
+          \ tax and the price of items."
+      products:
+        type: "array"
+        items:
+          $ref: "#/definitions/order_products"
+      email:
+        type: "string"
+        example: "example@sendinblue.com"
+        description: "Email of the contact, Mandatory if \"phone\" field is not passed\
+          \ in \"billing\" parameter."
+      billing:
+        $ref: "#/definitions/order_billing"
+      coupons:
+        type: "array"
+        example:
+        - "EASTER15OFF"
+        description: "Coupons applied to the order. Stored case insensitive."
+        items:
+          type: "string"
+  orderBatch:
+    type: "object"
+    required:
+    - "orders"
+    properties:
+      orders:
+        type: "array"
+        description: "array of order objects"
+        items:
+          $ref: "#/definitions/order"
+      notifyUrl:
+        type: "string"
+        example: "https://en.wikipedia.org/wiki/Webhook"
+        description: "Notify Url provided by client to get the status of batch request"
+  createdBatchId:
+    type: "object"
+    required:
+    - "batchId"
+    properties:
+      batchId:
+        type: "number"
+        example: 1.0
+        description: "Batch ID of the request"
+  getCategories:
+    type: "object"
+    required:
+    - "categories"
+    - "count"
+    properties:
+      categories:
+        type: "array"
+        items:
+          type: "object"
+          allOf:
+          - $ref: "#/definitions/getCategoryDetails"
+      count:
+        type: "integer"
+        format: "int64"
+        example: 17655
+        description: "Number of categories"
+  getCategoryDetails:
+    type: "object"
+    required:
+    - "createdAt"
+    - "id"
+    - "modifiedAt"
+    - "name"
+    properties:
+      id:
+        type: "string"
+        format: "string"
+        example: "C11"
+        description: "Category ID for which you requested the details"
+      name:
+        type: "string"
+        format: "string"
+        example: "Electronics"
+        description: "Name of the category for which you requested the details"
+      createdAt:
+        type: "string"
+        example: "2017-05-12T12:30:00.000+0000"
+        description: "Creation UTC date-time of the category (YYYY-MM-DDTHH:mm:ss.SSSZ)"
+      modifiedAt:
+        type: "string"
+        example: "2017-05-12T12:30:00.000+0000"
+        description: "Last modification UTC date-time of the category (YYYY-MM-DDTHH:mm:ss.SSSZ)"
+      url:
+        type: "string"
+        format: "string"
+        example: "http://mydomain.com/cagetory/clothing"
+        description: "URL to the category"
+    example:
+      createdAt: "2017-05-12T12:30:00.000+0000"
+      modifiedAt: "2017-05-12T12:30:00.000+0000"
+      name: "Electronics"
+      id: "C11"
+      url: "http://mydomain.com/cagetory/clothing"
+  createUpdateCategory:
+    type: "object"
+    required:
+    - "id"
+    properties:
+      id:
+        type: "string"
+        format: "email"
+        example: "CAT123"
+        description: "Unique Category ID as saved in the shop\n"
+      name:
+        type: "string"
+        example: "Electronics"
+        description: "**Mandatory in case of creation**. Name of the Category, as\
+          \ displayed in the shop\n"
+      url:
+        type: "string"
+        example: "http://mydomain.com/category/electronics"
+        description: "URL to the category"
+      updateEnabled:
+        type: "boolean"
+        example: false
+        description: "Facilitate to update the existing category in the same request\
+          \ (updateEnabled = true)"
+        default: false
+  createUpdateCategories:
+    type: "object"
+    required:
+    - "id"
+    properties:
+      id:
+        type: "string"
+        format: "email"
+        example: "CAT123"
+        description: "Unique Category ID as saved in the shop\n"
+      name:
+        type: "string"
+        example: "Electronics"
+        description: "**Mandatory in case of creation**. Name of the Category, as\
+          \ displayed in the shop\n"
+      url:
+        type: "string"
+        example: "http://mydomain.com/category/electronics"
+        description: "URL to the category"
+  createUpdateBatchCategory:
+    type: "object"
+    required:
+    - "categories"
+    properties:
+      categories:
+        type: "array"
+        description: "array of categories objects"
+        items:
+          $ref: "#/definitions/createUpdateCategories"
+      updateEnabled:
+        type: "boolean"
+        description: "Facilitate to update the existing categories in the same request\
+          \ (updateEnabled = true)"
+  createCategoryModel:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        example: 122
+        description: "ID of the category when a new category is created"
+    example:
+      id: 122
+  createUpdateBatchCategoryModel:
+    type: "object"
+    properties:
+      createdCount:
+        type: "integer"
+        format: "int64"
+        example: 7
+        description: "Number of the new created categories"
+      updatedCount:
+        type: "integer"
+        format: "int64"
+        example: 5
+        description: "Number of the existing categories updated"
+    example:
+      updatedCount: 5
+      createdCount: 7
+  getProducts:
+    type: "object"
+    required:
+    - "count"
+    - "products"
+    properties:
+      products:
+        type: "array"
+        items:
+          type: "object"
+          allOf:
+          - $ref: "#/definitions/getProductDetails"
+      count:
+        type: "integer"
+        format: "int64"
+        example: 17655
+        description: "Number of products"
+  getProductDetails:
+    type: "object"
+    required:
+    - "createdAt"
+    - "id"
+    - "modifiedAt"
+    - "name"
+    - "s3ThumbAnalytics"
+    - "s3ThumbEditor"
+    properties:
+      id:
+        type: "string"
+        format: "string"
+        example: "P11"
+        description: "Product ID for which you requested the details"
+      name:
+        type: "string"
+        format: "string"
+        example: "Iphone 11"
+        description: "Name of the product for which you requested the details"
+      createdAt:
+        type: "string"
+        example: "2017-05-12T12:30:00.000+0000"
+        description: "Creation UTC date-time of the product (YYYY-MM-DDTHH:mm:ss.SSSZ)"
+      modifiedAt:
+        type: "string"
+        example: "2017-05-12T12:30:00.000+0000"
+        description: "Last modification UTC date-time of the product (YYYY-MM-DDTHH:mm:ss.SSSZ)"
+      url:
+        type: "string"
+        format: "string"
+        example: "http://mydomain.com/product/electronics/product1"
+        description: "URL to the product"
+      imageUrl:
+        type: "string"
+        format: "string"
+        example: "http://mydomain.com/product-absoulte-url/img.jpeg"
+        description: "Absolute URL to the cover image of the product"
+      sku:
+        type: "string"
+        format: "string"
+        description: "Product identifier from the shop"
+      price:
+        type: "number"
+        format: "float"
+        description: "Price of the product"
+      categories:
+        type: "array"
+        description: "Category ID-s of the product"
+        items:
+          type: "string"
+      parentId:
+        type: "string"
+        format: "string"
+        description: "Parent product id of the product"
+      s3Original:
+        type: "string"
+        format: "string"
+        description: "S3 url of original image"
+      s3ThumbAnalytics:
+        type: "string"
+        format: "string"
+        description: "S3 thumbnail url of original image in 120x120 dimension for\
+          \ analytics section"
+      s3ThumbEditor:
+        type: "string"
+        format: "string"
+        description: "S3 thumbnail url of original image in 600x400 dimension for\
+          \ editor section"
+    example:
+      s3ThumbAnalytics: "s3ThumbAnalytics"
+      modifiedAt: "2017-05-12T12:30:00.000+0000"
+      url: "http://mydomain.com/product/electronics/product1"
+      parentId: "parentId"
+      createdAt: "2017-05-12T12:30:00.000+0000"
+      price: 0.8008282
+      imageUrl: "http://mydomain.com/product-absoulte-url/img.jpeg"
+      name: "Iphone 11"
+      s3ThumbEditor: "s3ThumbEditor"
+      id: "P11"
+      categories:
+      - "categories"
+      - "categories"
+      sku: "sku"
+      s3Original: "s3Original"
+  createUpdateProduct:
+    type: "object"
+    required:
+    - "id"
+    - "name"
+    properties:
+      id:
+        type: "string"
+        format: "string"
+        example: "P11"
+        description: "Product ID for which you requested the details"
+      name:
+        type: "string"
+        format: "string"
+        example: "Iphone 11"
+        description: "Mandatory in case of creation**. Name of the product for which\
+          \ you requested the details"
+      url:
+        type: "string"
+        format: "string"
+        example: "http://mydomain.com/product/electronics/product1"
+        description: "URL to the product"
+      imageUrl:
+        type: "string"
+        format: "string"
+        example: "http://mydomain.com/product-absoulte-url/img.jpeg"
+        description: "Absolute URL to the cover image of the product"
+      sku:
+        type: "string"
+        format: "string"
+        description: "Product identifier from the shop"
+      price:
+        type: "number"
+        format: "float"
+        description: "Price of the product"
+      categories:
+        type: "array"
+        description: "Category ID-s of the product"
+        items:
+          type: "string"
+      parentId:
+        type: "string"
+        format: "string"
+        description: "Parent product id of the product"
+      metaInfo:
+        type: "object"
+        example:
+          description: "Shoes for sports"
+          brand: "addidas"
+        description: "Meta data of product such as description, vendor, producer,\
+          \ stock level. The size of cumulative metaInfo shall not exceed **1000 KB**.\
+          \ Maximum length of metaInfo object can be 10."
+        additionalProperties: {}
+      updateEnabled:
+        type: "boolean"
+        example: false
+        description: "Facilitate to update the existing category in the same request\
+          \ (updateEnabled = true)"
+        default: false
+  createUpdateBatchProducts:
+    type: "object"
+    required:
+    - "products"
+    properties:
+      products:
+        type: "array"
+        description: "array of products objects"
+        items:
+          $ref: "#/definitions/createUpdateProducts"
+      updateEnabled:
+        type: "boolean"
+        description: "Facilitate to update the existing categories in the same request\
+          \ (updateEnabled = true)"
+  createUpdateProducts:
+    type: "object"
+    required:
+    - "id"
+    - "name"
+    properties:
+      id:
+        type: "string"
+        format: "string"
+        example: "P11"
+        description: "Product ID for which you requested the details"
+      name:
+        type: "string"
+        format: "string"
+        example: "Iphone 11"
+        description: "Mandatory in case of creation**. Name of the product for which\
+          \ you requested the details"
+      url:
+        type: "string"
+        format: "string"
+        example: "http://mydomain.com/product/electronics/product1"
+        description: "URL to the product"
+      imageUrl:
+        type: "string"
+        format: "string"
+        example: "http://mydomain.com/product-absoulte-url/img.jpeg"
+        description: "Absolute URL to the cover image of the product"
+      sku:
+        type: "string"
+        format: "string"
+        description: "Product identifier from the shop"
+      price:
+        type: "number"
+        format: "float"
+        description: "Price of the product"
+      categories:
+        type: "array"
+        description: "Category ID-s of the product"
+        items:
+          type: "string"
+      parentId:
+        type: "string"
+        format: "string"
+        description: "Parent product id of the product"
+      metaInfo:
+        type: "object"
+        example:
+          description: "Shoes for sports"
+          brand: "addidas"
+        description: "Meta data of product such as description, vendor, producer,\
+          \ stock level. The size of cumulative metaInfo shall not exceed **1000 KB**.\
+          \ Maximum length of metaInfo object can be 10."
+        additionalProperties: {}
+  createProductModel:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        example: 122
+        description: "ID of the Product when a new product is created"
+  createUpdateBatchProductsModel:
+    type: "object"
+    properties:
+      createdCount:
+        type: "integer"
+        format: "int64"
+        example: 7
+        description: "Number of the new created products"
+      updatedCount:
+        type: "integer"
+        format: "int64"
+        example: 5
+        description: "Number of the existing products updated"
   body:
+    type: "object"
+    required:
+    - "name"
+    properties:
+      name:
+        type: "string"
+        example: "company"
+        description: "Name of company"
+      attributes:
+        type: "object"
+        example:
+          domain: "https://example.com"
+          industry: "Fabric"
+          owner: "60e68d60582a3b006f524197"
+        description: "Attributes for company creation"
+        properties: {}
+      countryCode:
+        type: "integer"
+        format: "int64"
+        example: 91
+        description: "Country code if phone_number is passed in attributes."
+  inline_response_200:
+    type: "object"
+    required:
+    - "id"
+    properties:
+      id:
+        type: "string"
+        example: "61a5cd07ca1347c82306ad06"
+        description: "Unique company id"
+    description: "Created company id"
+    example:
+      id: "61a5cd07ca1347c82306ad06"
+  body_1:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+        example: "company"
+        description: "Name of company"
+      attributes:
+        type: "object"
+        example:
+          category: "label_2"
+          domain: "xyz"
+          date: "2022-05-04T00:00:00+05:30"
+          industry: "flipkart"
+          number_of_contacts: 1
+          number_of_employees: 100
+          owner: "5b1a17d914b73d35a76ca0c7"
+          phone_number: "81718441912"
+          revenue: 10000.34222
+        description: "Attributes for company update"
+        properties: {}
+      countryCode:
+        type: "integer"
+        format: "int64"
+        example: 91
+        description: "Country code if phone_number is passed in attributes."
+  body_2:
+    type: "object"
+    properties:
+      linkContactIds:
+        type: "array"
+        example:
+        - 1
+        - 2
+        - 3
+        description: "Contact ids for contacts to be linked with company"
+        items:
+          type: "integer"
+          format: "int64"
+      unlinkContactIds:
+        type: "array"
+        example:
+        - 4
+        - 5
+        - 6
+        description: "Contact ids for contacts to be unlinked from company"
+        items:
+          type: "integer"
+          format: "int64"
+      linkDealsIds:
+        type: "array"
+        example:
+        - "61a5ce58c5d4795761045990"
+        - "61a5ce58c5d4795761045991"
+        - "61a5ce58c5d4795761045992"
+        description: "Deals ids for deals to be linked with company"
+        items:
+          type: "string"
+      unlinkDealsIds:
+        type: "array"
+        example:
+        - "61a5ce58c5d4795761045994"
+        - "61a5ce58c5d479576104595"
+        - "61a5ce58c5d4795761045996"
+        description: "Deals ids for deals to be unlinked from company"
+        items:
+          type: "string"
+  body_3:
     type: "object"
     required:
     - "name"
@@ -10554,7 +12308,7 @@ definitions:
     description: "Created deal id"
     example:
       id: "61a5cd07ca1347c82306ad06"
-  body_1:
+  body_4:
     type: "object"
     properties:
       name:
@@ -10568,57 +12322,7 @@ definitions:
           amount: 12
         description: "Attributes for deal update"
         properties: {}
-  body_2:
-    type: "object"
-    required:
-    - "name"
-    properties:
-      name:
-        type: "string"
-        example: "company"
-        description: "Name of company"
-      attributes:
-        type: "object"
-        example:
-          domain: "https://example.com"
-          industry: "Fabric"
-          owner: "60e68d60582a3b006f524197"
-        description: "Attributes for company creation"
-        properties: {}
-  inline_response_200:
-    type: "object"
-    required:
-    - "id"
-    properties:
-      id:
-        type: "string"
-        example: "61a5cd07ca1347c82306ad06"
-        description: "Unique company id"
-    description: "Created company id"
-    example:
-      id: "61a5cd07ca1347c82306ad06"
-  body_3:
-    type: "object"
-    properties:
-      name:
-        type: "string"
-        example: "company"
-        description: "Name of company"
-      attributes:
-        type: "object"
-        example:
-          category: "label_2"
-          domain: "xyz"
-          date: "2022-05-04T00:00:00+05:30"
-          industry: "flipkart"
-          number_of_contacts: 1
-          number_of_employees: 100
-          owner: "5b1a17d914b73d35a76ca0c7"
-          phone_number: "81718441912"
-          revenue: 10000.34222
-        description: "Attributes for company update"
-        properties: {}
-  body_4:
+  body_5:
     type: "object"
     properties:
       linkContactIds:
@@ -10627,37 +12331,39 @@ definitions:
         - 1
         - 2
         - 3
-        description: "Contact ids for contacts to be linked with company"
+        description: "Contact ids for contacts to be linked with deal"
         items:
           type: "integer"
+          format: "int64"
       unlinkContactIds:
         type: "array"
         example:
         - 4
         - 5
         - 6
-        description: "Contact ids for contacts to be unlinked from company"
+        description: "Contact ids for contacts to be unlinked from deal"
         items:
           type: "integer"
-      linkDealsIds:
+          format: "int64"
+      linkCompanyIds:
         type: "array"
         example:
         - "61a5ce58c5d4795761045990"
         - "61a5ce58c5d4795761045991"
         - "61a5ce58c5d4795761045992"
-        description: "Deals ids for deals to be linked with company"
+        description: "Company ids to be linked with deal"
         items:
           type: "string"
-      unlinkDealsIds:
+      unlinkCompanyIds:
         type: "array"
         example:
         - "61a5ce58c5d4795761045994"
         - "61a5ce58c5d479576104595"
         - "61a5ce58c5d4795761045996"
-        description: "Deals ids for deals to be unlinked from company"
+        description: "Company ids to be unlinked from deal"
         items:
           type: "string"
-  body_5:
+  body_6:
     type: "object"
     required:
     - "date"
@@ -10736,7 +12442,7 @@ definitions:
     description: "Task Details"
     example:
       id: "61a5cd07ca1347c82306ad06"
-  body_6:
+  body_7:
     type: "object"
     properties:
       name:
@@ -10795,6 +12501,122 @@ definitions:
         description: "Companies ids for companies a task is linked to"
         items:
           type: "string"
+  body_8:
+    type: "object"
+    required:
+    - "text"
+    - "visitorId"
+    properties:
+      visitorId:
+        type: "string"
+        example: "kZMvWhf8npAu3H6qd57w2Hv6nh6rnxvg"
+        description: "visitor’s ID received <a href=\"https://developers.sendinblue.com/docs/conversations-webhooks\"\
+          >from a webhook</a> or generated by you to <a href=\"https://developers.sendinblue.com/docs/customize-the-widget#identifying-existing-users\"\
+          >bind existing user account to Conversations</a>"
+      text:
+        type: "string"
+        example: "Hello! How can I help you?"
+        description: "message text"
+      agentId:
+        type: "string"
+        example: "d9nKoegKSjmCtyK78"
+        description: "agent ID. It can be found on agent’s page or received <a href=\"\
+          https://developers.sendinblue.com/docs/conversations-webhooks\">from a webhook</a>.\
+          \ Alternatively, you can use `agentEmail` + `agentName` + `receivedFrom`\
+          \ instead (all 3 fields required)."
+      receivedFrom:
+        type: "string"
+        example: "SuperAwesomeHelpdesk"
+        description: "mark your messages to distinguish messages created by you from\
+          \ the others."
+      agentEmail:
+        type: "string"
+        format: "email"
+        example: "liz@getwear.com"
+        description: "agent email. When sending messages from a standalone system,\
+          \ it’s hard to maintain a 1-to-1 relationship between the users of both\
+          \ systems. In this case, an agent can be specified by their email address."
+      agentName:
+        type: "string"
+        example: "Liz"
+        description: "agent name"
+  body_9:
+    required:
+    - "text"
+    properties:
+      text:
+        type: "string"
+        description: "edited message text"
+    example:
+      edition:
+        value:
+          text: "Good morning! How can I help you?"
+  body_10:
+    type: "object"
+    required:
+    - "text"
+    - "visitorId"
+    properties:
+      visitorId:
+        type: "string"
+        example: "kZMvWhf8npAu3H6qd57w2Hv6nh6rnxvg"
+        description: "visitor’s ID received <a href=\"https://developers.sendinblue.com/docs/conversations-webhooks\"\
+          >from a webhook</a> or generated by you to <a href=\"https://developers.sendinblue.com/docs/customize-the-widget#identifying-existing-users\"\
+          >bind existing user account to Conversations</a>"
+      text:
+        type: "string"
+        example: "Your order has shipped! Here’s your tracking number: 9114 5847 3325\
+          \ 9667 4328 88"
+        description: "message text"
+      agentId:
+        type: "string"
+        example: "PjRBMhWGen6aRHjif"
+        description: "agent ID. It can be found on agent’s page or received <a href=\"\
+          https://developers.sendinblue.com/docs/conversations-webhooks\">from a webhook</a>.\
+          \ Optional if `groupId` is set."
+      groupId:
+        type: "string"
+        example: "PjRBMhWGen6aRHjif"
+        description: "group ID. It can be found on group’s page. Optional if `agentId`\
+          \ is set."
+  body_11:
+    type: "object"
+    required:
+    - "text"
+    properties:
+      text:
+        type: "string"
+        example: "Your order has shipped! Here’s your tracking number: 9114 5847 4668\
+          \ 7775 9233 54"
+        description: "edited message text"
+  body_12:
+    type: "object"
+    properties:
+      agentId:
+        type: "string"
+        example: "d9nKoegKSjmCtyK78"
+        description: "agent ID. It can be found on agent’s page or received <a href=\"\
+          https://developers.sendinblue.com/docs/conversations-webhooks\">from a webhook</a>.\
+          \ Alternatively, you can use `agentEmail` + `agentName` + `receivedFrom`\
+          \ instead (all 3 fields required)."
+      receivedFrom:
+        type: "string"
+        example: "SuperAwesomeHelpdesk"
+        description: "mark your messages to distinguish messages created by you from\
+          \ the others."
+      agentEmail:
+        type: "string"
+        format: "email"
+        example: "liz@getwear.com"
+        description: "agent email. When sending online pings from a standalone system,\
+          \ it’s hard to maintain a 1-to-1 relationship between the users of both\
+          \ systems. In this case, an agent can be specified by their email address.\
+          \ If there’s no agent with the specified email address in your Sendinblue\
+          \ organization, a dummy agent will be created automatically."
+      agentName:
+        type: "string"
+        example: "Liz"
+        description: "agent name."
   getAccount_plan:
     type: "object"
     required:
@@ -11840,7 +13662,15 @@ definitions:
           type: "integer"
           format: "int64"
           example: 32
-    description: "List ids to include/exclude from campaign"
+      segmentIds:
+        type: "array"
+        description: "Mandatory if listIds are not used. Segment ids to send the campaign\
+          \ to."
+        items:
+          type: "integer"
+          format: "int64"
+          example: 23
+    description: "Segment ids and List ids to include/exclude from campaign"
   updateEmailCampaign_sender:
     type: "object"
     properties:
@@ -11876,13 +13706,23 @@ definitions:
           example: 8
       listIds:
         type: "array"
-        description: "Lists Ids to send the campaign to. REQUIRED if already not present\
-          \ in campaign and scheduledAt is not empty"
+        description: "Lists Ids to send the campaign to. Campaign should only be updated\
+          \ with listIds if listIds were used to create it. REQUIRED if already not\
+          \ present in campaign and scheduledAt is not empty"
         items:
           type: "integer"
           format: "int64"
           example: 32
-    description: "List ids to include/exclude from campaign"
+      segmentIds:
+        type: "array"
+        description: "Mandatory if listIds are not used. Campaign should only be updated\
+          \ with segmentIds if segmentIds were used to create it. Segment ids to send\
+          \ the campaign to."
+        items:
+          type: "integer"
+          format: "int64"
+          example: 23
+    description: "Segment ids and List ids to include/exclude from campaign"
   abTestCampaignResult_statistics:
     type: "object"
     required:
@@ -12791,5 +14631,122 @@ definitions:
         type: "boolean"
         example: true
     description: "List of attributes"
+  ConversationsMessage_file_imageInfo:
+    type: "object"
+    properties:
+      width:
+        type: "integer"
+        format: "int64"
+        example: 1129
+        description: "Width of the image"
+        minimum: 0
+      height:
+        type: "integer"
+        format: "int64"
+        example: 525
+        description: "height of the image"
+        minimum: 0
+      previewUrl:
+        type: "string"
+        format: "url"
+        example: "https://ucarecdn.com/03cd56cd-1de9-4f65-996d-08afdf27fa1b/-/preview/800x800/-/quality/lighter/"
+        description: "URL of the preview"
+    description: "image info is passed in case the file is an image"
+    example:
+      previewUrl: "https://ucarecdn.com/03cd56cd-1de9-4f65-996d-08afdf27fa1b/-/preview/800x800/-/quality/lighter/"
+      width: 1129
+      height: 525
+  ConversationsMessage_file:
+    type: "object"
+    properties:
+      filename:
+        type: "string"
+        example: "conversations.png"
+        description: "Name of the file"
+      size:
+        type: "integer"
+        format: "int64"
+        example: 15538
+        description: "Size in bytes"
+        minimum: 0
+      isImage:
+        type: "boolean"
+        example: true
+        description: "Whether the file is an image"
+      url:
+        type: "string"
+        format: "url"
+        example: "https://ucarecdn.com/cee5c10c-8302-45c1-b1fb-43860ca941a9/"
+        description: "URL of the file"
+      imageInfo:
+        $ref: "#/definitions/ConversationsMessage_file_imageInfo"
+    example:
+      isImage: true
+      filename: "conversations.png"
+      size: 15538
+      imageInfo:
+        previewUrl: "https://ucarecdn.com/03cd56cd-1de9-4f65-996d-08afdf27fa1b/-/preview/800x800/-/quality/lighter/"
+        width: 1129
+        height: 525
+      url: "https://ucarecdn.com/cee5c10c-8302-45c1-b1fb-43860ca941a9/"
+  order_products:
+    type: "object"
+    required:
+    - "price"
+    - "productId"
+    - "quantity"
+    properties:
+      productId:
+        type: "string"
+        example: "P1"
+        description: "ID of the product."
+      quantity:
+        type: "number"
+        example: 10.0
+        description: "How many pieces of the product the visitor has added to the\
+          \ cart."
+      variantId:
+        type: "string"
+        example: "P100"
+        description: "Product ID of the red color shirts."
+      price:
+        type: "number"
+        example: 99.99
+        description: "The price of a unit of product"
+    description: "Details for the Products in an order."
+  order_billing:
+    type: "object"
+    properties:
+      address:
+        type: "string"
+        example: "15 Somewhere Road, Brynmenyn"
+        description: "Full billing address."
+      city:
+        type: "string"
+        example: "Basel"
+        description: "Exact city of the address."
+      countryCode:
+        type: "string"
+        example: "CA"
+        description: "Billing country 2-letter ISO code."
+      phone:
+        type: "string"
+        example: "01559 032133"
+        description: "Phone number to contact for further details about the order,\
+          \ Mandatory if \"email\" field is not passed."
+      postCode:
+        type: "string"
+        example: "4052"
+        description: "Postcode for delivery and billing."
+      paymentMethod:
+        type: "string"
+        example: "PayPal"
+        description: "How the visitor will pay for the item(s), e.g. paypal, check,\
+          \ etc."
+      region:
+        type: "string"
+        example: "Northwestern Switzerland"
+        description: "Exact region (state/province) for delivery and billing."
+    description: "Billing details of an order."
 x-samples-languages:
 - "curl"

@@ -30,9 +30,9 @@ type ResellerApiService service
 
 /*
 ResellerApiService Add Email and/or SMS credits to a specific child account
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param childIdentifier Either auth key or id of reseller&#39;s child
- * @param addCredits Values to post to add credit to a specific child account
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param childIdentifier Either auth key or id of reseller&#39;s child
+  - @param addCredits Values to post to add credit to a specific child account
 
 @return RemainingCreditModel
 */
@@ -180,11 +180,9 @@ func (a *ResellerApiService) AddCredits(ctx context.Context, childIdentifier str
 
 /*
 ResellerApiService Associate a dedicated IP to the child
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param childIdentifier Either auth key or id of reseller&#39;s child
- * @param ip IP to associate
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param childIdentifier Either auth key or id of reseller&#39;s child
+  - @param ip IP to associate
 */
 func (a *ResellerApiService) AssociateIpToChild(ctx context.Context, childIdentifier string, ip ManageIp) (*http.Response, error) {
 	var (
@@ -299,11 +297,9 @@ func (a *ResellerApiService) AssociateIpToChild(ctx context.Context, childIdenti
 
 /*
 ResellerApiService Create a domain for a child account
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param childIdentifier Either auth key or id of reseller&#39;s child
- * @param addChildDomain Sender domain to add for a specific child account. This will not be displayed to the parent account.
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param childIdentifier Either auth key or id of reseller&#39;s child
+  - @param addChildDomain Sender domain to add for a specific child account. This will not be displayed to the parent account.
 */
 func (a *ResellerApiService) CreateChildDomain(ctx context.Context, childIdentifier string, addChildDomain AddChildDomain) (*http.Response, error) {
 	var (
@@ -579,11 +575,9 @@ func (a *ResellerApiService) CreateResellerChild(ctx context.Context, localVarOp
 
 /*
 ResellerApiService Delete the sender domain of the reseller child based on the childIdentifier and domainName passed
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param childIdentifier Either auth key or id of reseller&#39;s child
- * @param domainName Pass the existing domain that needs to be deleted
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param childIdentifier Either auth key or id of reseller&#39;s child
+  - @param domainName Pass the existing domain that needs to be deleted
 */
 func (a *ResellerApiService) DeleteChildDomain(ctx context.Context, childIdentifier string, domainName string) (*http.Response, error) {
 	var (
@@ -708,10 +702,8 @@ func (a *ResellerApiService) DeleteChildDomain(ctx context.Context, childIdentif
 
 /*
 ResellerApiService Delete a single reseller child based on the child identifier supplied
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param childIdentifier Either auth key or child id of reseller&#39;s child
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param childIdentifier Either auth key or child id of reseller&#39;s child
 */
 func (a *ResellerApiService) DeleteResellerChild(ctx context.Context, childIdentifier string) (*http.Response, error) {
 	var (
@@ -835,11 +827,9 @@ func (a *ResellerApiService) DeleteResellerChild(ctx context.Context, childIdent
 
 /*
 ResellerApiService Dissociate a dedicated IP to the child
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param childIdentifier Either auth key or id of reseller&#39;s child
- * @param ip IP to dissociate
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param childIdentifier Either auth key or id of reseller&#39;s child
+  - @param ip IP to dissociate
 */
 func (a *ResellerApiService) DissociateIpFromChild(ctx context.Context, childIdentifier string, ip ManageIp) (*http.Response, error) {
 	var (
@@ -954,8 +944,8 @@ func (a *ResellerApiService) DissociateIpFromChild(ctx context.Context, childIde
 
 /*
 ResellerApiService Get the status of a reseller&#39;s child account creation, whether it is successfully created (exists) or not based on the identifier supplied
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param childIdentifier Either auth key or id of reseller&#39;s child
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param childIdentifier Either auth key or id of reseller&#39;s child
 
 @return GetChildAccountCreationStatus
 */
@@ -1101,8 +1091,8 @@ func (a *ResellerApiService) GetChildAccountCreationStatus(ctx context.Context, 
 
 /*
 ResellerApiService Get all sender domains for a specific child account
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param childIdentifier Either auth key or id of reseller&#39;s child
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param childIdentifier Either auth key or id of reseller&#39;s child
 
 @return GetChildDomains
 */
@@ -1248,8 +1238,8 @@ func (a *ResellerApiService) GetChildDomains(ctx context.Context, childIdentifie
 
 /*
 ResellerApiService Get a child account&#39;s details
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param childIdentifier Either auth key or id of reseller&#39;s child
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param childIdentifier Either auth key or id of reseller&#39;s child
 
 @return GetChildInfo
 */
@@ -1534,8 +1524,8 @@ func (a *ResellerApiService) GetResellerChilds(ctx context.Context, localVarOpti
 /*
 ResellerApiService Get session token to access Sendinblue (SSO)
 It returns a session [token] which will remain valid for a short period of time. A child account will be able to access a white-labeled section by using the following url pattern &#x3D;&gt; https:/email.mydomain.com/login/sso?token&#x3D;[token]
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param childIdentifier Either auth key or id of reseller&#39;s child
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param childIdentifier Either auth key or id of reseller&#39;s child
 
 @return GetSsoToken
 */
@@ -1681,9 +1671,9 @@ func (a *ResellerApiService) GetSsoToken(ctx context.Context, childIdentifier st
 
 /*
 ResellerApiService Remove Email and/or SMS credits from a specific child account
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param childIdentifier Either auth key or id of reseller&#39;s child
- * @param removeCredits Values to post to remove email or SMS credits from a specific child account
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param childIdentifier Either auth key or id of reseller&#39;s child
+  - @param removeCredits Values to post to remove email or SMS credits from a specific child account
 
 @return RemainingCreditModel
 */
@@ -1831,11 +1821,9 @@ func (a *ResellerApiService) RemoveCredits(ctx context.Context, childIdentifier 
 
 /*
 ResellerApiService Update info of reseller&#39;s child account status based on the childIdentifier supplied
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param childIdentifier Either auth key or id of reseller&#39;s child
- * @param updateChildAccountStatus values to update in child account status
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param childIdentifier Either auth key or id of reseller&#39;s child
+  - @param updateChildAccountStatus values to update in child account status
 */
 func (a *ResellerApiService) UpdateChildAccountStatus(ctx context.Context, childIdentifier string, updateChildAccountStatus UpdateChildAccountStatus) (*http.Response, error) {
 	var (
@@ -1961,12 +1949,10 @@ func (a *ResellerApiService) UpdateChildAccountStatus(ctx context.Context, child
 
 /*
 ResellerApiService Update the sender domain of reseller&#39;s child based on the childIdentifier and domainName passed
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param childIdentifier Either auth key or id of reseller&#39;s child
- * @param domainName Pass the existing domain that needs to be updated
- * @param updateChildDomain value to update for sender domain
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param childIdentifier Either auth key or id of reseller&#39;s child
+  - @param domainName Pass the existing domain that needs to be updated
+  - @param updateChildDomain value to update for sender domain
 */
 func (a *ResellerApiService) UpdateChildDomain(ctx context.Context, childIdentifier string, domainName string, updateChildDomain UpdateChildDomain) (*http.Response, error) {
 	var (
@@ -2093,11 +2079,9 @@ func (a *ResellerApiService) UpdateChildDomain(ctx context.Context, childIdentif
 
 /*
 ResellerApiService Update info of reseller&#39;s child based on the child identifier supplied
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param childIdentifier Either auth key or id of reseller&#39;s child
- * @param resellerChild values to update in child profile
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param childIdentifier Either auth key or id of reseller&#39;s child
+  - @param resellerChild values to update in child profile
 */
 func (a *ResellerApiService) UpdateResellerChild(ctx context.Context, childIdentifier string, resellerChild UpdateChild) (*http.Response, error) {
 	var (

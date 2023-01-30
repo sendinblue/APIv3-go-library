@@ -27,7 +27,7 @@ type AccountApiService service
 
 /*
 AccountApiService Get your account information, plan and credits details
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 
 @return GetAccount
 */

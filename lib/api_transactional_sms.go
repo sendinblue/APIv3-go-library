@@ -503,8 +503,8 @@ func (a *TransactionalSMSApiService) GetTransacSmsReport(ctx context.Context, lo
 
 /*
 TransactionalSMSApiService Send SMS message to a mobile number
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param sendTransacSms Values to send a transactional SMS
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param sendTransacSms Values to send a transactional SMS
 
 @return SendSms
 */

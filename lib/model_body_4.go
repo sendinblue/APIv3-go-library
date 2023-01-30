@@ -11,12 +11,8 @@
 package lib
 
 type Body4 struct {
-	// Contact ids for contacts to be linked with company
-	LinkContactIds []int32 `json:"linkContactIds,omitempty"`
-	// Contact ids for contacts to be unlinked from company
-	UnlinkContactIds []int32 `json:"unlinkContactIds,omitempty"`
-	// Deals ids for deals to be linked with company
-	LinkDealsIds []string `json:"linkDealsIds,omitempty"`
-	// Deals ids for deals to be unlinked from company
-	UnlinkDealsIds []string `json:"unlinkDealsIds,omitempty"`
+	// Name of deal
+	Name string `json:"name,omitempty"`
+	// Attributes for deal update
+	Attributes *interface{} `json:"attributes,omitempty"`
 }

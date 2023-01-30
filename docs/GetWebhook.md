@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Id** | **int64** | ID of the webhook | [default to null]
 **Description** | **string** | Description of the webhook | [default to null]
 **Events** | **[]string** |  | [default to null]
-**Type_** | **string** | Type of webhook (marketing or transac) | [default to null]
+**Type_** | **string** | Type of webhook (marketing or transactional) | [default to null]
 **CreatedAt** | **string** | Creation UTC date-time of the webhook (YYYY-MM-DDTHH:mm:ss.SSSZ) | [default to null]
 **ModifiedAt** | **string** | Last modification UTC date-time of the webhook (YYYY-MM-DDTHH:mm:ss.SSSZ) | [default to null]
 

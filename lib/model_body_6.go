@@ -16,13 +16,13 @@ import (
 
 type Body6 struct {
 	// Name of task
-	Name string `json:"name,omitempty"`
+	Name string `json:"name"`
 	// Duration of task in milliseconds [1 minute = 60000 ms]
-	Duration int32 `json:"duration,omitempty"`
+	Duration int64 `json:"duration,omitempty"`
 	// Id for type of task e.g Call / Email / Meeting etc.
-	TaskTypeId string `json:"taskTypeId,omitempty"`
-	// Task date/time
-	Date time.Time `json:"date,omitempty"`
+	TaskTypeId string `json:"taskTypeId"`
+	// Task due date and time
+	Date time.Time `json:"date"`
 	// Notes added to a task
 	Notes string `json:"notes,omitempty"`
 	// Task marked as done
@@ -34,5 +34,6 @@ type Body6 struct {
 	// Deal ids for deals a task is linked to
 	DealsIds []string `json:"dealsIds,omitempty"`
 	// Companies ids for companies a task is linked to
-	CompaniesIds []string `json:"companiesIds,omitempty"`
+	CompaniesIds []string      `json:"companiesIds,omitempty"`
+	Reminder     *TaskReminder `json:"reminder,omitempty"`
 }

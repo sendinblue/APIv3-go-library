@@ -30,8 +30,8 @@ type WebhooksApiService service
 
 /*
 WebhooksApiService Create a webhook
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param createWebhook Values to create a webhook
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param createWebhook Values to create a webhook
 
 @return CreateModel
 */
@@ -156,10 +156,8 @@ func (a *WebhooksApiService) CreateWebhook(ctx context.Context, createWebhook Cr
 
 /*
 WebhooksApiService Delete a webhook
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param webhookId Id of the webhook
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param webhookId Id of the webhook
 */
 func (a *WebhooksApiService) DeleteWebhook(ctx context.Context, webhookId int64) (*http.Response, error) {
 	var (
@@ -272,8 +270,8 @@ func (a *WebhooksApiService) DeleteWebhook(ctx context.Context, webhookId int64)
 
 /*
 WebhooksApiService Get a webhook details
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param webhookId Id of the webhook
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param webhookId Id of the webhook
 
 @return GetWebhook
 */
@@ -546,11 +544,9 @@ func (a *WebhooksApiService) GetWebhooks(ctx context.Context, localVarOptionals 
 
 /*
 WebhooksApiService Update a webhook
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param webhookId Id of the webhook
- * @param updateWebhook Values to update a webhook
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param webhookId Id of the webhook
+  - @param updateWebhook Values to update a webhook
 */
 func (a *WebhooksApiService) UpdateWebhook(ctx context.Context, webhookId int64, updateWebhook UpdateWebhook) (*http.Response, error) {
 	var (

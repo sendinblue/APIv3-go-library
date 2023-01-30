@@ -4,9 +4,38 @@ All URIs are relative to *https://api.sendinblue.com/v3*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**GetInboundEmailAttachment**](InboundParsingApi.md#GetInboundEmailAttachment) | **Get** /inbound/attachments/{downloadToken} | Retrieve inbound attachment with download token.
 [**GetInboundEmailEvents**](InboundParsingApi.md#GetInboundEmailEvents) | **Get** /inbound/events | Get the list of all the events for the received emails.
 [**GetInboundEmailEventsByUuid**](InboundParsingApi.md#GetInboundEmailEventsByUuid) | **Get** /inbound/events/{uuid} | Fetch all events history for one particular received email.
 
+
+# **GetInboundEmailAttachment**
+> *os.File GetInboundEmailAttachment(ctx, downloadToken)
+Retrieve inbound attachment with download token.
+
+This endpoint will retrieve inbound attachment with download token.
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **downloadToken** | **string**| Token to fetch a particular attachment | 
+
+### Return type
+
+[***os.File**](*os.File.md)
+
+### Authorization
+
+[api-key](../README.md#api-key), [partner-key](../README.md#partner-key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetInboundEmailEvents**
 > GetInboundEmailEvents GetInboundEmailEvents(ctx, optional)

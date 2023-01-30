@@ -11,8 +11,8 @@
 package lib
 
 type Body3 struct {
-	// Name of company
-	Name string `json:"name,omitempty"`
-	// Attributes for company update
-	Attributes map[string]interface{} `json:"attributes,omitempty"`
+	// Name of deal
+	Name string `json:"name"`
+	// Attributes fo\\r deal creation
+	Attributes *interface{} `json:"attributes,omitempty"`
 }

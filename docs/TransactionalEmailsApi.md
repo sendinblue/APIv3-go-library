@@ -279,7 +279,7 @@ Optional parameters are passed through a pointer to a GetEmailEventReportOpts st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **optional.Int64**| Number limitation for the result returned | [default to 50]
+ **limit** | **optional.Int64**| Number limitation for the result returned | [default to 2500]
  **offset** | **optional.Int64**| Beginning point in the list to retrieve from. | [default to 0]
  **startDate** | **optional.String**| Mandatory if endDate is used. Starting date of the report (YYYY-MM-DD). Must be lower than equal to endDate | 
  **endDate** | **optional.String**| Mandatory if startDate is used. Ending date of the report (YYYY-MM-DD). Must be greater than equal to startDate | 

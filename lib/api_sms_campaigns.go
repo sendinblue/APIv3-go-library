@@ -30,8 +30,8 @@ type SMSCampaignsApiService service
 
 /*
 SMSCampaignsApiService Creates an SMS campaign
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param createSmsCampaign Values to create an SMS Campaign
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param createSmsCampaign Values to create an SMS Campaign
 
 @return CreateModel
 */
@@ -156,10 +156,8 @@ func (a *SMSCampaignsApiService) CreateSmsCampaign(ctx context.Context, createSm
 
 /*
 SMSCampaignsApiService Delete an SMS campaign
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param campaignId id of the SMS campaign
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param campaignId id of the SMS campaign
 */
 func (a *SMSCampaignsApiService) DeleteSmsCampaign(ctx context.Context, campaignId int64) (*http.Response, error) {
 	var (
@@ -272,8 +270,8 @@ func (a *SMSCampaignsApiService) DeleteSmsCampaign(ctx context.Context, campaign
 
 /*
 SMSCampaignsApiService Get an SMS campaign
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param campaignId id of the SMS campaign
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param campaignId id of the SMS campaign
 
 @return GetSmsCampaign
 */
@@ -719,10 +717,8 @@ func (a *SMSCampaignsApiService) RequestSmsRecipientExport(ctx context.Context, 
 
 /*
 SMSCampaignsApiService Send your SMS campaign immediately
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param campaignId id of the campaign
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param campaignId id of the campaign
 */
 func (a *SMSCampaignsApiService) SendSmsCampaignNow(ctx context.Context, campaignId int64) (*http.Response, error) {
 	var (
@@ -847,11 +843,9 @@ func (a *SMSCampaignsApiService) SendSmsCampaignNow(ctx context.Context, campaig
 /*
 SMSCampaignsApiService Send an SMS campaign&#39;s report
 Send report of Sent and Archived campaign, to the specified email addresses, with respective data and a pdf attachment in detail.
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param campaignId id of the campaign
- * @param sendReport Values for send a report
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param campaignId id of the campaign
+  - @param sendReport Values for send a report
 */
 func (a *SMSCampaignsApiService) SendSmsReport(ctx context.Context, campaignId int64, sendReport SendReport) (*http.Response, error) {
 	var (
@@ -966,11 +960,9 @@ func (a *SMSCampaignsApiService) SendSmsReport(ctx context.Context, campaignId i
 
 /*
 SMSCampaignsApiService Send a test SMS campaign
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param campaignId Id of the SMS campaign
- * @param phoneNumber Mobile number of the recipient with the country code. This number must belong to one of your contacts in SendinBlue account and must not be blacklisted
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param campaignId Id of the SMS campaign
+  - @param phoneNumber Mobile number of the recipient with the country code. This number must belong to one of your contacts in SendinBlue account and must not be blacklisted
 */
 func (a *SMSCampaignsApiService) SendTestSms(ctx context.Context, campaignId int64, phoneNumber SendTestSms) (*http.Response, error) {
 	var (
@@ -1085,11 +1077,9 @@ func (a *SMSCampaignsApiService) SendTestSms(ctx context.Context, campaignId int
 
 /*
 SMSCampaignsApiService Update an SMS campaign
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param campaignId id of the SMS campaign
- * @param updateSmsCampaign Values to update an SMS Campaign
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param campaignId id of the SMS campaign
+  - @param updateSmsCampaign Values to update an SMS Campaign
 */
 func (a *SMSCampaignsApiService) UpdateSmsCampaign(ctx context.Context, campaignId int64, updateSmsCampaign UpdateSmsCampaign) (*http.Response, error) {
 	var (
@@ -1204,11 +1194,9 @@ func (a *SMSCampaignsApiService) UpdateSmsCampaign(ctx context.Context, campaign
 
 /*
 SMSCampaignsApiService Update a campaign&#39;s status
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param campaignId id of the campaign
- * @param status Status of the campaign.
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param campaignId id of the campaign
+  - @param status Status of the campaign.
 */
 func (a *SMSCampaignsApiService) UpdateSmsCampaignStatus(ctx context.Context, campaignId int64, status UpdateCampaignStatus) (*http.Response, error) {
 	var (
